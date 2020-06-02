@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>get10Xmatrix — get10Xmatrix • Giotto</title>
+<title>giotto_lapply — giotto_lapply • Giotto</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="get10Xmatrix — get10Xmatrix" />
-<meta property="og:description" content="This function creates an expression matrix from a 10X structured folder" />
+<meta property="og:title" content="giotto_lapply — giotto_lapply" />
+<meta property="og:description" content="giotto_lapply" />
 
 
 
@@ -169,44 +169,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>get10Xmatrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/general_help.R'><code>R/general_help.R</code></a></small>
-    <div class="hidden name"><code>get10Xmatrix.Rd</code></div>
+    <h1>giotto_lapply</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/auxiliary_giotto.R'><code>R/auxiliary_giotto.R</code></a></small>
+    <div class="hidden name"><code>giotto_lapply.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function creates an expression matrix from a 10X structured folder</p>
+    <p>giotto_lapply</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get10Xmatrix</span>(<span class='no'>path_to_data</span>, <span class='kw'>gene_column_index</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>giotto_lapply</span>(<span class='no'>X</span>, <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>fun</span>, <span class='no'>...</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>path_to_data</th>
-      <td><p>path to the 10X folder</p></td>
-    </tr>
-    <tr>
-      <th>gene_column_index</th>
-      <td><p>which column from the features or genes .tsv file to use for row ids</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>sparse expression matrix from 10X</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A typical 10X folder is named raw_feature_bc_matrix or raw_feature_bc_matrix and tt has 3 files:</p><ul>
-<li><p>barcodes.tsv(.gz)</p></li>
-<li><p>features.tsv(.gz) or genes.tsv(.gz)</p></li>
-<li><p>matrix.mtx(.gz)</p></li>
-</ul><p>By default the first column of the features or genes .tsv file will be used, however if multiple
-annotations are provided (e.g. ensembl gene ids and gene symbols) the user can select another column.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>get10Xmatrix</span>(<span class='no'>path_to_data</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
