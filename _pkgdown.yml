@@ -13,7 +13,7 @@ navbar:
   title: ~
   type: default
   left:
-    - text: "Start"
+    - text: "Start Here"
       menu:
       - text: Description
         href: articles/getting_started.html#description
