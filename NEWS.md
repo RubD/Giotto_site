@@ -1,5 +1,5 @@
 
-# Giotto 0.3.5 (development)
+# Giotto 0.3.5
 
   - background images See [howto’s](../articles/howto_images.html)
   - support for sparse matrices  
@@ -10,6 +10,8 @@
   - addition of **readExprMatrix** to read an expression matrix
   - addition of **addGenesPerc** to add information about genesets
     (e.g. mitochondrial genes)
+  - addition of **showGrids** and **showNetworks** to see available
+    spatial grids and networks
   - several bug fixes
 
 # Giotto 0.3.2
