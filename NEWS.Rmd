@@ -13,12 +13,13 @@ output: github_document
 - addition of **showGrids** and **showNetworks** to see available spatial grids and networks
 - several bug fixes
 
+
 # Giotto 0.3.2  
 - added voronoi plots to use in spatial plotting. See [howto's](../articles/howto_voronoi_plots.html)  
 - generalized visualization parameters between functions  
 
-# Giotto 0.3.1
 
+# Giotto 0.3.1
 - (optional) automatic installation of python modules through reticulate:  
   - you can provide your preferred python path
   - the giotto environment can be installed automatic
@@ -39,7 +40,6 @@ small_seqfish_locations = read.table(system.file("extdata", "seqfish_field_locs.
 
 
 # Giotto 0.3.0
-
 - Default spatial network created with **createSpatialNetwork** is now a Delaunay spatial network.
 ```{r, eval=FALSE}
 # to create the old default kNN spatial network use:
