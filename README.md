@@ -95,7 +95,7 @@ See
     \[work in progress\]
 
 [![seqFISH](./inst/images/general_figs/cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200517.html)
-[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_merFISH_hypoth_preoptic_region_200326.html)
+[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_merFISH_preoptic_region_200601.html)
 [![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_starmap_cortex.html)
 [![Visium\_brain](./inst/images/general_figs/visium_brain_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_brain_200325.html)
 [![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200326.html)

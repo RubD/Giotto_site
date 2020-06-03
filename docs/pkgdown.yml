@@ -12,6 +12,7 @@ articles:
   metadata_and_subset_VC: metadata_and_subset_VC.html
   mouse_CODEX_spleen: mouse_CODEX_spleen.html
   mouse_merFISH_hypoth_preoptic_region_200326: mouse_merFISH_hypoth_preoptic_region_200326.html
+  mouse_merFISH_preoptic_region_200601: mouse_merFISH_preoptic_region_200601.html
   mouse_osmFISH_SScortex: mouse_osmFISH_SScortex.html
   mouse_seqFISH_cortex_200517: mouse_seqFISH_cortex_200517.html
   mouse_starmap_cortex: mouse_starmap_cortex.html
@@ -20,5 +21,5 @@ articles:
   subset_giotto: subset_giotto.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-06-03T15:54Z
+last_built: 2020-06-03T17:48Z
 

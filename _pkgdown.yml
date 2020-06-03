@@ -28,7 +28,7 @@ navbar:
       - text: "mouse seqFISH cortex"
         href: articles/mouse_seqFISH_cortex_200517.html
       - text: "mouse hypoth. preopt. region"
-        href: articles/mouse_merFISH_hypoth_preoptic_region_200326.html
+        href: articles/mouse_merFISH_preoptic_region_200601.html
       - text: "mouse STARmap cortex"
         href: articles/mouse_starmap_cortex.html
       - text: "human CyCIF PDAC"
