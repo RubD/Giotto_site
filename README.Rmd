@@ -29,7 +29,7 @@ The Giotto package consists of two modules, Giotto Analyzer and Viewer (see [www
 
 ## Installation
 
-See [FAQs](https://rubd.github.io/Giotto/articles/faqs.html) for additional information.
+See [FAQs](https://rubd.github.io/Giotto_site/articles/faqs.html) for additional information.
 
 #### R installation
 You can install Giotto with (~1-5 mins):
@@ -59,7 +59,7 @@ Required python modules:
 The python modules will be installed automatically in a miniconda environment when installing Giotto. However, it will ask you whether you want to install them and you can opt out and select your preferred python path. In that case you need to do a manual installation of the python modules.
 
 ##### Manual installation  
-See [python installation](https://rubd.github.io/Giotto/articles/installation_issues.html#python-manual-installation)
+See [python installation](https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation)
 
 
 
@@ -77,19 +77,19 @@ See [link](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.install.native
 - all examples are gradually updated to the latest Giotto version  [work in progress]
 
 
-[![seqFISH](./inst/images/general_figs/cortex_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_seqFISH_cortex_200319.html)
-[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_merFISH_hypoth_preoptic_region_200326.html)
-[![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_starmap_cortex.html)
-[![Visium_brain](./inst/images/general_figs/visium_brain_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_visium_brain_200325.html)
-[![Visium_kidney](./inst/images/general_figs/visium_kidney_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_visium_kidney_200326.html)
-[![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/human_cycif_PDAC_200322.html)
-[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png){width=10cm}](../articles/mouse_osmFISH_SScortex.html)
-[![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png){width=10cm}](https://rubd.github.io/Giotto/articles/mouse_CODEX_spleen.html)
+[![seqFISH](./inst/images/general_figs/cortex_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200319.html)
+[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_merFISH_hypoth_preoptic_region_200326.html)
+[![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_starmap_cortex.html)
+[![Visium_brain](./inst/images/general_figs/visium_brain_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_visium_brain_200325.html)
+[![Visium_kidney](./inst/images/general_figs/visium_kidney_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200326.html)
+[![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/human_cycif_PDAC_200322.html)
+[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex.html)
+[![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png){width=10cm}](https://rubd.github.io/Giotto_site/articles/mouse_CODEX_spleen.html)
 
 
 ## References
 
-- [Dries, R. et al. Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data. bioRxiv 701680 (2019).](https://www.biorxiv.org/content/10.1101/701680v1) doi:10.1101/701680
+- [Dries, R. et al. Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data. bioRxiv 701680 (2019).](https://www.biorxiv.org/content/10.1101/701680v2) doi:10.1101/701680
 
 - [Eng, C.-H. L. et al. Transcriptome-scale super-resolved imaging in tissues by RNA seqFISH+. Nature 1 (2019).](https://www.nature.com/articles/s41586-019-1049-y) doi:10.1038/s41586-019-1049-y
 
