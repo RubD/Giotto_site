@@ -21,10 +21,7 @@ situ* hybridization (seqFISH+, merFISH, osmFISH), sequencing (Slide-seq,
 Visium, STARmap) and imaging-based multiplexing/proteomics (CyCIF, MIBI,
 CODEX). These technologies differ in terms of resolution (single cell vs
 multiple cells), spatial dimension (2D vs 3D), molecular modality
-(protein vs RNA), and throughput (number of cells and genes). More
-information and documentation about the latest (developmental) version
-of Giotto Analyzer can be found at
-<https://rubd.github.io/Giotto_site/>.
+(protein vs RNA), and throughput (number of cells and genes).
 
 <img src="inst/images/general_figs/overview_datasets.png" />
 
