@@ -27,7 +27,9 @@ library(Giotto)
 ## create instructions
 ## instructions allow us to:
 ## - automatically save all plots into a chosen results folder, see also showSaveParameters()
-## - set your own python path if preferred (Giotto can automatically create a miniconda environment with all python modules installed)
+## - set your own python path if preferred 
+## By default Giotto will automatically (after prompting permission) create a miniconda environment
+## with all python modules the first time you run it.
 instrs = createGiottoInstructions(save_dir = '/your/results/path/')
 ```
 

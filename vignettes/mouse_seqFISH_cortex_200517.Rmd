@@ -25,13 +25,13 @@ library(Giotto)
 
 ## create instructions
 ## instructions allow us to automatically save all plots into a chosen results folder
-my_python_path = "/your/python/path/python"
-results_folder = '/your/results/path/'
-instrs = createGiottoInstructions(python_path = my_python_path,
-                                  show_plot = F, return_plot = T, save_plot = T,
-                                  save_dir = results_folder,
-                                  plot_format = 'png',
-                                  dpi = 300, height = 9, width = 9)
+## create instructions
+## instructions allow us to:
+## - automatically save all plots into a chosen results folder, see also showSaveParameters()
+## - set your own python path if preferred 
+## By default Giotto will automatically (after prompting permission) create a miniconda environment
+## with all python modules the first time you run it.
+instrs = createGiottoInstructions(save_dir = '/your/results/path/')
 ```
 
 
@@ -52,11 +52,11 @@ Several fields - containing 100's of cells - in the mouse cortex and subventricu
 ```{r, eval=FALSE}
 ## A. expression and cell location
 data_dir = '/path/to/data/Seqfish_SS_cortex/'
-VC_exprs = read.table(paste0(data_dir,"/", "count_matrix/cortex_svz_expression.txt"))
-VC_locs = fread(paste0(data_dir,"/", "cell_locations/cortex_svz_centroids_rotated.csv"))
+VC_exprs = readExprMatrix(paste0(data_dir,"/", "cortex_svz_expression.txt"))
+VC_locs = data.table::fread(paste0(data_dir,"/", "cortex_svz_centroids_rotated.csv"))
 
 ## B. offset file to combine fields
-my_offset_file = data.table(field = c(0, 1, 2, 3, 4, 5, 6),
+my_offset_file = data.table::data.table(field = c(0, 1, 2, 3, 4, 5, 6),
                             x_offset = c(0, 1654.97, 1750.75, 1674.35, 675.5, 2048, 675),
                             y_offset = c(0, 0, 0, 0, -1438.02, -1438.02, 0))
 stitch_file = stitchFieldCoordinates(location_file = VC_locs, offset_file = my_offset_file,
@@ -109,12 +109,13 @@ VC_test <- adjustGiottoMatrix(gobject = VC_test, expression_values = c('normaliz
                               update_slot = c('custom'))
 
 ## visualize
-spatPlot(gobject = VC_test)
+spatPlot(gobject = VC_test,
+         save_param = list(save_name = '2_spatplot'))
 
 ```
   
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/2_spatial_locations.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/2_spatial_locations.png){width=10cm} 
 </center>
 
 
@@ -129,7 +130,7 @@ VC_test <- calculateHVG(gobject = VC_test, method = 'cov_loess', difference_in_c
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/3_HVGplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_HVGplot.png){width=10cm}  
 </center>
 
 ```{r eval=FALSE}
@@ -139,20 +140,24 @@ featgenes = gene_metadata[hvg == 'yes' & perc_cells > 4 & mean_expr_det > 0.5]$g
 
 ## run PCA on expression values (default)
 VC_test <- runPCA(gobject = VC_test, genes_to_use = featgenes, scale_unit = F)
+screePlot(VC_test, save_param = list(save_name = '3_screeplot'))
+```
 
-signPCA(VC_test, genes_to_use = featgenes, scale_unit = F,
-        save_param = list(save_name = '3_screeplot'))
+<center>
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_screeplot.png){width=10cm} 
+</center>
 
+```{r eval=FALSE}
 plotPCA(gobject = VC_test,
         save_param = list(save_name = '3_PCA_reduction'))
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/3_screeplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_screeplot.png){width=10cm} 
 </center>
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/3_PCA_reduction.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_PCA_reduction.png){width=10cm} 
 </center>
 
 
@@ -165,7 +170,7 @@ plotUMAP(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/3_UMAP_reduction.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_UMAP_reduction.png){width=10cm} 
 </center>
 
 
@@ -176,7 +181,7 @@ plotTSNE(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/3_tSNE_reduction.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/3_tSNE_reduction.png){width=10cm} 
 </center>
 
 
@@ -197,7 +202,7 @@ plotUMAP(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/4_UMAP_leiden.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/4_UMAP_leiden.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -207,13 +212,13 @@ VC_test = doLeidenSubCluster(gobject = VC_test, cluster_column = 'leiden_clus',
                              hvg_param = list(method = 'cov_loess', difference_in_cov = 0.1),
                              pca_param = list(expression_values = 'normalized', scale_unit = F),
                              nn_param = list(dimensions_to_use = 1:5),
-                             selected_clusters = c(4, 6, 7),
+                             selected_clusters = c(5, 6, 7),
                              name = 'sub_leiden_clus_select')
 
 ## set colors for clusters
-subleiden_order = c( 1.1, 5.1,  2.1, 3.1,
+subleiden_order = c( 1.1, 5.1, 5.2,  2.1, 3.1,
                      4.1,  4.2, 4.3, 6.2, 6.1,
-                     7.1,  7.2, 8.1)
+                     7.1,  7.2, 9.1, 8.1)
 subleiden_colors = Giotto:::getDistinctColors(length(subleiden_order)) 
 names(subleiden_colors) = subleiden_order
 
@@ -225,7 +230,7 @@ plotUMAP(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/4_UMAP_leiden_subcluster.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/4_UMAP_leiden_subcluster.png){width=10cm} 
 </center>
 
 
@@ -238,7 +243,7 @@ showClusterHeatmap(gobject = VC_test, cluster_column = 'sub_leiden_clus_select',
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/4_heatmap.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/4_heatmap.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -251,7 +256,7 @@ showClusterDendrogram(VC_test, h = 0.5, rotate = T, cluster_column = 'sub_leiden
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/4_dendro.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/4_dendro.png){width=10cm} 
 </center>
 
 
@@ -266,13 +271,13 @@ spatDimPlot(gobject = VC_test, cell_color = 'sub_leiden_clus_select', cell_color
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/5_covis_leiden.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/5_covis_leiden.png){width=10cm} 
 </center>
 
 
 ```{r eval=FALSE}
 # selected groups and provide new colors
-groups_of_interest = c(4.1, 6.1, 6.2, 7.1)
+groups_of_interest = c(6.1, 6.2, 7.1, 7.2)
 group_colors = c('red', 'green', 'blue', 'purple'); names(group_colors) = groups_of_interest
 
 spatDimPlot(gobject = VC_test, cell_color = 'sub_leiden_clus_select', 
@@ -283,7 +288,7 @@ spatDimPlot(gobject = VC_test, cell_color = 'sub_leiden_clus_select',
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/5_covis_leiden_selected.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/5_covis_leiden_selected.png){width=10cm} 
 </center>
 
 
@@ -312,7 +317,7 @@ violinPlot(VC_test, genes = unique(topgenes_gini$genes), cluster_column = 'sub_l
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/6_violinplot_gini.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/6_violinplot_gini.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -326,7 +331,7 @@ plotMetaDataHeatmap(VC_test, selected_genes = unique(topgenes_gini2$genes),
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/6_metaheatmap_gini2.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/6_metaheatmap_gini2.png){width=10cm} 
 </center>
 
 
@@ -337,14 +342,17 @@ plotMetaDataHeatmap(VC_test, selected_genes = unique(topgenes_gini2$genes),
 ```{r eval=FALSE}
 ## general cell types
 # create vector with names
-clusters_cell_types_cortex = c('microglia', 'L4 eNeuron', 'endothelial',
-                               'astrocytes', 'Adarb2 iNeuron', 'Lhx6 iNeuron',
-                               'L6 eNeuron', 'L5 eNeuron', 'L2/3 eNeuron',
-                               'OPC', 'Olig', 'mural')
-names(clusters_cell_types_cortex) = c(8.1, 2.1, 7.1,
-                                      4.1, 6.2, 6.1,
-                                      1.1, 5.1, 3.1,
-                                      4.3, 4.2, 7.2)
+clusters_cell_types_cortex = c('L6 eNeuron', 'L4 eNeuron', 'L2/3 eNeuron', 'L5 eNeuron', 
+                               'Lhx6 iNeuron', 'Adarb2 iNeuron', 
+                               'endothelial', 'mural',
+                               'OPC','Olig',
+                               'astrocytes', 'microglia')
+                              
+names(clusters_cell_types_cortex) = c(1.1, 2.1, 3.1, 4.1,
+                                      5.1, 5.2,
+                                      6.1, 6.2, 
+                                      7.1, 7.2,
+                                      8.1, 9.1)
 
 VC_test = annotateGiotto(gobject = VC_test, annotation_vector = clusters_cell_types_cortex,
                          cluster_column = 'sub_leiden_clus_select', name = 'cell_types')
@@ -366,7 +374,7 @@ violinPlot(gobject = VC_test, genes = unique(topgenes_gini$genes),
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/7_violinplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/7_violinplot.png){width=10cm} 
 </center>
 
 
@@ -378,7 +386,7 @@ spatDimPlot(gobject = VC_test, cell_color = 'cell_types',
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/7_covisualization.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/7_covisualization.png){width=10cm} 
 </center>
 
 
@@ -401,7 +409,7 @@ plotHeatmap(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/7_heatmap.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/7_heatmap.png){width=10cm} 
 </center>
 
 
@@ -419,7 +427,7 @@ plotHeatmap(gobject = VC_test, cluster_color_code = cell_type_colors,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/7_heatmap_selected.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/7_heatmap_selected.png){width=10cm} 
 </center>
 
 
@@ -440,7 +448,7 @@ spatPlot(gobject = VC_test, show_grid = T, point_size = 1.5,
 
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/8_grid.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/8_grid.png){width=10cm} 
 </center>
 
 
@@ -472,7 +480,7 @@ spatPlot(gobject = subVC_test, show_network = T,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/9_spatial_network_delaunay.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/9_spatial_network_delaunay.png){width=10cm} 
 </center>
 
 
@@ -485,7 +493,7 @@ spatPlot(gobject = subVC_test, show_network = T,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/9_spatial_network_k3.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/9_spatial_network_k3.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -496,7 +504,7 @@ spatPlot(gobject = subVC_test, show_network = T,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/9_spatial_network_k10.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/9_spatial_network_k10.png){width=10cm} 
 </center>
 
 
@@ -509,7 +517,7 @@ spatPlot(gobject = subVC_test, show_network = T,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/9_spatial_network_dist.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/9_spatial_network_dist.png){width=10cm} 
 </center>
 
 
@@ -535,13 +543,12 @@ km_spatialgenes = binSpect(VC_test)
 spatGenePlot(VC_test, expression_values = 'scaled', genes = km_spatialgenes[1:6]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5, 
-             genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'white',
              cow_n_col = 2,
              save_param = list(save_name = '10_spatialgenes_km'))
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10_spatialgenes_km.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10_spatialgenes_km.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -549,13 +556,12 @@ rank_spatialgenes = binSpect(VC_test, bin_method = 'rank')
 spatGenePlot(VC_test, expression_values = 'scaled', genes = rank_spatialgenes[1:6]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5, 
-             genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'white',
              cow_n_col = 2,
              save_param = list(save_name = '10_spatialgenes_rank'))
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10_spatialgenes_rank.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10_spatialgenes_rank.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -563,14 +569,13 @@ silh_spatialgenes = silhouetteRank(gobject = VC_test)
 spatGenePlot(VC_test, expression_values = 'scaled', genes = silh_spatialgenes[1:6]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5, 
-             genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'white',
              cow_n_col = 2,
              save_param = list(save_name = '10_spatialgenes_silh'))
 
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10_spatialgenes_silh.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10_spatialgenes_silh.png){width=10cm} 
 </center>
 
 
@@ -599,7 +604,7 @@ heatmSpatialCorGenes(VC_test, spatCorObject = spat_cor_netw_DT, use_clus_name = 
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10b_spatialcoexpression_heatmap.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10b_spatialcoexpression_heatmap.png){width=10cm} 
 </center>
 
 
@@ -614,7 +619,7 @@ top_netw_spat_cluster = showSpatialCorGenes(spat_cor_netw_DT, use_clus_name = 's
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10b_spatialcoexpression_rank.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10b_spatialcoexpression_rank.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -634,7 +639,7 @@ spatCellPlot(VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/10b_spatialcoexpression_metagenes.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/10b_spatialcoexpression_metagenes.png){width=10cm} 
 </center>
 
 
@@ -682,7 +687,7 @@ spatPlot(gobject = VC_test, cell_color = 'HMRF_2_k9_b.28', point_size = 3, coord
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/11_HMRF_2_k9_b.28.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/11_HMRF_2_k9_b.28.png){width=10cm} 
 </center>
 
 
@@ -704,7 +709,7 @@ cellProximityBarplot(gobject = VC_test, CPscore = cell_proximities, min_orig_int
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_barplot_cell_cell_enrichment.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_barplot_cell_cell_enrichment.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -716,7 +721,7 @@ cellProximityHeatmap(gobject = VC_test, CPscore = cell_proximities, order_cell_t
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_heatmap_cell_cell_enrichment.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_heatmap_cell_cell_enrichment.png){width=10cm} 
 </center>
 
 
@@ -728,7 +733,7 @@ cellProximityNetwork(gobject = VC_test, CPscore = cell_proximities, remove_self_
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_network_cell_cell_enrichment.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_network_cell_cell_enrichment.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -747,7 +752,7 @@ cellProximityNetwork(gobject = VC_test, CPscore = cell_proximities,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_network_cell_cell_enrichment_self.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_network_cell_cell_enrichment_self.png){width=10cm} 
 </center>
 
 
@@ -767,7 +772,7 @@ cellProximitySpatPlot2D(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_cell_cell_enrichment_selected.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_cell_cell_enrichment_selected.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -784,7 +789,7 @@ spatPlot(VC_test, cell_color = 'astro_olig_ints',
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/12_cell_cell_enrichment_sel_vs_not.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/12_cell_cell_enrichment_sel_vs_not.png){width=10cm} 
 </center>
 
 
@@ -818,7 +823,7 @@ plotCellProximityGenes(VC_test, cpgObject = CPGscoresHighGenes, method = 'dotplo
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/13_CPG_dotplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/13_CPG_dotplot.png){width=10cm} 
 </center>
 
 ```{r eval=FALSE}
@@ -841,7 +846,7 @@ plotICG(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/13_ICG_barplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/13_ICG_barplot.png){width=10cm} 
 </center>
 
 
@@ -898,7 +903,7 @@ plotCCcomDotplot(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/14_communication_dotplot.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/14_communication_dotplot.png){width=10cm} 
 </center>
 
 
@@ -918,7 +923,7 @@ plotRankSpatvsExpr(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/14_expr_vs_spatial_activity.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/14_expr_vs_spatial_activity.png){width=10cm} 
 </center>
 
 
@@ -935,7 +940,7 @@ plotRecovery(gobject = VC_test,
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200319/14_spatial_recovery_activity.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/14_spatial_recovery_activity.png){width=10cm} 
 </center>
 
 
