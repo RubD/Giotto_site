@@ -1,5 +1,3 @@
-
-
 template:
   params:
     bootswatch: cosmo
@@ -34,7 +32,7 @@ navbar:
       - text: "human CyCIF PDAC"
         href: articles/human_cycif_PDAC_200601.html
       - text: "mouse Visium brain"
-        href: articles/mouse_visium_brain_200325.html
+        href: articles/mouse_visium_brain_200601.html
       - text: "mouse Visium kidney"
         href: articles/mouse_visium_kidney_200601.html
       - text: "mouse CODEX spleen"
