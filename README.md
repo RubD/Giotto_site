@@ -10,10 +10,9 @@
 <!-- badges: end -->
 
 The Giotto package consists of two modules, Giotto Analyzer and Viewer
-(see
-[www.spatialgiotto.com](http://spatial.rc.fas.harvard.edu/spatialgiotto/giotto.html)),
-which provide tools to process, analyze and visualize **single-cell
-spatial expression** data. The underlying framework is generalizable to
+(see [www.spatialgiotto.com](http://www.spatialgiotto.com)), which
+provide tools to process, analyze and visualize **single-cell spatial
+expression** data. The underlying framework is generalizable to
 virtually all currently available spatial datasets. We recently
 demonstrated the general applicability on 10 different datasets created
 by 9 different state-of-the-art spatial technologies, including *in
