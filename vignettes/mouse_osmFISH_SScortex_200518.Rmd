@@ -155,10 +155,10 @@ plotUMAP(gobject = osm_test,
 
 ```{r eval=FALSE}
 osm_test <- runtSNE(osm_test, dimensions_to_use = 1:31, perplexity = 70, check_duplicates = F)
-plotTSNE(gobject = osm_test,  save_param = list(save_name = '3_e_tSNE_reduction.png'))
+plotTSNE(gobject = osm_test,  save_param = list(save_name = '3_e_tSNE_reduction'))
 ```
 
-![](../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_b_tSNE_reduction.png){ width=50% } 
+![](../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_e_tSNE_reduction.png){ width=50% } 
 
 
 
