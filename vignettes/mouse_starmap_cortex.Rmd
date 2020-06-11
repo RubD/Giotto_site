@@ -366,7 +366,7 @@ insertCrossSectionGenePlot3D(STAR_test, expression_values = 'scaled',axis_scale 
 
 ```{r eval=FALSE}
 crossSectionPlot(STAR_test,
-                 point_size = 2,
+                 point_size = 2, point_shape = "border",
                  cell_color = "cell_types",cell_color_code = mycolorcode)
 
 crossSectionPlot3D(STAR_test,
@@ -385,7 +385,7 @@ crossSectionPlot3D(STAR_test,
 
 crossSectionGenePlot(STAR_test,
                      genes = "Slc17a7",
-                     point_size = 2,
+                     point_size = 2,point_shape = "border",
                      cow_n_col = 1.5,
                      expression_values = 'scaled')
 
