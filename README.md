@@ -100,14 +100,13 @@ See
 [![Visium\_brain](./inst/images/general_figs/visium_brain_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_brain_200601.html)
 [![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200601.html)
 [![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png)](https://rubd.github.io/Giotto_site/articles/human_cycif_PDAC_200601.html)
-[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex.html)
+[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex_200518.html)
 [![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_CODEX_spleen.html)
 
 ## References
 
-  - [Dries, R. et al. Giotto, a pipeline for integrative analysis and
-    visualization of single-cell spatial transcriptomic data.
-    bioRxiv 701680
+  - [Dries, R. et al. Giotto, a toolbox for integrative analysis and
+    visualization of spatial expression data. bioRxiv 701680
     (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
     <doi:10.1101/701680>
 
