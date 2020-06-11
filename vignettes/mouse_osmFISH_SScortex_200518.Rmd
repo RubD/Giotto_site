@@ -35,7 +35,7 @@ instrs = createGiottoInstructions(save_dir = results_folder, save_plot = T)
 [Codeluppi et al.](https://www.nature.com/articles/s41592-018-0175-z) created a cyclic single-molecule fluorescence in situ hybridization (osmFISH) technology and define the cellular organization of the somatosensory cortex with the expression of 33 genes in 5,328 cells.
 
 <center>
-![](../inst/images/osmfish_image_demo.png)
+![](../inst/images/general_figs/osmfish_image_demo.png)
 </center> 
 
 ```{r eval=FALSE}
@@ -151,7 +151,7 @@ plotUMAP(gobject = osm_test,
          save_param = list(save_name = '3_d_UMAP_reduction_expression.png'))
 ```
 
-![](../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_b_UMAP_reduction_expression.png){ width=50% } 
+![](../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_d_UMAP_reduction_expression.png){ width=50% } 
 
 ```{r eval=FALSE}
 osm_test <- runtSNE(osm_test, dimensions_to_use = 1:31, perplexity = 70, check_duplicates = F)
