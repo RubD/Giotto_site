@@ -187,6 +187,7 @@
   <span class='kw'>min_cor_score</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
   <span class='kw'>max_group_size</span> <span class='kw'>=</span> <span class='fl'>20</span>,
   <span class='kw'>force_min_group_size</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>max_sim_clusters</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
@@ -227,6 +228,10 @@
       <td><p>size of clusters that will be merged with their most similar neighbor(s)</p></td>
     </tr>
     <tr>
+      <th>max_sim_clusters</th>
+      <td><p>maximum number of clusters to potentially merge to reach force_min_group_size</p></td>
+    </tr>
+    <tr>
       <th>return_gobject</th>
       <td><p>return giotto object</p></td>
     </tr>
@@ -245,7 +250,8 @@
 To avoid large clusters to merge the max_group_size can be lowered. Small clusters can
 be forcibly merged with their most similar pairwise cluster by adjusting the
 force_min_group_size parameter. Clusters smaller than this value will be merged
-independent on the provided min_cor_score value. <br />
+independent on the provided min_cor_score value. The force_min_group_size might not always
+be reached if clusters have already been merged before <br />
 A giotto object is returned by default, if FALSE then the merging vector will be returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

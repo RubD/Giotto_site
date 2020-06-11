@@ -413,13 +413,13 @@ spat_cor_netw_DT = detectSpatialCorGenes(visium_brain,
                                          spatial_network_name = 'Delaunay_network',
                                          subset_genes = ext_spatial_genes)
 # 2. identify most similar spatially correlated genes for one gene
-Napsa_top10_genes = showSpatialCorGenes(spat_cor_netw_DT, genes = 'Napsa', show_top_genes = 10)
+Camk2n1_top10_genes = showSpatialCorGenes(spat_cor_netw_DT, genes = 'Camk2n1', show_top_genes = 10)
 spatGenePlot(visium_brain, expression_values = 'scaled',
-             genes = c('Napsa', 'Kap', 'Defb29', 'Prdx1'), point_size = 3,
-             save_param = c(save_name = '10_d_Napsa_correlated_genes'))
+             genes = c('Camk2n1', 'Mef2c', 'Stx1a', 'Zfp365'), point_size = 3,
+             save_param = c(save_name = '10_d_Camk2n1_correlated_genes'))
 ```
 
-![](../inst/images/mouse_Visium_brain/vignette_200601/10_d_Napsa_correlated_genes.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200601/10_d_Camk2n1_correlated_genes.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # 3. cluster correlated genes & visualize
@@ -517,14 +517,12 @@ spatPlot(gobject = visium_brain, cell_color = 'HMRF_k5_b.0', point_size = 5,
          save_param = c(save_name = '11_a_HMRF_k5_b.0'))
 ```
 
-![](../inst/images/mouse_Visium_brain/vignette_200601/11_a_HMRF_k5_b.0.png){ width=50% } 
 
 ```{r, eval=FALSE}
 spatPlot(gobject = visium_brain, cell_color = 'HMRF_k5_b.2', point_size = 5,
          save_param = c(save_name = '11_b_HMRF_k5_b.2'))
 ```
 
-![](../inst/images/mouse_Visium_brain/vignette_200601/11_b_HMRF_k5_b.2.png){ width=50% } 
 
 
 
