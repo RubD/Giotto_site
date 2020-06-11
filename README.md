@@ -20,7 +20,10 @@ situ* hybridization (seqFISH+, merFISH, osmFISH), sequencing (Slide-seq,
 Visium, STARmap) and imaging-based multiplexing/proteomics (CyCIF, MIBI,
 CODEX). These technologies differ in terms of resolution (single cell vs
 multiple cells), spatial dimension (2D vs 3D), molecular modality
-(protein vs RNA), and throughput (number of cells and genes).
+(protein vs RNA), and throughput (number of cells and genes). More
+information and documentation about the latest version of Giotto
+Analyzer can be found at <https://rubd.github.io/Giotto_site/> (**URL
+change \!\!**).
 
 <img src="inst/images/general_figs/overview_datasets.png" />
 
@@ -93,6 +96,7 @@ See
   - all examples are gradually updated to the latest Giotto version
     \[work in progress\]
 
+<<<<<<< HEAD
 [![seqFISH](./inst/images/general_figs/cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200517.html)
 [![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_merFISH_preoptic_region_200601.html)
 [![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_starmap_cortex.html)
@@ -100,6 +104,15 @@ See
 [![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200601.html)
 [![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png)](https://rubd.github.io/Giotto_site/articles/human_cycif_PDAC_200601.html)
 [![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex_200518.html)
+=======
+[![seqFISH](./inst/images/general_figs/cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200319.html)
+[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_merFISH_hypoth_preoptic_region_200326.html)
+[![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_starmap_cortex.html)
+[![Visium\_brain](./inst/images/general_figs/visium_brain_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_brain_200325.html)
+[![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200326.html)
+[![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png)](https://rubd.github.io/Giotto_site/articles/human_cycif_PDAC_200322.html)
+[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex.html)
+>>>>>>> upstream/master
 [![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_CODEX_spleen.html)
 
 ## References
