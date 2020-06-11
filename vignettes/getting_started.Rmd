@@ -18,7 +18,7 @@ output: html_document
     + find interaction changed genes (ICG): genes that change expression in one cell type due to interaction with a neighboring cell type
 * Giotto provides a number of options to visualize both 2D and 3D data and the outcome of Giotto can be interactively explored using [**Giotto Viewer**](http://spatial.rc.fas.harvard.edu/giotto-viewer/), which allows you to overlay the obtained results with raw or additional images of the profiled tissue section(s). 
 
-Make sure to check out the [**Datasets**](https://rubd.github.io/Giotto/articles/index.html) section to see examples of the Giotto workflow.
+Make sure to check out the [**Datasets**](https://rubd.github.io/Giotto_site/articles/index.html) section to see examples of the Giotto workflow.
 
 \  
 
@@ -32,7 +32,7 @@ Make sure to check out the [**Datasets**](https://rubd.github.io/Giotto/articles
 
 Giotto provides a lot of analyses, visualizations and other options to facilitate your spatial dataset analysis.
 We are working on providing easy-to-understand examples or tutorials, but if anything is not clear or if there is something you
-would like to see in particular, then do not hesitate to contact is.
+would like to see in particular, then do not hesitate to contact [us](https://github.com/RubD/Giotto/issues).
 
 Howto's examples:  
 
