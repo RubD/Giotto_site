@@ -150,7 +150,7 @@
 <a href="#part-1-data-input" class="anchor"></a>Part 1: Data input</h2>
 <p><a href="https://www.nature.com/articles/s41592-018-0175-z">Codeluppi et al.</a> created a cyclic single-molecule fluorescence in situ hybridization (osmFISH) technology and define the cellular organization of the somatosensory cortex with the expression of 33 genes in 5,328 cells.</p>
 <center>
-<img src="../inst/images/osmfish_image_demo.png">
+<img src="../inst/images/general_figs/osmfish_image_demo.png">
 </center>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## 1. PREPARE DATA ####</span>
 
@@ -233,7 +233,7 @@
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
          <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'total_expr'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">gradient_midpoint</span> <span class="kw">=</span> <span class="fl">180</span>, <span class="kw">gradient_limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>, <span class="fl">220</span>),
          <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_d_UMAP_reduction_expression.png'</span>))</pre></body></html></div>
-<p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_b_UMAP_reduction_expression.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_d_UMAP_reduction_expression.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">osm_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">31</span>, <span class="kw">perplexity</span> <span class="kw">=</span> <span class="fl">70</span>, <span class="kw">check_duplicates</span> <span class="kw">=</span> <span class="no">F</span>)
 <span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,  <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_e_tSNE_reduction'</span>))</pre></body></html></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200518/3_e_tSNE_reduction.png" style="width:50.0%"></p>
