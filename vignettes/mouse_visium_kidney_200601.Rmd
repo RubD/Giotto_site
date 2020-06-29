@@ -404,7 +404,7 @@ heatmSpatialCorGenes(visium_kidney, spatCorObject = spat_cor_netw_DT, use_clus_n
                      heatmap_legend_param = list(title = NULL))
 ```
 
-![](../inst/images/mouse_Visium_kidney/vignette_200601/10_heatmap_correlated_genes.png){ width=50% } 
+![](../inst/images/mouse_Visium_kidney/vignette_200601/10_e_heatmap_correlated_genes.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # 4. rank spatial correlated clusters and show genes for selected clusters
