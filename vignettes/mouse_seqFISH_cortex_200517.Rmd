@@ -331,7 +331,7 @@ plotMetaDataHeatmap(VC_test, selected_genes = unique(topgenes_gini2$genes),
 ```
 
 <center>
-![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/6_metaheatmap_gini2.png){width=10cm} 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200517/6_metaheatmap_gini.png){width=10cm} 
 </center>
 
 
