@@ -13,6 +13,7 @@ findMastMarkers(
   group_2 = NULL,
   group_2_name = NULL,
   adjust_columns = NULL,
+  verbose = FALSE,
   ...
 )
 }
@@ -33,6 +34,8 @@ findMastMarkers(
 
 \item{adjust_columns}{column in pDataDT to adjust for (e.g. detection rate)}
 
+\item{verbose}{be verbose}
+
 \item{...}{additional parameters for the zlm function in MAST}
 }
 \value{
@@ -46,5 +49,12 @@ This is a minimal convenience wrapper around the \code{\link[MAST]{zlm}}
 from the MAST package to detect differentially expressed genes.
 }
 \examples{
-    findMastMarkers(gobject)
+
+data(mini_giotto_single_cell)
+
+mast_markers = findMastMarkers(gobject = mini_giotto_single_cell,
+                               cluster_column = 'leiden_clus',
+                               group_1 = 1,
+                               group_2 = 2)
+
 }

@@ -63,6 +63,8 @@ dimGenePlot2D(
 
 \item{network_name}{name of NN network to use, if show_NN_network = TRUE}
 
+\item{network_color}{color of NN network}
+
 \item{edge_alpha}{column to use for alpha of the edges}
 
 \item{scale_alpha_with_expression}{scale expression with ggplot alpha parameter}
@@ -107,17 +109,15 @@ dimGenePlot2D(
 
 \item{save_plot}{directly save the plot [boolean]}
 
-\item{save_param}{list of saving parameters from \code{\link{all_plots_save_function}}}
+\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
 
 \item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
-
-\item{...}{parameters for cowplot::save_plot()}
 }
 \value{
 ggplot
 }
 \description{
-Visualize cells and gene expression according to dimension reduction coordinates
+Visualize gene expression according to dimension reduction coordinates
 }
 \details{
 Description of parameters.
@@ -127,4 +127,9 @@ Description of parameters.
 }
 \seealso{
 \code{\link{dimGenePlot3D}}
+
+Other dimension reduction gene expression visualizations: 
+\code{\link{dimGenePlot3D}()},
+\code{\link{dimGenePlot}()}
 }
+\concept{dimension reduction gene expression visualizations}

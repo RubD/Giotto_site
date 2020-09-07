@@ -31,12 +31,15 @@ spatNetwDistributionsDistance <- function(gobject,
                                           default_save_name = 'spatNetwDistributionsDistance') {
 
 
+  # data.table variables
+  distance = rank_int = status = label = keep = NULL
+
   ## spatial network
   #spatial_network = gobject@spatial_network[[spatial_network_name]]
   spatial_network = select_spatialNetwork(gobject,name = spatial_network_name,return_network_Obj = FALSE)
 
   ## convert to full network with rank_int column
-  spatial_network = Giotto:::convert_to_full_spatial_network(spatial_network)
+  spatial_network = convert_to_full_spatial_network(spatial_network)
 
   if(is.null(spatial_network)) {
     stop('spatial network ', spatial_network_name, ' was not found')
@@ -119,12 +122,15 @@ spatNetwDistributionsKneighbors = function(gobject,
                                            save_param =  list(),
                                            default_save_name = 'spatNetwDistributionsKneighbors') {
 
+  # data.table variables
+  N = NULL
+
   ## spatial network
   #spatial_network = gobject@spatial_network[[spatial_network_name]]
   spatial_network = select_spatialNetwork(gobject,name = spatial_network_name,return_network_Obj = FALSE)
 
   ## convert to full network with rank_int column
-  spatial_network = Giotto:::convert_to_full_spatial_network(spatial_network)
+  spatial_network = convert_to_full_spatial_network(spatial_network)
 
   if(is.null(spatial_network)) {
     stop('spatial network ', spatial_network_name, ' was not found')
@@ -242,8 +248,13 @@ spatNetwDistributions <- function(gobject,
 
 #' @title convert_to_full_spatial_network
 #' @name convert_to_full_spatial_network
+#' @param reduced_spatial_network_DT reduced spatial network in data.table format
+#' @keywords internal
 #' @description convert to a full spatial network
 convert_to_full_spatial_network =  function(reduced_spatial_network_DT) {
+
+  # data.table variables
+  distance = rank_int = NULL
 
   # find location coordinates
   coordinates = grep('sdim', colnames(reduced_spatial_network_DT), value = T)
@@ -274,7 +285,7 @@ convert_to_full_spatial_network =  function(reduced_spatial_network_DT) {
   full_spatial_network_DT[, rank_int := 1:.N, by = 'source']
 
   # create unified column
-  full_spatial_network_DT = Giotto:::sort_combine_two_DT_columns(full_spatial_network_DT, 'source', 'target', 'rnk_src_trgt')
+  full_spatial_network_DT = sort_combine_two_DT_columns(full_spatial_network_DT, 'source', 'target', 'rnk_src_trgt')
 
   return(full_spatial_network_DT)
 
@@ -282,9 +293,14 @@ convert_to_full_spatial_network =  function(reduced_spatial_network_DT) {
 
 #' @title convert_to_reduced_spatial_network
 #' @name convert_to_reduced_spatial_network
+#' @param full_spatial_network_DT full spatial network in data.table format
+#' @keywords internal
 #' @description convert to a reduced spatial network
 convert_to_reduced_spatial_network =  function(full_spatial_network_DT) {
 
+
+  # data.table variables
+  rnk_src_trgt = NULL
 
   # remove duplicates
   reduced_spatial_network_DT = full_spatial_network_DT[!duplicated(rnk_src_trgt)]
@@ -308,6 +324,15 @@ convert_to_reduced_spatial_network =  function(full_spatial_network_DT) {
 
 #' @title create_spatialNetworkObject
 #' @name create_spatialNetworkObject
+#' @param name name
+#' @param method method
+#' @param parameters parameters
+#' @param outputObj outputObj
+#' @param networkDT networkDT
+#' @param cellShapeObj cellShapeObj
+#' @param networkDT_before_filter networkDT_before_filter
+#' @param crossSectionObjects crossSectionObjects
+#' @keywords internal
 #' @description creates a spatial network object to store the created spatial network and additional information
 create_spatialNetworkObject <- function(name = NULL,
                                         method = NULL,
@@ -337,12 +362,14 @@ create_spatialNetworkObject <- function(name = NULL,
 #' @title select_spatialNetwork
 #' @name select_spatialNetwork
 #' @description function to select a spatial network
+#' @keywords internal
 select_spatialNetwork <- function(gobject,
                                   name = NULL,
                                   return_network_Obj = FALSE) {
 
   if (!is.element(name, names(gobject@spatial_network))){
-    message = sprintf("spatial network %s has not been created.Returning NULL", name)
+    message = sprintf("spatial network %s has not been created. Returning NULL.
+                      check which spatial networks exist with showNetworks() \n", name)
     warning(message)
     return(NULL)
   }else{
@@ -359,13 +386,28 @@ select_spatialNetwork <- function(gobject,
 
 #' @title calculate_distance_and_weight
 #' @name calculate_distance_and_weight
+#' @param networkDT spatial network as data.table
+#' @param sdimx spatial dimension x
+#' @param sdimy spatial dimension y
+#' @param sdimz spatial dimension z
+#' @param d2_or_d3 number of dimensions
 #' @description calculate_distance_and_weight
-calculate_distance_and_weight <- function(networkDT,
+#' @keywords internal
+calculate_distance_and_weight <- function(networkDT = NULL,
                                           sdimx = "sdimx",
                                           sdimy = "sdimy",
                                           sdimz = "sdimz",
                                           d2_or_d3=c(2,3)){
 
+  # data.table variables
+  distance = weight = from = NULL
+
+  if(is.null(networkDT)) {
+    stop('parameter networkDT can not be NULL \n')
+  }
+
+  # number of spatial dimensions TODO: chech with Huipeng!
+  # d2_or_d3 = match.arg(d2_or_d3, choices = c(2,3))
 
   if (d2_or_d3==3){
     ## make it dynamic for all possible coordinates combinations ##
@@ -387,7 +429,7 @@ calculate_distance_and_weight <- function(networkDT,
   }
 
   ## calculate distance and weight + filter ##
-  networkDT[, `:=`(distance, dist(x = matrix(.SD, nrow = 2, byrow = T))),
+  networkDT[, `:=`(distance, stats::dist(x = matrix(.SD, nrow = 2, byrow = T))),
             by = 1:nrow(networkDT), .SDcols = mycols]
 
   networkDT[, `:=`(distance, as.numeric(distance))]
@@ -403,20 +445,27 @@ calculate_distance_and_weight <- function(networkDT,
 #' @title filter_network
 #' @name filter_network
 #' @description function to filter a spatial network
-filter_network <- function(networkDT,
+#' @param networkDT spatial network in data.table format
+#' @param maximum_distance maximum distance between cell centroids
+#' @param minimum_k minimum number of neighbors
+#' @keywords internal
+filter_network <- function(networkDT = NULL,
                            maximum_distance = NULL,
                            minimum_k = NULL){
 
-  temp_fullnetwork = Giotto:::convert_to_full_spatial_network(networkDT)
+  # data.table variables
+  distance = rank_int = NULL
+
+  temp_fullnetwork = convert_to_full_spatial_network(networkDT)
 
   ## filter based on distance or minimum number of neighbors
   if (maximum_distance == "auto") {
-    temp_fullnetwork = temp_fullnetwork[distance <= boxplot.stats(temp_fullnetwork$distance)$stats[5] | rank_int <= minimum_k]
+    temp_fullnetwork = temp_fullnetwork[distance <= grDevices::boxplot.stats(temp_fullnetwork$distance)$stats[5] | rank_int <= minimum_k]
   }
   else if (!is.null(maximum_distance)) {
     temp_fullnetwork = temp_fullnetwork[distance <= maximum_distance | rank_int <= minimum_k]
   }
-  networkDT = Giotto:::convert_to_reduced_spatial_network(temp_fullnetwork)
+  networkDT = convert_to_reduced_spatial_network(temp_fullnetwork)
 
   return(networkDT)
 }
@@ -425,13 +474,19 @@ filter_network <- function(networkDT,
 
 #' @title create_delaunayNetwork_geometry
 #' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork_geometry(gobject)
+#' @keywords internal
 create_delaunayNetwork_geometry <- function(spatial_locations,
                                                sdimx = 'sdimx',
                                                sdimy = 'sdimy',
                                                options = "Pp",
                                                ...) {
+
+
+  # verify if optional package is installed
+  package_check(pkg_name = "geometry", repository = "CRAN")
+
+  # data.table variables
+  from = to = NULL
 
   ## vector with original cell names ##
   cell_ID_vec = spatial_locations$cell_ID
@@ -480,15 +535,21 @@ create_delaunayNetwork_geometry <- function(spatial_locations,
 }
 
 #' @title create_delaunayNetwork_geometry_3D
-#' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork_geometry_3D(gobject)
+#' @description Create a spatial 3D Delaunay network with geometry
+#' @keywords internal
 create_delaunayNetwork_geometry_3D <- function(spatial_locations,
                                                   sdimx = 'sdimx',
                                                   sdimy = 'sdimy',
                                                   sdimz = 'sdimz',
                                                   options = options,
                                                   ...){
+
+  # verify if optional package is installed
+  package_check(pkg_name = "geometry", repository = "CRAN")
+
+
+  # data.table variables
+  from = to = NULL
 
   ## vector with original cell names ##
   cell_ID_vec = spatial_locations$cell_ID
@@ -545,9 +606,8 @@ create_delaunayNetwork_geometry_3D <- function(spatial_locations,
 }
 
 #' @title create_delaunayNetwork_RTriangle
-#' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork_RTriangle(gobject)
+#' @description Create a spatial Delaunay network with RTriangle
+#' @keywords internal
 create_delaunayNetwork_RTriangle <- function(spatial_locations,
                                                 sdimx = 'sdimx',
                                                 sdimy = 'sdimy',
@@ -556,6 +616,12 @@ create_delaunayNetwork_RTriangle <- function(spatial_locations,
                                                 S=0,
                                                 ...){
 
+
+  # verify if optional package is installed
+  package_check(pkg_name = "RTriangle", repository = "CRAN")
+
+  # data.table variables
+  from = to = NULL
 
   ## vector with original cell names ##
   cell_ID_vec = spatial_locations$cell_ID
@@ -594,13 +660,16 @@ create_delaunayNetwork_RTriangle <- function(spatial_locations,
 
 
 #' @title create_delaunayNetwork_deldir
-#' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork_deldir(gobject)
+#' @description Create a spatial Delaunay network with deldir
+#' @keywords internal
 create_delaunayNetwork_deldir <- function(spatial_locations,
                                              sdimx = 'sdimx',
                                              sdimy = 'sdimy',
                                              ...){
+
+
+  # data.table variables
+  from = to = NULL
 
   ## vector with original cell names ##
   cell_ID_vec = spatial_locations$cell_ID
@@ -643,9 +712,8 @@ create_delaunayNetwork_deldir <- function(spatial_locations,
 
 
 #' @title create_delaunayNetwork2D
-#' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork2D(gobject)
+#' @description Create a spatial 2D Delaunay network.
+#' @keywords internal
 create_delaunayNetwork2D <- function (gobject,
                                          method = c("delaunayn_geometry", "RTriangle", "deldir"),
                                          sdimx = 'sdimx',
@@ -752,7 +820,7 @@ create_delaunayNetwork2D <- function (gobject,
 
   ###
   ###
-  delaunay_network_Obj = Giotto:::create_spatialNetworkObject(name = name,
+  delaunay_network_Obj = create_spatialNetworkObject(name = name,
                                                               method = method,
                                                               parameters = parameters,
                                                               outputObj = outputObj,
@@ -812,20 +880,19 @@ create_delaunayNetwork2D <- function (gobject,
 
 
 #' @title create_delaunayNetwork3D
-#' @description Create a spatial Delaunay network.
-#' @examples
-#'     create_delaunayNetwork3D(gobject)
+#' @description Create a spatial 3D Delaunay network.
+#' @keywords internal
 create_delaunayNetwork3D <- function (gobject,
-                                         method = "delaunayn_geometry",
-                                         sdimx = 'sdimx',
-                                         sdimy = 'sdimy',
-                                         sdimz = 'sdimz',
-                                         name = "delaunay_network_3D",
-                                         maximum_distance = "auto",
-                                         minimum_k = 0, # all
-                                         options = "Pp", # geometry
-                                         return_gobject = TRUE,
-                                         ...)
+                                      method = "delaunayn_geometry",
+                                      sdimx = 'sdimx',
+                                      sdimy = 'sdimy',
+                                      sdimz = 'sdimz',
+                                      name = "delaunay_network_3D",
+                                      maximum_distance = "auto",
+                                      minimum_k = 0, # all
+                                      options = "Pp", # geometry
+                                      return_gobject = TRUE,
+                                      ...)
 {
 
   # get parameter values
@@ -924,7 +991,8 @@ create_delaunayNetwork3D <- function (gobject,
 #' @title createSpatialDelaunayNetwork
 #' @description Create a spatial Delaunay network based on cell centroid physical distances.
 #' @param gobject giotto object
-#' @param dimensions which spatial dimensions to use (default = all)
+#' @param method package to use to create a Delaunay network
+#' @param dimensions which spatial dimensions to use. Use "sdimx" (spatial dimension x), "sdimy", "sdimz" respectively to refer to X (or the 1st), Y (or the 2nd) and Z(or the 3rd) dimension, see details. (default = all)
 #' @param name name for spatial network (default = 'delaunay_network')
 #' @param maximum_distance distance cuttof for Delaunay neighbors to consider. If "auto", "upper wisker" value of the distance vector between neighbors is used; see the boxplot{graphics} documentation for more details.(default = "auto")
 #' @param minimum_k minimum number of neigbhours if maximum_distance != NULL
@@ -934,25 +1002,25 @@ create_delaunayNetwork3D <- function (gobject,
 #' @param S (RTriangle) Specifies the maximum number of added Steiner points.
 #' @param verbose verbose
 #' @param return_gobject boolean: return giotto object (default = TRUE)
-#' @param ... Other parameters of the \code{\link[RTriangle]{triangulate}} function
+#' @param \dots Other additional parameters
 #' @return giotto object with updated spatial network slot
 #' @details Creates a spatial Delaunay network as explained in \code{\link[geometry]{delaunayn}} (default), \code{\link[deldir]{deldir}}, or \code{\link[RTriangle]{triangulate}}.
 #' @export
 #' @examples
 #'     createSpatialDelaunayNetwork(gobject)
 createSpatialDelaunayNetwork <- function(gobject,
-                                            method = c("deldir", "delaunayn_geometry", "RTriangle"),
-                                            dimensions = "all",
-                                            name = "delaunay_network",
-                                            maximum_distance = "auto", # all
-                                            minimum_k = 0, # all
-                                            options = "Pp", # geometry
-                                            Y = TRUE, # RTriange
-                                            j = TRUE, # RTriange
-                                            S = 0, # RTriange
-                                            verbose = T,
-                                            return_gobject = TRUE,
-                                            ...) {
+                                         method = c("deldir", "delaunayn_geometry", "RTriangle"),
+                                         dimensions = "all",
+                                         name = "Delaunay_network",
+                                         maximum_distance = "auto", # all
+                                         minimum_k = 0, # all
+                                         options = "Pp", # geometry
+                                         Y = TRUE, # RTriange
+                                         j = TRUE, # RTriange
+                                         S = 0, # RTriange
+                                         verbose = T,
+                                         return_gobject = TRUE,
+                                         ...) {
 
   # get parameter values
   method = match.arg(method, c("deldir", "delaunayn_geometry", "RTriangle"))
@@ -1022,8 +1090,8 @@ createSpatialDelaunayNetwork <- function(gobject,
 #' @title plotStatDelaunayNetwork
 #' @description Plots network statistics for a Delaunay network..
 #' @param gobject giotto object
+#' @param method package to use to create a Delaunay network
 #' @param dimensions which spatial dimensions to use (maximum 2 dimensions)
-#' @param name name for spatial network (default = 'delaunay_network')
 #' @param maximum_distance distance cuttof for Delaunay neighbors to consider
 #' @param minimum_k minimum neigbhours if maximum_distance != NULL
 #' @param options (geometry) String containing extra control options for the underlying Qhull command; see the Qhull documentation (../doc/qhull/html/qdelaun.html) for the available options. (default = 'Pp', do not report precision problems)
@@ -1033,32 +1101,32 @@ createSpatialDelaunayNetwork <- function(gobject,
 #' @param show_plot show plots
 #' @param return_plot return ggplot object
 #' @param save_plot directly save the plot [boolean]
-#' @param save_param list of saving parameters from \code{\link{all_plots_save_function}}
+#' @param save_param list of saving parameters, see \code{\link{showSaveParameters}}
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
-#' @param ... Other parameters of the \code{\link[RTriangle]{triangulate}} function
+#' @param \dots Other parameters
 #' @return giotto object with updated spatial network slot
-#' @details Plots statistics for a spatial Delaunay network as explained in \code{\link[RTriangle]{triangulate}}.
-#' This can be used to further finetune the \code{\link{createDelaunayNetwork}} function.
 #' @export
 #' @examples
 #'     plotStatDelaunayNetwork(gobject)
 plotStatDelaunayNetwork = function(gobject,
-                                      method = c("deldir", "delaunayn_geometry", "RTriangle"),
-                                      dimensions = "all",
-                                      maximum_distance = "auto", # all
-                                      minimum_k = 0, # all
-                                      options = "Pp", # geometry
-                                      Y = TRUE, # RTriange
-                                      j = TRUE, # RTriange
-                                      S = 0, # RTriange
-                                      show_plot = NA,
-                                      return_plot = NA,
-                                      save_plot = NA,
-                                      save_param =  list(),
-                                      default_save_name = 'plotStatDelaunayNetwork',
-                                      ...
-) {
+                                   method = c("deldir", "delaunayn_geometry", "RTriangle"),
+                                   dimensions = "all",
+                                   maximum_distance = "auto", # all
+                                   minimum_k = 0, # all
+                                   options = "Pp", # geometry
+                                   Y = TRUE, # RTriange
+                                   j = TRUE, # RTriange
+                                   S = 0, # RTriange
+                                   show_plot = NA,
+                                   return_plot = NA,
+                                   save_plot = NA,
+                                   save_param =  list(),
+                                   default_save_name = 'plotStatDelaunayNetwork',
+                                   ...) {
 
+
+  # data.table variables
+  distance = rank_int = N = NULL
 
   delaunay_network_DT = createSpatialDelaunayNetwork(gobject = gobject,
                                                         method = method,
@@ -1073,7 +1141,7 @@ plotStatDelaunayNetwork = function(gobject,
                                                         return_gobject = F,
                                                         ...)
 
-  delaunay_network_DT_c = Giotto:::convert_to_full_spatial_network(reduced_spatial_network_DT = delaunay_network_DT)
+  delaunay_network_DT_c = convert_to_full_spatial_network(reduced_spatial_network_DT = delaunay_network_DT)
 
 
   ## create visuals
@@ -1133,15 +1201,18 @@ plotStatDelaunayNetwork = function(gobject,
 ## kNN network ####
 
 #' @title create_KNNnetwork_dbscan
-#' @description Create a spatial knn network.
-#' @examples
-#'     create_KNNnetwork_dbscan(gobject)
+#' @description Create a spatial knn network with dbscan
+#' @keywords internal
 create_KNNnetwork_dbscan = function(spatial_locations,
                                     sdimx = 'sdimx',
                                     sdimy = 'sdimy',
                                     sdimz = 'sdimz',
                                     k = 4,
                                     ...) {
+
+
+  # data.table variables
+  from = to = NULL
 
   ## vector with original cell names ##
   cell_ID_vec = spatial_locations$cell_ID
@@ -1253,6 +1324,7 @@ create_KNNnetwork_dbscan = function(spatial_locations,
 #' @param minimum_k minimum nearest neigbhours if maximum_distance != NULL
 #' @param verbose verbose
 #' @param return_gobject boolean: return giotto object (default = TRUE)
+#' @param \dots additional arguments to the selected method function
 #' @return giotto object with updated spatial network slot
 #'
 #' \strong{dimensions: } default = 'all' which takes all possible dimensions.
@@ -1276,6 +1348,10 @@ createSpatialKNNnetwork <- function (gobject,
                                      return_gobject = TRUE,
                                      ...)
 {
+
+
+  # data.table variables
+  distance = rank_int = NULL
 
 
   # get parameter values
@@ -1329,11 +1405,11 @@ createSpatialKNNnetwork <- function (gobject,
   }
 
 
-  temp_fullnetwork = Giotto:::convert_to_full_spatial_network(spatial_network_DT)
+  temp_fullnetwork = convert_to_full_spatial_network(spatial_network_DT)
   if (!is.null(maximum_distance)) {
     temp_fullnetwork = temp_fullnetwork[distance <= maximum_distance | rank_int <= minimum_k]
   }
-  spatial_network_DT = Giotto:::convert_to_reduced_spatial_network(temp_fullnetwork)
+  spatial_network_DT = convert_to_reduced_spatial_network(temp_fullnetwork)
 
   ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
   ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
@@ -1343,7 +1419,7 @@ createSpatialKNNnetwork <- function (gobject,
                     "k" = k,
                     "dimensions" = dimensions)
 
-  spatial_network_Obj = Giotto:::create_spatialNetworkObject(name = name,
+  spatial_network_Obj = create_spatialNetworkObject(name = name,
                                                              method = method,
                                                              parameters = parameters,
                                                              outputObj = outputObj,
@@ -1408,6 +1484,7 @@ createSpatialKNNnetwork <- function (gobject,
 #' @param maximum_distance_knn distance cuttof for nearest neighbors to consider for kNN network
 #' @param verbose verbose
 #' @param return_gobject boolean: return giotto object (default = TRUE)
+#' @param \dots Additional parameters for the selected function
 #' @return giotto object with updated spatial network slot
 #' @details Creates a spatial network connecting single-cells based on their physical distance to each other.
 #' For Delaunay method, neighbors will be decided by delaunay triangulation and a maximum distance criteria. For kNN method, number of neighbors can be determined by k, or maximum distance from each cell with or without
@@ -1510,13 +1587,93 @@ showNetworks = function(gobject,
 
 
 
+#' @title annotateSpatialNetwork
+#' @name annotateSpatialNetwork
+#' @description Annotate spatial network with cell metadata information.
+#' @param gobject giotto object
+#' @param spatial_network_name name of spatial network to use
+#' @param cluster_column name of column to use for clusters
+#' @param create_full_network convert from reduced to full network representation
+#' @return annotated network in data.table format
+#' @export
+#' @examples
+#'     annotateSpatialNetwork(gobject)
+annotateSpatialNetwork = function(gobject,
+                                  spatial_network_name = 'Delaunay_network',
+                                  cluster_column,
+                                  create_full_network = F) {
+
+  # get network
+  if(!spatial_network_name %in% names(gobject@spatial_network)) {
+    stop('\n spatial network with name: ', spatial_network_name, ' does not exist \n')
+  }
+  spatial_network = select_spatialNetwork(gobject,name = spatial_network_name,return_network_Obj = FALSE)
+
+
+
+  if(create_full_network == TRUE) {
+
+    spatial_network = convert_to_full_spatial_network(spatial_network)
+
+    # convert to names for a reduced network
+    source_coordinates = grep('source_', colnames(spatial_network), value = T)
+    new_source_coordinates = gsub(x = source_coordinates, pattern = 'source_', replacement = 'sdim')
+    new_source_coordinates = paste0(new_source_coordinates,'_begin')
+
+    target_coordinates = grep('target_', colnames(spatial_network), value = T)
+    new_target_coordinates = gsub(x = target_coordinates, pattern = 'target_', replacement = 'sdim')
+    new_target_coordinates = paste0(new_target_coordinates,'_end')
+
+    data.table::setnames(spatial_network,
+                         old = c('source', 'target', source_coordinates, target_coordinates),
+                         new = c('from', 'to', new_source_coordinates, new_target_coordinates))
+  }
+
+
+
+  # cell metadata
+  cell_metadata = pDataDT(gobject)
+  if(!cluster_column %in% colnames(cell_metadata)) {
+    stop('\n the cluster column does not exist in pDataDT(gobject) \n')
+  }
+  cluster_type_vector = cell_metadata[[cluster_column]]
+  names(cluster_type_vector) = cell_metadata[['cell_ID']]
+
+  # data.table variables
+  to_cell_type = to = from_cell_type = from = type_int = from_to = NULL
+
+  spatial_network_annot = data.table::copy(spatial_network)
+  spatial_network_annot[, to_cell_type := cluster_type_vector[to]]
+  spatial_network_annot[, from_cell_type := cluster_type_vector[from]]
+  spatial_network_annot[, type_int := ifelse(to_cell_type == from_cell_type, 'homo', 'hetero')]
+
+  # specific direction
+  spatial_network_annot[, from_to := paste0(from_cell_type,'-',to_cell_type)]
+
+  # unified direction, due to 'sort'
+  spatial_network_annot = sort_combine_two_DT_columns(spatial_network_annot,
+                                                      column1 = 'from_cell_type',
+                                                      column2 = 'to_cell_type',
+                                                      myname = 'unified_int')
+
+  return(spatial_network_annot)
+
+}
+
+
+
+
 
 ## Spatial grid ####
 
 #' @title find_grid_3D
 #' @name find_grid_3D
 #' @description find grid location in 3D
+#' @keywords internal
 find_grid_3D <- function(grid_DT, x_loc, y_loc, z_loc) {
+
+  # data.table variables
+  x_start = x_end = y_start = y_end = z_start = z_end = NULL
 
   name = grid_DT[x_loc > x_start & x_loc < x_end & y_loc > y_start & y_loc < y_end & z_loc > z_start & z_loc < z_end]$gr_name
   return(name)
@@ -1525,7 +1682,11 @@ find_grid_3D <- function(grid_DT, x_loc, y_loc, z_loc) {
 #' @title find_grid_2D
 #' @name find_grid_2D
 #' @description find grid location in 2D
+#' @keywords internal
 find_grid_2D <- function(grid_DT, x_loc, y_loc) {
+
+  # data.table variables
+  x_start = x_end = y_start = y_end = NULL
 
   name = grid_DT[x_loc > x_start & x_loc < x_end & y_loc > y_start & y_loc < y_end]$gr_name
   return(name)
@@ -1534,7 +1695,11 @@ find_grid_2D <- function(grid_DT, x_loc, y_loc) {
 #' @title find_grid_x
 #' @name find_grid_x
 #' @description find grid location on x-axis
+#' @keywords internal
 find_grid_x <- function(grid_DT, x_loc) {
+
+  # data.table variables
+  x_start = x_end = gr_x_name = NULL
 
   grid_DT_x = unique(grid_DT[,.(x_start, x_end, gr_x_name)])
   name_x = grid_DT_x[x_loc > x_start & x_loc < x_end]$gr_x_name
@@ -1544,7 +1709,11 @@ find_grid_x <- function(grid_DT, x_loc) {
 #' @title find_grid_y
 #' @name find_grid_y
 #' @description find grid location on y-axis
+#' @keywords internal
 find_grid_y <- function(grid_DT, y_loc) {
+
+  # data.table variables
+  y_start = y_end = gr_y_name = NULL
 
   grid_DT_y = unique(grid_DT[,.(y_start, y_end, gr_y_name)])
   name_y = grid_DT_y[y_loc > y_start & y_loc < y_end]$gr_y_name
@@ -1554,7 +1723,11 @@ find_grid_y <- function(grid_DT, y_loc) {
 #' @title find_grid_z
 #' @name find_grid_z
 #' @description find grid location on z-axis
+#' @keywords internal
 find_grid_z <- function(grid_DT, z_loc) {
+
+  # data.table variables
+  z_start = z_end = gr_z_name = NULL
 
   grid_DT_z = unique(grid_DT[,.(z_start, z_end, gr_z_name)])
   name_z = grid_DT_z[z_loc > z_start & z_loc < z_end]$gr_z_name
@@ -1563,31 +1736,114 @@ find_grid_z <- function(grid_DT, z_loc) {
 
 
 
+#' @title create_spatialGridObject
+#' @description create a spatial grid object
+#' @keywords internal
+create_spatialGridObject <- function(name = NULL,
+                                     method = NULL,
+                                     parameters = NULL,
+                                     gridDT = NULL,
+                                     outputObj = NULL,
+                                     misc = NULL) {
 
-#' @title createSpatialGrid_3D
-#' @description Create a spatial grid for 3D spatial data.
-#' @param gobject giotto object
-#' @param sdimx_stepsize stepsize along the x-axis
-#' @param sdimy_stepsize stepsize along the y-axis
-#' @param sdimz_stepsize stepsize along the z-axis
-#' @param minimum_padding minimum padding on the edges
-#' @param name name for spatial grid (default = 'spatial_grid')
-#' @param return_gobject boolean: return giotto object (default = TRUE)
-#' @return giotto object with updated spatial grid slot
-#' @details Creates a spatial grid with defined x, y (and z) dimensions.
-#' The dimension units are based on the provided spatial location units.
-#' @examples
-#'     createSpatialGrid_3D(gobject)
-createSpatialGrid_3D <- function(gobject,
-                                 sdimx_stepsize = NULL,
-                                 sdimy_stepsize = NULL,
-                                 sdimz_stepsize = NULL,
-                                 minimum_padding = 1,
-                                 name = 'spatial_grid',
-                                 return_gobject = TRUE) {
+  gridObj = list(name = name,
+                 method = method,
+                 parameters = parameters,
+                 gridDT = gridDT,
+                 misc = misc)
+
+  class(gridObj) <- append(class(gridObj), "spatialGridObj")
+  return(gridObj)
+
+}
+
+#' @title create_spatialGrid_default_2D
+#' @description create a 2D spatial grid
+#' @keywords internal
+create_spatialGrid_default_2D <- function(gobject,
+                                          sdimx_stepsize = NULL,
+                                          sdimy_stepsize = NULL,
+                                          minimum_padding = 1) {
 
 
-  spatlocs = copy(gobject@spatial_locs)
+  # data.table variables
+  gr_name = gr_x_name = gr_y_name = gr_x_loc = gr_y_loc = gr_loc = NULL
+
+  spatlocs = data.table::copy(gobject@spatial_locs)
+  if(is.null(spatlocs)) stop('\n spatial locations are needed to create a spatial grid \n')
+
+  ## calculate sequences for desired stepsize
+  # x-axis
+  x_range = range(spatlocs$sdimx)
+  x_start = x_range[[1]] - minimum_padding
+  x_end = x_range[[2]] + minimum_padding
+  dimx_steps = ceiling( (x_end-x_start) / sdimx_stepsize)
+  dimx_start = mean(c(x_start, x_end))-((dimx_steps/2)*sdimx_stepsize)
+  dimx_end = mean(c(x_start, x_end))+((dimx_steps/2)*sdimx_stepsize)
+  my_x_seq = seq(from = dimx_start, to = dimx_end, by = sdimx_stepsize)
+
+  # y-axis
+  y_range = range(spatlocs$sdimy)
+  y_start = y_range[[1]] - minimum_padding
+  y_end = y_range[[2]] + minimum_padding
+  dimy_steps = ceiling( (y_end-y_start) / sdimy_stepsize)
+  dimy_start = mean(c(y_start, y_end))-((dimy_steps/2)*sdimy_stepsize)
+  dimy_end = mean(c(y_start, y_end))+((dimy_steps/2)*sdimy_stepsize)
+  my_y_seq = seq(from = dimy_start, to = dimy_end, by = sdimy_stepsize)
+
+
+  ## create grid with starts and ends
+  grid_starts = data.table::as.data.table(expand.grid(my_x_seq[-length(my_x_seq)],
+                                                      my_y_seq[-length(my_y_seq)]))
+  colnames(grid_starts) = c('x_start', 'y_start')
+  grid_ends = data.table::as.data.table(expand.grid(my_x_seq[-1],
+                                                    my_y_seq[-1]))
+  colnames(grid_ends) = c('x_end', 'y_end')
+  spatgrid = cbind(grid_starts, grid_ends)
+
+
+  ## first label the grid itself ##
+  spatgrid[, gr_name := paste0('gr_', 1:.N)]
+
+  # x-axis
+  x_labels = sort(unique(spatgrid$x_start))
+  x_gr_names = paste0('gr_x_', 1:length(x_labels))
+  names(x_gr_names) = x_labels
+  x_gr_names_vector = x_gr_names[as.character(spatgrid$x_start)]
+  spatgrid[, gr_x_name := x_gr_names_vector]
+
+  # y-axis
+  y_labels = sort(unique(spatgrid$y_start))
+  y_gr_names = paste0('gr_y_', 1:length(y_labels))
+  names(y_gr_names) = y_labels
+  y_gr_names_vector = y_gr_names[as.character(spatgrid$y_start)]
+  spatgrid[, gr_y_name := y_gr_names_vector]
+
+  ## for all dimensions ##
+  # converter
+  gr_dim_names = spatgrid$gr_name
+  names(gr_dim_names) = paste0(spatgrid$gr_x_name,'-', spatgrid$gr_y_name)
+
+
+  return(spatgrid)
+
+}
+
+
+#' @title create_spatialGrid_default_3D
+#' @description create a 3D spatial grid
+#' @keywords internal
+create_spatialGrid_default_3D <- function(gobject,
+                                          sdimx_stepsize = NULL,
+                                          sdimy_stepsize = NULL,
+                                          sdimz_stepsize = NULL,
+                                          minimum_padding = 1) {
+
+
+  # data.table variables
+  gr_name = gr_x_name = gr_y_name = gr_z_name = gr_x_loc = gr_y_loc = gr_z_loc = gr_loc = NULL
+
+  spatlocs = data.table::copy(gobject@spatial_locs)
   if(is.null(spatlocs)) stop('\n spatial locations are needed to create a spatial grid \n')
 
   ## calculate sequences for desired stepsize
@@ -1619,13 +1875,13 @@ createSpatialGrid_3D <- function(gobject,
   my_z_seq = seq(from = dimz_start, to = dimz_end, by = sdimz_stepsize)
 
   ## create grid with starts and ends
-  grid_starts = as.data.table(expand.grid(my_x_seq[-length(my_x_seq)],
-                                          my_y_seq[-length(my_y_seq)],
-                                          my_z_seq[-length(my_z_seq)]))
+  grid_starts = data.table::as.data.table(expand.grid(my_x_seq[-length(my_x_seq)],
+                                                      my_y_seq[-length(my_y_seq)],
+                                                      my_z_seq[-length(my_z_seq)]))
   colnames(grid_starts) = c('x_start', 'y_start', 'z_start')
-  grid_ends = as.data.table(expand.grid(my_x_seq[-1],
-                                        my_y_seq[-1],
-                                        my_z_seq[-1]))
+  grid_ends = data.table::as.data.table(expand.grid(my_x_seq[-1],
+                                                    my_y_seq[-1],
+                                                    my_z_seq[-1]))
   colnames(grid_ends) = c('x_end', 'y_end', 'z_end')
   spatgrid = cbind(grid_starts, grid_ends)
 
@@ -1654,218 +1910,19 @@ createSpatialGrid_3D <- function(gobject,
   z_gr_names_vector = z_gr_names[as.character(spatgrid$z_start)]
   spatgrid[, gr_z_name := z_gr_names_vector]
 
-
-
-
-  ## second label the spatial locations ##
-  spatlocs = copy(gobject@spatial_locs)
-
-  x_vector = spatlocs$sdimx
-  x_breaks = sort(unique(spatgrid$x_end))
-  x_breaks_labels = paste0('gr_x_', 1:length(x_breaks))
-  minimum_x = min(x_breaks) - sdimx_stepsize
-  my_x_gr = cut(x = x_vector, breaks = c(minimum_x, x_breaks), include.lowest = T, right = T, labels = x_breaks_labels)
-  spatlocs[, gr_x_loc := as.character(my_x_gr)]
-
-  y_vector = spatlocs$sdimy
-  y_breaks = sort(unique(spatgrid$y_end))
-  y_breaks_labels = paste0('gr_y_', 1:length(y_breaks))
-  minimum_y = min(y_breaks) - sdimy_stepsize
-  my_y_gr = cut(x = y_vector, breaks = c(minimum_y, y_breaks), include.lowest = T, right = T, labels = y_breaks_labels)
-  spatlocs[, gr_y_loc := as.character(my_y_gr)]
-
-  z_vector = spatlocs$sdimz
-  z_breaks = sort(unique(spatgrid$z_end))
-  z_breaks_labels = paste0('gr_z_', 1:length(z_breaks))
-  minimum_z = min(z_breaks) - sdimz_stepsize
-  my_z_gr = cut(x = z_vector, breaks = c(minimum_z, z_breaks), include.lowest = T, right = T, labels = z_breaks_labels)
-  spatlocs[, gr_z_loc := as.character(my_z_gr)]
-
-
   ## for all dimensions ##
   # converter
   gr_dim_names = spatgrid$gr_name
   names(gr_dim_names) = paste0(spatgrid$gr_x_name,'-', spatgrid$gr_y_name, '-', spatgrid$gr_z_name)
 
-  indiv_dim_names = paste0(spatlocs$gr_x_loc,'-', spatlocs$gr_y_loc, '-', spatlocs$gr_z_loc)
-  my_gr = gr_dim_names[indiv_dim_names]
-  spatlocs[, gr_loc := as.character(my_gr)]
+  return(spatgrid)
 
-
-
-  if(return_gobject == TRUE) {
-
-    spg_names = names(gobject@spatial_grid)
-
-    if(name %in% spg_names) {
-      cat('\n ', name, ' has already been used, will be overwritten \n')
-    }
-
-    # assign spatial grid
-    gobject@spatial_grid[[name]] <- spatgrid
-
-    # assign spatial locations back to object
-    # gobject@spatial_locs = spatlocs
-
-
-    ## update parameters used ##
-    parameters_list = gobject@parameters
-    number_of_rounds = length(parameters_list)
-    update_name = paste0(number_of_rounds,'_grid')
-    # parameters to include
-    parameters_list[[update_name]] = c('x stepsize' = sdimx_stepsize,
-                                       'y stepsize' = sdimy_stepsize,
-                                       'z stepsize' = sdimz_stepsize,
-                                       'minimum padding' = minimum_padding,
-                                       'name' = name)
-    gobject@parameters = parameters_list
-
-    return(gobject)
-
-  } else {
-
-    return(list(grid = spatgrid, locs = spatlocs))
-  }
-}
-
-#' @title createSpatialGrid_2D
-#' @description create a spatial grid for 2D spatial data.
-#' @param gobject giotto object
-#' @param sdimx_stepsize stepsize along the x-axis
-#' @param sdimy_stepsize stepsize along the y-axis
-#' @param minimum_padding minimum padding on the edges
-#' @param name name for spatial grid (default = 'spatial_grid')
-#' @param return_gobject boolean: return giotto object (default = TRUE)
-#' @return giotto object with updated spatial grid slot
-#' @details Creates a spatial grid with defined x, y (and z) dimensions.
-#' The dimension units are based on the provided spatial location units.
-#' @examples
-#'     createSpatialGrid_2D(gobject)
-createSpatialGrid_2D <- function(gobject,
-                                 sdimx_stepsize = NULL,
-                                 sdimy_stepsize = NULL,
-                                 minimum_padding = 1,
-                                 name = 'spatial_grid',
-                                 return_gobject = TRUE) {
-
-
-  spatlocs = copy(gobject@spatial_locs)
-  if(is.null(spatlocs)) stop('\n spatial locations are needed to create a spatial grid \n')
-
-  ## calculate sequences for desired stepsize
-  # x-axis
-  x_range = range(spatlocs$sdimx)
-  x_start = x_range[[1]] - minimum_padding
-  x_end = x_range[[2]] + minimum_padding
-  dimx_steps = ceiling( (x_end-x_start) / sdimx_stepsize)
-  dimx_start = mean(c(x_start, x_end))-((dimx_steps/2)*sdimx_stepsize)
-  dimx_end = mean(c(x_start, x_end))+((dimx_steps/2)*sdimx_stepsize)
-  my_x_seq = seq(from = dimx_start, to = dimx_end, by = sdimx_stepsize)
-
-  # y-axis
-  y_range = range(spatlocs$sdimy)
-  y_start = y_range[[1]] - minimum_padding
-  y_end = y_range[[2]] + minimum_padding
-  dimy_steps = ceiling( (y_end-y_start) / sdimy_stepsize)
-  dimy_start = mean(c(y_start, y_end))-((dimy_steps/2)*sdimy_stepsize)
-  dimy_end = mean(c(y_start, y_end))+((dimy_steps/2)*sdimy_stepsize)
-  my_y_seq = seq(from = dimy_start, to = dimy_end, by = sdimy_stepsize)
-
-
-  ## create grid with starts and ends
-  grid_starts = as.data.table(expand.grid(my_x_seq[-length(my_x_seq)],
-                                          my_y_seq[-length(my_y_seq)]))
-  colnames(grid_starts) = c('x_start', 'y_start')
-  grid_ends = as.data.table(expand.grid(my_x_seq[-1],
-                                        my_y_seq[-1]))
-  colnames(grid_ends) = c('x_end', 'y_end')
-  spatgrid = cbind(grid_starts, grid_ends)
-
-
-  ## first label the grid itself ##
-  spatgrid[, gr_name := paste0('gr_', 1:.N)]
-
-  # x-axis
-  x_labels = sort(unique(spatgrid$x_start))
-  x_gr_names = paste0('gr_x_', 1:length(x_labels))
-  names(x_gr_names) = x_labels
-  x_gr_names_vector = x_gr_names[as.character(spatgrid$x_start)]
-  spatgrid[, gr_x_name := x_gr_names_vector]
-
-  # y-axis
-  y_labels = sort(unique(spatgrid$y_start))
-  y_gr_names = paste0('gr_y_', 1:length(y_labels))
-  names(y_gr_names) = y_labels
-  y_gr_names_vector = y_gr_names[as.character(spatgrid$y_start)]
-  spatgrid[, gr_y_name := y_gr_names_vector]
-
-
-  ## second label the spatial locations ##
-  spatlocs = copy(gobject@spatial_locs)
-
-  x_vector = spatlocs$sdimx
-  x_breaks = sort(unique(spatgrid$x_end))
-  x_breaks_labels = paste0('gr_x_', 1:length(x_breaks))
-  minimum_x = min(x_breaks) - sdimx_stepsize
-  my_x_gr = cut(x = x_vector, breaks = c(minimum_x, x_breaks), include.lowest = T, right = T, labels = x_breaks_labels)
-  spatlocs[, gr_x_loc := as.character(my_x_gr)]
-
-  y_vector = spatlocs$sdimy
-  y_breaks = sort(unique(spatgrid$y_end))
-  y_breaks_labels = paste0('gr_y_', 1:length(y_breaks))
-  minimum_y = min(y_breaks) - sdimy_stepsize
-  my_y_gr = cut(x = y_vector, breaks = c(minimum_y, y_breaks), include.lowest = T, right = T, labels = y_breaks_labels)
-  spatlocs[, gr_y_loc := as.character(my_y_gr)]
-
-
-
-  ## for all dimensions ##
-  # converter
-  gr_dim_names = spatgrid$gr_name
-  names(gr_dim_names) = paste0(spatgrid$gr_x_name,'-', spatgrid$gr_y_name)
-
-  indiv_dim_names = paste0(spatlocs$gr_x_loc,'-', spatlocs$gr_y_loc)
-  my_gr = gr_dim_names[indiv_dim_names]
-  spatlocs[, gr_loc := as.character(my_gr)]
-
-
-
-  if(return_gobject == TRUE) {
-
-    spg_names = names(gobject@spatial_grid)
-
-    if(name %in% spg_names) {
-      cat('\n ', name, ' has already been used, will be overwritten \n')
-    }
-
-    # assign spatial grid
-    gobject@spatial_grid[[name]] <- spatgrid
-
-    # assign spatial locations back to object
-    # gobject@spatial_locs = spatlocs
-
-    ## update parameters used ##
-    parameters_list = gobject@parameters
-    number_of_rounds = length(parameters_list)
-    update_name = paste0(number_of_rounds,'_grid')
-    # parameters to include
-    parameters_list[[update_name]] = c('x stepsize' = sdimx_stepsize,
-                                       'y stepsize' = sdimy_stepsize,
-                                       'minimum padding' = minimum_padding,
-                                       'name' = name)
-    gobject@parameters = parameters_list
-
-    return(gobject)
-
-  } else {
-
-    return(list(grid = spatgrid, locs = spatlocs))
-  }
 }
 
 
-#' @title createSpatialGrid
-#' @description Create a spatial grid.
+
+#' @title createSpatialDefaultGrid
+#' @description Create a spatial grid using the default method
 #' @param gobject giotto object
 #' @param sdimx_stepsize stepsize along the x-axis
 #' @param sdimy_stepsize stepsize along the y-axis
@@ -1877,42 +1934,167 @@ createSpatialGrid_2D <- function(gobject,
 #' @details Creates a spatial grid with defined x, y (and z) dimensions.
 #' The dimension units are based on the provided spatial location units.
 #' @export
-#' @examples
-#'     createSpatialGrid(gobject)
-createSpatialGrid <- function(gobject,
-                              sdimx_stepsize = NULL,
-                              sdimy_stepsize = NULL,
-                              sdimz_stepsize = NULL,
-                              minimum_padding = 1,
-                              name = 'spatial_grid',
-                              return_gobject = TRUE) {
+createSpatialDefaultGrid <- function(gobject,
+                                     sdimx_stepsize = NULL,
+                                     sdimy_stepsize = NULL,
+                                     sdimz_stepsize = NULL,
+                                     minimum_padding = 1,
+                                     name = NULL,
+                                     return_gobject = TRUE) {
 
+  # check parameters
+  if(is.null(name)) {
+    name = 'spatial_grid'
+  }
 
   if(length(c(sdimx_stepsize, sdimy_stepsize, sdimz_stepsize)) == 3) {
 
-    result = createSpatialGrid_3D(gobject = gobject,
-                                  sdimx_stepsize = sdimx_stepsize,
-                                  sdimy_stepsize = sdimy_stepsize,
-                                  sdimz_stepsize = sdimz_stepsize,
-                                  minimum_padding = minimum_padding,
-                                  name = name,
-                                  return_gobject = return_gobject)
+    resultgrid = create_spatialGrid_default_3D(gobject = gobject,
+                                               sdimx_stepsize = sdimx_stepsize,
+                                               sdimy_stepsize = sdimy_stepsize,
+                                               sdimz_stepsize = sdimz_stepsize,
+                                               minimum_padding = minimum_padding)
 
   } else if(!is.null(sdimx_stepsize) & !is.null(sdimy_stepsize)) {
 
-    result = createSpatialGrid_2D(gobject = gobject,
-                                  sdimx_stepsize = sdimx_stepsize,
-                                  sdimy_stepsize = sdimy_stepsize,
-                                  minimum_padding = minimum_padding,
-                                  name = name,
-                                  return_gobject = return_gobject)
+    resultgrid = create_spatialGrid_default_2D(gobject = gobject,
+                                               sdimx_stepsize = sdimx_stepsize,
+                                               sdimy_stepsize = sdimy_stepsize,
+                                               minimum_padding = minimum_padding)
 
   } else {
     cat('\n the stepsize for the x-axis (sdimx) and y-axis (sdimy) is the minimally required \n')
     cat('\n Additionally for a 3D spatial grid the z-axis (sdimz) is also required \n')
   }
-  return(result)
+
+
+  if(return_gobject == TRUE) {
+
+    # 1. check if name has already been used
+    spg_names = names(gobject@spatial_grid)
+
+    if(name %in% spg_names) {
+      cat('\n ', name, ' has already been used, will be overwritten \n')
+    }
+
+    # 2. create spatial grid object
+    parameters = list("sdimx_stepsize" = sdimx_stepsize,
+                      "sdimy_stepsize" = sdimy_stepsize,
+                      "sdimz_stepsize" = sdimz_stepsize,
+                      "minimum_padding" = minimum_padding)
+
+    spatgridobj = create_spatialGridObject(name = name,
+                                           method = 'default',
+                                           parameters = parameters,
+                                           gridDT = resultgrid,
+                                           outputObj = NULL, # NULL with default
+                                           misc = NULL)
+
+    # 3. assign spatial grid object
+    gobject@spatial_grid[[name]] <- spatgridobj
+
+
+    # 4. update log
+    ## update parameters used ##
+    parameters_list = gobject@parameters
+    number_of_rounds = length(parameters_list)
+    update_name = paste0(number_of_rounds,'_grid')
+
+    # parameters to include
+    parameters_list[[update_name]] = c('name' = name,
+                                       'method' = 'default',
+                                       'x stepsize' = sdimx_stepsize,
+                                       'y stepsize' = sdimy_stepsize,
+                                       'z stepsize' = sdimz_stepsize,
+                                       'minimum padding' = minimum_padding)
+
+    gobject@parameters = parameters_list
+
+    return(gobject)
+
+  } else {
+
+    return(resultgrid)
+
+  }
+
 }
+
+
+
+#' @title select_spatialGrid
+#' @description accessor function to select spatial grid
+#' @keywords internal
+select_spatialGrid <- function(gobject,
+                               name = NULL,
+                               return_grid_Obj = FALSE) {
+
+  if (!is.element(name, names(gobject@spatial_grid))){
+    message = sprintf("spatial grid %s has not been created. Returning NULL.
+                      check which spatial grids exist with showGrids() \n", name)
+    warning(message)
+    return(NULL)
+  }else{
+    gridObj = gobject@spatial_grid[[name]]
+    gridDT = gridObj$gridDT
+  }
+
+  if (return_grid_Obj == TRUE){
+    return(gridObj)
+  }else{
+    return(gridDT)
+  }
+}
+
+
+
+
+#' @title createSpatialGrid
+#' @description Create a spatial grid using the default method
+#' @param gobject giotto object
+#' @param name name for spatial grid
+#' @param method method to create a spatial grid
+#' @param sdimx_stepsize stepsize along the x-axis
+#' @param sdimy_stepsize stepsize along the y-axis
+#' @param sdimz_stepsize stepsize along the z-axis
+#' @param minimum_padding minimum padding on the edges
+#' @param return_gobject boolean: return giotto object (default = TRUE)
+#' @return giotto object with updated spatial grid slot
+#' @details Creates a spatial grid with defined x, y (and z) dimensions.
+#' The dimension units are based on the provided spatial location units.
+#' \itemize{
+#'   \item{default method: }{\code{\link{createSpatialDefaultGrid}}}
+#' }
+#' @export
+createSpatialGrid <- function(gobject,
+                              name = NULL,
+                              method = c('default'),
+                              sdimx_stepsize = NULL,
+                              sdimy_stepsize = NULL,
+                              sdimz_stepsize = NULL,
+                              minimum_padding = 1,
+                              return_gobject = TRUE) {
+
+  # get paramters
+  method = match.arg(method, c('default'))
+
+  if(method == 'default') {
+
+    out = createSpatialDefaultGrid(gobject = gobject,
+                                   sdimx_stepsize = sdimx_stepsize,
+                                   sdimy_stepsize = sdimy_stepsize,
+                                   sdimz_stepsize = sdimz_stepsize,
+                                   minimum_padding = minimum_padding,
+                                   name = name,
+                                   return_gobject = return_gobject)
+
+  }
+
+  return(out)
+
+}
+
+
 
 
 #' @title showGrids
@@ -1930,7 +2112,7 @@ showGrids = function(gobject,
   g_grid_names = names(gobject@spatial_grid)
 
   if(verbose == TRUE) {
-    cat('The following images are available: ',
+    cat('The following grids are available: ',
         g_grid_names, '\n')
   }
 
@@ -1939,18 +2121,64 @@ showGrids = function(gobject,
 
 
 
+#' @title annotate_spatlocs_with_spatgrid_2D
+#' @description annotate spatial locations with 2D spatial grid information
+#' @param spatloc spatial_locs slot from giotto object
+#' @param spatgrid selected spatial_grid slot from giotto object
+#' @return annotated spatial location data.table
+#' @keywords internal
+annotate_spatlocs_with_spatgrid_2D = function(spatloc,
+                                              spatgrid) {
+
+  ## second label the spatial locations ##
+  spatlocs = data.table::copy(spatloc)
+
+  # data.table variables
+  gr_x_loc = gr_y_loc = gr_loc = NULL
+
+  x_vector = spatlocs$sdimx
+  x_breaks = sort(unique(spatgrid$x_end))
+  x_breaks_labels = paste0('gr_x_', 1:length(x_breaks))
+  minimum_x = min(spatgrid$x_start)
+  my_x_gr = cut(x = x_vector, breaks = c(minimum_x, x_breaks), include.lowest = T, right = T, labels = x_breaks_labels)
+  spatlocs[, gr_x_loc := as.character(my_x_gr)]
+
+  y_vector = spatlocs$sdimy
+  y_breaks = sort(unique(spatgrid$y_end))
+  y_breaks_labels = paste0('gr_y_', 1:length(y_breaks))
+  minimum_y = min(spatgrid$y_start)
+  my_y_gr = cut(x = y_vector, breaks = c(minimum_y, y_breaks), include.lowest = T, right = T, labels = y_breaks_labels)
+  spatlocs[, gr_y_loc := as.character(my_y_gr)]
+
+
+  ## for all dimensions ##
+  # converter
+  gr_dim_names = spatgrid$gr_name
+  names(gr_dim_names) = paste0(spatgrid$gr_x_name,'-', spatgrid$gr_y_name)
+
+  indiv_dim_names = paste0(spatlocs$gr_x_loc,'-', spatlocs$gr_y_loc)
+  my_gr = gr_dim_names[indiv_dim_names]
+  spatlocs[, gr_loc := as.character(my_gr)]
+
+  return(spatlocs)
+
+}
+
 
 #' @title annotate_spatlocs_with_spatgrid_3D
 #' @description annotate spatial locations with 3D spatial grid information
 #' @param spatloc spatial_locs slot from giotto object
 #' @param spatgrid selected spatial_grid slot from giotto object
 #' @return annotated spatial location data.table
-#' @examples
-#'     annotate_spatlocs_with_spatgrid_3D()
-annotate_spatlocs_with_spatgrid_3D = function(spatloc, spatgrid) {
+#' @keywords internal
+annotate_spatlocs_with_spatgrid_3D = function(spatloc,
+                                              spatgrid) {
 
   ## second label the spatial locations ##
-  spatlocs = copy(spatloc)
+  spatlocs = data.table::copy(spatloc)
+
+  # data.table variables
+  gr_x_loc = gr_y_loc = gr_z_loc = gr_loc = NULL
 
   x_vector = spatlocs$sdimx
   x_breaks = sort(unique(spatgrid$x_end))
@@ -1987,43 +2215,66 @@ annotate_spatlocs_with_spatgrid_3D = function(spatloc, spatgrid) {
 
 }
 
-#' @title annotate_spatlocs_with_spatgrid_2D
-#' @description annotate spatial locations with 2D spatial grid information
-#' @param spatloc spatial_locs slot from giotto object
-#' @param spatgrid selected spatial_grid slot from giotto object
-#' @return annotated spatial location data.table
+
+
+
+#' @title annotateSpatialGrid
+#' @description annotate spatial grid with cell ID and cell metadata (optional)
+#' @param gobject Giotto object
+#' @param spatial_grid_name name of spatial grid, see \code{\link{showGrids}}
+#' @param cluster_columns names of cell metadata, see \code{\link{pDataDT}}
+#' @return annotated spatial grid data.table
+#' @export
 #' @examples
-#'     annotate_spatlocs_with_spatgrid_2D()
-annotate_spatlocs_with_spatgrid_2D = function(spatloc, spatgrid) {
-
-  ## second label the spatial locations ##
-  spatlocs = copy(spatloc)
-
-  x_vector = spatlocs$sdimx
-  x_breaks = sort(unique(spatgrid$x_end))
-  x_breaks_labels = paste0('gr_x_', 1:length(x_breaks))
-  minimum_x = min(spatgrid$x_start)
-  my_x_gr = cut(x = x_vector, breaks = c(minimum_x, x_breaks), include.lowest = T, right = T, labels = x_breaks_labels)
-  spatlocs[, gr_x_loc := as.character(my_x_gr)]
-
-  y_vector = spatlocs$sdimy
-  y_breaks = sort(unique(spatgrid$y_end))
-  y_breaks_labels = paste0('gr_y_', 1:length(y_breaks))
-  minimum_y = min(spatgrid$y_start)
-  my_y_gr = cut(x = y_vector, breaks = c(minimum_y, y_breaks), include.lowest = T, right = T, labels = y_breaks_labels)
-  spatlocs[, gr_y_loc := as.character(my_y_gr)]
+#'     annotateSpatialGrid()
+annotateSpatialGrid = function(gobject,
+                               spatial_grid_name = 'spatial_grid',
+                               cluster_columns = NULL) {
 
 
-  ## for all dimensions ##
-  # converter
-  gr_dim_names = spatgrid$gr_name
-  names(gr_dim_names) = paste0(spatgrid$gr_x_name,'-', spatgrid$gr_y_name)
+  # get grid
+  spatial_grid = select_spatialGrid(gobject = gobject,
+                                    name = spatial_grid_name)
+  spatial_locs = data.table::copy(gobject@spatial_locs)
 
-  indiv_dim_names = paste0(spatlocs$gr_x_loc,'-', spatlocs$gr_y_loc)
-  my_gr = gr_dim_names[indiv_dim_names]
-  spatlocs[, gr_loc := as.character(my_gr)]
+  # 1. annotate spatial grid with spatial locations
+  if(all(c('sdimx', 'sdimy', 'sdimz') %in% colnames(spatial_locs))) {
+    annotgrid_locs = annotate_spatlocs_with_spatgrid_3D(spatloc = spatial_locs, spatgrid = spatial_grid)
+  } else if(all(c('sdimx', 'sdimy') %in% colnames(spatial_locs))) {
+    annotgrid_locs = annotate_spatlocs_with_spatgrid_2D(spatloc = spatial_locs, spatgrid = spatial_grid)
+  }
 
-  return(spatlocs)
+  # 2.select metadata
+  cell_metadata = pDataDT(gobject)
 
+  if(!is.null(cluster_columns)) {
+
+    annotation_vector = cluster_columns
+    possible_annotations = colnames(cell_metadata)
+
+    missing_annotation = annotation_vector[!annotation_vector %in% possible_annotations]
+    if(length(missing_annotation) > 0) {
+      cat('These annotations were not found back in the cell metadata (pDataDT): \n',
+          missing_annotation, '\n')
+    }
+
+    annotation_vector_found = annotation_vector[annotation_vector %in% possible_annotations]
+    cell_meta_selected = cell_metadata[, c('cell_ID', annotation_vector_found), with = F]
+
+    annotated_grid = data.table::merge.data.table(x = annotgrid_locs, y = cell_meta_selected, by = 'cell_ID')
+
+    return(annotated_grid)
+
+  } else {
+
+    return(annotgrid_locs)
+
+  }
 }
+
+
+
+
+
+
 

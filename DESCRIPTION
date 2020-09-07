@@ -1,6 +1,6 @@
 Package: Giotto
-Title: Spatial single-cell transcriptomics toolbox.
-Version: 0.3.5
+Title: Spatial single-cell transcriptomics toolbox
+Version: 0.3.6.9036
 Authors@R: c(
 	person("Ruben", "Dries", email = "rubendries@gmail.com",
 		 role = c("aut", "cre")),
@@ -13,13 +13,13 @@ Authors@R: c(
 	person("Guo-Cheng", "Yuan", email = "gcyuan@ds.dfci.harvard.edu",
 		 role = c("aut"))
 	)
-Description: Toolbox to process, analyze and visualize spatial single-cell expression data
+Description: Toolbox to process, analyze and visualize spatial single-cell expression data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://rubd.github.io/Giotto/, https://github.com/RubD/Giotto
 BugReports: https://github.com/RubD/Giotto/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends:
     base (>= 3.5.1),
     utils (>= 3.5.1),
@@ -34,7 +34,9 @@ Imports:
     methods,
     uwot (>= 0.0.0.9010),
     cowplot (>= 0.9.4),
+    ClusterR,
     grDevices,
+    graphics,
     RColorBrewer (>= 1.1-2),
     dbscan (>= 1.1-3),
     farver (>= 2.0.3),
@@ -61,6 +63,7 @@ Imports:
     rlang (>= 0.4.3),
     R.utils,
     fitdistrplus,
+    quadprog
 Suggests:
     knitr,
     rmarkdown,

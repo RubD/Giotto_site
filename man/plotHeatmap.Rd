@@ -94,5 +94,24 @@ If you want to display many genes there are 2 ways to proceed:
 }
 }
 \examples{
-    plotHeatmap(gobject)
+\dontrun{
+
+data(mini_giotto_single_cell)
+
+# get all genes
+all_genes = slot(mini_giotto_single_cell, 'gene_ID')
+
+# plot heatmap
+plotHeatmap(mini_giotto_single_cell,
+            genes = all_genes[1:10])
+
+# look at cell metadata
+cell_metadata = pDataDT(mini_giotto_single_cell)
+
+# plot heatmap per cell type, a column name from cell_metadata
+plotHeatmap(mini_giotto_single_cell,
+            genes = all_genes[1:10],
+            cluster_column = 'cell_types')
+
+}
 }

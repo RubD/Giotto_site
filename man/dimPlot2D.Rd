@@ -61,6 +61,8 @@ dimPlot2D(
 \arguments{
 \item{gobject}{giotto object}
 
+\item{group_by}{create multiple plots based on cell annotation column}
+
 \item{group_by_subset}{subset the group_by factor column}
 
 \item{dim_reduction_to_use}{dimension reduction to use}
@@ -107,6 +109,10 @@ dimPlot2D(
 
 \item{center_point_size}{size of center points}
 
+\item{center_point_border_col}{border color of center points}
+
+\item{center_point_border_stroke}{border stroke size of center points}
+
 \item{label_size}{size of labels}
 
 \item{label_fontface}{font of labels}
@@ -151,11 +157,9 @@ dimPlot2D(
 
 \item{save_plot}{directly save the plot [boolean]}
 
-\item{save_param}{list of saving parameters from \code{\link{all_plots_save_function}}}
+\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
 
 \item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
-
-\item{groub_by}{create multiple plots based on cell annotation column}
 }
 \value{
 ggplot
@@ -169,3 +173,18 @@ Description of parameters. For 3D plots see \code{\link{dimPlot3D}}
 \examples{
     dimPlot2D(gobject)
 }
+\seealso{
+Other reduced dimension visualizations: 
+\code{\link{dimPlot3D}()},
+\code{\link{dimPlot}()},
+\code{\link{plotPCA_2D}()},
+\code{\link{plotPCA_3D}()},
+\code{\link{plotPCA}()},
+\code{\link{plotTSNE_2D}()},
+\code{\link{plotTSNE_3D}()},
+\code{\link{plotTSNE}()},
+\code{\link{plotUMAP_2D}()},
+\code{\link{plotUMAP_3D}()},
+\code{\link{plotUMAP}()}
+}
+\concept{reduced dimension visualizations}

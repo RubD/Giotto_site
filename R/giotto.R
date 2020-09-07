@@ -1,3 +1,5 @@
+
+
 #' @title S4 giotto Class
 #' @description Framework of giotto object to store and work with spatial expression data
 #' @keywords giotto, object
@@ -12,8 +14,10 @@
 #' @slot gene_ID unique gene IDs
 #' @slot spatial_network spatial network in data.table/data.frame format
 #' @slot spatial_grid spatial grid in data.table/data.frame format
+#' @slot spatial_enrichment slot to save spatial enrichment-like results
 #' @slot dimension_reduction slot to save dimension reduction coordinates
 #' @slot nn_network nearest neighbor network in igraph format
+#' @slot images slot to store giotto images
 #' @slot parameters slot to save parameters that have been used
 #' @slot instructions slot for global function instructions
 #' @slot offset_file offset file used to stitch together image fields
@@ -96,10 +100,12 @@ giotto <- setClass(
 
 
 
-#' @title show method for giotto class
-#' @keywords giotto, object
-#'
-#' @export
+#' show method for giotto class
+#' @param object giotto object
+#' @aliases show,giotto-method
+#' @docType methods
+#' @rdname show-methods
+
 setMethod(
   f = "show",
   signature = "giotto",
@@ -120,32 +126,34 @@ setMethod(
 )
 
 
-#' @title print method for giotto class
-#' @description print method for giotto class.
-#' Prints the chosen number of genes (rows) and cells (columns) from the raw count matrix.
-#' Also print the spatial locations for the chosen number of cells.
+
+
+#' Prints giotto object.
+#'
+#' Prints giotto object
+#'
+#' @param object giotto object
 #' @param nr_genes number of genes (rows) to print
 #' @param nr_cells number of cells (columns) to print
-#' @keywords giotto, object
-#'
+#' @method print giotto
+#' @rdname print.giotto
 #' @export
-setGeneric(name = "print.giotto",
-           def = function(object, ...) {
-             standardGeneric("print.giotto")
-           })
+print.giotto <- function(object,
+                         nr_genes = 5,
+                         nr_cells = 5) {
+  print(object@raw_exprs[1:nr_genes, 1:nr_cells])
+  cat('\n')
+  print(object@spatial_locs[1:nr_cells,])
+}
 
-setMethod(f = "print.giotto",
-          signature = "giotto",
-          definition = function(object, nr_genes = 5, nr_cells = 5) {
-            print(object@raw_exprs[1:nr_genes, 1:nr_cells])
-            cat('\n')
-            print(object@spatial_locs[1:nr_cells,])
-          })
+
+
 
 
 #' @title set_giotto_python_path
 #' @name set_giotto_python_path
-#' @description sets the python path and/or install miniconda and the python modules
+#' @description sets the python path and/or installs miniconda and the python modules
+#' @keywords internal
 set_giotto_python_path = function(python_path = NULL,
                                   packages_to_install = c('pandas', 'networkx', 'python-igraph',
                                                           'leidenalg', 'python-louvain', 'python.app',
@@ -296,10 +304,13 @@ set_giotto_python_path = function(python_path = NULL,
 #' @param return_plot return plot as object, default = TRUE
 #' @param save_plot automatically save plot, dafault = FALSE
 #' @param save_dir path to directory where to save plots
+#' @param plot_format format of plots (defaults to png)
 #' @param dpi resolution for raster images
+#' @param units units of format (defaults to in)
 #' @param height height of plots
 #' @param width width of  plots
 #' @return named vector with giotto instructions
+#' @seealso More online information can be found here \url{https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html}
 #' @export
 #' @examples
 #'     createGiottoInstructions()
@@ -542,11 +553,16 @@ readExprMatrix = function(path, cores = NA, transpose = FALSE) {
 #' @title evaluate_expr_matrix
 #' @description Evaluate expression matrices.
 #' @param inputmatrix inputmatrix to evaluate
+#' @param sparse create sparse matrix (default = TRUE)
+#' @param cores how many cores to use
 #' @return sparse matrix
 #' @details The inputmatrix can be a matrix, sparse matrix, data.frame, data.table or path to any of these.
+#' @keywords internal
 #' @examples
 #'     evaluate_expr_matrix()
-evaluate_expr_matrix = function(inputmatrix, sparse = TRUE, cores = NA) {
+evaluate_expr_matrix = function(inputmatrix,
+                                sparse = TRUE,
+                                cores = NA) {
 
   if(methods::is(inputmatrix, 'character')) {
     mymatrix = readExprMatrix(inputmatrix, cores =  cores)
@@ -566,12 +582,91 @@ evaluate_expr_matrix = function(inputmatrix, sparse = TRUE, cores = NA) {
     }
 
   } else if(class(inputmatrix) %in% c('data.frame', 'matrix')) {
-    mymatrix = as(as.matrix(inputmatrix), "sparseMatrix")
+    mymatrix = methods::as(as.matrix(inputmatrix), "sparseMatrix")
   } else {
     stop("raw_exprs needs to be a path or an object of class 'Matrix', 'data.table', 'data.frame' or 'matrix'")
   }
 
   return(mymatrix)
+}
+
+
+
+#' @title evaluate_spatial_locations
+#' @description Evaluate spatial location input
+#' @param spatial_locs spatial locations to evaluate
+#' @param cores how many cores to use
+#' @param dummy_n number of rows to create dummy spaial locations
+#' @param expr_matrix expression matrix to compare the cell IDs with
+#' @return data.table
+#' @keywords internal
+evaluate_spatial_locations = function(spatial_locs,
+                                      cores = 1,
+                                      dummy_n = 2,
+                                      expr_matrix = NULL) {
+
+  if(is.null(spatial_locs)) {
+    warning('\n spatial locations are not given, dummy 3D data will be created \n')
+    spatial_locs = data.table::data.table(sdimx = 1:dummy_n,
+                                          sdimy = 1:dummy_n,
+                                          sdimz = 1:dummy_n)
+
+  } else {
+
+    if(!any(class(spatial_locs) %in% c('data.table', 'data.frame', 'matrix', 'character'))) {
+      stop('spatial_locs needs to be a data.table or data.frame-like object or a path to one of these')
+    }
+    if(methods::is(spatial_locs, 'character')) {
+      if(!file.exists(spatial_locs)) stop('path to spatial locations does not exist')
+      spatial_locs = data.table::fread(input = spatial_locs, nThread = cores)
+    } else {
+      spatial_locs = data.table::as.data.table(spatial_locs)
+    }
+
+
+    # check if all columns are numeric
+    column_classes = lapply(spatial_locs, FUN = class)
+    #non_numeric_classes = column_classes[column_classes != 'numeric']
+    non_numeric_classes = column_classes[!column_classes %in% c('numeric','integer')]
+
+    if(length(non_numeric_classes) > 0) {
+
+      non_numeric_indices = which(!column_classes %in% c('numeric','integer'))
+
+      warning('There are non numeric or integer columns for the spatial location input at column position(s): ', non_numeric_indices,
+              '\n The first non-numeric column will be considered as a cell ID to test for consistency with the expression matrix',
+              '\n Other non numeric columns will be removed')
+
+      if(!is.null(expr_matrix)) {
+        potential_cell_IDs = spatial_locs[[ non_numeric_indices[1] ]]
+        expr_matrix_IDs = colnames(expr_matrix)
+
+        if(!identical(potential_cell_IDs, expr_matrix_IDs)) {
+          warning('The cell IDs from the expression matrix and spatial locations do not seem to be identical')
+        }
+
+      }
+
+
+      spatial_locs = spatial_locs[,-non_numeric_indices, with = F]
+
+    }
+
+    # check number of columns: too few
+    if(ncol(spatial_locs) < 2) {
+      stop('There need to be at least 2 numeric columns for spatial locations \n')
+    }
+
+    # check number of columns: too many
+    if(ncol(spatial_locs) > 3) {
+      warning('There are more than 3 columns for spatial locations, only the first 3 will be used \n')
+      spatial_locs = spatial_locs[, 1:3]
+    }
+
+  }
+
+
+  return(spatial_locs)
 }
 
 
@@ -632,6 +727,7 @@ evaluate_expr_matrix = function(inputmatrix, sparse = TRUE, cores = NA) {
 #' }
 #'
 #' @keywords giotto
+#' @importFrom methods new
 #' @export
 #' @examples
 #'     createGiottoObject(raw_exprs, spatial_locs)
@@ -693,10 +789,16 @@ createGiottoObject <- function(raw_exprs,
   }
 
 
-  # set number of cores automatically, but with limit of 10
+  # if cores is not set, then set number of cores automatically, but with limit of 10
   if(is.na(cores) | !is.numeric(cores)) {
-    cores = parallel::detectCores() - 2
-    cores = ifelse(cores > 10, 10, cores)
+
+    cores = parallel::detectCores()
+    if(cores <= 2) {
+      cores = cores
+    } else {
+      cores = cores - 2
+      cores = ifelse(cores > 10, 10, cores)
+    }
     data.table::setDTthreads(threads = cores)
   }
 
@@ -737,27 +839,12 @@ createGiottoObject <- function(raw_exprs,
 
 
   ## spatial locations
+  dummy_n = ncol(raw_exprs)
+  spatial_locs = evaluate_spatial_locations(spatial_locs = spatial_locs,
+                                            cores = cores,
+                                            dummy_n = dummy_n,
+                                            expr_matrix = raw_exprs)
 
-  # create dummy spatial data if no information is given
-  if(is.null(spatial_locs)) {
-    warning('\n spatial locations are not given, dummy 3D data will be created \n')
-    spatial_locs = data.table::data.table(sdimx = 1:ncol(raw_exprs),
-                                          sdimy = 1:ncol(raw_exprs),
-                                          sdimz = 1:ncol(raw_exprs))
-    #gobject@spatial_locs = spatial_locs
-  }
-
-
-  ## spatial
-  if(!any(class(spatial_locs) %in% c('data.table', 'data.frame', 'matrix', 'character'))) {
-    stop('spatial_locs needs to be a data.table or data.frame-like object or a path to one of these')
-  }
-  if(methods::is(spatial_locs, 'character')) {
-    if(!file.exists(spatial_locs)) stop('path to spatial locations does not exist')
-    spatial_locs = data.table::fread(input = spatial_locs, nThread = cores)
-  } else {
-    spatial_locs = data.table::as.data.table(spatial_locs)
-  }
 
   # check if dimensions agree
   if(nrow(spatial_locs) != ncol(raw_exprs)) {
@@ -821,6 +908,7 @@ createGiottoObject <- function(raw_exprs,
       stop('\n dimensions, row or column names are not the same between custom normalized and raw expression \n')
     }
   }
+
 
 
   ## cell metadata
@@ -1009,6 +1097,8 @@ createGiottoObject <- function(raw_exprs,
   return(gobject)
 
 }
+
+
 
 
 

@@ -105,6 +105,10 @@ spatCellPlot2D(
 
 \item{center_point_size}{size of center points}
 
+\item{center_point_border_col}{border color of center points}
+
+\item{center_point_border_stroke}{border stroke size of center points}
+
 \item{label_size}{size of labels}
 
 \item{label_fontface}{font of labels}
@@ -151,13 +155,21 @@ spatCellPlot2D(
 
 \item{axis_title}{size of axis title}
 
+\item{cow_n_col}{cowplot param: how many columns}
+
+\item{cow_rel_h}{cowplot param: relative height}
+
+\item{cow_rel_w}{cowplot param: relative width}
+
+\item{cow_align}{cowplot param: how to align}
+
 \item{show_plot}{show plot}
 
 \item{return_plot}{return ggplot object}
 
 \item{save_plot}{directly save the plot [boolean]}
 
-\item{save_param}{list of saving parameters from \code{\link{all_plots_save_function}}}
+\item{save_param}{list of saving parameters, see \code{\link{showSaveParameters}}}
 
 \item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
 }
@@ -173,3 +185,8 @@ Description of parameters.
 \examples{
     spatCellPlot2D(gobject)
 }
+\seealso{
+Other spatial cell annotation visualizations: 
+\code{\link{spatCellPlot}()}
+}
+\concept{spatial cell annotation visualizations}

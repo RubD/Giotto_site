@@ -21,7 +21,8 @@ screePlot(
   return_plot = NA,
   save_plot = NA,
   save_param = list(),
-  default_save_name = "screePlot"
+  default_save_name = "screePlot",
+  ...
 )
 }
 \arguments{
@@ -58,6 +59,8 @@ screePlot(
 \item{save_param}{list of saving parameters from all_plots_save_function()}
 
 \item{default_save_name}{default save name for saving, don't change, change save_name in save_param}
+
+\item{...}{additional arguments to pca function, see \code{\link{runPCA}}}
 }
 \value{
 ggplot object for scree method
@@ -73,5 +76,9 @@ Screeplot works by plotting the explained variance of each
  create it if it's not available (see \code{\link{runPCA}})
 }
 \examples{
-    screePlot(gobject)
+
+data(mini_giotto_single_cell)
+
+screePlot(mini_giotto_single_cell, ncp = 10)
+
 }

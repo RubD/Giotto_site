@@ -9,3 +9,4 @@ DT_removeNA(DT)
 \description{
 set NA values to 0 in a data.table object
 }
+\keyword{internal}
