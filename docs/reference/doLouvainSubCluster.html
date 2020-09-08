@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -184,8 +193,8 @@
   <span class='kw'>version</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"community"</span>, <span class='st'>"multinet"</span>),
   <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>selected_clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_variance</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span>
-    <span class='kw'>=</span> <span class='st'>"normalized"</span>),
+  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_cov</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span> <span class='kw'>=</span>
+    <span class='st'>"normalized"</span>),
   <span class='kw'>hvg_min_perc_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>hvg_mean_expr_det</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>use_all_genes_as_hvg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,

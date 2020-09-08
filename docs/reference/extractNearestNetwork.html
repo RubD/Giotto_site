@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="extractNearestNetwork — extractNearestNetwork" />
-<meta property="og:description" content="Extracts a NN-network from a Giotto object" />
+<meta property="og:description" content="Function to calculate gene signature enrichment scores per spatial position using a rank based approach." />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -175,43 +184,30 @@
     </div>
 
     <div class="ref-description">
-    <p>Extracts a NN-network from a Giotto object</p>
+    <p>Function to calculate gene signature enrichment scores per spatial position using a rank based approach.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>extractNearestNetwork</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"igraph"</span>, <span class='st'>"data.table"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>extractNearestNetwork</span>(<span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gobject</th>
-      <td><p>giotto object</p></td>
-    </tr>
-    <tr>
-      <th>nn_network_to_use</th>
-      <td><p>kNN or sNN</p></td>
-    </tr>
-    <tr>
-      <th>network_name</th>
-      <td><p>name of NN network to be used</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>return a igraph or data.table object</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='select_NearestNetwork.html'>select_NearestNetwork</a></code></p><dl'>
+    <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
+    <dt><code>nn_network_to_use</code></dt><dd><p>kNN or sNN</p></dd>
+    <dt><code>network_name</code></dt><dd><p>name of NN network to be used</p></dd>
+    <dt><code>output</code></dt><dd><p>return a igraph or data.table object</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>igraph or data.table object</p>
+    <div class='dont-index'><p><code><a href='select_NearestNetwork.html'>select_NearestNetwork</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>extractNearestNetwork</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

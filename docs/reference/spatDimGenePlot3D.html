@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -197,20 +206,21 @@
   <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
   <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
   <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
+  <span class='kw'>nn_network_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
+  <span class='kw'>nn_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
   <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>16</span>,
   <span class='kw'>genes_low_color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
   <span class='kw'>genes_mid_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
   <span class='kw'>genes_high_color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
   <span class='kw'>dim_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>nn_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_spatial_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>show_spatial_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>network_color</span> <span class='kw'>=</span> <span class='st'>"lightgray"</span>,
+  <span class='kw'>spatial_network_color</span> <span class='kw'>=</span> <span class='st'>"lightgray"</span>,
   <span class='kw'>spatial_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
   <span class='kw'>spatial_grid_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>spatial_grid_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
@@ -264,8 +274,44 @@
       <td><p>dimension to use on z-axis</p></td>
     </tr>
     <tr>
+      <th>sdimx</th>
+      <td><p>spatial dimension to use on x-axis</p></td>
+    </tr>
+    <tr>
+      <th>sdimy</th>
+      <td><p>spatial dimension to use on y-axis</p></td>
+    </tr>
+    <tr>
+      <th>sdimz</th>
+      <td><p>spatial dimension to use on z-axis</p></td>
+    </tr>
+    <tr>
       <th>genes</th>
       <td><p>genes to show</p></td>
+    </tr>
+    <tr>
+      <th>cluster_column</th>
+      <td><p>cluster column to select groups</p></td>
+    </tr>
+    <tr>
+      <th>select_cell_groups</th>
+      <td><p>select subset of cells/clusters based on cell_color parameter</p></td>
+    </tr>
+    <tr>
+      <th>select_cells</th>
+      <td><p>select subset of cells based on cell IDs</p></td>
+    </tr>
+    <tr>
+      <th>show_other_cells</th>
+      <td><p>display not selected cells</p></td>
+    </tr>
+    <tr>
+      <th>other_cell_color</th>
+      <td><p>color of not selected cells</p></td>
+    </tr>
+    <tr>
+      <th>other_point_size</th>
+      <td><p>size of not selected cells</p></td>
     </tr>
     <tr>
       <th>show_NN_network</th>
@@ -276,24 +322,96 @@
       <td><p>type of NN network to use (kNN vs sNN)</p></td>
     </tr>
     <tr>
+      <th>nn_network_color</th>
+      <td><p>color of NN network</p></td>
+    </tr>
+    <tr>
+      <th>nn_network_alpha</th>
+      <td><p>alpha of NN network</p></td>
+    </tr>
+    <tr>
       <th>network_name</th>
       <td><p>name of NN network to use, if show_NN_network = TRUE</p></td>
+    </tr>
+    <tr>
+      <th>label_size</th>
+      <td><p>size of labels</p></td>
+    </tr>
+    <tr>
+      <th>genes_low_color</th>
+      <td><p>color for low expression levels</p></td>
+    </tr>
+    <tr>
+      <th>genes_mid_color</th>
+      <td><p>color for medium expression levels</p></td>
+    </tr>
+    <tr>
+      <th>genes_high_color</th>
+      <td><p>color for high expression levels</p></td>
     </tr>
     <tr>
       <th>dim_point_size</th>
       <td><p>dim reduction plot: point size</p></td>
     </tr>
     <tr>
+      <th>show_spatial_network</th>
+      <td><p>show spatial network (boolean)</p></td>
+    </tr>
+    <tr>
       <th>spatial_network_name</th>
       <td><p>name of spatial network to use</p></td>
+    </tr>
+    <tr>
+      <th>spatial_network_color</th>
+      <td><p>color of spatial network</p></td>
+    </tr>
+    <tr>
+      <th>spatial_network_alpha</th>
+      <td><p>alpha of spatial network</p></td>
+    </tr>
+    <tr>
+      <th>show_spatial_grid</th>
+      <td><p>show spatial grid (boolean)</p></td>
     </tr>
     <tr>
       <th>spatial_grid_name</th>
       <td><p>name of spatial grid to use</p></td>
     </tr>
     <tr>
+      <th>spatial_grid_color</th>
+      <td><p>color of spatial grid</p></td>
+    </tr>
+    <tr>
+      <th>spatial_grid_alpha</th>
+      <td><p>alpha of spatial grid</p></td>
+    </tr>
+    <tr>
       <th>spatial_point_size</th>
       <td><p>spatial plot: point size</p></td>
+    </tr>
+    <tr>
+      <th>legend_text_size</th>
+      <td><p>size of legend</p></td>
+    </tr>
+    <tr>
+      <th>axis_scale</th>
+      <td><p>the way to scale the axis</p></td>
+    </tr>
+    <tr>
+      <th>custom_ratio</th>
+      <td><p>customize the scale of the plot</p></td>
+    </tr>
+    <tr>
+      <th>x_ticks</th>
+      <td><p>set the number of ticks on the x-axis</p></td>
+    </tr>
+    <tr>
+      <th>y_ticks</th>
+      <td><p>set the number of ticks on the y-axis</p></td>
+    </tr>
+    <tr>
+      <th>z_ticks</th>
+      <td><p>set the number of ticks on the z-axis</p></td>
     </tr>
     <tr>
       <th>show_plot</th>
@@ -309,27 +427,11 @@
     </tr>
     <tr>
       <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
       <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
-    </tr>
-    <tr>
-      <th>edge_alpha_dim</th>
-      <td><p>dim reduction plot: column to use for alpha of the edges</p></td>
-    </tr>
-    <tr>
-      <th>scale_alpha_with_expression</th>
-      <td><p>scale expression with ggplot alpha parameter</p></td>
-    </tr>
-    <tr>
-      <th>point_size</th>
-      <td><p>size of point (cell)</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
     </tr>
     </table>
 
@@ -339,9 +441,12 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>spatDimGenePlot3D</span>(<span class='no'>gobject</span>)</pre>
+    <div class='dont-index'><p>Other spatial and dimension reduction gene expression visualizations: 
+<code><a href='spatDimGenePlot2D.html'>spatDimGenePlot2D</a>()</code>,
+<code><a href='spatDimGenePlot.html'>spatDimGenePlot</a>()</code></p></div>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

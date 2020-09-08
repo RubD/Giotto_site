@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -179,13 +188,37 @@
     </div>
 
     <pre class="usage"><span class='fu'>calculate_distance_and_weight</span>(
-  <span class='no'>networkDT</span>,
+  <span class='kw'>networkDT</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='st'>"sdimx"</span>,
   <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='st'>"sdimy"</span>,
   <span class='kw'>sdimz</span> <span class='kw'>=</span> <span class='st'>"sdimz"</span>,
   <span class='kw'>d2_or_d3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>)
 )</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>networkDT</th>
+      <td><p>spatial network as data.table</p></td>
+    </tr>
+    <tr>
+      <th>sdimx</th>
+      <td><p>spatial dimension x</p></td>
+    </tr>
+    <tr>
+      <th>sdimy</th>
+      <td><p>spatial dimension y</p></td>
+    </tr>
+    <tr>
+      <th>sdimz</th>
+      <td><p>spatial dimension z</p></td>
+    </tr>
+    <tr>
+      <th>d2_or_d3</th>
+      <td><p>number of dimensions</p></td>
+    </tr>
+    </table>
 
 
   </div>

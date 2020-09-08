@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -183,8 +192,8 @@
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sub_louvain_comm_clus"</span>,
   <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>selected_clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_variance</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span>
-    <span class='kw'>=</span> <span class='st'>"normalized"</span>),
+  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_cov</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span> <span class='kw'>=</span>
+    <span class='st'>"normalized"</span>),
   <span class='kw'>hvg_min_perc_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>hvg_mean_expr_det</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>use_all_genes_as_hvg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -295,8 +304,6 @@ The systematic steps are:</p><ul>
 
     <div class='dont-index'><p><code><a href='doLouvainCluster_community.html'>doLouvainCluster_community</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>doLouvainSubCluster_community</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -42,17 +42,25 @@ Howto's examples:
 - [Different ways to visualize your spatial data?](./visualization_options.html)
 - [How to test and store multiple parameters or analyses?](./work_with_multiple_analyses.html)
 - [Visualize spatial data with voronoi plots](./howto_voronoi_plots.html)
-- [Adding and working with images in Giotto](./howto_images.html)
-- How to create a giotto object with your own spatial network/grid, dimensions reduction, ... ?  
+- [Adding and working with images in Giotto](./howto_images.html)  
+
 
 ##### Giotto analyses [work in progress]
-- How to identify highly variable genes?  
-- Different ways to cluster data?
-- Methods to identify differentially expressed genes?  
-- How to perform cell-type or cell-process gene signature spatial enrichment analysis?
-- Algorithmes to find spatial genes, patterns or domains?
-- Effect of neighboring cells on gene expression?  
-- ...
+- 1. Create a Giotto object  
+- 2. Process and filter a Giotto object  
+- 3. Dimension reduction  
+- 4. Cluster cells or spots  
+- 5. Identify differentially expressed genes
+- 6. Annotate clusters  
+- 7. Create a Spatial grid or Network  
+- 8. Find genes with a spatially coherent gene expression pattern
+- 9. Identify genes that are spatially co-expressed
+- 10. Explore spatial domains with HMRF  
+- 11. Calculate spatial cell-cell interaction enrichment  
+- 12. Find cell-cell interaction changed genes (ICG)  
+- 13. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions  
+- 14. Export Giotto results to use in Giotto viewer
+
 
 ##### Giotto Analyzer and Viewer interaction [work in progress]
 - How to switch between Giotto Analyzer and Viewer?

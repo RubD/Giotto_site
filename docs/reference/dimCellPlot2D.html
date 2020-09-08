@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -189,6 +198,7 @@
   <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
   <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
   <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
+  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>cell_color_gradient</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span>),
   <span class='kw'>gradient_midpoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>gradient_limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -271,6 +281,10 @@
       <td><p>name of NN network to use, if show_NN_network = TRUE</p></td>
     </tr>
     <tr>
+      <th>cell_color_code</th>
+      <td><p>named vector with colors for cell annotation values</p></td>
+    </tr>
+    <tr>
       <th>cell_color_gradient</th>
       <td><p>vector with 3 colors for numeric data</p></td>
     </tr>
@@ -313,6 +327,14 @@
     <tr>
       <th>center_point_size</th>
       <td><p>size of center points</p></td>
+    </tr>
+    <tr>
+      <th>center_point_border_col</th>
+      <td><p>border color of center points</p></td>
+    </tr>
+    <tr>
+      <th>center_point_border_stroke</th>
+      <td><p>border stroke size of center points</p></td>
     </tr>
     <tr>
       <th>label_size</th>
@@ -371,6 +393,22 @@
       <td><p>size of axis title</p></td>
     </tr>
     <tr>
+      <th>cow_n_col</th>
+      <td><p>cowplot param: how many columns</p></td>
+    </tr>
+    <tr>
+      <th>cow_rel_h</th>
+      <td><p>cowplot param: relative height</p></td>
+    </tr>
+    <tr>
+      <th>cow_rel_w</th>
+      <td><p>cowplot param: relative width</p></td>
+    </tr>
+    <tr>
+      <th>cow_align</th>
+      <td><p>cowplot param: how to align</p></td>
+    </tr>
+    <tr>
       <th>show_plot</th>
       <td><p>show plot</p></td>
     </tr>
@@ -384,27 +422,11 @@
     </tr>
     <tr>
       <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
       <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
-    </tr>
-    <tr>
-      <th>cell_color</th>
-      <td><p>color for cells (see details)</p></td>
-    </tr>
-    <tr>
-      <th>color_as_factor</th>
-      <td><p>convert color column to factor</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_code</th>
-      <td><p>named vector with colors</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>title for plot, defaults to cell_color parameter</p></td>
     </tr>
     </table>
 
@@ -414,6 +436,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters. For 3D plots see <code><a href='dimPlot3D.html'>dimPlot3D</a></code></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other dimension reduction cell annotation visualizations: 
+<code><a href='dimCellPlot.html'>dimCellPlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>dimCellPlot2D</span>(<span class='no'>gobject</span>)</pre>

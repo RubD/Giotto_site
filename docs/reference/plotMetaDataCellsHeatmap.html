@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -248,6 +257,18 @@
       <td><p>hierarchical cluster method for the clusters</p></td>
     </tr>
     <tr>
+      <th>custom_values_order</th>
+      <td><p>custom values order (default = NULL)</p></td>
+    </tr>
+    <tr>
+      <th>values_cor_method</th>
+      <td><p>correlation method for values</p></td>
+    </tr>
+    <tr>
+      <th>values_cluster_method</th>
+      <td><p>hierarchical cluster method for the values</p></td>
+    </tr>
+    <tr>
       <th>midpoint</th>
       <td><p>midpoint of show_values</p></td>
     </tr>
@@ -287,18 +308,6 @@
       <th>default_save_name</th>
       <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
     </tr>
-    <tr>
-      <th>custom_gene_order</th>
-      <td><p>custom gene order (default = NULL)</p></td>
-    </tr>
-    <tr>
-      <th>gene_cor_method</th>
-      <td><p>correlation method for genes</p></td>
-    </tr>
-    <tr>
-      <th>gene_cluster_method</th>
-      <td><p>hierarchical cluster method for the genes</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -311,8 +320,6 @@
 
     <div class='dont-index'><p><code><a href='plotMetaDataHeatmap.html'>plotMetaDataHeatmap</a></code> for gene expression instead of numeric cell annotation data.</p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>plotMetaDataCellsHeatmap</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

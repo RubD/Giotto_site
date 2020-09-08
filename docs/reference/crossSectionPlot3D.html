@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -183,35 +192,10 @@
   <span class='kw'>crossSection_obj</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='st'>"sdimx"</span>,
-  <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='st'>"sdimy"</span>,
-  <span class='kw'>sdimz</span> <span class='kw'>=</span> <span class='st'>"sdimz"</span>,
-  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
   <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='fu'>alpha</span>(<span class='st'>"lightgrey"</span>, <span class='fl'>0</span>),
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>network_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>network_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>other_cell_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>grid_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>axis_scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cube"</span>, <span class='st'>"real"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>custom_ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>z_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"crossSection3D"</span>
+  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"crossSection3D"</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -222,6 +206,10 @@
       <td><p>giotto object</p></td>
     </tr>
     <tr>
+      <th>crossSection_obj</th>
+      <td><p>cross section object as alternative input. default = NULL.</p></td>
+    </tr>
+    <tr>
       <th>name</th>
       <td><p>name of virtual cross section to use</p></td>
     </tr>
@@ -230,108 +218,20 @@
       <td><p>name of spatial network to use</p></td>
     </tr>
     <tr>
-      <th>sdimx</th>
-      <td><p>x-axis dimension name (default = 'sdimx')</p></td>
-    </tr>
-    <tr>
-      <th>sdimy</th>
-      <td><p>y-axis dimension name (default = 'sdimy')</p></td>
-    </tr>
-    <tr>
-      <th>sdimz</th>
-      <td><p>z-axis dimension name (default = 'sdimy')</p></td>
-    </tr>
-    <tr>
-      <th>point_size</th>
-      <td><p>size of point (cell)</p></td>
-    </tr>
-    <tr>
-      <th>cell_color</th>
-      <td><p>color for cells (see details)</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_code</th>
-      <td><p>named vector with colors</p></td>
-    </tr>
-    <tr>
-      <th>select_cell_groups</th>
-      <td><p>select subset of cells/clusters based on cell_color parameter</p></td>
-    </tr>
-    <tr>
       <th>show_other_cells</th>
       <td><p>display not selected cells</p></td>
     </tr>
     <tr>
       <th>other_cell_color</th>
-      <td><p>color of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>other_point_size</th>
-      <td><p>point size of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>network_color</th>
-      <td><p>color of spatial network</p></td>
-    </tr>
-    <tr>
-      <th>show_grid</th>
-      <td><p>show spatial grid</p></td>
-    </tr>
-    <tr>
-      <th>grid_color</th>
-      <td><p>color of spatial grid</p></td>
-    </tr>
-    <tr>
-      <th>spatial_grid_name</th>
-      <td><p>name of spatial grid to use</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>title of plot</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
-    </tr>
-    <tr>
-      <th>axis_scale</th>
-      <td><p>the way to scale the axis</p></td>
-    </tr>
-    <tr>
-      <th>custom_ratio</th>
-      <td><p>customize the scale of the plot</p></td>
-    </tr>
-    <tr>
-      <th>x_ticks</th>
-      <td><p>set the number of ticks on the x-axis</p></td>
-    </tr>
-    <tr>
-      <th>y_ticks</th>
-      <td><p>set the number of ticks on the y-axis</p></td>
-    </tr>
-    <tr>
-      <th>z_ticks</th>
-      <td><p>set the number of ticks on the z-axis</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plot</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return ggplot object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>color of cells outside the cross section. default = transparent.</p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
       <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>parameters for spatPlot3D</p></td>
     </tr>
     </table>
 

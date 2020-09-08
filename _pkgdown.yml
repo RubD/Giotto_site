@@ -23,6 +23,12 @@ navbar:
       href: reference/index.html
     - text: Datasets
       menu:
+      - text: "mini seqFISH"
+        href: articles/mini_seqfish.html
+      - text: "mini visium (spots)"
+        href: articles/mini_visium.html
+      - text: "mini 3D STARmap"
+        href: articles/mini_starmap.html
       - text: "mouse seqFISH cortex"
         href: articles/mouse_seqFISH_cortex_200517.html
       - text: "mouse hypoth. preopt. region"
@@ -61,6 +67,7 @@ reference:
   - title: import raw data
     desc: functions to help to import raw spatial data
     contents:
+    - getSpatialDataset
     - readExprMatrix
     - get10Xmatrix
     - stitchFieldCoordinates
@@ -116,6 +123,7 @@ reference:
     - addCellStatistics
     - addStatistics
     - addGenesPerc
+    - addCellIntMetadata
 
   - title: dimension reduction
     desc: Functions to reduce dimensions
@@ -168,15 +176,21 @@ reference:
     - plotMetaDataCellsHeatmap
     - violinPlot
 
-  - title: Spatial enrichment
+  - title: Spatial enrichment & deconvolution
     desc: algorithms to compute spatial enrichment of gene signatures or single-cell RNAseq annotation
     contents:
     - makeSignMatrixPAGE
     - makeSignMatrixRank
+    - runSpatialEnrich
     - createSpatialEnrich
+    - runPAGEEnrich
     - PAGEEnrich
+    - runRankEnrich
     - rankEnrich
+    - runHyperGeometricEnrich
     - hyperGeometricEnrich
+    - runSpatialDeconv 
+    - runDWLSDeconv  
 
   - title: Spatial network or grid
     desc: Function to (help) create a spatial network or grid
@@ -189,6 +203,7 @@ reference:
     - createSpatialKNNnetwork
     - createSpatialNetwork
     - annotateSpatialNetwork
+    - annotateSpatialGrid
     - createSpatialGrid
     - showNetworks
     - showGrids
@@ -197,10 +212,13 @@ reference:
     desc: Functions to identify spatial genes
     contents:
     - binSpect
+    - binSpectSingle
+    - binSpectMulti
     - silhouetteRank
     - spatialDE
     - spatialAEH
     - trendSceek
+    - spark 
 
   - title: Spatial co-expression patterns / modules
     desc: Functions to identify spatial co-expression patterns
@@ -310,6 +328,11 @@ reference:
     desc: Export selected annotations to a folder that can be used as input for Giotto Viewer
     contents:
     - exportGiottoViewer
+    
+  - title: Interoperability
+    desc: Convert other type of objects into a Giotto object
+    contents:
+    - anndataToGiotto
 
 destination: docs
 

@@ -83,7 +83,7 @@ that identifies genes with a spatially coherent expression pattern." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -117,6 +117,15 @@ that identifies genes with a spatially coherent expression pattern." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -186,17 +195,29 @@ that identifies genes with a spatially coherent expression pattern.</p>
   <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
   <span class='kw'>subset_genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
+  <span class='kw'>spatial_network_k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>reduce_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>kmeans_algo</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kmeans"</span>, <span class='st'>"kmeans_arma"</span>, <span class='st'>"kmeans_arma_subset"</span>),
   <span class='kw'>nstart</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>iter_max</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>extreme_nr</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='kw'>sample_nr</span> <span class='kw'>=</span> <span class='fl'>50</span>,
   <span class='kw'>percentage_rank</span> <span class='kw'>=</span> <span class='fl'>30</span>,
   <span class='kw'>do_fisher_test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>adjust_method</span> <span class='kw'>=</span> <span class='st'>"fdr"</span>,
   <span class='kw'>calc_hub</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>hub_min_int</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>get_av_expr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>get_high_expr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>implementation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"data.table"</span>, <span class='st'>"simple"</span>, <span class='st'>"matrix"</span>),
+  <span class='kw'>group_size</span> <span class='kw'>=</span> <span class='st'>"automatic"</span>,
   <span class='kw'>do_parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>knn_params</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>set.seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bin_matrix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>summarize</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"p.value"</span>, <span class='st'>"adj.p.value"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -223,6 +244,18 @@ that identifies genes with a spatially coherent expression pattern.</p>
       <td><p>name of spatial network to use (default = 'spatial_network')</p></td>
     </tr>
     <tr>
+      <th>spatial_network_k</th>
+      <td><p>different k's for a spatial kNN to evaluate</p></td>
+    </tr>
+    <tr>
+      <th>reduce_network</th>
+      <td><p>default uses the full network</p></td>
+    </tr>
+    <tr>
+      <th>kmeans_algo</th>
+      <td><p>kmeans algorithm to use (kmeans, kmeans_arma, kmeans_arma_subset)</p></td>
+    </tr>
+    <tr>
       <th>nstart</th>
       <td><p>kmeans: nstart parameter</p></td>
     </tr>
@@ -231,12 +264,24 @@ that identifies genes with a spatially coherent expression pattern.</p>
       <td><p>kmeans: iter.max parameter</p></td>
     </tr>
     <tr>
+      <th>extreme_nr</th>
+      <td><p>number of top and bottom cells (see details)</p></td>
+    </tr>
+    <tr>
+      <th>sample_nr</th>
+      <td><p>total number of cells to sample (see details)</p></td>
+    </tr>
+    <tr>
       <th>percentage_rank</th>
       <td><p>percentage of top cells for binarization</p></td>
     </tr>
     <tr>
       <th>do_fisher_test</th>
       <td><p>perform fisher test</p></td>
+    </tr>
+    <tr>
+      <th>adjust_method</th>
+      <td><p>p-value adjusted method to use (see <code><a href='https://rdrr.io/r/stats/p.adjust.html'>p.adjust</a></code>)</p></td>
     </tr>
     <tr>
       <th>calc_hub</th>
@@ -255,6 +300,14 @@ that identifies genes with a spatially coherent expression pattern.</p>
       <td><p>calculate the number of high expressing cells  per gene</p></td>
     </tr>
     <tr>
+      <th>implementation</th>
+      <td><p>enrichment implementation (data.table, simple, matrix)</p></td>
+    </tr>
+    <tr>
+      <th>group_size</th>
+      <td><p>number of genes to process together with data.table implementation (default = automatic)</p></td>
+    </tr>
+    <tr>
       <th>do_parallel</th>
       <td><p>run calculations in parallel with mclapply</p></td>
     </tr>
@@ -265,6 +318,22 @@ that identifies genes with a spatially coherent expression pattern.</p>
     <tr>
       <th>verbose</th>
       <td><p>be verbose</p></td>
+    </tr>
+    <tr>
+      <th>knn_params</th>
+      <td><p>list of parameters to create spatial kNN network</p></td>
+    </tr>
+    <tr>
+      <th>set.seed</th>
+      <td><p>set a seed before kmeans binarization</p></td>
+    </tr>
+    <tr>
+      <th>bin_matrix</th>
+      <td><p>a binarized matrix, when provided it will skip the binarization process</p></td>
+    </tr>
+    <tr>
+      <th>summarize</th>
+      <td><p>summarize the p-values or adjusted p-values</p></td>
     </tr>
     </table>
 
@@ -279,11 +348,18 @@ Both methods are identicial except for how binarization is performed.</p><ul>
 <li><p>2. network: Alll cells are connected through a spatial network based on the physical coordinates</p></li>
 <li><p>3. contingency table: A contingency table is calculated based on all edges of neighboring cells and the binarized expression (0-0, 0-1, 1-0 or 1-1)</p></li>
 <li><p>4. For each gene an odds-ratio (OR) and fisher.test (optional) is calculated</p></li>
+</ul><p>Three different kmeans algorithmes have been implemented:</p><ul>
+<li><p>1. kmeans: default, see <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code></p></li>
+<li><p>2. kmeans_arma: from ClusterR, see <code><a href='https://rdrr.io/pkg/ClusterR/man/KMeans_arma.html'>KMeans_arma</a></code></p></li>
+<li><p>3. kmeans_arma_subst: from ClusterR, see <code><a href='https://rdrr.io/pkg/ClusterR/man/KMeans_arma.html'>KMeans_arma</a></code>,
+   but random subsetting the vector for each gene to increase speed. Change extreme_nr and sample_nr for control.</p></li>
 </ul><p>Other statistics are provided (optional):</p><ul>
 <li><p>Number of cells with high expression (binary = 1)</p></li>
 <li><p>Average expression of each gene within high expressing cells</p></li>
 <li><p>Number of hub cells, these are high expressing cells that have a user defined number of high expressing neighbors</p></li>
-</ul><p>By selecting a subset of likely spatial genes (e.g. soft thresholding highly variable genes) or using multiple cores can accelerate the speed.</p>
+</ul><p>By selecting a subset of likely spatial genes (e.g. soft thresholding highly variable genes) can accelerate the speed.
+The simple implementation is usually faster, but lacks the possibility to run in parallel and to calculate hub cells.
+The data.table implementation might be more appropriate for large datasets by setting the group_size (number of genes) parameter to divide the workload.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>binSpect</span>(<span class='no'>gobject</span>)</pre>

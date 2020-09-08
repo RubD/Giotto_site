@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -187,6 +196,7 @@
   <span class='no'>gene_set_2</span>,
   <span class='kw'>log2FC_addendum</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
   <span class='kw'>min_observations</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>detailed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>adjust_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fdr"</span>, <span class='st'>"bonferroni"</span>, <span class='st'>"BH"</span>, <span class='st'>"holm"</span>, <span class='st'>"hochberg"</span>, <span class='st'>"hommel"</span>, <span class='st'>"BY"</span>,
     <span class='st'>"none"</span>),
   <span class='kw'>adjust_target</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"genes"</span>, <span class='st'>"cells"</span>),
@@ -231,6 +241,10 @@
       <td><p>minimum number of interactions needed to be considered</p></td>
     </tr>
     <tr>
+      <th>detailed</th>
+      <td><p>provide more detailed information (random variance and z-score)</p></td>
+    </tr>
+    <tr>
       <th>adjust_method</th>
       <td><p>which method to adjust p-values</p></td>
     </tr>
@@ -259,8 +273,28 @@
 
     <p>Statistical framework to identify if pairs of genes (such as ligand-receptor combinations)
 are expressed at higher levels than expected based on a reshuffled null distribution
-of gene expression values in cells that are spatially in proximity to eachother..
-More details will follow soon.</p>
+of gene expression values in cells that are spatially in proximity to eachother..</p><ul>
+<li><p>LR_comb:Pair of ligand and receptor</p></li>
+<li><p>lig_cell_type: cell type to assess expression level of ligand</p></li>
+<li><p>lig_expr: average expression of ligand in lig_cell_type</p></li>
+<li><p>ligand: ligand name</p></li>
+<li><p>rec_cell_type: cell type to assess expression level of receptor</p></li>
+<li><p>rec_expr: average expression of receptor in rec_cell_type</p></li>
+<li><p>receptor: receptor name</p></li>
+<li><p>LR_expr: combined average ligand and receptor expression</p></li>
+<li><p>lig_nr: total number of cells from lig_cell_type that spatially interact with cells from rec_cell_type</p></li>
+<li><p>rec_nr: total number of cells from rec_cell_type that spatially interact with cells from lig_cell_type</p></li>
+<li><p>rand_expr: average combined ligand and receptor expression from random spatial permutations</p></li>
+<li><p>av_diff: average difference between LR_expr and rand_expr over all random spatial permutations</p></li>
+<li><p>sd_diff: (optional) standard deviation of the difference between LR_expr and rand_expr over all random spatial permutations</p></li>
+<li><p>z_score: (optinal) z-score</p></li>
+<li><p>log2fc: log2 fold-change (LR_expr/rand_expr)</p></li>
+<li><p>pvalue: p-value</p></li>
+<li><p>LR_cell_comb: cell type pair combination</p></li>
+<li><p>p.adj: adjusted p-value</p></li>
+<li><p>PI: significanc score: log2fc * -log10(p.adj)</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>spatCellCellcom</span>(<span class='no'>gobject</span>)</pre>

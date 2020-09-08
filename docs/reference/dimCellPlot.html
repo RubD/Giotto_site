@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -178,54 +187,7 @@
     <p>Visualize cells according to dimension reduction coordinates</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dimCellPlot</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_annotation_values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>cell_color_gradient</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span>),
-  <span class='kw'>gradient_midpoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gradient_limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>show_center_label</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>center_point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>center_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label_fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point_shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"border"</span>, <span class='st'>"no_border"</span>),
-  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>legend_text</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>legend_symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>axis_text</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>axis_title</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>cow_n_col</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>cow_rel_h</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>cow_rel_w</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>cow_align</span> <span class='kw'>=</span> <span class='st'>"h"</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"dimCellPlot"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>dimCellPlot</span>(<span class='no'>gobject</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,176 +197,56 @@
       <td><p>giotto object</p></td>
     </tr>
     <tr>
-      <th>dim_reduction_to_use</th>
-      <td><p>dimension reduction to use</p></td>
-    </tr>
-    <tr>
-      <th>dim_reduction_name</th>
-      <td><p>dimension reduction name</p></td>
-    </tr>
-    <tr>
-      <th>dim1_to_use</th>
-      <td><p>dimension to use on x-axis</p></td>
-    </tr>
-    <tr>
-      <th>dim2_to_use</th>
-      <td><p>dimension to use on y-axis</p></td>
-    </tr>
-    <tr>
-      <th>spat_enr_names</th>
-      <td><p>names of spatial enrichment results to include</p></td>
-    </tr>
-    <tr>
-      <th>cell_annotation_values</th>
-      <td><p>numeric cell annotation columns</p></td>
-    </tr>
-    <tr>
-      <th>show_NN_network</th>
-      <td><p>show underlying NN network</p></td>
-    </tr>
-    <tr>
-      <th>nn_network_to_use</th>
-      <td><p>type of NN network to use (kNN vs sNN)</p></td>
-    </tr>
-    <tr>
-      <th>network_name</th>
-      <td><p>name of NN network to use, if show_NN_network = TRUE</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_gradient</th>
-      <td><p>vector with 3 colors for numeric data</p></td>
-    </tr>
-    <tr>
-      <th>gradient_midpoint</th>
-      <td><p>midpoint for color gradient</p></td>
-    </tr>
-    <tr>
-      <th>gradient_limits</th>
-      <td><p>vector with lower and upper limits</p></td>
-    </tr>
-    <tr>
-      <th>select_cell_groups</th>
-      <td><p>select subset of cells/clusters based on cell_color parameter</p></td>
-    </tr>
-    <tr>
-      <th>select_cells</th>
-      <td><p>select subset of cells based on cell IDs</p></td>
-    </tr>
-    <tr>
-      <th>show_other_cells</th>
-      <td><p>display not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>other_cell_color</th>
-      <td><p>color of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>other_point_size</th>
-      <td><p>size of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>show_cluster_center</th>
-      <td><p>plot center of selected clusters</p></td>
-    </tr>
-    <tr>
-      <th>show_center_label</th>
-      <td><p>plot label of selected clusters</p></td>
-    </tr>
-    <tr>
-      <th>center_point_size</th>
-      <td><p>size of center points</p></td>
-    </tr>
-    <tr>
-      <th>label_size</th>
-      <td><p>size of labels</p></td>
-    </tr>
-    <tr>
-      <th>label_fontface</th>
-      <td><p>font of labels</p></td>
-    </tr>
-    <tr>
-      <th>edge_alpha</th>
-      <td><p>column to use for alpha of the edges</p></td>
-    </tr>
-    <tr>
-      <th>point_shape</th>
-      <td><p>point with border or not (border or no_border)</p></td>
-    </tr>
-    <tr>
-      <th>point_size</th>
-      <td><p>size of point (cell)</p></td>
-    </tr>
-    <tr>
-      <th>point_alpha</th>
-      <td><p>transparancy of dim. reduction points</p></td>
-    </tr>
-    <tr>
-      <th>point_border_col</th>
-      <td><p>color of border around points</p></td>
-    </tr>
-    <tr>
-      <th>point_border_stroke</th>
-      <td><p>stroke size of border around points</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
-    </tr>
-    <tr>
-      <th>legend_text</th>
-      <td><p>size of legend text</p></td>
-    </tr>
-    <tr>
-      <th>legend_symbol_size</th>
-      <td><p>size of legend symbols</p></td>
-    </tr>
-    <tr>
-      <th>background_color</th>
-      <td><p>color of plot background</p></td>
-    </tr>
-    <tr>
-      <th>axis_text</th>
-      <td><p>size of axis text</p></td>
-    </tr>
-    <tr>
-      <th>axis_title</th>
-      <td><p>size of axis title</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plot</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return ggplot object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
-    </tr>
-    <tr>
-      <th>default_save_name</th>
-      <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
-    </tr>
-    <tr>
-      <th>cell_color</th>
-      <td><p>color for cells (see details)</p></td>
-    </tr>
-    <tr>
-      <th>color_as_factor</th>
-      <td><p>convert color column to factor</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_code</th>
-      <td><p>named vector with colors</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>title for plot, defaults to cell_color parameter</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='dimCellPlot2D.html'>dimCellPlot2D</a></code></p><dl'>
+    <dt><code>dim_reduction_to_use</code></dt><dd><p>dimension reduction to use</p></dd>
+    <dt><code>dim_reduction_name</code></dt><dd><p>dimension reduction name</p></dd>
+    <dt><code>dim1_to_use</code></dt><dd><p>dimension to use on x-axis</p></dd>
+    <dt><code>dim2_to_use</code></dt><dd><p>dimension to use on y-axis</p></dd>
+    <dt><code>spat_enr_names</code></dt><dd><p>names of spatial enrichment results to include</p></dd>
+    <dt><code>cell_annotation_values</code></dt><dd><p>numeric cell annotation columns</p></dd>
+    <dt><code>show_NN_network</code></dt><dd><p>show underlying NN network</p></dd>
+    <dt><code>nn_network_to_use</code></dt><dd><p>type of NN network to use (kNN vs sNN)</p></dd>
+    <dt><code>network_name</code></dt><dd><p>name of NN network to use, if show_NN_network = TRUE</p></dd>
+    <dt><code>cell_color_code</code></dt><dd><p>named vector with colors for cell annotation values</p></dd>
+    <dt><code>cell_color_gradient</code></dt><dd><p>vector with 3 colors for numeric data</p></dd>
+    <dt><code>gradient_midpoint</code></dt><dd><p>midpoint for color gradient</p></dd>
+    <dt><code>gradient_limits</code></dt><dd><p>vector with lower and upper limits</p></dd>
+    <dt><code>select_cell_groups</code></dt><dd><p>select subset of cells/clusters based on cell_color parameter</p></dd>
+    <dt><code>select_cells</code></dt><dd><p>select subset of cells based on cell IDs</p></dd>
+    <dt><code>show_other_cells</code></dt><dd><p>display not selected cells</p></dd>
+    <dt><code>other_cell_color</code></dt><dd><p>color of not selected cells</p></dd>
+    <dt><code>other_point_size</code></dt><dd><p>size of not selected cells</p></dd>
+    <dt><code>show_cluster_center</code></dt><dd><p>plot center of selected clusters</p></dd>
+    <dt><code>show_center_label</code></dt><dd><p>plot label of selected clusters</p></dd>
+    <dt><code>center_point_size</code></dt><dd><p>size of center points</p></dd>
+    <dt><code>center_point_border_col</code></dt><dd><p>border color of center points</p></dd>
+    <dt><code>center_point_border_stroke</code></dt><dd><p>border stroke size of center points</p></dd>
+    <dt><code>label_size</code></dt><dd><p>size of labels</p></dd>
+    <dt><code>label_fontface</code></dt><dd><p>font of labels</p></dd>
+    <dt><code>edge_alpha</code></dt><dd><p>column to use for alpha of the edges</p></dd>
+    <dt><code>point_shape</code></dt><dd><p>point with border or not (border or no_border)</p></dd>
+    <dt><code>point_size</code></dt><dd><p>size of point (cell)</p></dd>
+    <dt><code>point_alpha</code></dt><dd><p>transparancy of dim. reduction points</p></dd>
+    <dt><code>point_border_col</code></dt><dd><p>color of border around points</p></dd>
+    <dt><code>point_border_stroke</code></dt><dd><p>stroke size of border around points</p></dd>
+    <dt><code>show_legend</code></dt><dd><p>show legend</p></dd>
+    <dt><code>legend_text</code></dt><dd><p>size of legend text</p></dd>
+    <dt><code>legend_symbol_size</code></dt><dd><p>size of legend symbols</p></dd>
+    <dt><code>background_color</code></dt><dd><p>color of plot background</p></dd>
+    <dt><code>axis_text</code></dt><dd><p>size of axis text</p></dd>
+    <dt><code>axis_title</code></dt><dd><p>size of axis title</p></dd>
+    <dt><code>cow_n_col</code></dt><dd><p>cowplot param: how many columns</p></dd>
+    <dt><code>cow_rel_h</code></dt><dd><p>cowplot param: relative height</p></dd>
+    <dt><code>cow_rel_w</code></dt><dd><p>cowplot param: relative width</p></dd>
+    <dt><code>cow_align</code></dt><dd><p>cowplot param: how to align</p></dd>
+    <dt><code>show_plot</code></dt><dd><p>show plot</p></dd>
+    <dt><code>return_plot</code></dt><dd><p>return ggplot object</p></dd>
+    <dt><code>save_plot</code></dt><dd><p>directly save the plot [boolean]</p></dd>
+    <dt><code>save_param</code></dt><dd><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></dd>
+    <dt><code>default_save_name</code></dt><dd><p>default save name for saving, don't change, change save_name in save_param</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
@@ -414,6 +256,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters. For 3D plots see <code><a href='dimCellPlot2D.html'>dimCellPlot2D</a></code></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other dimension reduction cell annotation visualizations: 
+<code><a href='dimCellPlot2D.html'>dimCellPlot2D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>dimCellPlot</span>(<span class='no'>gobject</span>)</pre>

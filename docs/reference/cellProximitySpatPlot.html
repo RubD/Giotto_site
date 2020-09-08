@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -188,112 +197,39 @@
       <td><p>giotto object</p></td>
     </tr>
     <tr>
-      <th>interaction_name</th>
-      <td><p>cell-cell interaction name</p></td>
-    </tr>
-    <tr>
-      <th>cluster_column</th>
-      <td><p>cluster column with cell clusters</p></td>
-    </tr>
-    <tr>
-      <th>sdimx</th>
-      <td><p>x-axis dimension name (default = 'sdimx')</p></td>
-    </tr>
-    <tr>
-      <th>sdimy</th>
-      <td><p>y-axis dimension name (default = 'sdimy')</p></td>
-    </tr>
-    <tr>
-      <th>cell_color</th>
-      <td><p>color for cells (see details)</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_code</th>
-      <td><p>named vector with colors</p></td>
-    </tr>
-    <tr>
-      <th>color_as_factor</th>
-      <td><p>convert color column to factor</p></td>
-    </tr>
-    <tr>
-      <th>show_other_cells</th>
-      <td><p>decide if show cells not in network</p></td>
-    </tr>
-    <tr>
-      <th>show_network</th>
-      <td><p>show underlying spatial network</p></td>
-    </tr>
-    <tr>
-      <th>network_color</th>
-      <td><p>color of spatial network</p></td>
-    </tr>
-    <tr>
-      <th>spatial_network_name</th>
-      <td><p>name of spatial network to use</p></td>
-    </tr>
-    <tr>
-      <th>show_grid</th>
-      <td><p>show spatial grid</p></td>
-    </tr>
-    <tr>
-      <th>grid_color</th>
-      <td><p>color of spatial grid</p></td>
-    </tr>
-    <tr>
-      <th>spatial_grid_name</th>
-      <td><p>name of spatial grid to use</p></td>
-    </tr>
-    <tr>
-      <th>coord_fix_ratio</th>
-      <td><p>fix ratio between x and y-axis</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
-    </tr>
-    <tr>
-      <th>point_size_select</th>
-      <td><p>size of selected points</p></td>
-    </tr>
-    <tr>
-      <th>point_select_border_col</th>
-      <td><p>border color of selected points</p></td>
-    </tr>
-    <tr>
-      <th>point_select_border_stroke</th>
-      <td><p>stroke size of selected points</p></td>
-    </tr>
-    <tr>
-      <th>point_size_other</th>
-      <td><p>size of other points</p></td>
-    </tr>
-    <tr>
-      <th>point_other_border_col</th>
-      <td><p>border color of other points</p></td>
-    </tr>
-    <tr>
-      <th>point_other_border_stroke</th>
-      <td><p>stroke size of other points</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plots</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return ggplot object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
-    </tr>
-    <tr>
-      <th>default_save_name</th>
-      <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='cellProximitySpatPlot2D.html'>cellProximitySpatPlot2D</a></code></p><dl'>
+    <dt><code>interaction_name</code></dt><dd><p>cell-cell interaction name</p></dd>
+    <dt><code>cluster_column</code></dt><dd><p>cluster column with cell clusters</p></dd>
+    <dt><code>sdimx</code></dt><dd><p>x-axis dimension name (default = 'sdimx')</p></dd>
+    <dt><code>sdimy</code></dt><dd><p>y-axis dimension name (default = 'sdimy')</p></dd>
+    <dt><code>cell_color</code></dt><dd><p>color for cells (see details)</p></dd>
+    <dt><code>cell_color_code</code></dt><dd><p>named vector with colors</p></dd>
+    <dt><code>color_as_factor</code></dt><dd><p>convert color column to factor</p></dd>
+    <dt><code>show_other_cells</code></dt><dd><p>decide if show cells not in network</p></dd>
+    <dt><code>show_network</code></dt><dd><p>show spatial network of selected cells</p></dd>
+    <dt><code>show_other_network</code></dt><dd><p>show spatial network of not selected cells</p></dd>
+    <dt><code>network_color</code></dt><dd><p>color of spatial network</p></dd>
+    <dt><code>spatial_network_name</code></dt><dd><p>name of spatial network to use</p></dd>
+    <dt><code>show_grid</code></dt><dd><p>show spatial grid</p></dd>
+    <dt><code>grid_color</code></dt><dd><p>color of spatial grid</p></dd>
+    <dt><code>spatial_grid_name</code></dt><dd><p>name of spatial grid to use</p></dd>
+    <dt><code>coord_fix_ratio</code></dt><dd><p>fix ratio between x and y-axis</p></dd>
+    <dt><code>show_legend</code></dt><dd><p>show legend</p></dd>
+    <dt><code>point_size_select</code></dt><dd><p>size of selected points</p></dd>
+    <dt><code>point_select_border_col</code></dt><dd><p>border color of selected points</p></dd>
+    <dt><code>point_select_border_stroke</code></dt><dd><p>stroke size of selected points</p></dd>
+    <dt><code>point_size_other</code></dt><dd><p>size of other points</p></dd>
+    <dt><code>point_alpha_other</code></dt><dd><p>opacity of other points</p></dd>
+    <dt><code>point_other_border_col</code></dt><dd><p>border color of other points</p></dd>
+    <dt><code>point_other_border_stroke</code></dt><dd><p>stroke size of other points</p></dd>
+    <dt><code>show_plot</code></dt><dd><p>show plots</p></dd>
+    <dt><code>return_plot</code></dt><dd><p>return ggplot object</p></dd>
+    <dt><code>save_plot</code></dt><dd><p>directly save the plot [boolean]</p></dd>
+    <dt><code>save_param</code></dt><dd><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></dd>
+    <dt><code>default_save_name</code></dt><dd><p>default save name for saving, don't change, change save_name in save_param</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 

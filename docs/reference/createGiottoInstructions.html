@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -215,8 +224,16 @@
       <td><p>path to directory where to save plots</p></td>
     </tr>
     <tr>
+      <th>plot_format</th>
+      <td><p>format of plots (defaults to png)</p></td>
+    </tr>
+    <tr>
       <th>dpi</th>
       <td><p>resolution for raster images</p></td>
+    </tr>
+    <tr>
+      <th>units</th>
+      <td><p>units of format (defaults to in)</p></td>
     </tr>
     <tr>
       <th>height</th>
@@ -231,6 +248,9 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>named vector with giotto instructions</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>More online information can be found here <a href='https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html'>https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>createGiottoInstructions</span>()</pre>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -185,6 +194,7 @@
   <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>dim3_to_use</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
@@ -235,6 +245,10 @@
     <tr>
       <th>dim3_to_use</th>
       <td><p>dimension to use on z-axis</p></td>
+    </tr>
+    <tr>
+      <th>spat_enr_names</th>
+      <td><p>names of spatial enrichment results to include</p></td>
     </tr>
     <tr>
       <th>select_cell_groups</th>
@@ -318,15 +332,11 @@
     </tr>
     <tr>
       <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
       <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
     </tr>
     </table>
 
@@ -336,6 +346,20 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other reduced dimension visualizations: 
+<code><a href='dimPlot2D.html'>dimPlot2D</a>()</code>,
+<code><a href='dimPlot.html'>dimPlot</a>()</code>,
+<code><a href='plotPCA_2D.html'>plotPCA_2D</a>()</code>,
+<code><a href='plotPCA_3D.html'>plotPCA_3D</a>()</code>,
+<code><a href='plotPCA.html'>plotPCA</a>()</code>,
+<code><a href='plotTSNE_2D.html'>plotTSNE_2D</a>()</code>,
+<code><a href='plotTSNE_3D.html'>plotTSNE_3D</a>()</code>,
+<code><a href='plotTSNE.html'>plotTSNE</a>()</code>,
+<code><a href='plotUMAP_2D.html'>plotUMAP_2D</a>()</code>,
+<code><a href='plotUMAP_3D.html'>plotUMAP_3D</a>()</code>,
+<code><a href='plotUMAP.html'>plotUMAP</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>dimPlot3D</span>(<span class='no'>gobject</span>)</pre>

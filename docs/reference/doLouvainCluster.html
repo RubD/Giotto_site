@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -228,12 +237,21 @@
       <td><p>[community] resolution</p></td>
     </tr>
     <tr>
+      <th>weight_col</th>
+      <td><p>weight column name</p></td>
+    </tr>
+    <tr>
       <th>gamma</th>
       <td><p>[multinet] Resolution parameter for modularity in the generalized louvain method.</p></td>
     </tr>
     <tr>
       <th>omega</th>
-      <td><p>[multinet] Inter-layer weight parameter in the generalized louvain method.</p></td>
+      <td><p>[multinet] Inter-layer weight parameter in the generalized louvain method</p></td>
+    </tr>
+    <tr>
+      <th>louv_random</th>
+      <td><p>[community] Will randomize the node evaluation order and the community evaluation
+order to get different partitions at each call</p></td>
     </tr>
     <tr>
       <th>return_gobject</th>
@@ -246,6 +264,10 @@
     <tr>
       <th>seed_number</th>
       <td><p>number for seed</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional parameters</p></td>
     </tr>
     </table>
 

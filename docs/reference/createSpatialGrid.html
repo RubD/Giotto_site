@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="createSpatialGrid — createSpatialGrid" />
-<meta property="og:description" content="Create a spatial grid." />
+<meta property="og:description" content="Create a spatial grid using the default method" />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -175,16 +184,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Create a spatial grid.</p>
+    <p>Create a spatial grid using the default method</p>
     </div>
 
     <pre class="usage"><span class='fu'>createSpatialGrid</span>(
   <span class='no'>gobject</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>),
   <span class='kw'>sdimx_stepsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sdimy_stepsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sdimz_stepsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>minimum_padding</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
   <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
@@ -194,6 +204,14 @@
     <tr>
       <th>gobject</th>
       <td><p>giotto object</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>name for spatial grid</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>method to create a spatial grid</p></td>
     </tr>
     <tr>
       <th>sdimx_stepsize</th>
@@ -212,10 +230,6 @@
       <td><p>minimum padding on the edges</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>name for spatial grid (default = 'spatial_grid')</p></td>
-    </tr>
-    <tr>
       <th>return_gobject</th>
       <td><p>boolean: return giotto object (default = TRUE)</p></td>
     </tr>
@@ -227,10 +241,11 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Creates a spatial grid with defined x, y (and z) dimensions.
-The dimension units are based on the provided spatial location units.</p>
+The dimension units are based on the provided spatial location units.</p><ul>
+<li><p>default method: <code><a href='createSpatialDefaultGrid.html'>createSpatialDefaultGrid</a></code></p></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>createSpatialGrid</span>(<span class='no'>gobject</span>)</pre>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

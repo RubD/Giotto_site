@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -115,6 +115,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -172,6 +181,57 @@
       <small>Source: <a href='https://github.com/RubD/Giotto/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="giotto-040" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#giotto-040" class="anchor"></a>Giotto 0.4.0</h1>
+<ul>
+<li><p><strong>NEW:</strong> Addition of <strong>getSpatialDataset</strong> to directly download a spatial dataset<br>
+(expression matrix, spatial coordinates and metadata)</p></li>
+<li>
+<p>extension and improvement of spatial gene detection methods:</p>
+<ul>
+<li>addition of <strong>spark</strong> method<br>
+</li>
+<li>improved method for silhouetteRank<br>
+</li>
+<li>improved method for binSpect</li>
+</ul>
+</li>
+<li>
+<p>Spatial cell type enrichment methods have been streamlined and updated</p>
+<ul>
+<li>
+<strong>runPAGEEnrich</strong> to run enrichment using PAGE algorithm and selected marker genes</li>
+<li>
+<strong>runRankEnrich</strong> to run enrichment using a whole expression matrix<br>
+</li>
+<li>
+<strong>runHyperGeometricEnrich</strong> to run enrichment using the hypergeomitric test</li>
+</ul>
+</li>
+<li>
+<p><strong>NEW:</strong> Spatial cell type deconvolution has been added:</p>
+<ul>
+<li>use <strong>runSpatialDeconv</strong> or <strong>runDWLSDeconv</strong>
+</li>
+</ul>
+</li>
+<li><p><strong>NEW:</strong> Addition of <strong>addCellIntMetadata</strong> to add information about interacting cell types, which can subsequently be viewed with the spatPlot commands.</p></li>
+<li>
+<p><strong>NEW:</strong> Addition of 3 small vignettes that cover different types of spatial datasets:</p>
+<ul>
+<li>single-cell resolution (<a href="../articles/mini_seqfish.html">mini seqFISH+</a>)</li>
+<li>multi-cell resolution (<a href="../articles/mini_visium.html">mini visium</a>)<br>
+</li>
+<li>3D dataset (<a href="../articles/mini_starmap.html">mini STARmap</a>)</li>
+<li>See <strong>data(package = ‘Giotto’)</strong>
+</li>
+</ul>
+</li>
+<li><p>Several function help pages have been updated with dummy example code</p></li>
+<li><p>several small and big fixes to code</p></li>
+</ul>
+</div>
     <div id="giotto-035" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.5">
 <a href="#giotto-035" class="anchor"></a>Giotto 0.3.5</h1>

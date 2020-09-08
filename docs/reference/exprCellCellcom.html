@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -185,6 +194,7 @@
   <span class='no'>gene_set_1</span>,
   <span class='no'>gene_set_2</span>,
   <span class='kw'>log2FC_addendum</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>detailed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>adjust_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"fdr"</span>, <span class='st'>"bonferroni"</span>, <span class='st'>"BH"</span>, <span class='st'>"holm"</span>, <span class='st'>"hochberg"</span>, <span class='st'>"hommel"</span>, <span class='st'>"BY"</span>,
     <span class='st'>"none"</span>),
   <span class='kw'>adjust_target</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"genes"</span>, <span class='st'>"cells"</span>),
@@ -217,6 +227,10 @@
     <tr>
       <th>log2FC_addendum</th>
       <td><p>addendum to add when calculating log2FC</p></td>
+    </tr>
+    <tr>
+      <th>detailed</th>
+      <td><p>provide more detailed information (random variance and z-score)</p></td>
     </tr>
     <tr>
       <th>adjust_method</th>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -194,111 +203,42 @@
     </tr>
     <tr>
       <th>dim_reduction_name</th>
-      <td><p>tsne dimension reduction name</p></td>
+      <td><p>name of TSNE</p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
-      <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
+      <td><p>default save name of TSNE plot</p></td>
     </tr>
     <tr>
-      <th>dim1_to_use</th>
-      <td><p>dimension to use on x-axis</p></td>
-    </tr>
-    <tr>
-      <th>dim2_to_use</th>
-      <td><p>dimension to use on y-axis</p></td>
-    </tr>
-    <tr>
-      <th>dim3_to_use</th>
-      <td><p>dimension to use on z-axis</p></td>
-    </tr>
-    <tr>
-      <th>show_NN_network</th>
-      <td><p>show underlying NN network</p></td>
-    </tr>
-    <tr>
-      <th>nn_network_to_use</th>
-      <td><p>type of NN network to use (kNN vs sNN)</p></td>
-    </tr>
-    <tr>
-      <th>network_name</th>
-      <td><p>name of NN network to use, if show_NN_network = TRUE</p></td>
-    </tr>
-    <tr>
-      <th>cell_color</th>
-      <td><p>color for cells (see details)</p></td>
-    </tr>
-    <tr>
-      <th>color_as_factor</th>
-      <td><p>convert color column to factor</p></td>
-    </tr>
-    <tr>
-      <th>cell_color_code</th>
-      <td><p>named vector with colors</p></td>
-    </tr>
-    <tr>
-      <th>select_cell_groups</th>
-      <td><p>select subset of cells/clusters based on cell_color parameter</p></td>
-    </tr>
-    <tr>
-      <th>select_cells</th>
-      <td><p>select subset of cells based on cell IDs</p></td>
-    </tr>
-    <tr>
-      <th>show_other_cells</th>
-      <td><p>display not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>other_cell_color</th>
-      <td><p>color of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>other_point_size</th>
-      <td><p>size of not selected cells</p></td>
-    </tr>
-    <tr>
-      <th>show_cluster_center</th>
-      <td><p>plot center of selected clusters</p></td>
-    </tr>
-    <tr>
-      <th>show_center_label</th>
-      <td><p>plot label of selected clusters</p></td>
-    </tr>
-    <tr>
-      <th>center_point_size</th>
-      <td><p>size of center points</p></td>
-    </tr>
-    <tr>
-      <th>label_size</th>
-      <td><p>size of labels</p></td>
-    </tr>
-    <tr>
-      <th>edge_alpha</th>
-      <td><p>column to use for alpha of the edges</p></td>
-    </tr>
-    <tr>
-      <th>point_size</th>
-      <td><p>size of point (cell)</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plot</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return ggplot object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='dimPlot3D.html'>dimPlot3D</a></code></p><dl'>
+    <dt><code>dim1_to_use</code></dt><dd><p>dimension to use on x-axis</p></dd>
+    <dt><code>dim2_to_use</code></dt><dd><p>dimension to use on y-axis</p></dd>
+    <dt><code>dim3_to_use</code></dt><dd><p>dimension to use on z-axis</p></dd>
+    <dt><code>spat_enr_names</code></dt><dd><p>names of spatial enrichment results to include</p></dd>
+    <dt><code>show_NN_network</code></dt><dd><p>show underlying NN network</p></dd>
+    <dt><code>nn_network_to_use</code></dt><dd><p>type of NN network to use (kNN vs sNN)</p></dd>
+    <dt><code>network_name</code></dt><dd><p>name of NN network to use, if show_NN_network = TRUE</p></dd>
+    <dt><code>cell_color</code></dt><dd><p>color for cells (see details)</p></dd>
+    <dt><code>color_as_factor</code></dt><dd><p>convert color column to factor</p></dd>
+    <dt><code>cell_color_code</code></dt><dd><p>named vector with colors</p></dd>
+    <dt><code>select_cell_groups</code></dt><dd><p>select subset of cells/clusters based on cell_color parameter</p></dd>
+    <dt><code>select_cells</code></dt><dd><p>select subset of cells based on cell IDs</p></dd>
+    <dt><code>show_other_cells</code></dt><dd><p>display not selected cells</p></dd>
+    <dt><code>other_cell_color</code></dt><dd><p>color of not selected cells</p></dd>
+    <dt><code>other_point_size</code></dt><dd><p>size of not selected cells</p></dd>
+    <dt><code>show_cluster_center</code></dt><dd><p>plot center of selected clusters</p></dd>
+    <dt><code>show_center_label</code></dt><dd><p>plot label of selected clusters</p></dd>
+    <dt><code>center_point_size</code></dt><dd><p>size of center points</p></dd>
+    <dt><code>label_size</code></dt><dd><p>size of labels</p></dd>
+    <dt><code>edge_alpha</code></dt><dd><p>column to use for alpha of the edges</p></dd>
+    <dt><code>point_size</code></dt><dd><p>size of point (cell)</p></dd>
+    <dt><code>show_plot</code></dt><dd><p>show plot</p></dd>
+    <dt><code>return_plot</code></dt><dd><p>return ggplot object</p></dd>
+    <dt><code>save_plot</code></dt><dd><p>directly save the plot [boolean]</p></dd>
+    <dt><code>save_param</code></dt><dd><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
@@ -308,6 +248,20 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other reduced dimension visualizations: 
+<code><a href='dimPlot2D.html'>dimPlot2D</a>()</code>,
+<code><a href='dimPlot3D.html'>dimPlot3D</a>()</code>,
+<code><a href='dimPlot.html'>dimPlot</a>()</code>,
+<code><a href='plotPCA_2D.html'>plotPCA_2D</a>()</code>,
+<code><a href='plotPCA_3D.html'>plotPCA_3D</a>()</code>,
+<code><a href='plotPCA.html'>plotPCA</a>()</code>,
+<code><a href='plotTSNE_2D.html'>plotTSNE_2D</a>()</code>,
+<code><a href='plotTSNE.html'>plotTSNE</a>()</code>,
+<code><a href='plotUMAP_2D.html'>plotUMAP_2D</a>()</code>,
+<code><a href='plotUMAP_3D.html'>plotUMAP_3D</a>()</code>,
+<code><a href='plotUMAP.html'>plotUMAP</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>plotTSNE_3D</span>(<span class='no'>gobject</span>)</pre>

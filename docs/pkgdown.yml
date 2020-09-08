@@ -10,6 +10,9 @@ articles:
   installation_issues: installation_issues.html
   instructions_and_plotting: instructions_and_plotting.html
   metadata_and_subset_VC: metadata_and_subset_VC.html
+  mini_seqfish: mini_seqfish.html
+  mini_starmap: mini_starmap.html
+  mini_visium: mini_visium.html
   mouse_CODEX_spleen: mouse_CODEX_spleen.html
   mouse_merFISH_preoptic_region_200601: mouse_merFISH_preoptic_region_200601.html
   mouse_osmFISH_SScortex_200518: mouse_osmFISH_SScortex_200518.html
@@ -20,5 +23,5 @@ articles:
   subset_giotto: subset_giotto.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-06-29T18:38Z
+last_built: 2020-09-08T01:08Z
 

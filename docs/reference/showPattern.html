@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -192,44 +201,21 @@
       <td><p>Output from detectSpatialPatterns</p></td>
     </tr>
     <tr>
-      <th>dimension</th>
-      <td><p>dimension to plot</p></td>
-    </tr>
-    <tr>
-      <th>trim</th>
-      <td><p>Trim ends of the PC values.</p></td>
-    </tr>
-    <tr>
-      <th>background_color</th>
-      <td><p>background color for plot</p></td>
-    </tr>
-    <tr>
-      <th>grid_border_color</th>
-      <td><p>color for grid</p></td>
-    </tr>
-    <tr>
-      <th>show_legend</th>
-      <td><p>show legend of ggplot</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plot</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return ggplot object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
-    </tr>
-    <tr>
-      <th>default_save_name</th>
-      <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='showPattern2D.html'>showPattern2D</a></code></p><dl'>
+    <dt><code>dimension</code></dt><dd><p>dimension to plot</p></dd>
+    <dt><code>trim</code></dt><dd><p>Trim ends of the PC values.</p></dd>
+    <dt><code>background_color</code></dt><dd><p>background color for plot</p></dd>
+    <dt><code>grid_border_color</code></dt><dd><p>color for grid</p></dd>
+    <dt><code>show_legend</code></dt><dd><p>show legend of ggplot</p></dd>
+    <dt><code>point_size</code></dt><dd><p>size of points</p></dd>
+    <dt><code>show_plot</code></dt><dd><p>show plot</p></dd>
+    <dt><code>return_plot</code></dt><dd><p>return ggplot object</p></dd>
+    <dt><code>save_plot</code></dt><dd><p>directly save the plot [boolean]</p></dd>
+    <dt><code>save_param</code></dt><dd><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></dd>
+    <dt><code>default_save_name</code></dt><dd><p>default save name for saving, don't change, change save_name in save_param</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 

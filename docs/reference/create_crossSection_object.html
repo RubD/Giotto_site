@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -183,6 +192,8 @@
   <span class='kw'>method</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>thickness_unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>slice_thickness</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>cell_distance_estimate_method</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>extend_ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>plane_equation</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>mesh_grid_n</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>mesh_obj</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -193,6 +204,66 @@
   <span class='kw'>cell_subset_projection_coords</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>name</th>
+      <td><p>name of cress section object. (default = cross_sectino)</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>method to define the cross section plane.</p></td>
+    </tr>
+    <tr>
+      <th>thickness_unit</th>
+      <td><p>unit of the virtual section thickness. If "cell", average size of the observed cells is used as length unit. If "natural", the unit of cell location coordinates is used.(default = cell)</p></td>
+    </tr>
+    <tr>
+      <th>slice_thickness</th>
+      <td><p>thickness of slice</p></td>
+    </tr>
+    <tr>
+      <th>cell_distance_estimate_method</th>
+      <td><p>method to estimate average distance between neighobring cells. (default = mean)</p></td>
+    </tr>
+    <tr>
+      <th>extend_ratio</th>
+      <td><p>deciding the span of the cross section meshgrid, as a ratio of extension compared to the borders of the vitural tissue section. (default = 0.2)</p></td>
+    </tr>
+    <tr>
+      <th>plane_equation</th>
+      <td><p>a numerical vector of length 4, in the form of c(A,B,C,D), which defines plane Ax+By+Cz=D.</p></td>
+    </tr>
+    <tr>
+      <th>mesh_grid_n</th>
+      <td><p>numer of meshgrid lines to generate along both directions for the cross section plane.</p></td>
+    </tr>
+    <tr>
+      <th>mesh_obj</th>
+      <td><p>object that stores the cross section meshgrid information.</p></td>
+    </tr>
+    <tr>
+      <th>cell_subset</th>
+      <td><p>cells selected by the cross section</p></td>
+    </tr>
+    <tr>
+      <th>cell_subset_spatial_locations</th>
+      <td><p>locations of cells selected by the cross section</p></td>
+    </tr>
+    <tr>
+      <th>cell_subset_projection_locations</th>
+      <td><p>3D projection coordinates of selected cells onto the cross section plane</p></td>
+    </tr>
+    <tr>
+      <th>cell_subset_projection_PCA</th>
+      <td><p>pca of projection coordinates</p></td>
+    </tr>
+    <tr>
+      <th>cell_subset_projection_coords</th>
+      <td><p>2D PCA coordinates of selected cells in the cross section plane</p></td>
+    </tr>
+    </table>
 
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>print method for giotto class — print.giotto • Giotto</title>
+<title>Prints giotto object. — print.giotto • Giotto</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="print method for giotto class — print.giotto" />
-<meta property="og:description" content="print method for giotto class.
-Prints the chosen number of genes (rows) and cells (columns) from the raw count matrix.
-Also print the spatial locations for the chosen number of cells." />
+<meta property="og:title" content="Prints giotto object. — print.giotto" />
+<meta property="og:description" content="Prints giotto object" />
 
 
 
@@ -84,7 +82,7 @@ Also print the spatial locations for the chosen number of cells." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -118,6 +116,15 @@ Also print the spatial locations for the chosen number of cells." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -171,22 +178,25 @@ Also print the spatial locations for the chosen number of cells." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>print method for giotto class</h1>
+    <h1>Prints giotto object.</h1>
     <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/giotto.R'><code>R/giotto.R</code></a></small>
     <div class="hidden name"><code>print.giotto.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>print method for giotto class.
-Prints the chosen number of genes (rows) and cells (columns) from the raw count matrix.
-Also print the spatial locations for the chosen number of cells.</p>
+    <p>Prints giotto object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>print.giotto</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for giotto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>object</span>, <span class='kw'>nr_genes</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>nr_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>giotto object</p></td>
+    </tr>
     <tr>
       <th>nr_genes</th>
       <td><p>number of genes (rows) to print</p></td>

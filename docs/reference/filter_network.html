@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -178,8 +187,24 @@
     <p>function to filter a spatial network</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filter_network</span>(<span class='no'>networkDT</span>, <span class='kw'>maximum_distance</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>minimum_k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_network</span>(<span class='kw'>networkDT</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maximum_distance</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>minimum_k</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>networkDT</th>
+      <td><p>spatial network in data.table format</p></td>
+    </tr>
+    <tr>
+      <th>maximum_distance</th>
+      <td><p>maximum distance between cell centroids</p></td>
+    </tr>
+    <tr>
+      <th>minimum_k</th>
+      <td><p>minimum number of neighbors</p></td>
+    </tr>
+    </table>
 
 
   </div>

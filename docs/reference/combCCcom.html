@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -185,7 +194,8 @@
   <span class='kw'>min_rec_nr</span> <span class='kw'>=</span> <span class='fl'>3</span>,
   <span class='kw'>min_padj_value</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>min_log2fc</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>min_av_diff</span> <span class='kw'>=</span> <span class='fl'>0</span>
+  <span class='kw'>min_av_diff</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>detailed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -218,6 +228,10 @@
     <tr>
       <th>min_av_diff</th>
       <td><p>minimum average expression difference</p></td>
+    </tr>
+    <tr>
+      <th>detailed</th>
+      <td><p>detailed option used with <code><a href='spatCellCellcom.html'>spatCellCellcom</a></code> (default = FALSE)</p></td>
     </tr>
     </table>
 

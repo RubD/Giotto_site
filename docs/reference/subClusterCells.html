@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -184,8 +193,8 @@
   <span class='kw'>cluster_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"leiden"</span>, <span class='st'>"louvain_community"</span>, <span class='st'>"louvain_multinet"</span>),
   <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>selected_clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_variance</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span>
-    <span class='kw'>=</span> <span class='st'>"normalized"</span>),
+  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_cov</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span> <span class='kw'>=</span>
+    <span class='st'>"normalized"</span>),
   <span class='kw'>hvg_min_perc_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>hvg_mean_expr_det</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>use_all_genes_as_hvg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -194,6 +203,7 @@
   <span class='kw'>nn_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>20</span>),
   <span class='kw'>k_neighbors</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>n_iterations</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
   <span class='kw'>gamma</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>omega</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -261,6 +271,10 @@
     <tr>
       <th>resolution</th>
       <td><p>resolution</p></td>
+    </tr>
+    <tr>
+      <th>n_iterations</th>
+      <td><p>number of interations to run the Leiden algorithm.</p></td>
     </tr>
     <tr>
       <th>gamma</th>

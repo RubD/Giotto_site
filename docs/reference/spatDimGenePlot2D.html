@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -197,20 +206,24 @@
   <span class='kw'>dim_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
   <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
   <span class='kw'>show_spatial_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>dim_network_color</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
   <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
   <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>edge_alpha_dim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dim_edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>scale_alpha_with_expression</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='st'>"sdimx"</span>,
   <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='st'>"sdimy"</span>,
   <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
+  <span class='kw'>spatial_network_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>grid_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
   <span class='kw'>spat_point_shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"border"</span>, <span class='st'>"no_border"</span>, <span class='st'>"voronoi"</span>),
   <span class='kw'>spat_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>spat_point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>spat_point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>spat_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+  <span class='kw'>spat_edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>cell_color_gradient</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span>),
   <span class='kw'>gradient_midpoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>gradient_limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -306,6 +319,14 @@
       <td><p>show underlying NN network</p></td>
     </tr>
     <tr>
+      <th>show_spatial_network</th>
+      <td><p>show underlying spatial netwok</p></td>
+    </tr>
+    <tr>
+      <th>dim_network_color</th>
+      <td><p>color of NN network</p></td>
+    </tr>
+    <tr>
       <th>nn_network_to_use</th>
       <td><p>type of NN network to use (kNN vs sNN)</p></td>
     </tr>
@@ -314,7 +335,7 @@
       <td><p>name of NN network to use, if show_NN_network = TRUE</p></td>
     </tr>
     <tr>
-      <th>edge_alpha_dim</th>
+      <th>dim_edge_alpha</th>
       <td><p>dim reduction plot: column to use for alpha of the edges</p></td>
     </tr>
     <tr>
@@ -332,6 +353,18 @@
     <tr>
       <th>spatial_network_name</th>
       <td><p>name of spatial network to use</p></td>
+    </tr>
+    <tr>
+      <th>spatial_network_color</th>
+      <td><p>color of spatial network</p></td>
+    </tr>
+    <tr>
+      <th>show_spatial_grid</th>
+      <td><p>show spatial grid</p></td>
+    </tr>
+    <tr>
+      <th>grid_color</th>
+      <td><p>color of spatial grid</p></td>
     </tr>
     <tr>
       <th>spatial_grid_name</th>
@@ -356,6 +389,10 @@
     <tr>
       <th>spat_point_border_stroke</th>
       <td><p>stroke size of border around points</p></td>
+    </tr>
+    <tr>
+      <th>spat_edge_alpha</th>
+      <td><p>edge alpha</p></td>
     </tr>
     <tr>
       <th>cell_color_gradient</th>
@@ -435,7 +472,7 @@
     </tr>
     <tr>
       <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
@@ -451,7 +488,10 @@
     <p>Description of parameters.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='spatDimGenePlot3D.html'>spatDimGenePlot3D</a></code></p></div>
+    <div class='dont-index'><p><code><a href='spatDimGenePlot3D.html'>spatDimGenePlot3D</a></code></p>
+<p>Other spatial and dimension reduction gene expression visualizations: 
+<code><a href='spatDimGenePlot3D.html'>spatDimGenePlot3D</a>()</code>,
+<code><a href='spatDimGenePlot.html'>spatDimGenePlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>spatDimGenePlot2D</span>(<span class='no'>gobject</span>)</pre>

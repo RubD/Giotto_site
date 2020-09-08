@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
       </span>
     </div>
 
@@ -116,6 +116,15 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/mini_seqfish.html">mini seqFISH</a>
+    </li>
+    <li>
+      <a href="../articles/mini_visium.html">mini visium (spots)</a>
+    </li>
+    <li>
+      <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
+    </li>
     <li>
       <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
     </li>
@@ -324,6 +333,14 @@
       <td><p>size of center points</p></td>
     </tr>
     <tr>
+      <th>center_point_border_col</th>
+      <td><p>border color of center points</p></td>
+    </tr>
+    <tr>
+      <th>center_point_border_stroke</th>
+      <td><p>border stroke size of center points</p></td>
+    </tr>
+    <tr>
       <th>label_size</th>
       <td><p>size of labels</p></td>
     </tr>
@@ -416,6 +433,22 @@
       <td><p>size of axis title</p></td>
     </tr>
     <tr>
+      <th>cow_n_col</th>
+      <td><p>cowplot param: how many columns</p></td>
+    </tr>
+    <tr>
+      <th>cow_rel_h</th>
+      <td><p>cowplot param: relative height</p></td>
+    </tr>
+    <tr>
+      <th>cow_rel_w</th>
+      <td><p>cowplot param: relative width</p></td>
+    </tr>
+    <tr>
+      <th>cow_align</th>
+      <td><p>cowplot param: how to align</p></td>
+    </tr>
+    <tr>
       <th>show_plot</th>
       <td><p>show plot</p></td>
     </tr>
@@ -429,7 +462,7 @@
     </tr>
     <tr>
       <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
+      <td><p>list of saving parameters, see <code><a href='showSaveParameters.html'>showSaveParameters</a></code></p></td>
     </tr>
     <tr>
       <th>default_save_name</th>
@@ -443,6 +476,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Description of parameters.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other spatial cell annotation visualizations: 
+<code><a href='spatCellPlot.html'>spatCellPlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples">    <span class='fu'>spatCellPlot2D</span>(<span class='no'>gobject</span>)</pre>
