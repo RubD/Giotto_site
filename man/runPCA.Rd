@@ -11,11 +11,13 @@ runPCA(
   name = "pca",
   genes_to_use = "hvg",
   return_gobject = TRUE,
-  center = F,
-  scale_unit = F,
+  center = TRUE,
+  scale_unit = TRUE,
   ncp = 100,
   method = c("irlba", "factominer"),
   rev = FALSE,
+  set_seed = TRUE,
+  seed_number = 1234,
   verbose = TRUE,
   ...
 )
@@ -33,15 +35,19 @@ runPCA(
 
 \item{return_gobject}{boolean: return giotto object (default = TRUE)}
 
-\item{center}{center data first (default = FALSE)}
+\item{center}{center data first (default = TRUE)}
 
-\item{scale_unit}{scale features before PCA (default = FALSE)}
+\item{scale_unit}{scale features before PCA (default = TRUE)}
 
 \item{ncp}{number of principal components to calculate}
 
 \item{method}{which implementation to use}
 
 \item{rev}{do a reverse PCA}
+
+\item{set_seed}{use of seed}
+
+\item{seed_number}{seed number to use}
 
 \item{verbose}{verbosity of the function}
 

@@ -1,5 +1,28 @@
 
 
+
+#' @title determine_cores
+#' @description guesses how many cores to use
+#' @return numeric
+#' @keywords internal
+determine_cores = function(cores, min_cores = 1, max_cores = 10) {
+
+  if(is.na(cores) | !is.numeric(cores) | (is.numeric(cores) & cores <= 0)) {
+    cores = parallel::detectCores()
+
+    if(cores <= 2) {
+      cores = ifelse(cores < min_cores, cores, min_cores)
+    } else {
+      cores = cores - 2
+      cores = ifelse(cores > max_cores, max_cores, cores)
+    }
+    return(cores)
+  } else {
+    cores = cores
+    return(cores)
+  }
+}
+
 #' @title getDistinctColors
 #' @description Returns a number of distint colors based on the RGB scale
 #' @param n number of colors wanted
@@ -585,8 +608,7 @@ getSpatialDataset = function(dataset = c('ST_OB_1',
                                          'osmfish_SS_cortex',
                                          'merfish_preoptic',
                                          'seqfish_SS_cortex',
-                                         'seqfish_OB'
-                                         ),
+                                         'seqfish_OB'),
                              directory = getwd()) {
 
   sel_dataset = match.arg(dataset, choices = c('ST_OB_1',
@@ -606,22 +628,37 @@ getSpatialDataset = function(dataset = c('ST_OB_1',
   datasets_file = system.file("extdata", "datasets.txt", package = 'Giotto')
   datasets_file = data.table::fread(datasets_file)
 
+  ## check if wget is installed
+  ## TODO: check if it works on Windows
+  message = system("if ! command -v wget &> /dev/null
+                    then
+                    echo 'wget could not be found, please install wget first'
+                    exit
+                    fi", intern = TRUE)
+
+  if(identical(message, character(0))) {
+    print('wget was found, start downloading datasets: ')
+  } else {
+    stop(message)
+  }
+
   # get url to spatial locations and download
   spatial_locs_url = datasets_file[dataset == sel_dataset][['spatial_locs']]
-  system(paste0('wget -P ', directory,' ', spatial_locs_url))
+  system(paste0("wget -P ", "'",directory,"'"," ", spatial_locs_url))
 
   # get url to expression matrix and download
   expr_matrix_url = datasets_file[dataset == sel_dataset][['expr_matrix']]
-  system(paste0('wget -P ', directory,' ', expr_matrix_url))
+  system(paste0("wget -P ", "'",directory,"'"," ", expr_matrix_url))
 
   # get url(s) to additional metadata files and download
   metadata_url = datasets_file[dataset == sel_dataset][['metadata']][[1]]
+  metadata_url = unlist(strsplit(metadata_url, split = '\\|'))
 
-  if(length(metadata_url) == 1 & is.na(metadata_url)) {
+  if(identical(metadata_url, character(0))) {
     NULL
   } else {
     for(url in metadata_url) {
-      system(paste0('wget -P ', directory,' ', url))
+      system(paste0("wget -P ", "'",directory,"'"," ", url))
     }
   }
 

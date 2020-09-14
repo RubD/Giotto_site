@@ -18,9 +18,9 @@ runUMAP(
   n_components = 2,
   n_epochs = 400,
   min_dist = 0.01,
-  n_threads = 1,
+  n_threads = NA,
   spread = 5,
-  set_seed = T,
+  set_seed = TRUE,
   seed_number = 1234,
   verbose = T,
   ...
@@ -53,7 +53,7 @@ runUMAP(
 
 \item{min_dist}{UMAP param: minimum distance}
 
-\item{n_threads}{UMAP param: threads to use}
+\item{n_threads}{UMAP param: threads/cores to use}
 
 \item{spread}{UMAP param: spread}
 

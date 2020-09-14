@@ -1288,6 +1288,7 @@ silhouetteRank_old <- function(gobject,
 #' @param output output directory
 #' @param query_sizes size of query
 #' @param adjust_method p-value adjusted method to use (see \code{\link[stats]{p.adjust}})
+#' @param verbose be verbose
 #' @return data.table with spatial scores
 #' @export
 silhouetteRank = function(gobject,
@@ -1301,7 +1302,8 @@ silhouetteRank = function(gobject,
                           parallel_path = "/usr/bin",
                           output = NULL,
                           query_sizes = 10L,
-                          adjust_method = 'fdr') {
+                          adjust_method = 'fdr',
+                          verbose = FALSE) {
 
 
   # data.table variables
@@ -1376,8 +1378,8 @@ silhouetteRank = function(gobject,
   }
 
   # log directory
-  log_dir  = paste0(silh_output_dir, '/', 'logs/')
-  if(!file.exists(log_dir)) dir.create(log_dir, recursive = TRUE)
+  # log_dir  = paste0(silh_output_dir, '/', 'logs/')
+  # if(!file.exists(log_dir)) dir.create(log_dir, recursive = TRUE)
 
 
   ## write spatial locations to .txt file
@@ -1417,7 +1419,7 @@ silhouetteRank = function(gobject,
                                 rbp_ps = rbp_ps,
                                 examine_tops = examine_tops,
                                 matrix_type = matrix_type,
-                                logdir = log_dir,
+                                verbose = verbose,
                                 num_core = num_core,
                                 parallel_path = parallel_path,
                                 output = silh_output_dir,
@@ -1425,8 +1427,9 @@ silhouetteRank = function(gobject,
 
   unlist_results = lapply(output_silh, FUN = function(x) unlist(x))
   spatial_results = data.table::as.data.table(do.call('rbind', unlist_results))
-  colnames(spatial_results) = c('genes', 'chisq', 'p.value')
-  spatial_results[, adj.p.value := stats::p.adjust(p.value, method = adjust_method)]
+
+  #colnames(spatial_results) = c('genes', 'chisq', 'p.value')
+  #spatial_results[, adj.p.value := stats::p.adjust(p.value, method = adjust_method)] #TODO: replace with qvalue if not provided
 
   return(spatial_results)
 

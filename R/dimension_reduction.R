@@ -150,6 +150,8 @@ pca_giotto = function(mymatrix, center = T, scale = T, k = 50) {
 #' @param center center data
 #' @param scale scale features
 #' @param rev reverse PCA
+#' @param set_seed use of seed
+#' @param seed_number seed number to use
 #' @keywords internal
 #' @return list of eigenvalues, loadings and pca coordinates
 runPCA_prcomp_irlba = function(x,
@@ -157,6 +159,8 @@ runPCA_prcomp_irlba = function(x,
                                center = TRUE,
                                scale = TRUE,
                                rev = FALSE,
+                               set_seed = TRUE,
+                               seed_number = 1234,
                                ...) {
 
   min_ncp = min(dim(x))
@@ -170,6 +174,9 @@ runPCA_prcomp_irlba = function(x,
 
     x = t_giotto(x)
 
+    if(set_seed == TRUE) {
+      set.seed(seed = seed_number)
+    }
     pca_res = irlba::prcomp_irlba(x = x, n = ncp, center = center, scale. = scale, ...)
     # eigenvalues
     eigenvalues = pca_res$sdev^2
@@ -185,6 +192,9 @@ runPCA_prcomp_irlba = function(x,
 
   } else {
 
+    if(set_seed == TRUE) {
+      set.seed(seed = seed_number)
+    }
     pca_res = irlba::prcomp_irlba(x = x, n = ncp, center = center, scale. = scale, ...)
     # eigenvalues
     eigenvalues = pca_res$sdev^2
@@ -213,12 +223,16 @@ runPCA_prcomp_irlba = function(x,
 #' @param ncp number of principal components to calculate
 #' @param scale scale features
 #' @param rev reverse PCA
+#' @param set_seed use of seed
+#' @param seed_number seed number to use
 #' @keywords internal
 #' @return list of eigenvalues, loadings and pca coordinates
 runPCA_factominer = function(x,
                              ncp = 100,
                              scale = TRUE,
                              rev = FALSE,
+                             set_seed = TRUE,
+                             seed_number = 1234,
                              ...) {
 
   if(!methods::is(x, 'matrix')) {
@@ -234,6 +248,9 @@ runPCA_factominer = function(x,
       ncp = nrow(x)
     }
 
+    if(set_seed == TRUE) {
+      set.seed(seed = seed_number)
+    }
     pca_res = FactoMineR::PCA(X = x, ncp = ncp, scale.unit = scale, graph = F, ...)
 
     # eigenvalues
@@ -258,6 +275,9 @@ runPCA_factominer = function(x,
       ncp = ncol(x)
     }
 
+    if(set_seed == TRUE) {
+      set.seed(seed = seed_number)
+    }
     pca_res = FactoMineR::PCA(X = x, ncp = ncp, scale.unit = scale, graph = F, ...)
 
     # eigenvalues
@@ -280,7 +300,6 @@ runPCA_factominer = function(x,
   return(result)
 
 }
-
 
 
 
@@ -329,11 +348,13 @@ create_genes_to_use_matrix = function(gobject,
 #' @param name arbitrary name for PCA run
 #' @param genes_to_use subset of genes to use for PCA
 #' @param return_gobject boolean: return giotto object (default = TRUE)
-#' @param center center data first (default = FALSE)
-#' @param scale_unit scale features before PCA (default = FALSE)
-#' @param rev do a reverse PCA
+#' @param center center data first (default = TRUE)
+#' @param scale_unit scale features before PCA (default = TRUE)
 #' @param ncp number of principal components to calculate
 #' @param method which implementation to use
+#' @param rev do a reverse PCA
+#' @param set_seed use of seed
+#' @param seed_number seed number to use
 #' @param verbose verbosity of the function
 #' @param ... additional parameters for PCA (see details)
 #' @return giotto object with updated PCA dimension recuction
@@ -362,11 +383,13 @@ runPCA <- function(gobject,
                    name = 'pca',
                    genes_to_use = 'hvg',
                    return_gobject = TRUE,
-                   center = F,
-                   scale_unit = F,
+                   center = TRUE,
+                   scale_unit = TRUE,
                    ncp = 100,
                    method = c('irlba','factominer'),
                    rev = FALSE,
+                   set_seed = TRUE,
+                   seed_number = 1234,
                    verbose = TRUE,
                    ...) {
 
@@ -393,9 +416,13 @@ runPCA <- function(gobject,
   if(reduction == 'cells') {
     # PCA on cells
     if(method == 'irlba') {
-      pca_object = runPCA_prcomp_irlba(x = t_giotto(expr_values), center = center, scale = scale_unit, ncp = ncp, rev = rev, ...)
+      pca_object = runPCA_prcomp_irlba(x = t_giotto(expr_values),
+                                       center = center, scale = scale_unit, ncp = ncp,
+                                       rev = rev, set_seed = set_seed, seed_number = seed_number, ...)
     } else if(method == 'factominer') {
-      pca_object = runPCA_factominer(x = t_giotto(expr_values), scale = scale_unit, ncp = ncp, rev = rev, ...)
+      pca_object = runPCA_factominer(x = t_giotto(expr_values),
+                                     scale = scale_unit, ncp = ncp, rev = rev,
+                                     set_seed = set_seed, seed_number = seed_number, ...)
     } else {
       stop('only PCA methods from the irlba and factominer package have been implemented \n')
     }
@@ -403,9 +430,13 @@ runPCA <- function(gobject,
   } else {
     # PCA on genes
     if(method == 'irlba') {
-      pca_object = runPCA_prcomp_irlba(x = expr_values, center = center, scale = scale_unit, ncp = ncp, rev = rev, ...)
+      pca_object = runPCA_prcomp_irlba(x = expr_values,
+                                       center = center, scale = scale_unit, ncp = ncp,
+                                       rev = rev, set_seed = set_seed, seed_number = seed_number, ...)
     } else if(method == 'factominer') {
-      pca_object = runPCA_factominer(x = expr_values, scale = scale_unit, ncp = ncp, rev = rev, ...)
+      pca_object = runPCA_factominer(x = expr_values,
+                                     scale = scale_unit, ncp = ncp, rev = rev,
+                                     set_seed = set_seed, seed_number = seed_number, ...)
     } else {
       stop('only PCA methods from the irlba and factominer package have been implemented \n')
     }
@@ -987,7 +1018,7 @@ signPCA <- function(gobject,
 #' @param n_components UMAP param: number of components
 #' @param n_epochs UMAP param: number of epochs
 #' @param min_dist UMAP param: minimum distance
-#' @param n_threads UMAP param: threads to use
+#' @param n_threads UMAP param: threads/cores to use
 #' @param spread UMAP param: spread
 #' @param set_seed use of seed
 #' @param seed_number seed number to use
@@ -1027,15 +1058,17 @@ runUMAP <- function(gobject,
                     n_components = 2,
                     n_epochs = 400,
                     min_dist = 0.01,
-                    n_threads = 1,
+                    n_threads = NA,
                     spread = 5,
-                    set_seed = T,
+                    set_seed = TRUE,
                     seed_number = 1234,
                     verbose = T,
                     ...) {
 
   reduction = match.arg(reduction, choices = c('cells', 'genes'))
 
+  # set cores to use
+  n_threads = determine_cores(cores = n_threads)
 
   ## umap on cells ##
   if(reduction == 'cells') {
