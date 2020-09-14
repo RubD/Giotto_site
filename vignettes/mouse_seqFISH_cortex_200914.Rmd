@@ -52,9 +52,8 @@ if(is.null(python_path)) {
 ## Dataset explanation
 
 Several fields - containing 100's of cells - in the mouse cortex and subventricular zone were imaged for seqFISH+. The coordinates of the cells within each field are independent of each other, so in order to visualize and process all cells together imaging fields will be stitched together by providing x and y-offset values specific to each field. These offset values are known or estimates based on the original raw image:  
-<center>
 ![](../inst/images/general_figs/cortex_svz_location_fields.png){ width=50% }
-</center>
+
 
 - load somatosensory (SS) cortex and subventricular zone (SVZ) gene expression matrix  
 - load cell coordinates and field of view (FOV) information in order to stitch imaging fields  
