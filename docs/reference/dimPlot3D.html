@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,35 +188,35 @@
     </div>
 
     <pre class="usage"><span class='fu'>dimPlot3D</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>dim3_to_use</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>color_as_factor</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>show_center_label</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"dim3D"</span>
+  <span class='kw'>gobject</span>,
+  dim_reduction_to_use = <span class='st'>"umap"</span>,
+  dim_reduction_name = <span class='st'>"umap"</span>,
+  dim1_to_use = <span class='fl'>1</span>,
+  dim2_to_use = <span class='fl'>2</span>,
+  dim3_to_use = <span class='fl'>3</span>,
+  spat_enr_names = <span class='kw'>NULL</span>,
+  select_cell_groups = <span class='kw'>NULL</span>,
+  select_cells = <span class='kw'>NULL</span>,
+  show_other_cells = <span class='kw'>T</span>,
+  other_cell_color = <span class='st'>"lightgrey"</span>,
+  other_point_size = <span class='fl'>2</span>,
+  show_NN_network = <span class='kw'>F</span>,
+  nn_network_to_use = <span class='st'>"sNN"</span>,
+  network_name = <span class='st'>"sNN.pca"</span>,
+  color_as_factor = <span class='kw'>T</span>,
+  cell_color = <span class='kw'>NULL</span>,
+  cell_color_code = <span class='kw'>NULL</span>,
+  show_cluster_center = <span class='kw'>F</span>,
+  show_center_label = <span class='kw'>T</span>,
+  center_point_size = <span class='fl'>4</span>,
+  label_size = <span class='fl'>4</span>,
+  edge_alpha = <span class='kw'>NULL</span>,
+  point_size = <span class='fl'>3</span>,
+  show_plot = <span class='fl'>NA</span>,
+  return_plot = <span class='fl'>NA</span>,
+  save_plot = <span class='fl'>NA</span>,
+  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  default_save_name = <span class='st'>"dim3D"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -362,7 +362,9 @@
 <code><a href='plotUMAP.html'>plotUMAP</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>dimPlot3D</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>dimPlot3D</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; create 3D plot</div><div class='output co'>#&gt; <span class='error'>Error in select_dimReduction(gobject, reduction = "cells", reduction_method = dim_reduction_to_use,     name = dim_reduction_name, return_dimObj = FALSE): object 'gobject' not found</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -378,7 +380,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

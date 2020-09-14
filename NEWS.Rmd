@@ -7,8 +7,15 @@ output: github_document
 - **NEW:** Addition of **getSpatialDataset** to directly download a spatial dataset  
 (expression matrix, spatial coordinates and metadata)  
 
+- **NEW:** Addition of tools to install, remove and check a Giotto r-miniconda environment
+which is needed to run functions that require Python modules.  
+  - **installGiottoEnvironment**: installs a Giotto miniconda environment  
+  - **removeGiottoEnvironment**: removes a Giotto miniconda environment  
+  - **checkGiottoEnvironmnet**: verifies if a Giotto environment can be found  
+  
+
 - extension and improvement of spatial gene detection methods:
-  - addition of **spark** method  
+  - **NEW:** addition of **spark** method  
   - improved method for silhouetteRank  
   - improved method for binSpect   
   

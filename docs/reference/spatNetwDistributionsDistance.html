@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,16 +188,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>spatNetwDistributionsDistance</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"spatial_network"</span>,
-  <span class='kw'>hist_bins</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>test_distance_limit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"spatNetwDistributionsDistance"</span>
+  <span class='kw'>gobject</span>,
+  spatial_network_name = <span class='st'>"spatial_network"</span>,
+  hist_bins = <span class='fl'>30</span>,
+  test_distance_limit = <span class='kw'>NULL</span>,
+  ncol = <span class='fl'>1</span>,
+  show_plot = <span class='fl'>NA</span>,
+  return_plot = <span class='fl'>NA</span>,
+  save_plot = <span class='fl'>NA</span>,
+  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  default_save_name = <span class='st'>"spatNetwDistributionsDistance"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -250,7 +250,8 @@
     <p>ggplot plot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>spatNetwDistributionsDistance</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>spatNetwDistributionsDistance</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in is.element(name, names(gobject@spatial_network)): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -266,7 +267,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

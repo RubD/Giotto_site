@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,16 +188,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>createGiottoInstructions</span>(
-  <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>save_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dpi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>units</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  python_path = <span class='kw'>NULL</span>,
+  show_plot = <span class='kw'>NULL</span>,
+  return_plot = <span class='kw'>NULL</span>,
+  save_plot = <span class='kw'>NULL</span>,
+  save_dir = <span class='kw'>NULL</span>,
+  plot_format = <span class='kw'>NULL</span>,
+  dpi = <span class='kw'>NULL</span>,
+  units = <span class='kw'>NULL</span>,
+  height = <span class='kw'>NULL</span>,
+  width = <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -253,7 +253,38 @@
     <div class='dont-index'><p>More online information can be found here <a href='https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html'>https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>createGiottoInstructions</span>()</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>createGiottoInstructions</span>()
+</div><div class='output co'>#&gt; 
+#&gt;  no external python path was provided, but a giotto python environment was found and will be used </div><div class='output co'>#&gt; $python_path
+#&gt; [1] "/Users/rubendries/Library/r-miniconda/envs/giotto_env/bin/pythonw"
+#&gt; 
+#&gt; $show_plot
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $return_plot
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $save_plot
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $save_dir
+#&gt; [1] "/Users/rubendries/Packages/R_Packages/Giotto_site/docs/reference"
+#&gt; 
+#&gt; $plot_format
+#&gt; [1] "png"
+#&gt; 
+#&gt; $dpi
+#&gt; [1] 300
+#&gt; 
+#&gt; $units
+#&gt; [1] "in"
+#&gt; 
+#&gt; $height
+#&gt; [1] 9
+#&gt; 
+#&gt; $width
+#&gt; [1] 9
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -269,7 +300,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

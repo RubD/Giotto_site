@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,11 +188,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>select_dimReduction</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>reduction_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span>),
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>return_dimObj</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>gobject</span>,
+  reduction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
+  reduction_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span>),
+  name = <span class='st'>"pca"</span>,
+  return_dimObj = <span class='fl'>FALSE</span>
 )</pre>
 
 
@@ -215,7 +215,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

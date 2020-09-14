@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,22 +188,22 @@
     </div>
 
     <pre class="usage"><span class='fu'>plotCombineCellProximityGenes</span>(
-  <span class='no'>gobject</span>,
-  <span class='no'>combCpgObject</span>,
-  <span class='kw'>selected_interactions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>selected_gene_to_gene</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>detail_plot</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>simple_plot</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>simple_plot_facet</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"interaction"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>facet_scales</span> <span class='kw'>=</span> <span class='st'>"fixed"</span>,
-  <span class='kw'>facet_ncol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>selected_gene_to_gene</span>),
-  <span class='kw'>facet_nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>selected_interactions</span>),
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#9932CC"</span>, <span class='st'>"#FF8C00"</span>),
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"plotCombineCPG"</span>
+  <span class='kw'>gobject</span>,
+  <span class='kw'>combCpgObject</span>,
+  selected_interactions = <span class='kw'>NULL</span>,
+  selected_gene_to_gene = <span class='kw'>NULL</span>,
+  detail_plot = <span class='kw'>T</span>,
+  simple_plot = <span class='kw'>F</span>,
+  simple_plot_facet = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"interaction"</span>, <span class='st'>"genes"</span>),
+  facet_scales = <span class='st'>"fixed"</span>,
+  facet_ncol = <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>selected_gene_to_gene</span>),
+  facet_nrow = <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>selected_interactions</span>),
+  colors = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#9932CC"</span>, <span class='st'>"#FF8C00"</span>),
+  show_plot = <span class='fl'>NA</span>,
+  return_plot = <span class='fl'>NA</span>,
+  save_plot = <span class='fl'>NA</span>,
+  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  default_save_name = <span class='st'>"plotCombineCPG"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -280,7 +280,8 @@
     <p>ggplot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>plotCombineCellProximityGenes</span>(<span class='no'>CPGscores</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>plotCombineCellProximityGenes</span>(<span class='kw'>CPGscores</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in "combCpgObject" %in% class(combCpgObject): argument "combCpgObject" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -296,7 +297,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

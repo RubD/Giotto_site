@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,16 +188,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>runRankEnrich</span>(
-  <span class='no'>gobject</span>,
-  <span class='no'>sign_matrix</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>output_enrichment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"original"</span>, <span class='st'>"zscore"</span>),
-  <span class='kw'>p_value</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>n_times</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>gobject</span>,
+  <span class='kw'>sign_matrix</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  reverse_log_scale = <span class='fl'>TRUE</span>,
+  logbase = <span class='fl'>2</span>,
+  output_enrichment = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"original"</span>, <span class='st'>"zscore"</span>),
+  p_value = <span class='fl'>FALSE</span>,
+  n_times = <span class='fl'>1000</span>,
+  name = <span class='kw'>NULL</span>,
+  return_gobject = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -276,7 +276,7 @@ and the final enrichment score is then calculated as the sum of top 100 RBPs.</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

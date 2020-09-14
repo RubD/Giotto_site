@@ -30,7 +30,7 @@ navbar:
       - text: "mini 3D STARmap"
         href: articles/mini_starmap.html
       - text: "mouse seqFISH cortex"
-        href: articles/mouse_seqFISH_cortex_200517.html
+        href: articles/mouse_seqFISH_cortex_200914.html
       - text: "mouse hypoth. preopt. region"
         href: articles/mouse_merFISH_preoptic_region_200601.html
       - text: "mouse STARmap cortex"
@@ -63,6 +63,13 @@ reference:
     - filterGiotto
     - subsetGiotto
     - subsetGiottoLocs
+    
+  - title: Giotto environment
+    desc: work with Giotto python environment
+    contents:
+    - installGiottoEnvironment
+    - removeGiottoEnvironment
+    - checkGiottoEnvironment
 
   - title: import raw data
     desc: functions to help to import raw spatial data

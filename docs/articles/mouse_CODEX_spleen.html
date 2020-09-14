@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -130,7 +130,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mouse_CODEX_spleen_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>CODEX mouse spleen</h1>
@@ -147,23 +147,25 @@
 <div id="giotto-global-instructions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#giotto-global-instructions" class="anchor"></a>Giotto global instructions</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r">
+<div class="sourceCode" id="cb1"><pre class="downlit">
+
 <span class="co">## 0. Giotto global instructions ####</span>
 
 <span class="co"># this example works with Giotto v.0.3.0</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
 
 <span class="co">## create instructions</span>
 <span class="co">## instructions allow you to automatically save all plots into a chosen results folder</span>
 <span class="co">## Here we will not automatically save plots, for an example see the seqFISH+ or Visium dataset</span>
 
 <span class="co">## instructions allow us to automatically save all plots into a chosen results folder</span>
-<span class="no">my_python_path</span> <span class="kw">=</span> <span class="st">"/your/python/path/python"</span>
-<span class="no">results_folder</span> <span class="kw">=</span> <span class="st">'/your/results/path/'</span>
-<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">python_path</span> <span class="kw">=</span> <span class="no">my_python_path</span>,
-                                  <span class="kw">show_plot</span> <span class="kw">=</span> <span class="no">T</span>,
-                                  <span class="kw">return_plot</span> <span class="kw">=</span> <span class="no">F</span>,
-                                  <span class="kw">save_plot</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<span class="kw">my_python_path</span> <span class="op">=</span> <span class="st">"/your/python/path/python"</span>
+<span class="kw">results_folder</span> <span class="op">=</span> <span class="st">'/your/results/path/'</span>
+<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(python_path = <span class="kw">my_python_path</span>,
+                                  show_plot = <span class="kw">T</span>,
+                                  return_plot = <span class="kw">F</span>,
+                                  save_plot = <span class="kw">F</span>)
+</pre></div>
 </div>
 <div id="part-1-data-input" class="section level2">
 <h2 class="hasAnchor">
@@ -172,65 +174,69 @@
 <center>
 <img src="../inst/images/cortex_image_demo.png">
 </center>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## load expression and cell location</span>
-<span class="no">data_dir</span> <span class="kw">=</span> <span class="st">'/path/to/data/CODEX_3D/'</span>
-<span class="no">expr</span> <span class="kw">=</span> <span class="fu">fread</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>, <span class="st">'/'</span>, <span class="st">'count_matrix/codex_BALBc_3_expression.csv.gz'</span>))
-<span class="no">cell_loc</span> <span class="kw">=</span> <span class="fu">fread</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>, <span class="st">'/'</span>, <span class="st">'cell_locations/codex_BALBc_3_coord_annot.csv.gz'</span>))
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co">## load expression and cell location</span>
+<span class="kw">data_dir</span> <span class="op">=</span> <span class="st">'/path/to/data/CODEX_3D/'</span>
+<span class="kw">expr</span> <span class="op">=</span> <span class="fu">fread</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>, <span class="st">'/'</span>, <span class="st">'count_matrix/codex_BALBc_3_expression.csv.gz'</span>))
+<span class="kw">cell_loc</span> <span class="op">=</span> <span class="fu">fread</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>, <span class="st">'/'</span>, <span class="st">'cell_locations/codex_BALBc_3_coord_annot.csv.gz'</span>))
 
 <span class="co">## remove duplicated locations</span>
-<span class="no">duplicated_locs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span>(<span class="no">cell_loc</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"X.X"</span>, <span class="st">"Y.Y"</span>, <span class="st">"sample_Xtile_Ytile"</span>)])
-<span class="no">cell_loc_dedup</span> <span class="kw">=</span> <span class="no">cell_loc</span>[!<span class="no">duplicated_locs</span>,]
-<span class="no">expr_dedup</span> <span class="kw">=</span> <span class="no">expr</span>[!<span class="no">duplicated_locs</span>,]
-<span class="no">expr_dedup_transpose</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">expr_dedup</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">expr_dedup_transpose</span>)<span class="kw">=</span><span class="no">cell_loc_dedup</span>$<span class="no">cellID</span>
+<span class="kw">duplicated_locs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span>(<span class="kw">cell_loc</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"X.X"</span>, <span class="st">"Y.Y"</span>, <span class="st">"sample_Xtile_Ytile"</span>)])
+<span class="kw">cell_loc_dedup</span> <span class="op">=</span> <span class="kw">cell_loc</span>[<span class="op">!</span><span class="kw">duplicated_locs</span>,]
+<span class="kw">expr_dedup</span> <span class="op">=</span> <span class="kw">expr</span>[<span class="op">!</span><span class="kw">duplicated_locs</span>,]
+<span class="kw">expr_dedup_transpose</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="kw">expr_dedup</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="kw">expr_dedup_transpose</span>)<span class="op">=</span><span class="kw">cell_loc_dedup</span><span class="op">$</span><span class="kw">cellID</span>
 
 <span class="co">## stitch x.y tile coordinates to global coordinates </span>
-<span class="no">xtilespan</span> <span class="kw">=</span> <span class="fl">1344</span>;
-<span class="no">ytilespan</span> <span class="kw">=</span> <span class="fl">1008</span>;
-<span class="no">stitch_file</span> <span class="kw">=</span> <span class="fu"><a href="../reference/stitchTileCoordinates.html">stitchTileCoordinates</a></span>(<span class="kw">location_file</span> <span class="kw">=</span> <span class="no">cell_loc_dedup</span>, <span class="kw">Xtilespan</span> <span class="kw">=</span> <span class="no">xtilespan</span>, <span class="kw">Ytilespan</span> <span class="kw">=</span> <span class="no">ytilespan</span>);
-<span class="no">stitch_file</span> <span class="kw">=</span> <span class="no">stitch_file</span>[,<span class="fu">.</span>(<span class="no">Xcoord</span>, <span class="no">Ycoord</span>)]
+<span class="kw">xtilespan</span> <span class="op">=</span> <span class="fl">1344</span>;
+<span class="kw">ytilespan</span> <span class="op">=</span> <span class="fl">1008</span>;
+<span class="kw">stitch_file</span> <span class="op">=</span> <span class="fu"><a href="../reference/stitchTileCoordinates.html">stitchTileCoordinates</a></span>(location_file = <span class="kw">cell_loc_dedup</span>, Xtilespan = <span class="kw">xtilespan</span>, Ytilespan = <span class="kw">ytilespan</span>);
+<span class="kw">stitch_file</span> <span class="op">=</span> <span class="kw">stitch_file</span>[,<span class="fu">.</span>(<span class="kw">Xcoord</span>, <span class="kw">Ycoord</span>)]
 
 
 <span class="co">## exlude ambiguous cells from analysis ##</span>
-<span class="no">sub_set</span> <span class="kw">=</span> <span class="no">cell_loc_dedup</span>$<span class="no">Imaging_phenotype_annotation</span> <span class="kw">!=</span> <span class="st">"dirt"</span> <span class="kw">&amp;</span> <span class="no">cell_loc_dedup</span>$<span class="no">Imaging_phenotype_annotation</span> <span class="kw">!=</span> <span class="st">"noid"</span> <span class="kw">&amp;</span> <span class="no">cell_loc_dedup</span>$<span class="no">Imaging_phenotype_annotation</span> <span class="kw">!=</span> <span class="st">"capsule"</span></pre></body></html></div>
+<span class="kw">sub_set</span> <span class="op">=</span> <span class="kw">cell_loc_dedup</span><span class="op">$</span><span class="kw">Imaging_phenotype_annotation</span> != <span class="st">"dirt"</span> <span class="op">&amp;</span> <span class="kw">cell_loc_dedup</span><span class="op">$</span><span class="kw">Imaging_phenotype_annotation</span> != <span class="st">"noid"</span> <span class="op">&amp;</span> <span class="kw">cell_loc_dedup</span><span class="op">$</span><span class="kw">Imaging_phenotype_annotation</span> != <span class="st">"capsule"</span>
+</pre></div>
 </div>
 <div id="part-2-create-giotto-object-process-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-2-create-giotto-object-process-data" class="anchor"></a>Part 2: Create Giotto object &amp; process data</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">## create</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co">## create</span>
 
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr_dedup_transpose</span>[,<span class="no">sub_set</span>], <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">stitch_file</span>[<span class="no">sub_set</span>,],
-                              <span class="kw">offset_file</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
-<span class="no">codex_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="no">codex_test</span>, <span class="kw">new_metadata</span> <span class="kw">=</span> <span class="no">cell_loc_dedup</span>[<span class="no">sub_set</span>,])
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(raw_exprs = <span class="kw">expr_dedup_transpose</span>[,<span class="kw">sub_set</span>], spatial_locs = <span class="kw">stitch_file</span>[<span class="kw">sub_set</span>,],
+                              offset_file = <span class="kw">NULL</span>, instructions = <span class="kw">instrs</span>)
+<span class="kw">codex_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="kw">codex_test</span>, new_metadata = <span class="kw">cell_loc_dedup</span>[<span class="kw">sub_set</span>,])
 
 <span class="co">## filter</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>,
-                        <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">1</span>,
-                        <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">10</span>,
-                        <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">2</span>,
-                        <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
-                        <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(gobject = <span class="kw">codex_test</span>,
+                        expression_threshold = <span class="fl">1</span>,
+                        gene_det_in_min_cells = <span class="fl">10</span>,
+                        min_det_genes_per_cell = <span class="fl">2</span>,
+                        expression_values = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
+                        verbose = <span class="kw">T</span>)
 
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">6000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>,
-                              <span class="kw">log_norm</span> <span class="kw">=</span> <span class="fl">FALSE</span>,<span class="kw">library_size_norm</span> <span class="kw">=</span> <span class="fl">FALSE</span>,<span class="kw">scale_genes</span> <span class="kw">=</span> <span class="fl">FALSE</span>,<span class="kw">scale_cells</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(gobject = <span class="kw">codex_test</span>, scalefactor = <span class="fl">6000</span>, verbose = <span class="kw">T</span>,
+                              log_norm = <span class="fl">FALSE</span>,library_size_norm = <span class="fl">FALSE</span>,scale_genes = <span class="fl">FALSE</span>,scale_cells = <span class="fl">TRUE</span>)
 
 <span class="co">## add gene &amp; cell statistics</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>,<span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">"normalized"</span>)
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(gobject = <span class="kw">codex_test</span>,expression_values = <span class="st">"normalized"</span>)
 
 <span class="co">## adjust expression matrix for technical or known variables</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>,
-                              <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
-                              <span class="kw">batch_columns</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-                              <span class="kw">covariate_columns</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-                              <span class="kw">return_gobject</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                              <span class="kw">update_slot</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'custom'</span>))
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(gobject = <span class="kw">codex_test</span>, 
+                              expression_values = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
+                              batch_columns = <span class="kw">NULL</span>, 
+                              covariate_columns = <span class="kw">NULL</span>,
+                              return_gobject = <span class="fl">TRUE</span>,
+                              update_slot = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'custom'</span>))
 
 <span class="co">## visualize</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>,<span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-         <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>,<span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>)
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test</span>,point_size = <span class="fl">0.1</span>, 
+         coord_fix_ratio = <span class="fl">1</span>,point_shape = <span class="st">'no_border'</span>)
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'sample_Xtile_Ytile'</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">3</span>,<span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test</span>, point_size = <span class="fl">0.2</span>, coord_fix_ratio = <span class="fl">1</span>, cell_color = <span class="st">'sample_Xtile_Ytile'</span>,
+         legend_symbol_size = <span class="fl">3</span>,legend_text = <span class="fl">5</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/cell_loc.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/sample_tile.png">
 </center>
@@ -238,15 +244,17 @@
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-3-dimension-reduction" class="anchor"></a>Part 3: Dimension reduction</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># use all Abs</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># use all Abs</span>
 <span class="co"># PCA</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="fu"><a href="../reference/signPCA.html">signPCA</a></span>(<span class="no">codex_test</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">scree_ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">3</span>))
-<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>)
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(gobject = <span class="kw">codex_test</span>, expression_values = <span class="st">'normalized'</span>, scale_unit = <span class="kw">T</span>)
+<span class="fu"><a href="../reference/signPCA.html">signPCA</a></span>(<span class="kw">codex_test</span>, scale_unit = <span class="kw">T</span>, scree_ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">3</span>))
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(gobject = <span class="kw">codex_test</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">0.2</span>)
 
 <span class="co"># UMAP</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">codex_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">14</span>, <span class="kw">n_components</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">n_threads</span> <span class="kw">=</span> <span class="fl">12</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>)</pre></body></html></div>
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="kw">codex_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">14</span>, n_components = <span class="fl">2</span>, n_threads = <span class="fl">12</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">codex_test</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">0.2</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/scree_plot.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/pca_plot.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/umap_plot.png">
 </center>
@@ -254,21 +262,23 @@
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-4-cluster" class="anchor"></a>Part 4: Cluster</h2>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">## sNN network (default)</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">14</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">20</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co">## sNN network (default)</span>
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(gobject = <span class="kw">codex_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">14</span>, k = <span class="fl">20</span>)
 
 <span class="co">## 0.1 resolution</span>
-<span class="no">codex_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'leiden'</span>,<span class="kw">python_path</span> <span class="kw">=</span> <span class="no">my_python_path</span>)
+<span class="kw">codex_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(gobject = <span class="kw">codex_test</span>, resolution = <span class="fl">0.5</span>, n_iterations = <span class="fl">100</span>, name = <span class="st">'leiden'</span>,python_path = <span class="kw">my_python_path</span>)
 
-<span class="no">codex_metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">codex_test</span>)
-<span class="no">leiden_colors</span> <span class="kw">=</span> <span class="kw pkg">Giotto</span><span class="kw ns">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">codex_metadata</span>$<span class="no">leiden</span>)))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">leiden_colors</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">codex_metadata</span>$<span class="no">leiden</span>)
+<span class="kw">codex_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="kw">codex_test</span>)
+<span class="kw">leiden_colors</span> <span class="op">=</span> <span class="kw">Giotto</span>:::<span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">codex_metadata</span><span class="op">$</span><span class="kw">leiden</span>)))
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">leiden_colors</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">codex_metadata</span><span class="op">$</span><span class="kw">leiden</span>)
 
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden'</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">leiden_colors</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">codex_test</span>, cell_color = <span class="st">'leiden'</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">0.2</span>, cell_color_code = <span class="kw">leiden_colors</span>)
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden'</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>,
-         <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">leiden_colors</span>, <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>,<span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,<span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test</span>, cell_color = <span class="st">'leiden'</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">0.2</span>, 
+         cell_color_code = <span class="kw">leiden_colors</span>, coord_fix_ratio = <span class="fl">1</span>,label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,legend_symbol_size = <span class="fl">2</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/leiden_clustering.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/spat_leiden.png">
 </center>
@@ -276,10 +286,12 @@
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-5-co-visualize" class="anchor"></a>Part 5: Co-visualize</h2>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">
-<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden'</span>, <span class="kw">spat_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,
-              <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">dim_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>,
-              <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">leiden_colors</span>,<span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"horizontal"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">codex_test</span>, cell_color = <span class="st">'leiden'</span>, spat_point_shape = <span class="st">'no_border'</span>, 
+              spat_point_size = <span class="fl">0.2</span>, dim_point_shape = <span class="st">'no_border'</span>, dim_point_size = <span class="fl">0.2</span>, 
+              cell_color_code = <span class="kw">leiden_colors</span>,plot_alignment = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"horizontal"</span>))
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/covis_leiden.png">
 </center>
@@ -287,31 +299,33 @@
 <div id="part-6-differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-6-differential-expression" class="anchor"></a>Part 6: Differential expression</h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r">
+<div class="sourceCode" id="cb7"><pre class="downlit">
+
 <span class="co"># resolution 0.5</span>
-<span class="no">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden'</span>
-<span class="no">markers_scran</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span><span class="kw">=</span><span class="no">codex_test</span>, <span class="kw">method</span><span class="kw">=</span><span class="st">"scran"</span>,
-                                       <span class="kw">expression_values</span><span class="kw">=</span><span class="st">"norm"</span>, <span class="kw">cluster_column</span><span class="kw">=</span><span class="no">cluster_column</span>, <span class="kw">min_genes</span><span class="kw">=</span><span class="fl">3</span>)
-<span class="no">markergenes_scran</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">markers_scran</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">5</span>), <span class="kw">by</span><span class="kw">=</span><span class="st">"cluster"</span>]<span class="kw">[[</span><span class="st">"genes"</span>]])
+<span class="kw">cluster_column</span> <span class="op">=</span> <span class="st">'leiden'</span>
+<span class="kw">markers_scran</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(gobject=<span class="kw">codex_test</span>, method=<span class="st">"scran"</span>,
+                                       expression_values=<span class="st">"norm"</span>, cluster_column=<span class="kw">cluster_column</span>, min_genes=<span class="fl">3</span>)
+<span class="kw">markergenes_scran</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">markers_scran</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">5</span>), by=<span class="st">"cluster"</span>][[<span class="st">"genes"</span>]])
 
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">codex_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">"norm"</span>, <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">cluster_column</span>),
-                    <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">markergenes_scran</span>,
-                    <span class="kw">y_text_size</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">show_values</span> <span class="kw">=</span> <span class="st">'zscores_rescaled'</span>)
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">codex_test</span>, expression_values = <span class="st">"norm"</span>, metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">cluster_column</span>), 
+                    selected_genes = <span class="kw">markergenes_scran</span>,
+                    y_text_size = <span class="fl">8</span>, show_values = <span class="st">'zscores_rescaled'</span>)
 
-<span class="no">topgenes_scran</span> <span class="kw">=</span> <span class="no">markers_scran</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">codex_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">topgenes_scran</span>)[<span class="fl">1</span>:<span class="fl">8</span>], <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="no">cluster_column</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>)
+<span class="kw">topgenes_scran</span> <span class="op">=</span> <span class="kw">markers_scran</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">1</span>), by = <span class="st">'cluster'</span>]<span class="op">$</span><span class="kw">genes</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="kw">codex_test</span>, genes = <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">topgenes_scran</span>)[<span class="fl">1</span><span class="op">:</span><span class="fl">8</span>], cluster_column = <span class="kw">cluster_column</span>,
+           strip_text = <span class="fl">8</span>, strip_position = <span class="st">'right'</span>)
 
 <span class="co"># gini</span>
-<span class="no">markers_gini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span><span class="kw">=</span><span class="no">codex_test</span>, <span class="kw">method</span><span class="kw">=</span><span class="st">"gini"</span>, <span class="kw">expression_values</span><span class="kw">=</span><span class="st">"norm"</span>,
-                                      <span class="kw">cluster_column</span><span class="kw">=</span><span class="no">cluster_column</span>, <span class="kw">min_genes</span><span class="kw">=</span><span class="fl">5</span>)
-<span class="no">markergenes_gini</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">markers_gini</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">5</span>), <span class="kw">by</span><span class="kw">=</span><span class="st">"cluster"</span>]<span class="kw">[[</span><span class="st">"genes"</span>]])
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">codex_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">"norm"</span>, <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">cluster_column</span>), <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">markergenes_gini</span>,
-                    <span class="kw">show_values</span> <span class="kw">=</span> <span class="st">'zscores_rescaled'</span>)
+<span class="kw">markers_gini</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(gobject=<span class="kw">codex_test</span>, method=<span class="st">"gini"</span>, expression_values=<span class="st">"norm"</span>,
+                                      cluster_column=<span class="kw">cluster_column</span>, min_genes=<span class="fl">5</span>)
+<span class="kw">markergenes_gini</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">markers_gini</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">5</span>), by=<span class="st">"cluster"</span>][[<span class="st">"genes"</span>]])
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">codex_test</span>, expression_values = <span class="st">"norm"</span>, metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">cluster_column</span>), selected_genes = <span class="kw">markergenes_gini</span>,
+                    show_values = <span class="st">'zscores_rescaled'</span>)
 
-<span class="no">topgenes_gini</span> <span class="kw">=</span> <span class="no">markers_gini</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">codex_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">topgenes_gini</span>), <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="no">cluster_column</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>)</pre></body></html></div>
+<span class="kw">topgenes_gini</span> <span class="op">=</span> <span class="kw">markers_gini</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">1</span>), by = <span class="st">'cluster'</span>]<span class="op">$</span><span class="kw">genes</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="kw">codex_test</span>, genes = <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">topgenes_gini</span>), cluster_column = <span class="kw">cluster_column</span>,
+           strip_text = <span class="fl">8</span>, strip_position = <span class="st">'right'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/scran_de.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/scran_violin.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/gini_heatmap.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/gini_violin.png">
 </center>
@@ -319,39 +333,41 @@
 <div id="part-7-cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-7-cell-type-annotation" class="anchor"></a>Part 7: Cell type annotation</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">
-<span class="no">clusters_cell_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'erythroblasts-F4/80(+) mphs'</span>,<span class="st">'B cells'</span>,<span class="st">'CD8(+) T cells'</span>,
+<div class="sourceCode" id="cb8"><pre class="downlit">
+
+<span class="kw">clusters_cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'erythroblasts-F4/80(+) mphs'</span>,<span class="st">'B cells'</span>,<span class="st">'CD8(+) T cells'</span>, 
                         <span class="st">'CD4(+) T cells'</span>, <span class="st">'B cells'</span>,<span class="st">'CD11c(+)MHCII(+) cells'</span>,
-                        <span class="st">'CD4(+) T cells'</span>,<span class="st">'Ter119(+)'</span>, <span class="st">'marginal zone mphs'</span>,
+                        <span class="st">'CD4(+) T cells'</span>,<span class="st">'Ter119(+)'</span>, <span class="st">'marginal zone mphs'</span>, 
                         <span class="st">'CD31(+)ERTR7(+)'</span>, <span class="st">'FDCs'</span>, <span class="st">'B220(+) DN T cells'</span>,
                         <span class="st">'CD3(+) other markers'</span>,<span class="st">'NK cells'</span>,<span class="st">'granulocytes'</span>,
                         <span class="st">'plasma cells'</span>,<span class="st">'ambiguous'</span>,<span class="st">'CD44(+)CD1632(+)Ly6C(+) cells'</span>)
 
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">18</span>)
-<span class="no">codex_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types</span>,
-                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cell_types'</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_cell_types</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">18</span>)
+<span class="kw">codex_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(gobject = <span class="kw">codex_test</span>, annotation_vector = <span class="kw">clusters_cell_types</span>,
+                           cluster_column = <span class="st">'leiden'</span>, name = <span class="st">'cell_types'</span>)
 
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">codex_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>),<span class="kw">y_text_size</span> <span class="kw">=</span> <span class="fl">6</span>)
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">codex_test</span>, expression_values = <span class="st">'scaled'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>),y_text_size = <span class="fl">6</span>)
 
 <span class="co"># create consistent color code</span>
-<span class="no">mynames</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">codex_test</span>)$<span class="no">cell_types</span>)
-<span class="no">mycolorcode</span> <span class="kw">=</span> <span class="kw pkg">Giotto</span><span class="kw ns">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mynames</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">mycolorcode</span>) <span class="kw">=</span> <span class="no">mynames</span>
+<span class="kw">mynames</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="kw">codex_test</span>)<span class="op">$</span><span class="kw">cell_types</span>)
+<span class="kw">mycolorcode</span> <span class="op">=</span> <span class="kw">Giotto</span>:::<span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(n = <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">mynames</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">mycolorcode</span>) <span class="op">=</span> <span class="kw">mynames</span>
 
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,<span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,   <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>,
-         <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-         <span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">codex_test</span>, cell_color = <span class="st">'cell_types'</span>,point_shape = <span class="st">'no_border'</span>,   point_size = <span class="fl">0.2</span>,
+         cell_color_code = <span class="kw">mycolorcode</span>,
+         show_center_label = <span class="kw">F</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">0.2</span>,
-        <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-        <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test</span>, cell_color = <span class="st">'cell_types'</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">0.2</span>, 
+        cell_color_code = <span class="kw">mycolorcode</span>,
+        coord_fix_ratio = <span class="fl">1</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/cell_type_annotation_heatmap.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/cell_types_umap.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/cell_types_spat.png">
 </center>
@@ -359,55 +375,59 @@
 <div id="part-8-visualize-cell-types-and-gene-expression-in-selected-zones" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-8-visualize-cell-types-and-gene-expression-in-selected-zones" class="anchor"></a>part 8: Visualize cell types and gene expression in selected zones</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r">
-<span class="no">codex_test_zone1</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">codex_test</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">codex_test</span>@<span class="kw">cell_metadata</span>$<span class="no">cell_ID</span>[<span class="no">codex_test</span>@<span class="kw">cell_metadata</span>$<span class="no">sample_Xtile_Ytile</span><span class="kw">==</span><span class="st">"BALBc-3_X04_Y08"</span>])
+<div class="sourceCode" id="cb9"><pre class="downlit">
 
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test_zone1</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,<span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,   <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-         <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-         <span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="kw">codex_test_zone1</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="kw">codex_test</span>, cell_ids = <span class="kw">codex_test</span><span class="op">@</span>cell_metadata<span class="op">$</span><span class="kw">cell_ID</span>[<span class="kw">codex_test</span><span class="op">@</span>cell_metadata<span class="op">$</span><span class="kw">sample_Xtile_Ytile</span><span class="op">==</span><span class="st">"BALBc-3_X04_Y08"</span>])
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test_zone1</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-        <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-        <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">codex_test_zone1</span>, cell_color = <span class="st">'cell_types'</span>,point_shape = <span class="st">'no_border'</span>,   point_size = <span class="fl">1</span>,
+         cell_color_code = <span class="kw">mycolorcode</span>,
+         show_center_label = <span class="kw">F</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
 
-<span class="fu"><a href="../reference/spatDimGenePlot.html">spatDimGenePlot</a></span>(<span class="no">codex_test_zone1</span>,
-                <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD8a"</span>,<span class="st">"CD19"</span>),
-                <span class="kw">spat_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,
-                <span class="kw">dim_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,
-                <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test_zone1</span>, cell_color = <span class="st">'cell_types'</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">1</span>, 
+        cell_color_code = <span class="kw">mycolorcode</span>,
+        coord_fix_ratio = <span class="fl">1</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
+
+<span class="fu"><a href="../reference/spatDimGenePlot.html">spatDimGenePlot</a></span>(<span class="kw">codex_test_zone1</span>, 
+                expression_values = <span class="st">'scaled'</span>,
+                genes = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD8a"</span>,<span class="st">"CD19"</span>),
+                spat_point_shape = <span class="st">'no_border'</span>,
+                dim_point_shape = <span class="st">'no_border'</span>,
+                genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/zone1_cell_type_spat.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/zone1_cell_type_umap.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/zone1_gene.png">
 </center>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">
-<span class="no">codex_test_zone2</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">codex_test</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">codex_test</span>@<span class="kw">cell_metadata</span>$<span class="no">cell_ID</span>[<span class="no">codex_test</span>@<span class="kw">cell_metadata</span>$<span class="no">sample_Xtile_Ytile</span><span class="kw">==</span><span class="st">"BALBc-3_X04_Y03"</span>])
+<div class="sourceCode" id="cb10"><pre class="downlit">
 
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test_zone2</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,<span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,   <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-         <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-         <span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="kw">codex_test_zone2</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="kw">codex_test</span>, cell_ids = <span class="kw">codex_test</span><span class="op">@</span>cell_metadata<span class="op">$</span><span class="kw">cell_ID</span>[<span class="kw">codex_test</span><span class="op">@</span>cell_metadata<span class="op">$</span><span class="kw">sample_Xtile_Ytile</span><span class="op">==</span><span class="st">"BALBc-3_X04_Y03"</span>])
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">codex_test_zone2</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-        <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-        <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>,
-         <span class="kw">label_size</span> <span class="kw">=</span><span class="fl">2</span>,
-         <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">codex_test_zone2</span>, cell_color = <span class="st">'cell_types'</span>,point_shape = <span class="st">'no_border'</span>,   point_size = <span class="fl">1</span>,
+         cell_color_code = <span class="kw">mycolorcode</span>,
+         show_center_label = <span class="kw">F</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
 
-<span class="fu"><a href="../reference/spatDimGenePlot.html">spatDimGenePlot</a></span>(<span class="no">codex_test_zone2</span>,
-                <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD4"</span>, <span class="st">"CD106"</span>),
-                <span class="kw">spat_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,
-                <span class="kw">dim_point_shape</span> <span class="kw">=</span> <span class="st">'no_border'</span>,
-                <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">codex_test_zone2</span>, cell_color = <span class="st">'cell_types'</span>, point_shape = <span class="st">'no_border'</span>, point_size = <span class="fl">1</span>, 
+        cell_color_code = <span class="kw">mycolorcode</span>,
+        coord_fix_ratio = <span class="fl">1</span>,
+         label_size =<span class="fl">2</span>,
+         legend_text = <span class="fl">5</span>,
+         legend_symbol_size = <span class="fl">2</span>)
+
+<span class="fu"><a href="../reference/spatDimGenePlot.html">spatDimGenePlot</a></span>(<span class="kw">codex_test_zone2</span>, 
+                expression_values = <span class="st">'scaled'</span>,
+                genes = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"CD4"</span>, <span class="st">"CD106"</span>),
+                spat_point_shape = <span class="st">'no_border'</span>,
+                dim_point_shape = <span class="st">'no_border'</span>,
+                genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_codex_spleen/vignette_200325/zone2_spat.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/zone2_umap.png"><img src="../inst/images/mouse_codex_spleen/vignette_200325/zone2_gene.png">
 </center>
@@ -429,7 +449,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

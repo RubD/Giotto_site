@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,10 +188,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>plotTSNE_2D</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"tsne"</span>,
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"tSNE_2D"</span>,
-  <span class='no'>...</span>
+  <span class='kw'>gobject</span>,
+  dim_reduction_name = <span class='st'>"tsne"</span>,
+  default_save_name = <span class='st'>"tSNE_2D"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -211,7 +211,7 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='dimPlot2D.html'>dimPlot2D</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='dimPlot2D.html'>dimPlot2D</a></code></p><dl>
     <dt><code>group_by</code></dt><dd><p>create multiple plots based on cell annotation column</p></dd>
     <dt><code>group_by_subset</code></dt><dd><p>subset the group_by factor column</p></dd>
     <dt><code>dim1_to_use</code></dt><dd><p>dimension to use on x-axis</p></dd>
@@ -286,7 +286,8 @@
 <code><a href='plotUMAP.html'>plotUMAP</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>plotTSNE_2D</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>plotTSNE_2D</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in dimPlot2D_single(gobject = gobject, dim_reduction_to_use = dim_reduction_to_use,     dim_reduction_name = dim_reduction_name, dim1_to_use = dim1_to_use,     dim2_to_use = dim2_to_use, spat_enr_names = spat_enr_names,     show_NN_network = show_NN_network, nn_network_to_use = nn_network_to_use,     network_name = network_name, cell_color = cell_color, color_as_factor = color_as_factor,     cell_color_code = cell_color_code, cell_color_gradient = cell_color_gradient,     gradient_midpoint = gradient_midpoint, gradient_limits = gradient_limits,     select_cell_groups = select_cell_groups, select_cells = select_cells,     show_other_cells = show_other_cells, other_cell_color = other_cell_color,     other_point_size = other_point_size, show_cluster_center = show_cluster_center,     show_center_label = show_center_label, center_point_size = center_point_size,     center_point_border_col = center_point_border_col, center_point_border_stroke = center_point_border_stroke,     label_size = label_size, label_fontface = label_fontface,     edge_alpha = edge_alpha, point_shape = point_shape, point_size = point_size,     point_alpha = point_alpha, point_border_col = point_border_col,     point_border_stroke = point_border_stroke, title = title,     show_legend = show_legend, legend_text = legend_text, legend_symbol_size = legend_symbol_size,     background_color = background_color, axis_text = axis_text,     axis_title = axis_title, show_plot = show_plot, return_plot = return_plot,     save_plot = save_plot, save_param = save_param, default_save_name = default_save_name): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -302,7 +303,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

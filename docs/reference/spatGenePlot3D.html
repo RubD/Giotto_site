@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -188,36 +188,36 @@
     </div>
 
     <pre class="usage"><span class='fu'>spatGenePlot3D</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='no'>genes</span>,
-  <span class='kw'>show_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>network_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>genes_high_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>genes_mid_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>genes_low_color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>show_grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
-  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>axis_scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cube"</span>, <span class='st'>"real"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>custom_ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>z_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"spatGenePlot3D"</span>
+  <span class='kw'>gobject</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>genes</span>,
+  show_network = <span class='fl'>FALSE</span>,
+  network_color = <span class='kw'>NULL</span>,
+  spatial_network_name = <span class='st'>"Delaunay_network"</span>,
+  edge_alpha = <span class='kw'>NULL</span>,
+  cluster_column = <span class='kw'>NULL</span>,
+  select_cell_groups = <span class='kw'>NULL</span>,
+  select_cells = <span class='kw'>NULL</span>,
+  show_other_cells = <span class='kw'>T</span>,
+  other_cell_color = <span class='st'>"lightgrey"</span>,
+  other_point_size = <span class='fl'>1</span>,
+  genes_high_color = <span class='kw'>NULL</span>,
+  genes_mid_color = <span class='st'>"white"</span>,
+  genes_low_color = <span class='st'>"blue"</span>,
+  show_grid = <span class='fl'>FALSE</span>,
+  spatial_grid_name = <span class='st'>"spatial_grid"</span>,
+  point_size = <span class='fl'>2</span>,
+  show_legend = <span class='fl'>TRUE</span>,
+  axis_scale = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cube"</span>, <span class='st'>"real"</span>, <span class='st'>"custom"</span>),
+  custom_ratio = <span class='kw'>NULL</span>,
+  x_ticks = <span class='kw'>NULL</span>,
+  y_ticks = <span class='kw'>NULL</span>,
+  z_ticks = <span class='kw'>NULL</span>,
+  show_plot = <span class='fl'>NA</span>,
+  return_plot = <span class='fl'>NA</span>,
+  save_plot = <span class='fl'>NA</span>,
+  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  default_save_name = <span class='st'>"spatGenePlot3D"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -358,7 +358,8 @@
 <code><a href='spatGenePlot.html'>spatGenePlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>spatGenePlot3D</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>spatGenePlot3D</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in spatGenePlot3D(gobject): argument "genes" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -374,7 +375,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -187,7 +187,15 @@
     <p>performs PCA based on the factominer package</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runPCA_factominer</span>(<span class='no'>x</span>, <span class='kw'>ncp</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>runPCA_factominer</span>(
+  <span class='kw'>x</span>,
+  ncp = <span class='fl'>100</span>,
+  scale = <span class='fl'>TRUE</span>,
+  rev = <span class='fl'>FALSE</span>,
+  set_seed = <span class='fl'>TRUE</span>,
+  seed_number = <span class='fl'>1234</span>,
+  <span class='kw'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,6 +215,14 @@
     <tr>
       <th>rev</th>
       <td><p>reverse PCA</p></td>
+    </tr>
+    <tr>
+      <th>set_seed</th>
+      <td><p>use of seed</p></td>
+    </tr>
+    <tr>
+      <th>seed_number</th>
+      <td><p>seed number to use</p></td>
     </tr>
     </table>
 
@@ -229,7 +245,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

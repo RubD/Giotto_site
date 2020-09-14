@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="set_giotto_python_path — set_giotto_python_path" />
-<meta property="og:description" content="sets the python path and/or installs miniconda and the python modules" />
+<meta property="og:description" content="sets the python path" />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -179,19 +179,15 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>set_giotto_python_path</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/giotto.R'><code>R/giotto.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/python_environment.R'><code>R/python_environment.R</code></a></small>
     <div class="hidden name"><code>set_giotto_python_path.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>sets the python path and/or installs miniconda and the python modules</p>
+    <p>sets the python path</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_giotto_python_path</span>(
-  <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>packages_to_install</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pandas"</span>, <span class='st'>"networkx"</span>, <span class='st'>"python-igraph"</span>, <span class='st'>"leidenalg"</span>,
-    <span class='st'>"python-louvain"</span>, <span class='st'>"python.app"</span>, <span class='st'>"scikit-learn"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>set_giotto_python_path</span>(python_path = <span class='kw'>NULL</span>)</pre>
 
 
 
@@ -210,7 +206,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

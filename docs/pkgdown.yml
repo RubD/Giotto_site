@@ -1,5 +1,5 @@
-pandoc: 2.7.2
-pkgdown: 1.5.1
+pandoc: 2.7.3
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   faqs: faqs.html
@@ -16,12 +16,12 @@ articles:
   mouse_CODEX_spleen: mouse_CODEX_spleen.html
   mouse_merFISH_preoptic_region_200601: mouse_merFISH_preoptic_region_200601.html
   mouse_osmFISH_SScortex_200518: mouse_osmFISH_SScortex_200518.html
-  mouse_seqFISH_cortex_200517: mouse_seqFISH_cortex_200517.html
+  mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
   mouse_starmap_cortex: mouse_starmap_cortex.html
   mouse_visium_brain_200601: mouse_visium_brain_200601.html
   mouse_visium_kidney_200601: mouse_visium_kidney_200601.html
   subset_giotto: subset_giotto.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-08T01:08Z
+last_built: 2020-09-14T19:50Z
 

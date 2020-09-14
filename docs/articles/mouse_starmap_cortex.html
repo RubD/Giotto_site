@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
       <a href="../articles/mini_starmap.html">mini 3D STARmap</a>
     </li>
     <li>
-      <a href="../articles/mouse_seqFISH_cortex_200517.html">mouse seqFISH cortex</a>
+      <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
       <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
@@ -130,7 +130,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mouse_starmap_cortex_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>STARmap mouse cortex</h1>
@@ -147,20 +147,22 @@
 <div id="giotto-global-instructions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#giotto-global-instructions" class="anchor"></a>Giotto global instructions</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># this example works with Giotto v.0.3.0</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># this example works with Giotto v.0.3.0</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
 
 <span class="co">## create instructions</span>
 <span class="co">## instructions allow you to automatically save all plots into a chosen results folder</span>
 <span class="co">## Here we will not automatically save plots, for an example see the seqFISH+ or Visium dataset</span>
 
 <span class="co">## instructions allow us to automatically save all plots into a chosen results folder</span>
-<span class="no">my_python_path</span> <span class="kw">=</span> <span class="st">"/your/python/path/python"</span>
-<span class="no">results_folder</span> <span class="kw">=</span> <span class="st">'/your/results/path/'</span>
-<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">python_path</span> <span class="kw">=</span> <span class="no">my_python_path</span>,
-                                  <span class="kw">show_plot</span> <span class="kw">=</span> <span class="no">T</span>,
-                                  <span class="kw">return_plot</span> <span class="kw">=</span> <span class="no">F</span>,
-                                  <span class="kw">save_plot</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<span class="kw">my_python_path</span> <span class="op">=</span> <span class="st">"/your/python/path/python"</span>
+<span class="kw">results_folder</span> <span class="op">=</span> <span class="st">'/your/results/path/'</span>
+<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(python_path = <span class="kw">my_python_path</span>,
+                                  show_plot = <span class="kw">T</span>,
+                                  return_plot = <span class="kw">F</span>,
+                                  save_plot = <span class="kw">F</span>)
+</pre></div>
 </div>
 <div id="part-1-data-input" class="section level2">
 <h2 class="hasAnchor">
@@ -169,38 +171,42 @@
 <center>
 <img src="../inst/images/starmap_cortex_image_summary.png">
 </center>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## A. expression and cell location</span>
-<span class="no">data_dir</span> <span class="kw">=</span> <span class="st">'/path/to/data/STARmap_3D/'</span>
-<span class="no">expr</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>, <span class="st">'/'</span>, <span class="st">'count_matrix/STARmap_3D_data_expression.txt'</span>))
-<span class="no">cell_loc</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>, <span class="st">'/'</span>, <span class="st">'cell_locations/STARmap_3D_data_cell_locations.txt'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co">## A. expression and cell location</span>
+<span class="kw">data_dir</span> <span class="op">=</span> <span class="st">'/path/to/data/STARmap_3D/'</span>
+<span class="kw">expr</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>, <span class="st">'/'</span>, <span class="st">'count_matrix/STARmap_3D_data_expression.txt'</span>))
+<span class="kw">cell_loc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>, <span class="st">'/'</span>, <span class="st">'cell_locations/STARmap_3D_data_cell_locations.txt'</span>))
+</pre></div>
 <hr>
 </div>
 <div id="part-2-create-giotto-object-process-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-2-create-giotto-object-process-data" class="anchor"></a>part 2: Create Giotto object &amp; process data</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">## create</span>
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr</span>, <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">cell_loc</span>, <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co">## create</span>
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(raw_exprs = <span class="kw">expr</span>, spatial_locs = <span class="kw">cell_loc</span>, instructions = <span class="kw">instrs</span>)
 
 <span class="co">## filter raw data</span>
 <span class="co"># pre-test filter parameters</span>
-<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">STAR_test</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'genes'</span>)
-<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">STAR_test</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'cells'</span>)
-<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_thresholds</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>,<span class="fl">2</span>), <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20000</span>, <span class="fl">20000</span>, <span class="fl">30000</span>), <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">25</span>))
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="kw">STAR_test</span>, detection = <span class="st">'genes'</span>)
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="kw">STAR_test</span>, detection = <span class="st">'cells'</span>)
+<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span>(<span class="kw">STAR_test</span>, expression_thresholds = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>,<span class="fl">2</span>), gene_det_in_min_cells = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20000</span>, <span class="fl">20000</span>, <span class="fl">30000</span>), min_det_genes_per_cell = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">25</span>))
 
 <span class="co"># filter</span>
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>,
-                          <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">20000</span>,
-                          <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">20</span>)
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(gobject = <span class="kw">STAR_test</span>,
+                          gene_det_in_min_cells = <span class="fl">20000</span>,
+                          min_det_genes_per_cell = <span class="fl">20</span>)
 <span class="co">## normalize</span>
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">10000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>)
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
-                                <span class="kw">batch_columns</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">covariate_columns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span>),
-                                <span class="kw">return_gobject</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                <span class="kw">update_slot</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'custom'</span>))
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(gobject = <span class="kw">STAR_test</span>, scalefactor = <span class="fl">10000</span>, verbose = <span class="kw">T</span>)
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(gobject = <span class="kw">STAR_test</span>)
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(gobject = <span class="kw">STAR_test</span>, expression_values = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
+                                batch_columns = <span class="kw">NULL</span>, covariate_columns = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span>),
+                                return_gobject = <span class="fl">TRUE</span>,
+                                update_slot = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'custom'</span>))
 <span class="co">## visualize</span>
 <span class="co"># 3D</span>
-<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>,<span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(gobject = <span class="kw">STAR_test</span>,point_size = <span class="fl">2</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/1_spatial_locations.png">
 </center>
@@ -208,19 +214,25 @@
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-3-dimension-reduction" class="anchor"></a>part 3: dimension reduction</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'cov_groups'</span>,
-                          <span class="kw">zscore_threshold</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">nr_expression_groups</span> <span class="kw">=</span> <span class="fl">3</span>,<span class="kw">show_plot</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(gobject = <span class="kw">STAR_test</span>, method = <span class="st">'cov_groups'</span>, 
+                          zscore_threshold = <span class="fl">0.5</span>, nr_expression_groups = <span class="fl">3</span>,show_plot = <span class="kw">T</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/2_hvg.png">
 </center>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">genes_to_use</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="fu"><a href="../reference/signPCA.html">signPCA</a></span>(<span class="no">STAR_test</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(gobject = <span class="kw">STAR_test</span>, genes_to_use = <span class="kw">NULL</span>, scale_unit = <span class="kw">F</span>)
+<span class="fu"><a href="../reference/signPCA.html">signPCA</a></span>(<span class="kw">STAR_test</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/3_pca_scree_plot.png">
 </center>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">STAR_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>, <span class="kw">n_components</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">n_threads</span> <span class="kw">=</span> <span class="fl">4</span>)
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="kw">STAR_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, n_components = <span class="fl">3</span>, n_threads = <span class="fl">4</span>)
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(gobject = <span class="kw">STAR_test</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/4_umap.png">
 </center>
@@ -229,13 +241,15 @@
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-4-cluster" class="anchor"></a>part 4: cluster</h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co">## sNN network (default)</span>
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">15</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co">## sNN network (default)</span>
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(gobject = <span class="kw">STAR_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, k = <span class="fl">15</span>)
 <span class="co">## Leiden clustering</span>
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">100</span>,
-                             <span class="kw">name</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>)
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(gobject = <span class="kw">STAR_test</span>, resolution = <span class="fl">0.2</span>, n_iterations = <span class="fl">100</span>,
+                             name = <span class="st">'leiden_0.2'</span>)
 
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>,<span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(gobject = <span class="kw">STAR_test</span>, cell_color = <span class="st">'leiden_0.2'</span>,show_center_label = <span class="kw">F</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/5_leiden_0.2.png">
 </center>
@@ -244,8 +258,10 @@
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-5-co-visualize" class="anchor"></a>part 5: co-visualize</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>,
-               <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span>(gobject = <span class="kw">STAR_test</span>,
+               cell_color = <span class="st">'leiden_0.2'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/6_covisualize_leiden_0.2.png">
 </center>
@@ -254,25 +270,29 @@
 <div id="part-6-differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-6-differential-expression" class="anchor"></a>part 6: differential expression</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>,
-                                 <span class="kw">method</span> <span class="kw">=</span> <span class="st">'gini'</span>,
-                                 <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                 <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>,
-                                  <span class="kw">min_expr_gini_score</span> <span class="kw">=</span> <span class="fl">2</span>,
-                                  <span class="kw">min_det_gini_score</span> <span class="kw">=</span> <span class="fl">2</span>,
-                                 <span class="kw">min_genes</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">rank_score</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="no">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(gobject = <span class="kw">STAR_test</span>,
+                                 method = <span class="st">'gini'</span>,
+                                 expression_values = <span class="st">'normalized'</span>,
+                                 cluster_column = <span class="st">'leiden_0.2'</span>,
+                                  min_expr_gini_score = <span class="fl">2</span>,
+                                  min_det_gini_score = <span class="fl">2</span>,
+                                 min_genes = <span class="fl">5</span>, rank_score = <span class="fl">2</span>)
+<span class="kw">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">2</span>), by = <span class="st">'cluster'</span>]
 
 <span class="co"># violinplot</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">STAR_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">markers</span>$<span class="no">genes</span>), <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>,
-           <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">"right"</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="kw">STAR_test</span>, genes = <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">markers</span><span class="op">$</span><span class="kw">genes</span>), cluster_column = <span class="st">'leiden_0.2'</span>,
+           strip_position = <span class="st">"right"</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/violinplot.png">
 </center>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">
+<div class="sourceCode" id="cb10"><pre class="downlit">
+
 <span class="co"># cluster heatmap</span>
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_0.2'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_0.2'</span>))
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/7_heatmap_leiden_0.2.png">
 </center>
@@ -281,34 +301,40 @@
 <div id="part-7-cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-7-cell-type-annotation" class="anchor"></a>part 7: cell-type annotation</h2>
-<div class="sourceCode" id="cb11"><html><body><pre class="r">
-<span class="co">## general cell types</span>
-<span class="no">clusters_cell_types_cortex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'excit'</span>,<span class="st">'excit'</span>,<span class="st">'excit'</span>, <span class="st">'inh'</span>, <span class="st">'excit'</span>,
-                               <span class="st">'other'</span>, <span class="st">'other'</span>, <span class="st">'other'</span>, <span class="st">'inh'</span>, <span class="st">'inh'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types_cortex</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)
-<span class="no">STAR_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types_cortex</span>,
-                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'general_cell_types'</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
 
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'general_cell_types'</span>))</pre></body></html></div>
+<span class="co">## general cell types</span>
+<span class="kw">clusters_cell_types_cortex</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'excit'</span>,<span class="st">'excit'</span>,<span class="st">'excit'</span>, <span class="st">'inh'</span>, <span class="st">'excit'</span>,
+                               <span class="st">'other'</span>, <span class="st">'other'</span>, <span class="st">'other'</span>, <span class="st">'inh'</span>, <span class="st">'inh'</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_cell_types_cortex</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
+<span class="kw">STAR_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(gobject = <span class="kw">STAR_test</span>, annotation_vector = <span class="kw">clusters_cell_types_cortex</span>,
+                           cluster_column = <span class="st">'leiden_0.2'</span>, name = <span class="st">'general_cell_types'</span>)
+
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'general_cell_types'</span>))
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/8_general_cell_type.png">
 </center>
-<div class="sourceCode" id="cb12"><html><body><pre class="r">
-<span class="co">## detailed cell types</span>
-<span class="no">clusters_cell_types_cortex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'L5'</span>,<span class="st">'L4'</span>,<span class="st">'L2/3'</span>, <span class="st">'PV'</span>, <span class="st">'L6'</span>,
-                               <span class="st">'Astro'</span>, <span class="st">'Olig1'</span>, <span class="st">'Olig2'</span>, <span class="st">'Calretinin'</span>, <span class="st">'SST'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types_cortex</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)
-<span class="no">STAR_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types_cortex</span>,
-                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cell_types'</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit">
 
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,<span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<span class="co">## detailed cell types</span>
+<span class="kw">clusters_cell_types_cortex</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'L5'</span>,<span class="st">'L4'</span>,<span class="st">'L2/3'</span>, <span class="st">'PV'</span>, <span class="st">'L6'</span>,
+                               <span class="st">'Astro'</span>, <span class="st">'Olig1'</span>, <span class="st">'Olig2'</span>, <span class="st">'Calretinin'</span>, <span class="st">'SST'</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_cell_types_cortex</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
+<span class="kw">STAR_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(gobject = <span class="kw">STAR_test</span>, annotation_vector = <span class="kw">clusters_cell_types_cortex</span>,
+                           cluster_column = <span class="st">'leiden_0.2'</span>, name = <span class="st">'cell_types'</span>)
+
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="kw">STAR_test</span>, cell_color = <span class="st">'cell_types'</span>, point_size = <span class="fl">1.5</span>,show_center_label = <span class="kw">F</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/9_cell_type_umap.png">
 </center>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>),<span class="kw">custom_cluster_order</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Calretinin"</span>, <span class="st">"SST"</span>, <span class="st">"L4"</span>, <span class="st">"L2/3"</span>, <span class="st">"PV"</span>, <span class="st">"L5"</span>, <span class="st">"L6"</span>, <span class="st">"Astro"</span>, <span class="st">"Olig2"</span>, <span class="st">"Olig1"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>),custom_cluster_order = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Calretinin"</span>, <span class="st">"SST"</span>, <span class="st">"L4"</span>, <span class="st">"L2/3"</span>, <span class="st">"PV"</span>, <span class="st">"L5"</span>, <span class="st">"L6"</span>, <span class="st">"Astro"</span>, <span class="st">"Olig2"</span>, <span class="st">"Olig1"</span>))
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/10_cluster_annotation_heatmap.png">
 </center>
@@ -317,13 +343,15 @@
 <div id="part-8-co-visualize-cell-types" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-8-co-visualize-cell-types" class="anchor"></a>part 8: co-visualize cell types</h2>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># create consistent color code</span>
-<span class="no">mynames</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">STAR_test</span>)$<span class="no">cell_types</span>)
-<span class="no">mycolorcode</span> <span class="kw">=</span> <span class="kw pkg">Giotto</span><span class="kw ns">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mynames</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">mycolorcode</span>) <span class="kw">=</span> <span class="no">mynames</span>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co"># create consistent color code</span>
+<span class="kw">mynames</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="kw">STAR_test</span>)<span class="op">$</span><span class="kw">cell_types</span>)
+<span class="kw">mycolorcode</span> <span class="op">=</span> <span class="kw">Giotto</span>:::<span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(n = <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">mynames</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">mycolorcode</span>) <span class="op">=</span> <span class="kw">mynames</span>
 
-<span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>,
-               <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,<span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span>(gobject = <span class="kw">STAR_test</span>,
+               cell_color = <span class="st">'cell_types'</span>,show_center_label = <span class="kw">F</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/12_cell_type_co_vis.png">
 </center>
@@ -332,53 +360,61 @@
 <div id="part-9-visualize-gene-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-9-visualize-gene-expression" class="anchor"></a>part 9: visualize gene expression</h2>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Rorb"</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Rorb"</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
 
-<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="no">STAR_test</span>,
-                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Rorb"</span>,
-                  <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="kw">STAR_test</span>, 
+                  expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Rorb"</span>,
+                  show_other_cells = <span class="kw">F</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Rorb_dim_plot.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Rorb_spat_plot.png">
 </center>
-<div class="sourceCode" id="cb16"><html><body><pre class="r">
-<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Pcp4"</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)
+<div class="sourceCode" id="cb16"><pre class="downlit">
 
-<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="no">STAR_test</span>,
-                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Pcp4"</span>,
-                  <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Pcp4"</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+
+<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="kw">STAR_test</span>, 
+                  expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Pcp4"</span>,
+                  show_other_cells = <span class="kw">F</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Pcp4_dim_plot.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Pcp4_spat_plot.png">
 </center>
-<div class="sourceCode" id="cb17"><html><body><pre class="r">
-<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Cux2"</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
 
-<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="no">STAR_test</span>,
-                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Cux2"</span>,
-                  <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Cux2"</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+
+<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="kw">STAR_test</span>, 
+                  expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Cux2"</span>,
+                  show_other_cells = <span class="kw">F</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Cux2_dim_plot.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Cux2_spat_plot.png">
 </center>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Ctgf"</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="fu"><a href="../reference/dimGenePlot3D.html">dimGenePlot3D</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Ctgf"</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
 
-<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="no">STAR_test</span>,
-                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Ctgf"</span>,
-                  <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-                  <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatGenePlot3D.html">spatGenePlot3D</a></span>(<span class="kw">STAR_test</span>, 
+                  expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="st">"Ctgf"</span>,
+                  show_other_cells = <span class="kw">F</span>,
+                  genes_high_color = <span class="st">'red'</span>, genes_mid_color = <span class="st">'white'</span>, genes_low_color = <span class="st">'darkblue'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Ctgf_dim_plot.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Ctgf_spat_plot.png">
 </center>
@@ -387,41 +423,49 @@
 <div id="part-10-virtual-cross-section" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-10-virtual-cross-section" class="anchor"></a>part 10: virtual cross section</h2>
-<div class="sourceCode" id="cb19"><html><body><pre class="r">
-<span class="no">STAR_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">STAR_test</span>)
+<div class="sourceCode" id="cb19"><pre class="downlit">
 
-<span class="no">STAR_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createCrossSection.html">createCrossSection</a></span>(<span class="no">STAR_test</span>,<span class="kw">method</span><span class="kw">=</span><span class="st">"equation"</span>,<span class="kw">equation</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">600</span>),<span class="kw">extend_ratio</span> <span class="kw">=</span> <span class="fl">0.6</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb20"><html><body><pre class="r">
-<span class="fu"><a href="../reference/insertCrossSectionSpatPlot3D.html">insertCrossSectionSpatPlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'cube'</span>,
-           <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-           <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>)
+<span class="kw">STAR_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(gobject = <span class="kw">STAR_test</span>)
 
-<span class="fu"><a href="../reference/insertCrossSectionGenePlot3D.html">insertCrossSectionGenePlot3D</a></span>(<span class="no">STAR_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,<span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">"cube"</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Slc17a7"</span>)</pre></body></html></div>
+<span class="kw">STAR_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/createCrossSection.html">createCrossSection</a></span>(<span class="kw">STAR_test</span>,method=<span class="st">"equation"</span>,equation=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">600</span>),extend_ratio = <span class="fl">0.6</span>)
+</pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+
+<span class="fu"><a href="../reference/insertCrossSectionSpatPlot3D.html">insertCrossSectionSpatPlot3D</a></span>(<span class="kw">STAR_test</span>, cell_color = <span class="st">'cell_types'</span>, axis_scale = <span class="st">'cube'</span>,
+           point_size = <span class="fl">2</span>,
+           cell_color_code = <span class="kw">mycolorcode</span>)
+
+<span class="fu"><a href="../reference/insertCrossSectionGenePlot3D.html">insertCrossSectionGenePlot3D</a></span>(<span class="kw">STAR_test</span>, expression_values = <span class="st">'scaled'</span>,axis_scale = <span class="st">"cube"</span>,
+                  genes = <span class="st">"Slc17a7"</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/insert_cross_section_cell_types.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/insert_cross_section_Slc17a7.png">
 </center>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/crossSectionPlot.html">crossSectionPlot</a></span>(<span class="no">STAR_test</span>,
-                 <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">"border"</span>,
-                 <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">"cell_types"</span>,<span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>)
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="../reference/crossSectionPlot.html">crossSectionPlot</a></span>(<span class="kw">STAR_test</span>,
+                 point_size = <span class="fl">2</span>, point_shape = <span class="st">"border"</span>,
+                 cell_color = <span class="st">"cell_types"</span>,cell_color_code = <span class="kw">mycolorcode</span>)
 
-<span class="fu"><a href="../reference/crossSectionPlot3D.html">crossSectionPlot3D</a></span>(<span class="no">STAR_test</span>,
-                   <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">"cell_types"</span>,
-                              <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,<span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">"cube"</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/crossSectionPlot3D.html">crossSectionPlot3D</a></span>(<span class="kw">STAR_test</span>,
+                   point_size = <span class="fl">2</span>, cell_color = <span class="st">"cell_types"</span>, 
+                              cell_color_code = <span class="kw">mycolorcode</span>,axis_scale = <span class="st">"cube"</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/cross_section_spat.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/cross_section_spat3d.png">
 </center>
-<div class="sourceCode" id="cb22"><html><body><pre class="r">
-<span class="fu"><a href="../reference/crossSectionGenePlot.html">crossSectionGenePlot</a></span>(<span class="no">STAR_test</span>,
-                     <span class="kw">genes</span> <span class="kw">=</span> <span class="st">"Slc17a7"</span>,
-                     <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>,<span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">"border"</span>,
-                     <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-                     <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>)
+<div class="sourceCode" id="cb22"><pre class="downlit">
 
-<span class="fu"><a href="../reference/crossSectionGenePlot3D.html">crossSectionGenePlot3D</a></span>(<span class="no">STAR_test</span>,
-                       <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-                       <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Slc17a7"</span>),
-                       <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/crossSectionGenePlot.html">crossSectionGenePlot</a></span>(<span class="kw">STAR_test</span>,
+                     genes = <span class="st">"Slc17a7"</span>,
+                     point_size = <span class="fl">2</span>,point_shape = <span class="st">"border"</span>,
+                     cow_n_col = <span class="fl">1.5</span>,
+                     expression_values = <span class="st">'scaled'</span>)
+
+<span class="fu"><a href="../reference/crossSectionGenePlot3D.html">crossSectionGenePlot3D</a></span>(<span class="kw">STAR_test</span>,
+                       point_size = <span class="fl">2</span>,
+                       genes = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Slc17a7"</span>),
+                       expression_values = <span class="st">'scaled'</span>)
+</pre></div>
 <center>
 <img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Slc17a7_cross_section_gene.png"><img src="../inst/images/mouse_starmap_cortex/vignette_0.3.0/Slc17a7_cross_section_gene3d.png">
 </center>
@@ -443,7 +487,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
