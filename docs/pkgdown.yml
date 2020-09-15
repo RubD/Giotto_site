@@ -15,7 +15,7 @@ articles:
   mini_visium: mini_visium.html
   mouse_CODEX_spleen: mouse_CODEX_spleen.html
   mouse_merFISH_preoptic_region_200601: mouse_merFISH_preoptic_region_200601.html
-  mouse_osmFISH_SScortex_200518: mouse_osmFISH_SScortex_200518.html
+  mouse_osmFISH_SScortex_200915: mouse_osmFISH_SScortex_200915.html
   mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
   mouse_starmap_cortex: mouse_starmap_cortex.html
   mouse_visium_brain_200601: mouse_visium_brain_200601.html
@@ -23,5 +23,5 @@ articles:
   subset_giotto: subset_giotto.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-14T19:50Z
+last_built: 2020-09-15T16:49Z
 
