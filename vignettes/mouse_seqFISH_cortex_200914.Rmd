@@ -65,7 +65,8 @@ The seqFISH+ data to run this tutorial can be downloaded directly using the **ge
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 # download data to working directory ####
-getSpatialDataset(dataset = 'seqfish_SS_cortex', directory = my_working_dir)
+# if wget is installed, set method = 'wget'
+getSpatialDataset(dataset = 'seqfish_SS_cortex', directory = my_working_dir, method = 'wget')
 ```
 
 

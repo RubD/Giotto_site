@@ -61,7 +61,8 @@ The osmFISH data to run this tutorial can be found [here](https://github.com/Rub
 
 ```{r eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 # download data to working directory ####
-getSpatialDataset(dataset = 'osmfish_SS_cortex', directory = results_folder)
+# if wget is installed, set method = 'wget'
+getSpatialDataset(dataset = 'osmfish_SS_cortex', directory = results_folder, method = 'wget')
 ```
 
 

@@ -5,7 +5,7 @@ template:
 
 authors:
   Ruben Dries:
-    href: https://www.rubendries.com/
+    href: https://www.drieslab.com/
 
 navbar:
   title: ~
@@ -36,7 +36,7 @@ navbar:
       - text: "mouse STARmap cortex"
         href: articles/mouse_starmap_cortex.html
       - text: "human CyCIF PDAC"
-        href: articles/human_cycif_PDAC_200601.html
+        href: articles/human_cycif_PDAC_200916.html
       - text: "mouse Visium brain"
         href: articles/mouse_visium_brain_200601.html
       - text: "mouse Visium kidney"
