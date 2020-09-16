@@ -42,7 +42,8 @@
 <meta property="og:title" content="getSpatialDataset — getSpatialDataset" />
 <meta property="og:description" content="This package will automatically download the spatial locations and
 expression matrix for the chosen dataset. These files are already in the right format
-to create a Giotto object." />
+to create a Giotto object. If wget is installed on your machine, you can add
+'method = wget' to the parameters to download files faster." />
 
 
 
@@ -84,7 +85,7 @@ to create a Giotto object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9043</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
       </span>
     </div>
 
@@ -188,13 +189,15 @@ to create a Giotto object." />
     <div class="ref-description">
     <p>This package will automatically download the spatial locations and
 expression matrix for the chosen dataset. These files are already in the right format
-to create a Giotto object.</p>
+to create a Giotto object. If wget is installed on your machine, you can add
+'method = wget' to the parameters to download files faster.</p>
     </div>
 
     <pre class="usage"><span class='fu'>getSpatialDataset</span>(
-  dataset = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ST_OB_1"</span>, <span class='st'>"ST_OB_2"</span>, <span class='st'>"codex_spleen"</span>, <span class='st'>"cycif_PDAC"</span>, <span class='st'>"starmap_3D_cortex"</span>,
+  dataset = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ST_OB1"</span>, <span class='st'>"ST_OB2"</span>, <span class='st'>"codex_spleen"</span>, <span class='st'>"cycif_PDAC"</span>, <span class='st'>"starmap_3D_cortex"</span>,
     <span class='st'>"osmfish_SS_cortex"</span>, <span class='st'>"merfish_preoptic"</span>, <span class='st'>"seqfish_SS_cortex"</span>, <span class='st'>"seqfish_OB"</span>),
-  directory = <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>()
+  directory = <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -207,6 +210,10 @@ to create a Giotto object.</p>
     <tr>
       <th>directory</th>
       <td><p>directory to save the data to</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional parameters to <code><a href='https://rdrr.io/r/utils/download.file.html'>download.file</a></code></p></td>
     </tr>
     </table>
 
