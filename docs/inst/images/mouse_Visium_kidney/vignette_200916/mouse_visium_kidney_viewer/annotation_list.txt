@@ -1,2 +1,0 @@
-in_tissue_annot_information.txt in_tissue
-leiden_clus_annot_information.txt leiden_clus
