@@ -17,12 +17,11 @@ articles:
   mouse_merFISH_preoptic_region_200601: mouse_merFISH_preoptic_region_200601.html
   mouse_osmFISH_SScortex_200915: mouse_osmFISH_SScortex_200915.html
   mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
-  mouse_starmap_cortex: mouse_starmap_cortex.html
+  mouse_starmap_cortex_200917: mouse_starmap_cortex_200917.html
   mouse_visium_brain_200601: mouse_visium_brain_200601.html
-  mouse_visium_kidney_200601: mouse_visium_kidney_200601.html
   mouse_visium_kidney_200916: mouse_visium_kidney_200916.html
   subset_giotto: subset_giotto.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-16T22:34Z
+last_built: 2020-09-17T13:14Z
 
