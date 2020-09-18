@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,22 +188,22 @@
     </div>
 
     <pre class="usage"><span class='fu'>doHclust</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  genes_to_use = <span class='kw'>NULL</span>,
-  dim_reduction_to_use = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span>),
-  dim_reduction_name = <span class='st'>"pca"</span>,
-  dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
-  distance_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>, <span class='st'>"original"</span>, <span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>,
+  <span class='no'>gobject</span>,
+  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span>),
+  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
+  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
+  <span class='kw'>distance_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>, <span class='st'>"original"</span>, <span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>,
     <span class='st'>"manhattan"</span>, <span class='st'>"canberra"</span>, <span class='st'>"binary"</span>, <span class='st'>"minkowski"</span>),
-  agglomeration_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ward.D2"</span>, <span class='st'>"ward.D"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>,
+  <span class='kw'>agglomeration_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ward.D2"</span>, <span class='st'>"ward.D"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>,
     <span class='st'>"mcquitty"</span>, <span class='st'>"median"</span>, <span class='st'>"centroid"</span>),
-  k = <span class='fl'>10</span>,
-  h = <span class='kw'>NULL</span>,
-  name = <span class='st'>"hclust"</span>,
-  return_gobject = <span class='fl'>TRUE</span>,
-  set_seed = <span class='kw'>T</span>,
-  seed_number = <span class='fl'>1234</span>
+  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>h</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"hclust"</span>,
+  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>seed_number</span> <span class='kw'>=</span> <span class='fl'>1234</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -278,8 +278,7 @@
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/hclust.html'>hclust</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>doHclust</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in select_expression_values(gobject = gobject, values = values): object 'gobject' not found</span></div></pre>
+    <pre class="examples">    <span class='fu'>doHclust</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -295,7 +294,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

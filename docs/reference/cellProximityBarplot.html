@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,16 +188,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>cellProximityBarplot</span>(
-  <span class='kw'>gobject</span>,
-  <span class='kw'>CPscore</span>,
-  min_orig_ints = <span class='fl'>5</span>,
-  min_sim_ints = <span class='fl'>5</span>,
-  p_val = <span class='fl'>0.05</span>,
-  show_plot = <span class='fl'>NA</span>,
-  return_plot = <span class='fl'>NA</span>,
-  save_plot = <span class='fl'>NA</span>,
-  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  default_save_name = <span class='st'>"cellProximityBarplot"</span>
+  <span class='no'>gobject</span>,
+  <span class='no'>CPscore</span>,
+  <span class='kw'>min_orig_ints</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>min_sim_ints</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>p_val</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"cellProximityBarplot"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -254,8 +254,7 @@
  enrichment or depletion of cell type pairs.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>cellProximityBarplot</span>(<span class='kw'>CPscore</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in cellProximityBarplot(CPscore): argument "CPscore" is missing, with no default</span></div></pre>
+    <pre class="examples">    <span class='fu'>cellProximityBarplot</span>(<span class='no'>CPscore</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -271,7 +270,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

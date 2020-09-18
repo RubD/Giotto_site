@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,16 +188,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>findGiniMarkers_one_vs_all</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>cluster_column</span>,
-  subset_clusters = <span class='kw'>NULL</span>,
-  min_expr_gini_score = <span class='fl'>0.5</span>,
-  min_det_gini_score = <span class='fl'>0.5</span>,
-  detection_threshold = <span class='fl'>0</span>,
-  rank_score = <span class='fl'>1</span>,
-  min_genes = <span class='fl'>4</span>,
-  verbose = <span class='fl'>TRUE</span>
+  <span class='no'>gobject</span>,
+  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='no'>cluster_column</span>,
+  <span class='kw'>subset_clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>min_expr_gini_score</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>min_det_gini_score</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>detection_threshold</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>rank_score</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>min_genes</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -253,18 +253,11 @@
     <div class='dont-index'><p><code><a href='findGiniMarkers.html'>findGiniMarkers</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mini_giotto_single_cell</span>)
+    <pre class="examples">
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
 
-<span class='kw'>gini_markers</span> <span class='op'>=</span> <span class='fu'>findGiniMarkers_one_vs_all</span>(gobject = <span class='kw'>mini_giotto_single_cell</span>,
-                                          cluster_column = <span class='st'>'leiden_clus'</span>)
-</div><div class='output co'>#&gt; 
-#&gt;  start with cluster  1 
-#&gt; 
-#&gt;  start with cluster  2 
-#&gt; 
-#&gt;  start with cluster  3 </div><div class='input'>
-</div></pre>
+<span class='no'>gini_markers</span> <span class='kw'>=</span> <span class='fu'>findGiniMarkers_one_vs_all</span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>,
+                                          <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='st'>'leiden_clus'</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -280,7 +273,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

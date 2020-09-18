@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,22 +188,22 @@
     </div>
 
     <pre class="usage"><span class='fu'>jackstrawPlot</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  reduction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
-  genes_to_use = <span class='kw'>NULL</span>,
-  center = <span class='fl'>FALSE</span>,
-  scale_unit = <span class='fl'>FALSE</span>,
-  ncp = <span class='fl'>20</span>,
-  ylim = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-  iter = <span class='fl'>10</span>,
-  threshold = <span class='fl'>0.01</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  show_plot = <span class='fl'>NA</span>,
-  return_plot = <span class='fl'>NA</span>,
-  save_plot = <span class='fl'>NA</span>,
-  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  default_save_name = <span class='st'>"jackstrawPlot"</span>
+  <span class='no'>gobject</span>,
+  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
+  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>center</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>scale_unit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>ncp</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
+  <span class='kw'>iter</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"jackstrawPlot"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -285,19 +285,15 @@
  <br /></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples">
 <span class='co'># \donttest{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mini_giotto_single_cell</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
 
 <span class='co'># jackstraw package is required to run</span>
-<span class='fu'>jackstrawPlot</span>(<span class='kw'>mini_giotto_single_cell</span>, ncp = <span class='fl'>10</span>)
-</div><div class='output co'>#&gt; <span class='message'>using 'jackstraw' to identify significant PCs If used in published research, please cite:</span>
-#&gt; <span class='message'>  Neo Christopher Chung and John D. Storey (2014).</span>
-#&gt; <span class='message'>  'Statistical significance of variables driving systematic variation in high-dimensional data. Bioinformatics</span></div><div class='output co'>#&gt; <span class='message'>Estimating a number of significant principal component: </span></div><div class='output co'>#&gt; 1  2  3  4  5  6  7  8  9  10  number of estimated significant components:  0 </div><div class='img'><img src='jackstrawPlot-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='jackstrawPlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># }</span>
+<span class='fu'>jackstrawPlot</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>ncp</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
-</div></pre>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -313,7 +309,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,11 +188,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>installGiottoEnvironment</span>(
-  packages_to_install = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pandas"</span>, <span class='st'>"networkx"</span>, <span class='st'>"python-igraph"</span>, <span class='st'>"leidenalg"</span>,
+  <span class='kw'>packages_to_install</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pandas"</span>, <span class='st'>"networkx"</span>, <span class='st'>"python-igraph"</span>, <span class='st'>"leidenalg"</span>,
     <span class='st'>"python-louvain"</span>, <span class='st'>"python.app"</span>, <span class='st'>"scikit-learn"</span>),
-  force_miniconda = <span class='fl'>FALSE</span>,
-  force_environment = <span class='fl'>FALSE</span>,
-  verbose = <span class='fl'>TRUE</span>
+  <span class='kw'>force_miniconda</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>force_environment</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -228,14 +228,12 @@ your own python path then you can set the python_path in the <code><a href='crea
 and provide the instructions to the <code><a href='createGiottoObject.html'>createGiottoObject</a></code> function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
   <span class='co'># this command will install r-miniconda</span>
   <span class='co'># and a giotto environment with all necessary python modules</span>
   <span class='fu'>installGiottoEnvironment</span>()
-}
-
-</div></pre>
+}</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -251,7 +249,7 @@ and provide the instructions to the <code><a href='createGiottoObject.html'>crea
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

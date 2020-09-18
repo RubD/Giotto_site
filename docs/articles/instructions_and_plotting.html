@@ -84,7 +84,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -130,7 +130,7 @@
 
       
 
-      </header><script src="instructions_and_plotting_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -169,23 +169,21 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 <li>we set save_plot = TRUE to automatically saving each plot</li>
 </ul>
 <p>We also specify some other plotting parameters for the automatic saving functionality, such as the save_dir whose default is the current working directory.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
 
 <span class="co"># create instructions for your python path, how to view your plots and</span>
 <span class="co"># parameters to save your plot if wanted</span>
-<span class="kw">my_python_path</span> <span class="op">=</span> <span class="st">"/your/python/path/"</span>
-<span class="kw">results_folder</span> <span class="op">=</span> <span class="st">'/path/to/your/results/'</span>
-<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(python_path = <span class="kw">my_python_path</span>,
-                                  show_plot = <span class="fl">FALSE</span>,  
-                                  return_plot = <span class="fl">TRUE</span>,
-                                  save_plot = <span class="fl">TRUE</span>,
-                                  save_dir = <span class="kw">results_folder</span>,
-                                  plot_format = <span class="st">'png'</span>,
-                                  dpi = <span class="fl">200</span>,
-                                  height = <span class="fl">9</span>,
-                                  width = <span class="fl">9</span>)
-</pre></div>
+<span class="no">my_python_path</span> <span class="kw">=</span> <span class="st">"/your/python/path/"</span>
+<span class="no">results_folder</span> <span class="kw">=</span> <span class="st">'/path/to/your/results/'</span>
+<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">python_path</span> <span class="kw">=</span> <span class="no">my_python_path</span>,
+                                  <span class="kw">show_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+                                  <span class="kw">return_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+                                  <span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+                                  <span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">results_folder</span>,
+                                  <span class="kw">plot_format</span> <span class="kw">=</span> <span class="st">'png'</span>,
+                                  <span class="kw">dpi</span> <span class="kw">=</span> <span class="fl">200</span>,
+                                  <span class="kw">height</span> <span class="kw">=</span> <span class="fl">9</span>,
+                                  <span class="kw">width</span> <span class="kw">=</span> <span class="fl">9</span>)</pre></body></html></div>
 </div>
 <div id="create-giotto-object" class="section level2">
 <h2 class="hasAnchor">
@@ -196,35 +194,31 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 <li>provide the cell locations</li>
 <li>provide the previously generated instructions file (named list)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co">## PREPARE osmFISH DATA ####</span>
-<span class="kw">data_dir</span> <span class="op">=</span> <span class="st">'/directory/for/osmFISH_data/'</span>
-<span class="kw">osm_exprs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(file = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_expression.txt'</span>))
-<span class="kw">osm_locs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(file = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_cell_coordinates.txt'</span>))
-<span class="kw">osm_locs</span> <span class="op">=</span> <span class="kw">osm_locs</span>[<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="kw">osm_locs</span>) <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="kw">osm_exprs</span>),]
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co">## PREPARE osmFISH DATA ####</span>
+<span class="no">data_dir</span> <span class="kw">=</span> <span class="st">'/directory/for/osmFISH_data/'</span>
+<span class="no">osm_exprs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_expression.txt'</span>))
+<span class="no">osm_locs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_cell_coordinates.txt'</span>))
+<span class="no">osm_locs</span> <span class="kw">=</span> <span class="no">osm_locs</span>[<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">osm_locs</span>) <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">osm_exprs</span>),]
 
 <span class="co">## CREATE GIOTTO OBJECT with expression data, location data and instructions</span>
-<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(raw_exprs = <span class="kw">osm_exprs</span>,
-                               spatial_locs = <span class="kw">osm_locs</span>,
-                               instructions = <span class="kw">instrs</span>)
+<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">osm_exprs</span>,
+                               <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">osm_locs</span>,
+                               <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
 
 <span class="co">## add provided annotation and filter + normalize</span>
-<span class="kw">metadata</span> <span class="op">=</span> <span class="fu">fread</span>(file = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_cell_metadata.txt'</span>))
-<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="kw">osm_test</span>, new_metadata = <span class="kw">metadata</span>,
-                           by_column = <span class="kw">T</span>, column_cell_ID = <span class="st">'CellID'</span>)
-<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(gobject = <span class="kw">osm_test</span>)
-<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(gobject = <span class="kw">osm_test</span>)
-</pre></div>
+<span class="no">metadata</span> <span class="kw">=</span> <span class="fu">fread</span>(<span class="kw">file</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">data_dir</span>,<span class="st">'/'</span>,<span class="st">'osmFISH_prep_cell_metadata.txt'</span>))
+<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="no">osm_test</span>, <span class="kw">new_metadata</span> <span class="kw">=</span> <span class="no">metadata</span>,
+                           <span class="kw">by_column</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">column_cell_ID</span> <span class="kw">=</span> <span class="st">'CellID'</span>)
+<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)
+<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)</pre></body></html></div>
 </div>
 <div id="work-with-giotto-instructions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#work-with-giotto-instructions" class="anchor"></a>3. work with Giotto instructions</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># show the provided Giotto instructions</span>
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="kw">osm_test</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># show the provided Giotto instructions</span>
+<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="no">osm_test</span>)
 <span class="co"># change a previously set parameter, e.g. change dpi = 200 to dpi = 300</span>
-<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/changeGiottoInstructions.html">changeGiottoInstructions</a></span>(<span class="kw">osm_test</span>, param = <span class="st">'dpi'</span>, new_value = <span class="fl">300</span>)
-</pre></div>
+<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/changeGiottoInstructions.html">changeGiottoInstructions</a></span>(<span class="no">osm_test</span>, <span class="kw">param</span> <span class="kw">=</span> <span class="st">'dpi'</span>, <span class="kw">new_value</span> <span class="kw">=</span> <span class="fl">300</span>)</pre></body></html></div>
 </div>
 <div id="different-ways-of-saving-a-plot" class="section level2">
 <h2 class="hasAnchor">
@@ -235,38 +229,36 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 <li>changing default parameters by by providing a named list to save_param parameter (2 &amp; 3)</li>
 <li>block automatic saving, but modify the created ggplot object and save that one (4)</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># 1. default instructions from Giotto object</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterName'</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1. default instructions from Giotto object</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterName'</span>)
 
 <span class="co"># 2. overwrite save_name instruction by providing a named list for save_param</span>
 <span class="co"># save_param takes all parameters of all_plots_save_function</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterName'</span>, save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'myplot'</span>))
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterName'</span>, <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'myplot'</span>))
 
 <span class="co"># 3. overwrite save_name instruction and add specific subfolder</span>
 <span class="co"># save_folder creates a specific subfolder in the provided directory</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterName'</span>, point_size = <span class="fl">1.5</span>,
-         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_folder = <span class="st">'2_Gobject'</span>, save_name = <span class="st">'original_clusters'</span>, units = <span class="st">'in'</span>, base_height = <span class="fl">6</span>, base_width = <span class="fl">6</span>))
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterName'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
+         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_folder</span> <span class="kw">=</span> <span class="st">'2_Gobject'</span>, <span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'original_clusters'</span>, <span class="kw">units</span> <span class="kw">=</span> <span class="st">'in'</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">6</span>))
 
 <span class="co"># 4. do not save, but return as object, modify and save</span>
 <span class="co"># for example to create a black background:</span>
 <span class="co"># we can change the parameter 'background_color' to black in the spatPlot function </span>
 <span class="co"># OR return the ggplot object and change the panel.background to black within theme</span>
 
-<span class="kw">mypl</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterName'</span>, save_plot = <span class="kw">F</span>)
-<span class="kw">mypl</span> <span class="op">=</span> <span class="kw">mypl</span> <span class="op">+</span> <span class="fu">theme</span>(panel.background = <span class="fu">element_rect</span>(fill =<span class="st">'black'</span>),
-                    panel.grid = <span class="fu">element_blank</span>())
-<span class="kw">mypl</span> <span class="op">=</span> <span class="kw">mypl</span> <span class="op">+</span> <span class="fu">guides</span>(fill = <span class="fu">guide_legend</span>(override.aes = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(size=<span class="fl">5</span>)))
-<span class="kw">mypl</span>
+<span class="no">mypl</span> <span class="kw">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterName'</span>, <span class="kw">save_plot</span> <span class="kw">=</span> <span class="no">F</span>)
+<span class="no">mypl</span> <span class="kw">=</span> <span class="no">mypl</span> + <span class="fu">theme</span>(<span class="kw">panel.background</span> <span class="kw">=</span> <span class="fu">element_rect</span>(<span class="kw">fill</span> <span class="kw">=</span><span class="st">'black'</span>),
+                    <span class="kw">panel.grid</span> <span class="kw">=</span> <span class="fu">element_blank</span>())
+<span class="no">mypl</span> <span class="kw">=</span> <span class="no">mypl</span> + <span class="fu">guides</span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="fu">guide_legend</span>(<span class="kw">override.aes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">size</span><span class="kw">=</span><span class="fl">5</span>)))
+<span class="no">mypl</span>
 
 <span class="co"># save in specified folder</span>
-<span class="kw">gobject_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>,<span class="st">'/'</span>,<span class="st">'2_Gobject/'</span>)
-<span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="kw">gobject_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="kw">gobject_folder</span>, recursive = <span class="kw">T</span>)
-<span class="kw">cowplot</span>::<span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/save_plot.html">save_plot</a></span>(plot = <span class="kw">mypl</span>,
-                   filename = <span class="st">'original_clusters_black.png'</span>, path = <span class="kw">gobject_folder</span>,
-                   device = <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span>(),
-                   dpi = <span class="fl">300</span>, base_height = <span class="fl">10</span>, base_width = <span class="fl">10</span>)
-</pre></div>
+<span class="no">gobject_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>,<span class="st">'/'</span>,<span class="st">'2_Gobject/'</span>)
+<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="no">gobject_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">gobject_folder</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="kw pkg">cowplot</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/cowplot/man/save_plot.html">save_plot</a></span>(<span class="kw">plot</span> <span class="kw">=</span> <span class="no">mypl</span>,
+                   <span class="kw">filename</span> <span class="kw">=</span> <span class="st">'original_clusters_black.png'</span>, <span class="kw">path</span> <span class="kw">=</span> <span class="no">gobject_folder</span>,
+                   <span class="kw">device</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span>(),
+                   <span class="kw">dpi</span> <span class="kw">=</span> <span class="fl">300</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
 <p><img src="../inst/howtos/instructions_and_plotting/vignette_1/original_clusters_black.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -287,7 +279,7 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

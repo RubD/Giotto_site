@@ -129,7 +129,7 @@
       <a href="../articles/mouse_seqFISH_cortex_200914.html">mouse seqFISH cortex</a>
     </li>
     <li>
-      <a href="../articles/mouse_merFISH_preoptic_region_200601.html">mouse hypoth. preopt. region</a>
+      <a href="../articles/mouse_merFISH_preoptic_region_200909.html">mouse hypoth. preopt. region</a>
     </li>
     <li>
       <a href="../articles/mouse_starmap_cortex_200917.html">mouse STARmap cortex</a>
@@ -188,29 +188,29 @@
     </div>
 
     <pre class="usage"><span class='fu'>subClusterCells</span>(
-  <span class='kw'>gobject</span>,
-  name = <span class='st'>"sub_clus"</span>,
-  cluster_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"leiden"</span>, <span class='st'>"louvain_community"</span>, <span class='st'>"louvain_multinet"</span>),
-  cluster_column = <span class='kw'>NULL</span>,
-  selected_clusters = <span class='kw'>NULL</span>,
-  hvg_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(reverse_log_scale = <span class='kw'>T</span>, difference_in_cov = <span class='fl'>1</span>, expression_values =
+  <span class='no'>gobject</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sub_clus"</span>,
+  <span class='kw'>cluster_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"leiden"</span>, <span class='st'>"louvain_community"</span>, <span class='st'>"louvain_multinet"</span>),
+  <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selected_clusters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>hvg_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>difference_in_cov</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>expression_values</span> <span class='kw'>=</span>
     <span class='st'>"normalized"</span>),
-  hvg_min_perc_cells = <span class='fl'>5</span>,
-  hvg_mean_expr_det = <span class='fl'>1</span>,
-  use_all_genes_as_hvg = <span class='fl'>FALSE</span>,
-  min_nr_of_hvg = <span class='fl'>5</span>,
-  pca_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(expression_values = <span class='st'>"normalized"</span>, scale_unit = <span class='kw'>T</span>),
-  nn_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span>),
-  k_neighbors = <span class='fl'>10</span>,
-  resolution = <span class='fl'>1</span>,
-  n_iterations = <span class='fl'>1000</span>,
-  gamma = <span class='fl'>1</span>,
-  omega = <span class='fl'>1</span>,
-  python_path = <span class='kw'>NULL</span>,
-  nn_network_to_use = <span class='st'>"sNN"</span>,
-  network_name = <span class='st'>"sNN.pca"</span>,
-  return_gobject = <span class='fl'>TRUE</span>,
-  verbose = <span class='kw'>T</span>
+  <span class='kw'>hvg_min_perc_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>hvg_mean_expr_det</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>use_all_genes_as_hvg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>min_nr_of_hvg</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>pca_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='st'>"normalized"</span>, <span class='kw'>scale_unit</span> <span class='kw'>=</span> <span class='no'>T</span>),
+  <span class='kw'>nn_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>20</span>),
+  <span class='kw'>k_neighbors</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>n_iterations</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>gamma</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>omega</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
+  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
+  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -326,8 +326,7 @@ The systematic steps are:</p><ul>
 and  @seealso <code><a href='doLeidenCluster.html'>doLeidenCluster</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>subClusterCells</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in class(gobject) %in% c("ExpressionSet", "SCESet", "seurat", "giotto"): object 'gobject' not found</span></div></pre>
+    <pre class="examples">    <span class='fu'>subClusterCells</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -343,7 +342,7 @@ and  @seealso <code><a href='doLeidenCluster.html'>doLeidenCluster</a></code></p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
