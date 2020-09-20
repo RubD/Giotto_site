@@ -1,0 +1,69 @@
+---
+output: html_document
+---
+
+
+# Dimension reduction 
+
+```{r eval=FALSE}
+library(Giotto)
+```
+
+$~$
+
+#### 1. create & process Giotto object
+
+```{r eval=FALSE}
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+my_giotto_object <- filterGiotto(gobject = my_giotto_object)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+``` 
+
+$~$
+
+#### 2. Highly variable genes
+
+```{r eval=FALSE}
+my_giotto_object <- calculateHVG(gobject = my_giotto_object)
+```
+
+$~$
+
+#### 3. PCA
+
+```{r eval=FALSE}
+# run PCA
+my_giotto_object <- runPCA(gobject = my_giotto_object)
+
+# identify most informative principal components
+screePlot(my_giotto_object, ncp = 20)
+jackstrawPlot(my_giotto_object, ncp = 20)
+
+# plot PCA results
+plotPCA(my_giotto_object)
+```
+
+$~$
+
+#### 4. UMAP & TSNE
+
+```{r eval=FALSE}
+# umap
+my_giotto_object <- runUMAP(my_giotto_object, dimensions_to_use = 1:5)
+plotUMAP(gobject = my_giotto_object)
+
+# tsne
+my_giotto_object <- runtSNE(my_giotto_object, dimensions_to_use = 1:5)
+plotTSNE(gobject = my_giotto_object)
+```
+
+
+
+
+
+
+

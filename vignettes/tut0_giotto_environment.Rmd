@@ -1,0 +1,62 @@
+---
+output: html_document
+---
+
+
+# How to install and work with a Giotto environment?  
+
+To perform all potential steps and analysis in the Giotto spatial toolbox the user needs
+to have a number of python modules installed. To make this process as flexible and easy 
+as possible two different strategies can be used:  
+
+$~$
+
+#### 1. The user can install all the necessary modules themself and then the path to their python or environment (e.g. Conda) can be provided as an instruction.
+
+```{r eval=FALSE}
+library(Giotto)
+```
+
+```{r eval=FALSE}
+my_instructions = createGiottoInstructions(python_path = 'your/python/path')
+my_giotto_object = createGiottoObject(raw_exprs = '...',
+                                      spatial_locs = '...', 
+                                      instructions = my_instructions)
+```
+
+$~$
+
+#### 2. Alternatively, the user can just install a giotto python environment using r-miniconda
+as implemented in the reticulate package. In this case the environment will be automatically detected 
+and no specific python path need to be provided. This is explained in more detail below:  
+
+  
+```{r eval=FALSE}
+library(Giotto)
+```
+
+- installation:  
+```{r eval=FALSE}
+installGiottoEnvironment()
+```
+
+- re-install the giotto enviroment:  
+```{r eval=FALSE}
+installGiottoEnvironment(force_environment = TRUE)
+```
+
+- re-install mini-conda and enviroment:  
+```{r eval=FALSE}
+installGiottoEnvironment(force_miniconda = TRUE)
+```
+
+- remove Giotto environment:  
+```{r eval=FALSE}
+removeGiottoEnvironment()
+```
+
+
+
+
+
+

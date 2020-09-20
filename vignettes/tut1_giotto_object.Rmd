@@ -1,0 +1,77 @@
+---
+output: html_document
+---
+
+
+# How to create a Giotto object?  
+
+#### 1. Minimum requirements  
+
+- expression matrix  
+- spatial locations  
+
+```{r eval=FALSE}
+library(Giotto)
+
+# 1. directly from the file paths
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+
+# 2. use an existing matrix and data.table
+expression_matrix = readExprMatrix(path_to_matrix) # fast method to read expression matrix
+cell_locations = data.table::fread(path_to_locations)
+
+my_giotto_object = createGiottoObject(raw_exprs = expression_matrix,
+                                      spatial_locs = cell_locations)
+
+``` 
+
+$~$
+
+#### 2. Additional features   
+
+Previous obtained information can be provided using any of the functions parameters to:  
+- Add cell or gene metadata  
+- add spatial networks or grids  
+- add dimensions reduction  
+- add giotto images  
+- add offset file  
+- add instructions  
+
+Usually specificying your own instructions can be most usefull to:  
+- specify a python path  
+- determine output of plots  
+- automatically save plots to selected directory  
+
+```{r eval=FALSE}
+library(Giotto)
+
+# 1. directly use a path
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+# 2. create your own instructions
+path_to_python = '/usr/bin/python3' # can be something else 
+working_directory = getwd() # this will use your current working directory
+my_instructions = createGiottoInstructions(python_path = path_to_python,
+                                           save_dir = working_directory)
+
+# 3. create your giotto object
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations,
+                                      cell_metadata = my_cell_metadata,
+                                      gene_metadata = my_gene_metadata,
+                                      instructions = my_instructions)
+
+# 4. check which giotto instructions are associated with your giotto object
+showGiottoInstructions(my_giotto_object)
+```
+
+
+
+
+

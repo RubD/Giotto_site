@@ -46,20 +46,22 @@ Howto's examples:
 
 
 ##### Giotto analyses [work in progress]
-- 1. Create a Giotto object  
-- 2. Process and filter a Giotto object  
-- 3. Dimension reduction  
+- [0. Install a Giotto environment (optional)](./tut0_giotto_environment.html)
+- [1. Create a Giotto object](./tut1_giotto_object.html)
+- [2. Process and filter a Giotto object](./tut2_giotto_object_process.html)
+- [3. Dimension reduction](./tut3_giotto_dim_reduction.html)
 - 4. Cluster cells or spots  
 - 5. Identify differentially expressed genes
 - 6. Annotate clusters  
-- 7. Create a Spatial grid or Network  
-- 8. Find genes with a spatially coherent gene expression pattern
-- 9. Identify genes that are spatially co-expressed
-- 10. Explore spatial domains with HMRF  
-- 11. Calculate spatial cell-cell interaction enrichment  
-- 12. Find cell-cell interaction changed genes (ICG)  
-- 13. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions  
-- 14. Export Giotto results to use in Giotto viewer
+- 7. Cell-type enrichment or deconvolution per spot
+- 8. Create a Spatial grid or Network  
+- 9. Find genes with a spatially coherent gene expression pattern
+- 10. Identify genes that are spatially co-expressed
+- 11. Explore spatial domains with HMRF  
+- 12. Calculate spatial cell-cell interaction enrichment  
+- 13. Find cell-cell interaction changed genes (ICG)  
+- 14. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions  
+- 15. Export Giotto results to use in Giotto viewer
 
 
 ##### Giotto Analyzer and Viewer interaction [work in progress]

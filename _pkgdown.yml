@@ -45,6 +45,8 @@ navbar:
         href: articles/mouse_CODEX_spleen.html
       - text: "mouse osmFISH SScortex"
         href: articles/mouse_osmFISH_SScortex_200915.html
+    - text: Contribute
+      href: articles/contribute.html
     - text: FAQ
       href: articles/faqs.html
     - text: News

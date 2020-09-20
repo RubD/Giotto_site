@@ -2,6 +2,7 @@ pandoc: 2.7.2
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
+  contribute: contribute.html
   faqs: faqs.html
   getting_started: getting_started.html
   howto_images: howto_images.html
@@ -21,7 +22,11 @@ articles:
   mouse_visium_brain_200601: mouse_visium_brain_200601.html
   mouse_visium_kidney_200916: mouse_visium_kidney_200916.html
   subset_giotto: subset_giotto.html
+  tut0_giotto_environment: tut0_giotto_environment.html
+  tut1_giotto_object: tut1_giotto_object.html
+  tut2_giotto_object_process: tut2_giotto_object_process.html
+  tut3_giotto_dim_reduction: tut3_giotto_dim_reduction.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-18T01:17Z
+last_built: 2020-09-20T20:44Z
 
