@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -191,26 +191,26 @@
     </div>
 
     <pre class="usage"><span class='fu'>plotCPG</span>(
-  <span class='no'>gobject</span>,
-  <span class='no'>cpgObject</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"volcano"</span>, <span class='st'>"cell_barplot"</span>, <span class='st'>"cell-cell"</span>, <span class='st'>"cell_sankey"</span>, <span class='st'>"heatmap"</span>,
+  <span class='kw'>gobject</span>,
+  <span class='kw'>cpgObject</span>,
+  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"volcano"</span>, <span class='st'>"cell_barplot"</span>, <span class='st'>"cell-cell"</span>, <span class='st'>"cell_sankey"</span>, <span class='st'>"heatmap"</span>,
     <span class='st'>"dotplot"</span>),
-  <span class='kw'>min_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>min_cells_expr</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>min_int_cells</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>min_int_cells_expr</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>min_fdr</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>min_spat_diff</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>min_log2_fc</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>min_zscore</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>zscores_column</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cell_type"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"plotCPG"</span>
+  min_cells = <span class='fl'>5</span>,
+  min_cells_expr = <span class='fl'>1</span>,
+  min_int_cells = <span class='fl'>3</span>,
+  min_int_cells_expr = <span class='fl'>1</span>,
+  min_fdr = <span class='fl'>0.05</span>,
+  min_spat_diff = <span class='fl'>0.2</span>,
+  min_log2_fc = <span class='fl'>0.2</span>,
+  min_zscore = <span class='fl'>2</span>,
+  zscores_column = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cell_type"</span>, <span class='st'>"genes"</span>),
+  direction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
+  cell_color_code = <span class='kw'>NULL</span>,
+  show_plot = <span class='fl'>NA</span>,
+  return_plot = <span class='fl'>NA</span>,
+  save_plot = <span class='fl'>NA</span>,
+  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  default_save_name = <span class='st'>"plotCPG"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -299,7 +299,8 @@
     <p>plot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>plotCPG</span>(<span class='no'>CPGscores</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>plotCPG</span>(<span class='kw'>CPGscores</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in plotCellProximityGenes(gobject = gobject, cpgObject = cpgObject,     method = method, min_cells = min_cells, min_cells_expr = min_cells_expr,     min_int_cells = min_int_cells, min_int_cells_expr = min_int_cells_expr,     min_fdr = min_fdr, min_spat_diff = min_spat_diff, min_log2_fc = min_log2_fc,     min_zscore = min_zscore, zscores_column = zscores_column,     direction = direction, cell_color_code = cell_color_code,     show_plot = show_plot, return_plot = return_plot, save_plot = save_plot,     save_param = save_param, default_save_name = default_save_name): argument "cpgObject" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -315,7 +316,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

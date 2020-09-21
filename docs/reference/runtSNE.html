@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -191,23 +191,23 @@
     </div>
 
     <pre class="usage"><span class='fu'>runtSNE</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"tsne"</span>,
-  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>perplexity</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>do_PCA_first</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>seed_number</span> <span class='kw'>=</span> <span class='fl'>1234</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>gobject</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  reduction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
+  dim_reduction_to_use = <span class='st'>"pca"</span>,
+  dim_reduction_name = <span class='st'>"pca"</span>,
+  dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+  name = <span class='st'>"tsne"</span>,
+  genes_to_use = <span class='kw'>NULL</span>,
+  return_gobject = <span class='fl'>TRUE</span>,
+  dims = <span class='fl'>2</span>,
+  perplexity = <span class='fl'>30</span>,
+  theta = <span class='fl'>0.5</span>,
+  do_PCA_first = <span class='kw'>F</span>,
+  set_seed = <span class='kw'>T</span>,
+  seed_number = <span class='fl'>1234</span>,
+  verbose = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -298,15 +298,17 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mini_giotto_single_cell</span>)
 
-<span class='no'>mini_giotto_single_cell</span> <span class='kw'>&lt;-</span> <span class='fu'>runtSNE</span>(<span class='no'>mini_giotto_single_cell</span>,
-                                   <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-                                   <span class='kw'>n_threads</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-                                   <span class='kw'>n_neighbors</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-
-<span class='fu'><a href='plotTSNE.html'>plotTSNE</a></span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>)</pre>
+<span class='kw'>mini_giotto_single_cell</span> <span class='op'>&lt;-</span> <span class='fu'>runtSNE</span>(<span class='kw'>mini_giotto_single_cell</span>,
+                                   dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+                                   n_threads = <span class='fl'>1</span>,
+                                   n_neighbors = <span class='fl'>3</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in .check_tsne_params(nrow(X), dims = dims, perplexity = perplexity,     theta = theta, max_iter = max_iter, verbose = verbose, Y_init = Y_init,     stop_lying_iter = stop_lying_iter, mom_switch_iter = mom_switch_iter,     momentum = momentum, final_momentum = final_momentum, eta = eta,     exaggeration_factor = exaggeration_factor): perplexity is too large for the number of samples</span></div><div class='input'>
+<span class='fu'><a href='plotTSNE.html'>plotTSNE</a></span>(gobject = <span class='kw'>mini_giotto_single_cell</span>)
+</div><div class='img'><img src='runtSNE-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='runtSNE-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -322,7 +324,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

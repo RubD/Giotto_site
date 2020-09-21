@@ -11,6 +11,8 @@ There are several ways to subset a Giotto object or visualize a subset of the da
 - subset the dataset based on cell IDs (cluster name(s) or individual cell IDs)   
 - subset the dataset based on spatial locations/coordinates   
 
+Figures may not be identical, because examples might have been updated, but the subsetting principles remain the same.
+
 
 
 ## 1. the Visium 10X whole brain  

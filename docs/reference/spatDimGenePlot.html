@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -190,14 +190,14 @@
     <p>Visualize cells according to spatial AND dimension reduction coordinates in ggplot mode</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spatDimGenePlot</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>spatDimGenePlot</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='spatDimGenePlot2D.html'>spatDimGenePlot2D</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='spatDimGenePlot2D.html'>spatDimGenePlot2D</a></code></p><dl>
     <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
     <dt><code>show_image</code></dt><dd><p>show a tissue background image</p></dd>
     <dt><code>gimage</code></dt><dd><p>a giotto image</p></dd>
@@ -274,7 +274,8 @@
 <code><a href='spatDimGenePlot3D.html'>spatDimGenePlot3D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>spatDimGenePlot</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>spatDimGenePlot</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in dimGenePlot2D(gobject = gobject, expression_values = expression_values,     genes = genes, dim_reduction_to_use = dim_reduction_to_use,     dim_reduction_name = dim_reduction_name, dim1_to_use = dim1_to_use,     dim2_to_use = dim2_to_use, show_NN_network = show_NN_network,     nn_network_to_use = nn_network_to_use, network_name = network_name,     network_color = dim_network_color, edge_alpha = dim_edge_alpha,     scale_alpha_with_expression = scale_alpha_with_expression,     point_shape = dim_point_shape, point_size = dim_point_size,     point_alpha = dim_point_alpha, cell_color_gradient = cell_color_gradient,     gradient_midpoint = gradient_midpoint, gradient_limits = gradient_limits,     point_border_col = dim_point_border_col, point_border_stroke = dim_point_border_stroke,     show_legend = show_legend, legend_text = legend_text, background_color = dim_background_color,     axis_text = axis_text, axis_title = axis_title, cow_n_col = cow_n_col,     cow_rel_h = cow_rel_h, cow_rel_w = cow_rel_w, cow_align = cow_align,     show_plot = FALSE, return_plot = TRUE, save_plot = FALSE): argument "genes" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -290,7 +291,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

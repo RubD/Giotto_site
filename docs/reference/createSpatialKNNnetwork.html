@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -191,16 +191,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>createSpatialKNNnetwork</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"dbscan"</span>,
-  <span class='kw'>dimensions</span> <span class='kw'>=</span> <span class='st'>"all"</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"knn_network"</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>maximum_distance</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>minimum_k</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>gobject</span>,
+  method = <span class='st'>"dbscan"</span>,
+  dimensions = <span class='st'>"all"</span>,
+  name = <span class='st'>"knn_network"</span>,
+  k = <span class='fl'>4</span>,
+  maximum_distance = <span class='kw'>NULL</span>,
+  minimum_k = <span class='fl'>0</span>,
+  verbose = <span class='kw'>F</span>,
+  return_gobject = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -257,7 +257,8 @@ or a numerical vector, e.g. 2:3</p>
 <p><strong>maximum_distance: </strong> to create a network based on maximum distance only, you also need to set k to a very high value, e.g. k = 100</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>createSpatialKNNnetwork</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>createSpatialKNNnetwork</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in createSpatialKNNnetwork(gobject): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -273,7 +274,7 @@ or a numerical vector, e.g. 2:3</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

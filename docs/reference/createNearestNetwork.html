@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -191,20 +191,20 @@
     </div>
 
     <pre class="usage"><span class='fu'>createNearestNetwork</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sNN"</span>, <span class='st'>"kNN"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
-  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>minimum_shared</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>top_shared</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='no'>...</span>
+  <span class='kw'>gobject</span>,
+  type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sNN"</span>, <span class='st'>"kNN"</span>),
+  dim_reduction_to_use = <span class='st'>"pca"</span>,
+  dim_reduction_name = <span class='st'>"pca"</span>,
+  dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+  genes_to_use = <span class='kw'>NULL</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  name = <span class='st'>"sNN.pca"</span>,
+  return_gobject = <span class='fl'>TRUE</span>,
+  k = <span class='fl'>30</span>,
+  minimum_shared = <span class='fl'>5</span>,
+  top_shared = <span class='fl'>3</span>,
+  verbose = <span class='kw'>T</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -299,11 +299,14 @@ how the networks are created.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>mini_giotto_single_cell</span>)
 
-<span class='no'>mini_giotto_single_cell</span> <span class='kw'>&lt;-</span> <span class='fu'>createNearestNetwork</span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>,
-                                                <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+<span class='kw'>mini_giotto_single_cell</span> <span class='op'>&lt;-</span> <span class='fu'>createNearestNetwork</span>(gobject = <span class='kw'>mini_giotto_single_cell</span>,
+                                                dimensions_to_use = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, k = <span class='fl'>3</span>)
+</div><div class='output co'>#&gt; 
+#&gt;   sNN.pca  has already been used, will be overwritten </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -319,7 +322,7 @@ how the networks are created.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

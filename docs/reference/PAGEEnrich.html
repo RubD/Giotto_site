@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>runPAGEEnrich — PAGEEnrich • Giotto</title>
+<title>PAGEEnrich — PAGEEnrich • Giotto</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="runPAGEEnrich — PAGEEnrich" />
+<meta property="og:title" content="PAGEEnrich — PAGEEnrich" />
 <meta property="og:description" content="Function to calculate gene signature enrichment scores per spatial position using PAGE." />
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -181,7 +181,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>runPAGEEnrich</h1>
+    <h1>PAGEEnrich</h1>
     <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/spatial_enrichment.R'><code>R/spatial_enrichment.R</code></a></small>
     <div class="hidden name"><code>PAGEEnrich.Rd</code></div>
     </div>
@@ -190,23 +190,26 @@
     <p>Function to calculate gene signature enrichment scores per spatial position using PAGE.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PAGEEnrich</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>PAGEEnrich</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='runPAGEEnrich.html'>runPAGEEnrich</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='runPAGEEnrich.html'>runPAGEEnrich</a></code></p><dl>
     <dt><code>gobject</code></dt><dd><p>Giotto object</p></dd>
     <dt><code>sign_matrix</code></dt><dd><p>Matrix of signature genes for each cell type / process</p></dd>
     <dt><code>expression_values</code></dt><dd><p>expression values to use</p></dd>
+    <dt><code>min_overlap_genes</code></dt><dd><p>minimum number of overlapping genes in sign_matrix required to calculate enrichment</p></dd>
     <dt><code>reverse_log_scale</code></dt><dd><p>reverse expression values from log scale</p></dd>
     <dt><code>logbase</code></dt><dd><p>log base to use if reverse_log_scale = TRUE</p></dd>
     <dt><code>output_enrichment</code></dt><dd><p>how to return enrichment output</p></dd>
     <dt><code>p_value</code></dt><dd><p>calculate p-values (boolean, default = FALSE)</p></dd>
     <dt><code>n_times</code></dt><dd><p>number of permutations to calculate for p_value</p></dd>
+    <dt><code>max_block</code></dt><dd><p>number of lines to process together (default = 20e6)</p></dd>
     <dt><code>name</code></dt><dd><p>to give to spatial enrichment results, default = PAGE</p></dd>
+    <dt><code>verbose</code></dt><dd><p>be verbose</p></dd>
     <dt><code>return_gobject</code></dt><dd><p>return giotto object</p></dd>
   
 </dl></td>
@@ -232,7 +235,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

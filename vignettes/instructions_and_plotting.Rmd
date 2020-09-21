@@ -39,7 +39,7 @@ library(Giotto)
 
 # create instructions for your python path, how to view your plots and
 # parameters to save your plot if wanted
-my_python_path = "/your/python/path/"
+my_python_path = "/your/python/path/" # set to NULL to use previously installed giotto environment
 results_folder = '/path/to/your/results/'
 instrs = createGiottoInstructions(python_path = my_python_path,
                                   show_plot = FALSE,  
@@ -60,20 +60,25 @@ instrs = createGiottoInstructions(python_path = my_python_path,
 
 ```{r, eval=FALSE}
 ## PREPARE osmFISH DATA ####
-data_dir = '/directory/for/osmFISH_data/'
-osm_exprs = read.table(file = paste0(data_dir,'/','osmFISH_prep_expression.txt'))
-osm_locs = read.table(file = paste0(data_dir,'/','osmFISH_prep_cell_coordinates.txt'))
-osm_locs = osm_locs[rownames(osm_locs) %in% colnames(osm_exprs),]
+
+# download dataset 
+getSpatialDataset(dataset = 'osmfish_SS_cortex', directory = results_folder, method = 'wget')
+
+# path to files
+osm_exprs = paste0(results_folder, "osmFISH_prep_expression.txt")
+osm_locs = paste0(results_folder, "osmFISH_prep_cell_coordinates.txt")
+meta_path = paste0(results_folder, "osmFISH_prep_cell_metadata.txt")
 
 ## CREATE GIOTTO OBJECT with expression data, location data and instructions
 osm_test <- createGiottoObject(raw_exprs = osm_exprs,
                                spatial_locs = osm_locs,
                                instructions = instrs)
 
-## add provided annotation and filter + normalize
-metadata = fread(file = paste0(data_dir,'/','osmFISH_prep_cell_metadata.txt'))
+## add field annotation
+metadata = data.table::fread(file = meta_path)
 osm_test = addCellMetadata(osm_test, new_metadata = metadata,
                            by_column = T, column_cell_ID = 'CellID')
+
 osm_test <- filterGiotto(gobject = osm_test)
 osm_test <- normalizeGiotto(gobject = osm_test)
 ```

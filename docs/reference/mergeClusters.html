@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -191,17 +191,17 @@
     </div>
 
     <pre class="usage"><span class='fu'>mergeClusters</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='no'>cluster_column</span>,
-  <span class='kw'>cor</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>),
-  <span class='kw'>new_cluster_name</span> <span class='kw'>=</span> <span class='st'>"merged_cluster"</span>,
-  <span class='kw'>min_cor_score</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>max_group_size</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>force_min_group_size</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>max_sim_clusters</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>gobject</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>cluster_column</span>,
+  cor = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>),
+  new_cluster_name = <span class='st'>"merged_cluster"</span>,
+  min_cor_score = <span class='fl'>0.8</span>,
+  max_group_size = <span class='fl'>20</span>,
+  force_min_group_size = <span class='fl'>10</span>,
+  max_sim_clusters = <span class='fl'>10</span>,
+  return_gobject = <span class='fl'>TRUE</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -267,7 +267,8 @@ be reached if clusters have already been merged before <br />
 A giotto object is returned by default, if FALSE then the merging vector will be returned.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>mergeClusters</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>mergeClusters</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in class(gobject) %in% c("ExpressionSet", "SCESet", "seurat", "giotto"): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -283,7 +284,7 @@ A giotto object is returned by default, if FALSE then the merging vector will be
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

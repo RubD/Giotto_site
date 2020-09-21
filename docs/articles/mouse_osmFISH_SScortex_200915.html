@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mouse_osmFISH_SScortex_200915_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>osmFISH mouse SS cortex</h1>
@@ -147,19 +147,21 @@
     
     
 <pre><code>#&gt; Warning: This tutorial was written with Giotto version 0.3.6.9042, your version
-#&gt; is 0.3.6.9046.This is a more recent version and results should be reproducible</code></pre>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+#&gt; is 0.3.6.9048.This is a more recent version and results should be reproducible</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
 
 <span class="co"># 1. set working directory</span>
-<span class="no">results_folder</span> <span class="kw">=</span> <span class="st">'/path/to/directory/'</span>
+<span class="kw">results_folder</span> <span class="op">=</span> <span class="st">'/path/to/directory/'</span>
 
 <span class="co"># 2. set giotto python path</span>
 <span class="co"># set python path to your preferred python version path</span>
 <span class="co"># set python path to NULL if you want to automatically install (only the 1st time) and use the giotto miniconda environment</span>
-<span class="no">python_path</span> <span class="kw">=</span> <span class="kw">NULL</span>
-<span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">python_path</span>)) {
+<span class="kw">python_path</span> <span class="op">=</span> <span class="kw">NULL</span> 
+<span class="co">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="kw">python_path</span>)) {
   <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span>()
-}</pre></body></html></div>
+}
+</pre></div>
 <div id="dataset-explanation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dataset-explanation" class="anchor"></a>Dataset explanation</h2>
@@ -170,337 +172,416 @@
 <h2 class="hasAnchor">
 <a href="#dataset-download" class="anchor"></a>Dataset download</h2>
 <p>The osmFISH data to run this tutorial can be found <a href="https://github.com/RubD/spatial-datasets/tree/master/data/2018_osmFISH_SScortex">here</a>. Alternatively you can use the <strong>getSpatialDataset</strong> to automatically download this dataset like we do in this example.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># download data to working directory ####</span>
+<span class="co"># if wget is installed, set method = 'wget'</span>
+<span class="fu"><a href="../reference/getSpatialDataset.html">getSpatialDataset</a></span>(dataset = <span class="st">'osmfish_SS_cortex'</span>, directory = <span class="kw">results_folder</span>, method = <span class="st">'wget'</span>)
+</pre></div>
 </div>
 <div id="part-1-giotto-global-instructions-and-preparations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-1-giotto-global-instructions-and-preparations" class="anchor"></a>Part 1: Giotto global instructions and preparations</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">## instructions allow us to automatically save all plots into a chosen results folder</span>
-<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                  <span class="kw">show_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-                                  <span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">results_folder</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co">## instructions allow us to automatically save all plots into a chosen results folder</span>
+<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(save_plot = <span class="fl">TRUE</span>, 
+                                  show_plot = <span class="fl">FALSE</span>,
+                                  save_dir = <span class="kw">results_folder</span>)
 
-<span class="no">expr_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>, <span class="st">"osmFISH_prep_expression.txt"</span>)
-<span class="no">loc_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>, <span class="st">"osmFISH_prep_cell_coordinates.txt"</span>)
-<span class="no">meta_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>, <span class="st">"osmFISH_prep_cell_metadata.txt"</span>)</pre></body></html></div>
+<span class="kw">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>, <span class="st">"osmFISH_prep_expression.txt"</span>)
+<span class="kw">loc_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>, <span class="st">"osmFISH_prep_cell_coordinates.txt"</span>)
+<span class="kw">meta_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>, <span class="st">"osmFISH_prep_cell_metadata.txt"</span>)
+</pre></div>
 </div>
 <div id="part-2-create-giotto-object-process-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-2-create-giotto-object-process-data" class="anchor"></a>part 2: Create Giotto object &amp; process data</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## create</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr_path</span>,
-                              <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">loc_path</span>,
-                              <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co">## create</span>
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(raw_exprs = <span class="kw">expr_path</span>,
+                              spatial_locs = <span class="kw">loc_path</span>,
+                              instructions = <span class="kw">instrs</span>)
 
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="no">osm_test</span>)
+<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="kw">osm_test</span>)
 
 <span class="co">## add field annotation</span>
-<span class="no">metadata</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">meta_path</span>)
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="no">osm_test</span>, <span class="kw">new_metadata</span> <span class="kw">=</span> <span class="no">metadata</span>,
-                           <span class="kw">by_column</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">column_cell_ID</span> <span class="kw">=</span> <span class="st">'CellID'</span>)
+<span class="kw">metadata</span> <span class="op">=</span> <span class="kw">data.table</span>::<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(file = <span class="kw">meta_path</span>)
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="kw">osm_test</span>, new_metadata = <span class="kw">metadata</span>,
+                           by_column = <span class="kw">T</span>, column_cell_ID = <span class="st">'CellID'</span>)
 <span class="co">## filter</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                         <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">1</span>,
-                         <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">10</span>,
-                         <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">10</span>,
-                         <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
-                         <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(gobject = <span class="kw">osm_test</span>,
+                         expression_threshold = <span class="fl">1</span>,
+                         gene_det_in_min_cells = <span class="fl">10</span>,
+                         min_det_genes_per_cell = <span class="fl">10</span>,
+                         expression_values = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
+                         verbose = <span class="kw">T</span>)
 
 <span class="co">## normalize</span>
 <span class="co"># 1. standard z-score way</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(gobject = <span class="kw">osm_test</span>)
 
 <span class="co"># 2. osmFISH way</span>
-<span class="no">raw_expr_matrix</span> <span class="kw">=</span> <span class="no">osm_test</span>@<span class="kw">raw_exprs</span>
-<span class="no">norm_genes</span> <span class="kw">=</span> (<span class="no">raw_expr_matrix</span>/<span class="fu"><a href="../reference/rowSums_giotto.html">rowSums_giotto</a></span>(<span class="no">raw_expr_matrix</span>)) * <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">raw_expr_matrix</span>)
-<span class="no">norm_genes_cells</span> <span class="kw">=</span> <span class="fu"><a href="../reference/t_giotto.html">t_giotto</a></span>((<span class="fu"><a href="../reference/t_giotto.html">t_giotto</a></span>(<span class="no">norm_genes</span>)/<span class="fu"><a href="../reference/colSums_giotto.html">colSums_giotto</a></span>(<span class="no">norm_genes</span>)) * <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="no">raw_expr_matrix</span>))
-<span class="no">osm_test</span>@<span class="kw">custom_expr</span> <span class="kw">=</span> <span class="no">norm_genes_cells</span>
+<span class="kw">raw_expr_matrix</span> <span class="op">=</span> <span class="kw">osm_test</span><span class="op">@</span>raw_exprs
+<span class="kw">norm_genes</span> <span class="op">=</span> (<span class="kw">raw_expr_matrix</span><span class="op">/</span><span class="fu"><a href="../reference/rowSums_giotto.html">rowSums_giotto</a></span>(<span class="kw">raw_expr_matrix</span>)) <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">raw_expr_matrix</span>)
+<span class="kw">norm_genes_cells</span> <span class="op">=</span> <span class="fu"><a href="../reference/t_giotto.html">t_giotto</a></span>((<span class="fu"><a href="../reference/t_giotto.html">t_giotto</a></span>(<span class="kw">norm_genes</span>)<span class="op">/</span><span class="fu"><a href="../reference/colSums_giotto.html">colSums_giotto</a></span>(<span class="kw">norm_genes</span>)) <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="kw">raw_expr_matrix</span>))
+<span class="kw">osm_test</span><span class="op">@</span>custom_expr <span class="op">=</span> <span class="kw">norm_genes_cells</span>
 
 <span class="co">## add gene &amp; cell statistics</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(gobject = <span class="kw">osm_test</span>)
 
 <span class="co">## add gene &amp; cell statistics</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(gobject = <span class="kw">osm_test</span>)
 
 <span class="co"># save according to giotto instructions</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterName'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_a_original_clusters'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterName'</span>, point_size = <span class="fl">1.5</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_a_original_clusters'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/2_a_original_clusters.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'Region'</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_b_original_regions'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'Region'</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_b_original_regions'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/2_b_original_regions.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'ClusterID'</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_c_clusterID'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'ClusterID'</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_c_clusterID'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/2_c_clusterID.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'total_expr'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">gradient_midpoint</span> <span class="kw">=</span> <span class="fl">160</span>,
-         <span class="kw">gradient_limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>,<span class="fl">220</span>),
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_d_total_expr_limits'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'total_expr'</span>, color_as_factor = <span class="kw">F</span>, gradient_midpoint = <span class="fl">160</span>,
+         gradient_limits = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>,<span class="fl">220</span>),
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_d_total_expr_limits'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/2_d_total_expr_limits.png" style="width:50.0%"></p>
 </div>
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-3-dimension-reduction" class="anchor"></a>Part 3: Dimension reduction</h2>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">
+<div class="sourceCode" id="cb9"><pre class="downlit">
+
 <span class="co">## highly variable genes (HVG)</span>
 <span class="co"># only 33 genes so use all genes</span>
 
 <span class="co">## run PCA on expression values (default)</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">osm_test</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">30</span>,
-          <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_a_screeplot'</span>))</pre></body></html></div>
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(gobject = <span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>, scale_unit = <span class="kw">F</span>, center = <span class="kw">F</span>)
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="kw">osm_test</span>, ncp = <span class="fl">30</span>,
+          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_a_screeplot'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/3_a_screeplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="no">osm_test</span>,
-        <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_b_PCA_reduction'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">osm_test</span>,
+        save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_b_PCA_reduction'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/3_b_PCA_reduction.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co">## run UMAP and tSNE on PCA space (default)</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">osm_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">31</span>, <span class="kw">n_threads</span> <span class="kw">=</span> <span class="fl">4</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_c_UMAP_reduction.png'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co">## run UMAP and tSNE on PCA space (default)</span>
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="kw">osm_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">31</span>, n_threads = <span class="fl">4</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_c_UMAP_reduction.png'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/3_c_UMAP_reduction.png.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-         <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'total_expr'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">gradient_midpoint</span> <span class="kw">=</span> <span class="fl">180</span>, <span class="kw">gradient_limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>, <span class="fl">220</span>),
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_d_UMAP_reduction_expression.png'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>,
+         cell_color = <span class="st">'total_expr'</span>, color_as_factor = <span class="kw">F</span>, gradient_midpoint = <span class="fl">180</span>, gradient_limits = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>, <span class="fl">220</span>),
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_d_UMAP_reduction_expression.png'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/3_d_UMAP_reduction_expression.png.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">osm_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">31</span>, <span class="kw">perplexity</span> <span class="kw">=</span> <span class="fl">70</span>, <span class="kw">check_duplicates</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,  <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_e_tSNE_reduction'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="kw">osm_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">31</span>, perplexity = <span class="fl">70</span>, check_duplicates = <span class="kw">F</span>)
+<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(gobject = <span class="kw">osm_test</span>,  save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_e_tSNE_reduction'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/3_e_tSNE_reduction.png" style="width:50.0%"></p>
 </div>
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-4-cluster" class="anchor"></a>Part 4: Cluster</h2>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">
+<div class="sourceCode" id="cb14"><pre class="downlit">
+
 <span class="co">## hierarchical clustering</span>
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/doHclust.html">doHclust</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">36</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'hclust'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-         <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">edge_alpha</span> <span class="kw">=</span> <span class="fl">0.05</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_a_UMAP_hclust'</span>))</pre></body></html></div>
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHclust.html">doHclust</a></span>(gobject = <span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>, k = <span class="fl">36</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'hclust'</span>, point_size = <span class="fl">2.5</span>,
+         show_NN_network = <span class="kw">F</span>, edge_alpha = <span class="fl">0.05</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_a_UMAP_hclust'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_a_UMAP_hclust.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co">## kmeans clustering</span>
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/doKmeans.html">doKmeans</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">dim_reduction_to_use</span> <span class="kw">=</span> <span class="st">'pca'</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">20</span>, <span class="kw">centers</span> <span class="kw">=</span> <span class="fl">36</span>, <span class="kw">nstart</span> <span class="kw">=</span> <span class="fl">2000</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'kmeans'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">edge_alpha</span> <span class="kw">=</span> <span class="fl">0.05</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_b_UMAP_kmeans'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co">## kmeans clustering</span>
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/doKmeans.html">doKmeans</a></span>(gobject = <span class="kw">osm_test</span>, dim_reduction_to_use = <span class="st">'pca'</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, centers = <span class="fl">36</span>, nstart = <span class="fl">2000</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'kmeans'</span>,
+         point_size = <span class="fl">2.5</span>, show_NN_network = <span class="kw">F</span>, edge_alpha = <span class="fl">0.05</span>, 
+         save_param =  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_b_UMAP_kmeans'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_b_UMAP_kmeans.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co">## Leiden clustering strategy:</span>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="co">## Leiden clustering strategy:</span>
 <span class="co"># 1. overcluster</span>
 <span class="co"># 2. merge small clusters that are highly similar</span>
 
 <span class="co"># sNN network (default)</span>
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">31</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">12</span>)
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(gobject = <span class="kw">osm_test</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">31</span>, k = <span class="fl">12</span>)
 
-<span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.09</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">1000</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-         <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">edge_alpha</span> <span class="kw">=</span> <span class="fl">0.05</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_c_UMAP_leiden'</span>))</pre></body></html></div>
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(gobject = <span class="kw">osm_test</span>, resolution = <span class="fl">0.09</span>, n_iterations = <span class="fl">1000</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'leiden_clus'</span>, point_size = <span class="fl">2.5</span>,
+         show_NN_network = <span class="kw">F</span>, edge_alpha = <span class="fl">0.05</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_c_UMAP_leiden'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_c_UMAP_leiden.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># merge small groups based on similarity</span>
-<span class="no">leiden_similarities</span> <span class="kw">=</span> <span class="fu"><a href="../reference/getClusterSimilarity.html">getClusterSimilarity</a></span>(<span class="no">osm_test</span>,
-                                           <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="co"># merge small groups based on similarity</span>
+<span class="kw">leiden_similarities</span> <span class="op">=</span> <span class="fu"><a href="../reference/getClusterSimilarity.html">getClusterSimilarity</a></span>(<span class="kw">osm_test</span>,
+                                           expression_values = <span class="st">'custom'</span>,
+                                           cluster_column = <span class="st">'leiden_clus'</span>)
 
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/mergeClusters.html">mergeClusters</a></span>(<span class="no">osm_test</span>,
-                         <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                         <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-                         <span class="kw">new_cluster_name</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>,
-                         <span class="kw">max_group_size</span> <span class="kw">=</span> <span class="fl">30</span>,
-                         <span class="kw">force_min_group_size</span> <span class="kw">=</span> <span class="fl">25</span>,
-                         <span class="kw">max_sim_clusters</span> <span class="kw">=</span> <span class="fl">10</span>,
-                         <span class="kw">min_cor_score</span> <span class="kw">=</span> <span class="fl">0.7</span>)
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/mergeClusters.html">mergeClusters</a></span>(<span class="kw">osm_test</span>,
+                         expression_values = <span class="st">'custom'</span>,
+                         cluster_column = <span class="st">'leiden_clus'</span>,
+                         new_cluster_name = <span class="st">'leiden_clus_m'</span>,
+                         max_group_size = <span class="fl">30</span>,
+                         force_min_group_size = <span class="fl">25</span>,
+                         max_sim_clusters = <span class="fl">10</span>,
+                         min_cor_score = <span class="fl">0.7</span>)
 
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-         <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">edge_alpha</span> <span class="kw">=</span> <span class="fl">0.05</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_d_UMAP_leiden_merged'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'leiden_clus_m'</span>, point_size = <span class="fl">2.5</span>,
+         show_NN_network = <span class="kw">F</span>, edge_alpha = <span class="fl">0.05</span>,
+         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_d_UMAP_leiden_merged'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_d_UMAP_leiden_merged.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="co">## show cluster relationships</span>
-<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>,
-                   <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_e_heatmap'</span>, <span class="kw">units</span> <span class="kw">=</span> <span class="st">'cm'</span>),
-                   <span class="kw">row_names_gp</span> <span class="kw">=</span> <span class="kw pkg">grid</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/grid/gpar.html">gpar</a></span>(<span class="kw">fontsize</span> <span class="kw">=</span> <span class="fl">6</span>), <span class="kw">column_names_gp</span> <span class="kw">=</span> <span class="kw pkg">grid</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/grid/gpar.html">gpar</a></span>(<span class="kw">fontsize</span> <span class="kw">=</span> <span class="fl">6</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co">## show cluster relationships</span>
+<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(gobject = <span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>, cluster_column = <span class="st">'leiden_clus_m'</span>,
+                   save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_e_heatmap'</span>, units = <span class="st">'cm'</span>),
+                   row_names_gp = <span class="kw">grid</span>::<span class="fu"><a href="https://rdrr.io/r/grid/gpar.html">gpar</a></span>(fontsize = <span class="fl">6</span>), column_names_gp = <span class="kw">grid</span>::<span class="fu"><a href="https://rdrr.io/r/grid/gpar.html">gpar</a></span>(fontsize = <span class="fl">6</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_e_heatmap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span>(<span class="no">osm_test</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>, <span class="kw">h</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">rotate</span> <span class="kw">=</span> <span class="no">T</span>,
-                      <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_f_dendro'</span>, <span class="kw">units</span> <span class="kw">=</span> <span class="st">'cm'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span>(<span class="kw">osm_test</span>, cluster_column = <span class="st">'leiden_clus_m'</span>, h = <span class="fl">1</span>, rotate = <span class="kw">T</span>,
+                      save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_f_dendro'</span>, units = <span class="st">'cm'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/4_f_dendro.png" style="width:50.0%"></p>
 </div>
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-5-co-visualize" class="anchor"></a>Part 5: Co-visualize</h2>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># expression and spatial</span>
-<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_a_covis_leiden'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="co"># expression and spatial</span>
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'leiden_clus'</span>, spat_point_size = <span class="fl">2</span>,
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_a_covis_leiden'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/5_a_covis_leiden.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_b_covis_leiden_m'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'leiden_clus_m'</span>, spat_point_size = <span class="fl">2</span>,
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_b_covis_leiden_m'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/5_b_covis_leiden_m.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>,
-              <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'m_8'</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_c_covis_leiden_merged_selected'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'leiden_clus_m'</span>, 
+              dim_point_size = <span class="fl">2</span>, spat_point_size = <span class="fl">2</span>, select_cell_groups = <span class="st">'m_8'</span>,
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_c_covis_leiden_merged_selected'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/5_c_covis_leiden_merged_selected.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'total_expr'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>,
-              <span class="kw">gradient_midpoint</span> <span class="kw">=</span> <span class="fl">160</span>, <span class="kw">gradient_limits</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>,<span class="fl">220</span>),
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_d_total_expr'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'total_expr'</span>, color_as_factor = <span class="kw">F</span>,
+              gradient_midpoint = <span class="fl">160</span>, gradient_limits = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">120</span>,<span class="fl">220</span>),
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_d_total_expr'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/5_d_total_expr.png" style="width:50.0%"></p>
 </div>
 <div id="part-6-differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-6-differential-expression" class="anchor"></a>Part 6: Differential expression</h2>
-<div class="sourceCode" id="cb23"><html><body><pre class="r">
+<div class="sourceCode" id="cb24"><pre class="downlit">
+
 <span class="co">## split dendrogram nodes ##</span>
-<span class="no">dendsplits</span> <span class="kw">=</span> <span class="fu"><a href="../reference/getDendrogramSplits.html">getDendrogramSplits</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                                 <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                                 <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>)
-<span class="no">split_3_markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findGiniMarkers.html">findGiniMarkers</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>,
-                                  <span class="kw">group_1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">dendsplits</span>[<span class="fl">3</span>]$<span class="no">tree_1</span>), <span class="kw">group_2</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="no">dendsplits</span>[<span class="fl">3</span>]$<span class="no">tree_2</span>))</pre></body></html></div>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co">## Individual populations ##</span>
-<span class="no">markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                                 <span class="kw">method</span> <span class="kw">=</span> <span class="st">'scran'</span>,
-                                 <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                                 <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>,
-                                 <span class="kw">min_genes</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">rank_score</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="kw">dendsplits</span> <span class="op">=</span> <span class="fu"><a href="../reference/getDendrogramSplits.html">getDendrogramSplits</a></span>(gobject = <span class="kw">osm_test</span>,
+                                 expression_values = <span class="st">'custom'</span>,
+                                 cluster_column = <span class="st">'leiden_clus_m'</span>)
+<span class="kw">split_3_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findGiniMarkers.html">findGiniMarkers</a></span>(gobject = <span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>, cluster_column = <span class="st">'leiden_clus_m'</span>,
+                                  group_1 = <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="kw">dendsplits</span>[<span class="fl">3</span>]<span class="op">$</span><span class="kw">tree_1</span>), group_2 = <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="kw">dendsplits</span>[<span class="fl">3</span>]<span class="op">$</span><span class="kw">tree_2</span>))
+</pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="co">## Individual populations ##</span>
+<span class="kw">markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(gobject = <span class="kw">osm_test</span>,
+                                 method = <span class="st">'scran'</span>,
+                                 expression_values = <span class="st">'custom'</span>,
+                                 cluster_column = <span class="st">'leiden_clus_m'</span>,
+                                 min_genes = <span class="fl">2</span>, rank_score = <span class="fl">2</span>)
 <span class="co">## violinplot</span>
-<span class="no">topgenes</span> <span class="kw">=</span> <span class="no">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">osm_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">topgenes</span>), <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_a_violinplot'</span>))</pre></body></html></div>
+<span class="kw">topgenes</span> <span class="op">=</span> <span class="kw">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">1</span>), by = <span class="st">'cluster'</span>]<span class="op">$</span><span class="kw">genes</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="kw">osm_test</span>, genes = <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw">topgenes</span>), cluster_column = <span class="st">'leiden_clus_m'</span>, expression_values = <span class="st">'custom'</span>,
+           strip_text = <span class="fl">5</span>, strip_position = <span class="st">'right'</span>,
+           save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'6_a_violinplot'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/6_a_violinplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus_m'</span>),
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_b_metaheatmap'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus_m'</span>), 
+                    save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'6_b_metaheatmap'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/6_b_metaheatmap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus_m'</span>),
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_e_metaheatmap_all_genes'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus_m'</span>), 
+                    save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'6_e_metaheatmap_all_genes'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/6_e_metaheatmap_all_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'ClusterName'</span>),
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_f_metaheatmap_all_genes_names'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'ClusterName'</span>), 
+                    save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'6_f_metaheatmap_all_genes_names'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/6_f_metaheatmap_all_genes_names.png" style="width:50.0%"></p>
 </div>
 <div id="part-7-cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-7-cell-type-annotation" class="anchor"></a>Part 7: Cell type annotation</h2>
-<div class="sourceCode" id="cb28"><html><body><pre class="r">
+<div class="sourceCode" id="cb29"><pre class="downlit">
+
 <span class="co">## create vector with names</span>
 
 <span class="co">## compare clusters with osmFISH paper</span>
-<span class="no">clusters_det_SS_cortex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro_Mfge8'</span>, <span class="st">'Astro_Gfap'</span>, <span class="st">'Pyr_L6'</span>, <span class="st">'vSMC'</span>,
+<span class="kw">clusters_det_SS_cortex</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro_Mfge8'</span>, <span class="st">'Astro_Gfap'</span>, <span class="st">'Pyr_L6'</span>, <span class="st">'vSMC'</span>,
                            <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'OPC'</span>, <span class="st">'Olig_COP'</span>,
                            <span class="st">'Olig_NF'</span>, <span class="st">'Olig_mature'</span>, <span class="st">'Olig_MF'</span>, <span class="st">'Pericytes'</span>, <span class="st">'Endothelial_Flt1'</span>,
                            <span class="st">'Endothelial_Flt1'</span>, <span class="st">'Inh_Kcnip2'</span>, <span class="st">'Inh_Vip'</span>, <span class="st">'unknown'</span>, <span class="st">'Inh_Crh'</span>,
-                           <span class="st">'Inh'</span>, <span class="st">'Inh_Crhbp'</span>, <span class="st">'Inh_CP'</span>,<span class="st">'Inh_CP'</span>, <span class="st">'Inh_IC'</span>,
+                           <span class="st">'Inh'</span>, <span class="st">'Inh_Crhbp'</span>, <span class="st">'Inh_CP'</span>,<span class="st">'Inh_CP'</span>, <span class="st">'Inh_IC'</span>, 
                            <span class="st">'Inh_IC'</span>, <span class="st">'Inh_Cnr1'</span>, <span class="st">'Inh_Kcnip2'</span>, <span class="st">'Pyr_L5'</span>, <span class="st">'Pyr_L5'</span>,
                            <span class="st">'Endothelial_Apln'</span>, <span class="st">'C.Plexus'</span>, <span class="st">'Serpinf'</span>, <span class="st">'Pyr_Cpne5'</span>, <span class="st">'Pyr_L2-3-5'</span>,
                            <span class="st">'Microglia'</span>, <span class="st">'Pyr_L4'</span>)
 
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_det_SS_cortex</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'10'</span>, <span class="st">'14'</span>, <span class="st">'6'</span>, <span class="st">'m_2'</span>, <span class="st">'42'</span>, <span class="st">'m_24'</span>, <span class="st">'m_21'</span>, <span class="st">'m_3'</span>, <span class="st">'m_6'</span>, <span class="st">'m_8'</span>,
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_det_SS_cortex</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'10'</span>, <span class="st">'14'</span>, <span class="st">'6'</span>, <span class="st">'m_2'</span>, <span class="st">'42'</span>, <span class="st">'m_24'</span>, <span class="st">'m_21'</span>, <span class="st">'m_3'</span>, <span class="st">'m_6'</span>, <span class="st">'m_8'</span>,
                                   <span class="st">'m_19'</span>, <span class="st">'m_12'</span>, <span class="st">'m_9'</span>, <span class="st">'m_16'</span>, <span class="st">'m_18'</span>, <span class="st">'m_7'</span>, <span class="st">'m_14'</span>, <span class="st">'m_22'</span>, <span class="st">'15'</span>, <span class="st">'m_11'</span>,
                                   <span class="st">'21'</span>, <span class="st">'m_23'</span>, <span class="st">'20'</span>, <span class="st">'m_17'</span>, <span class="st">'27'</span>, <span class="st">'36'</span>, <span class="st">'m_15'</span>, <span class="st">'m_13'</span>, <span class="st">'4'</span>, <span class="st">'40'</span>,
                                   <span class="st">'m_20'</span>, <span class="st">'m_10'</span>,  <span class="st">'50'</span>, <span class="st">'m_4'</span>, <span class="st">'m_5'</span>, <span class="st">'26'</span>, <span class="st">'m_1'</span>)
 
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_det_SS_cortex</span>,
-                          <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus_m'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>)
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(gobject = <span class="kw">osm_test</span>, annotation_vector = <span class="kw">clusters_det_SS_cortex</span>,
+                          cluster_column = <span class="st">'leiden_clus_m'</span>, name = <span class="st">'det_cell_types'</span>)
 
-<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>,<span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_a_annotation_leiden_merged_detailed'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'det_cell_types'</span>,dim_point_size = <span class="fl">2</span>, spat_point_size = <span class="fl">2</span>,
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'7_a_annotation_leiden_merged_detailed'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/7_a_annotation_leiden_merged_detailed.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="co">## coarse cell types</span>
-<span class="no">clusters_coarse_SS_cortex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro'</span>, <span class="st">'Astro'</span>, <span class="st">'Pyr'</span>, <span class="st">'vSMC'</span>,
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="co">## coarse cell types</span>
+<span class="kw">clusters_coarse_SS_cortex</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro'</span>, <span class="st">'Astro'</span>, <span class="st">'Pyr'</span>, <span class="st">'vSMC'</span>,
                               <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'OPC'</span>, <span class="st">'Olig'</span>,
-                              <span class="st">'Olig'</span>, <span class="st">'Olig'</span>, <span class="st">'Olig'</span>, <span class="st">'Pericytes'</span>, <span class="st">'Endothelial'</span>,
+                              <span class="st">'Olig'</span>, <span class="st">'Olig'</span>, <span class="st">'Olig'</span>, <span class="st">'Pericytes'</span>, <span class="st">'Endothelial'</span>, 
                               <span class="st">'Endothelial'</span>, <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'unknown'</span>, <span class="st">'Inh'</span>,
                               <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'Inh'</span>,
                               <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'Inh'</span>, <span class="st">'Pyr'</span>, <span class="st">'Pyr'</span>,
                               <span class="st">'Endothelial'</span>, <span class="st">'C.Plexus'</span>, <span class="st">'Serpinf'</span>, <span class="st">'Pyr'</span>, <span class="st">'Pyr'</span>,
                               <span class="st">'Microglia'</span>, <span class="st">'Pyr'</span>)
 
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_coarse_SS_cortex</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro_Mfge8'</span>, <span class="st">'Astro_Gfap'</span>, <span class="st">'Pyr_L6'</span>, <span class="st">'vSMC'</span>,
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_coarse_SS_cortex</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Ependymal'</span>, <span class="st">'Astro_Mfge8'</span>, <span class="st">'Astro_Gfap'</span>, <span class="st">'Pyr_L6'</span>, <span class="st">'vSMC'</span>,
                                      <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'Anln'</span>, <span class="st">'OPC'</span>, <span class="st">'Olig_COP'</span>,
                                      <span class="st">'Olig_NF'</span>, <span class="st">'Olig_mature'</span>, <span class="st">'Olig_MF'</span>, <span class="st">'Pericytes'</span>, <span class="st">'Endothelial_Flt1'</span>,
                                      <span class="st">'Endothelial_Flt1'</span>, <span class="st">'Inh_Kcnip2'</span>, <span class="st">'Inh_Vip'</span>, <span class="st">'unknown'</span>, <span class="st">'Inh_Crh'</span>,
-                                     <span class="st">'Inh'</span>, <span class="st">'Inh_Crhbp'</span>, <span class="st">'Inh_CP'</span>,<span class="st">'Inh_CP'</span>, <span class="st">'Inh_IC'</span>,
+                                     <span class="st">'Inh'</span>, <span class="st">'Inh_Crhbp'</span>, <span class="st">'Inh_CP'</span>,<span class="st">'Inh_CP'</span>, <span class="st">'Inh_IC'</span>, 
                                      <span class="st">'Inh_IC'</span>, <span class="st">'Inh_Cnr1'</span>, <span class="st">'Inh_Kcnip2'</span>, <span class="st">'Pyr_L5'</span>, <span class="st">'Pyr_L5'</span>,
                                      <span class="st">'Endothelial_Apln'</span>, <span class="st">'C.Plexus'</span>, <span class="st">'Serpinf'</span>, <span class="st">'Pyr_Cpne5'</span>, <span class="st">'Pyr_L2-3-5'</span>,
                                      <span class="st">'Microglia'</span>, <span class="st">'Pyr_L4'</span>)
 
-<span class="no">osm_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_coarse_SS_cortex</span>,
-                          <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'coarse_cell_types'</span>)
-<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'coarse_cell_types'</span>,<span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_b_annotation_leiden_merged_coarse'</span>))</pre></body></html></div>
+<span class="kw">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(gobject = <span class="kw">osm_test</span>, annotation_vector = <span class="kw">clusters_coarse_SS_cortex</span>,
+                          cluster_column = <span class="st">'det_cell_types'</span>, name = <span class="st">'coarse_cell_types'</span>)
+<span class="fu"><a href="../reference/spatDimPlot2D.html">spatDimPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, cell_color = <span class="st">'coarse_cell_types'</span>,dim_point_size = <span class="fl">1.5</span>, spat_point_size = <span class="fl">1.5</span>,
+              save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'7_b_annotation_leiden_merged_coarse'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/7_b_annotation_leiden_merged_coarse.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># heatmaps #</span>
-<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>,
-                   <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_c_clusterHeatmap_det_cell_types'</span>, <span class="kw">units</span> <span class="kw">=</span> <span class="st">'in'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb31"><pre class="downlit">
+<span class="co"># heatmaps #</span>
+<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(gobject = <span class="kw">osm_test</span>, cluster_column = <span class="st">'det_cell_types'</span>,
+                   save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'7_c_clusterHeatmap_det_cell_types'</span>, units = <span class="st">'in'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/7_c_clusterHeatmap_det_cell_types.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="../reference/plotHeatmap.html">plotHeatmap</a></span>(<span class="no">osm_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="no">osm_test</span>@<span class="kw">gene_ID</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>,
-            <span class="kw">legend_nrows</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-            <span class="kw">gene_order</span> <span class="kw">=</span> <span class="st">'correlation'</span>, <span class="kw">cluster_order</span> <span class="kw">=</span> <span class="st">'correlation'</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_d_heatamp_det_cell_types'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="fu"><a href="../reference/plotHeatmap.html">plotHeatmap</a></span>(<span class="kw">osm_test</span>, genes = <span class="kw">osm_test</span><span class="op">@</span>gene_ID, cluster_column = <span class="st">'det_cell_types'</span>,
+            legend_nrows = <span class="fl">2</span>, expression_values = <span class="st">'custom'</span>,
+            gene_order = <span class="st">'correlation'</span>, cluster_order = <span class="st">'correlation'</span>,
+            save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'7_d_heatamp_det_cell_types'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/7_d_heatamp_det_cell_types.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'custom'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'det_cell_types'</span>),
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_e_metaheatmap'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit">
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">osm_test</span>, expression_values = <span class="st">'custom'</span>,
+                    metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'det_cell_types'</span>), 
+                    save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'7_e_metaheatmap'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/7_e_metaheatmap.png" style="width:50.0%"></p>
 </div>
 <div id="part-8-spatial-grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-8-spatial-grid" class="anchor"></a>Part 8: Spatial grid</h2>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                              <span class="kw">sdimx_stepsize</span> <span class="kw">=</span> <span class="fl">2000</span>,
-                              <span class="kw">sdimy_stepsize</span> <span class="kw">=</span> <span class="fl">2000</span>,
-                              <span class="kw">minimum_padding</span> <span class="kw">=</span> <span class="fl">0</span>)
-<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="no">osm_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>, <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">T</span>,
-           <span class="kw">grid_color</span> <span class="kw">=</span> <span class="st">'lightblue'</span>, <span class="kw">spatial_grid_name</span> <span class="kw">=</span> <span class="st">'spatial_grid'</span>,
-           <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'8_grid_det_cell_types'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(gobject = <span class="kw">osm_test</span>,
+                              sdimx_stepsize = <span class="fl">2000</span>,
+                              sdimy_stepsize = <span class="fl">2000</span>,
+                              minimum_padding = <span class="fl">0</span>)
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">osm_test</span>, cell_color = <span class="st">'det_cell_types'</span>, show_grid = <span class="kw">T</span>,
+           grid_color = <span class="st">'lightblue'</span>, spatial_grid_name = <span class="st">'spatial_grid'</span>,
+           point_size = <span class="fl">1.5</span>,
+           save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'8_grid_det_cell_types'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/8_grid_det_cell_types.png" style="width:50.0%"></p>
 </div>
 <div id="part-9-spatial-network" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-9-spatial-network" class="anchor"></a>Part 9: Spatial network</h2>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">osm_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>)
-<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-           <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>,
-           <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>, <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'9_spatial_network_k10'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="kw">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(gobject = <span class="kw">osm_test</span>)
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(gobject = <span class="kw">osm_test</span>, show_network = <span class="kw">T</span>,
+           network_color = <span class="st">'blue'</span>,
+           point_size = <span class="fl">1.5</span>, cell_color = <span class="st">'det_cell_types'</span>, legend_symbol_size = <span class="fl">2</span>,
+           save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'9_spatial_network_k10'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/9_spatial_network_k10.png" style="width:50.0%"></p>
 </div>
 <div id="part-10-spatial-genes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-10-spatial-genes" class="anchor"></a>Part 10: Spatial genes</h2>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="co"># km binarization</span>
-<span class="no">kmtest</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">osm_test</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'kmeans'</span>)
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="co"># km binarization</span>
+<span class="kw">kmtest</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="kw">osm_test</span>, bin_method = <span class="st">'kmeans'</span>)
 
-<span class="fu"><a href="../reference/spatDimGenePlot2D.html">spatDimGenePlot2D</a></span>(<span class="no">osm_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                  <span class="kw">genes</span> <span class="kw">=</span> <span class="no">kmtest</span>$<span class="no">genes</span>[<span class="fl">1</span>:<span class="fl">4</span>],
-                  <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'vertical'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">4</span>,
-                  <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_a_spatial_genes_km'</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">10</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimGenePlot2D.html">spatDimGenePlot2D</a></span>(<span class="kw">osm_test</span>, expression_values = <span class="st">'scaled'</span>,
+                  genes = <span class="kw">kmtest</span><span class="op">$</span><span class="kw">genes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>],
+                  plot_alignment = <span class="st">'vertical'</span>, cow_n_col = <span class="fl">4</span>,
+                  save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'10_a_spatial_genes_km'</span>, base_height = <span class="fl">5</span>, base_width = <span class="fl">10</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/10_a_spatial_genes_km.png" style="width:50.0%"></p>
 </div>
 <div id="part-12--cell-cell-preferential-proximity" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-12--cell-cell-preferential-proximity" class="anchor"></a>Part 12. cell-cell preferential proximity</h2>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co">## calculate frequently seen proximities</span>
-<span class="no">cell_proximities</span> <span class="kw">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>,
-                                           <span class="kw">number_of_simulations</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="co">## calculate frequently seen proximities</span>
+<span class="kw">cell_proximities</span> <span class="op">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span>(gobject = <span class="kw">osm_test</span>,
+                                           cluster_column = <span class="st">'det_cell_types'</span>,
+                                           number_of_simulations = <span class="fl">1000</span>)
 <span class="co">## barplot</span>
-<span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>, <span class="kw">min_orig_ints</span> <span class="kw">=</span> <span class="fl">25</span>, <span class="kw">min_sim_ints</span> <span class="kw">=</span> <span class="fl">25</span>,
-                     <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'12_a_barplot_cell_cell_enrichment'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span>(gobject = <span class="kw">osm_test</span>, CPscore = <span class="kw">cell_proximities</span>, min_orig_ints = <span class="fl">25</span>, min_sim_ints = <span class="fl">25</span>,
+                     save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'12_a_barplot_cell_cell_enrichment'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/12_a_barplot_cell_cell_enrichment.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="co">## heatmap</span>
-<span class="fu"><a href="../reference/cellProximityHeatmap.html">cellProximityHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>, <span class="kw">order_cell_types</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">scale</span> <span class="kw">=</span> <span class="no">T</span>,
-                     <span class="kw">color_breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1.5</span>, <span class="fl">0</span>, <span class="fl">1.5</span>), <span class="kw">color_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'blue'</span>, <span class="st">'white'</span>, <span class="st">'red'</span>),
-                     <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'12_b_heatmap_cell_cell_enrichment'</span>, <span class="kw">unit</span> <span class="kw">=</span> <span class="st">'in'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb38"><pre class="downlit">
+<span class="co">## heatmap</span>
+<span class="fu"><a href="../reference/cellProximityHeatmap.html">cellProximityHeatmap</a></span>(gobject = <span class="kw">osm_test</span>, CPscore = <span class="kw">cell_proximities</span>, order_cell_types = <span class="kw">T</span>, scale = <span class="kw">T</span>,
+                     color_breaks = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">0</span>, <span class="fl">1.5</span>), color_names = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'blue'</span>, <span class="st">'white'</span>, <span class="st">'red'</span>),
+                     save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'12_b_heatmap_cell_cell_enrichment'</span>, unit = <span class="st">'in'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/12_b_heatmap_cell_cell_enrichment.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="co">## network</span>
-<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>, <span class="kw">remove_self_edges</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">only_show_enrichment_edges</span> <span class="kw">=</span> <span class="no">T</span>,
-                     <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'12_c_network_cell_cell_enrichment'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit">
+<span class="co">## network</span>
+<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(gobject = <span class="kw">osm_test</span>, CPscore = <span class="kw">cell_proximities</span>, remove_self_edges = <span class="kw">T</span>, only_show_enrichment_edges = <span class="kw">T</span>,
+                     save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'12_c_network_cell_cell_enrichment'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/12_c_network_cell_cell_enrichment.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="co">## visualization</span>
-<span class="no">spec_interaction</span> <span class="kw">=</span> <span class="st">"Astro_Mfge8--OPC"</span>
-<span class="fu"><a href="../reference/cellProximitySpatPlot.html">cellProximitySpatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">osm_test</span>,
-                      <span class="kw">interaction_name</span> <span class="kw">=</span> <span class="no">spec_interaction</span>,
-                      <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>,
-                      <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'det_cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Astro_Mfge8'</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="st">'OPC'</span> <span class="kw">=</span> <span class="st">'red'</span>),
-                      <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">0.5</span>,  <span class="kw">point_size_select</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">point_size_other</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-                      <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'12_d_cell_cell_enrichment_selected'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb40"><pre class="downlit">
+<span class="co">## visualization</span>
+<span class="kw">spec_interaction</span> <span class="op">=</span> <span class="st">"Astro_Mfge8--OPC"</span>
+<span class="fu"><a href="../reference/cellProximitySpatPlot.html">cellProximitySpatPlot</a></span>(gobject = <span class="kw">osm_test</span>,
+                      interaction_name = <span class="kw">spec_interaction</span>,
+                      cluster_column = <span class="st">'det_cell_types'</span>, 
+                      cell_color = <span class="st">'det_cell_types'</span>, cell_color_code = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Astro_Mfge8'</span> = <span class="st">'blue'</span>, <span class="st">'OPC'</span> = <span class="st">'red'</span>),
+                      coord_fix_ratio = <span class="fl">0.5</span>,  point_size_select = <span class="fl">3</span>, point_size_other = <span class="fl">1.5</span>,
+                      save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'12_d_cell_cell_enrichment_selected'</span>))
+</pre></div>
 <p><img src="../inst/images/mouse_osmfish_ss_cortex/vignette_200915/12_d_cell_cell_enrichment_selected.png" style="width:50.0%"></p>
 </div>
   </div>
@@ -520,7 +601,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

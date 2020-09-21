@@ -1,5 +1,5 @@
-pandoc: 2.7.2
-pkgdown: 1.5.1
+pandoc: 2.7.3
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   contribute: contribute.html
@@ -20,6 +20,7 @@ articles:
   mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
   mouse_starmap_cortex_200917: mouse_starmap_cortex_200917.html
   mouse_visium_brain_200601: mouse_visium_brain_200601.html
+  mouse_visium_brain_200918: mouse_visium_brain_200918.html
   mouse_visium_kidney_200916: mouse_visium_kidney_200916.html
   subset_giotto: subset_giotto.html
   tut0_giotto_environment: tut0_giotto_environment.html
@@ -28,5 +29,5 @@ articles:
   tut3_giotto_dim_reduction: tut3_giotto_dim_reduction.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-20T22:02Z
+last_built: 2020-09-21T15:13Z
 

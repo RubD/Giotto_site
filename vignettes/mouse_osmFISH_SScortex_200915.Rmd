@@ -59,7 +59,7 @@ if(is.null(python_path)) {
 The osmFISH data to run this tutorial can be found [here](https://github.com/RubD/spatial-datasets/tree/master/data/2018_osmFISH_SScortex). Alternatively you can use the **getSpatialDataset** to automatically download this dataset like we do in this example.
 
 
-```{r eval=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 # download data to working directory ####
 # if wget is installed, set method = 'wget'
 getSpatialDataset(dataset = 'osmfish_SS_cortex', directory = results_folder, method = 'wget')

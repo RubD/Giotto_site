@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -296,10 +296,12 @@
 </li>
 </ul>
 <p>example to acces the seqFISH+ mini dataset:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># raw counts</span>
-<span class="no">small_seqfish_expr_matrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>))
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># raw counts</span>
+<span class="kw">small_seqfish_expr_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package = <span class="st">'Giotto'</span>))
 <span class="co"># cell locations</span>
-<span class="no">small_seqfish_locations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>))</pre></div>
+<span class="kw">small_seqfish_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package = <span class="st">'Giotto'</span>))
+</pre></div>
 </div>
     <div id="giotto-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
@@ -307,19 +309,23 @@
 <ul>
 <li>Default spatial network created with <strong>createSpatialNetwork</strong> is now a Delaunay spatial network.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb2"><pre class="r"><span class="co"># to create the old default kNN spatial network use:</span>
-<span class="fu"><a href="../reference/createSpatialKNNnetwork.html">createSpatialKNNnetwork</a></span>(<span class="no">gobject</span>)
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># to create the old default kNN spatial network use:</span>
+<span class="fu"><a href="../reference/createSpatialKNNnetwork.html">createSpatialKNNnetwork</a></span>(<span class="kw">gobject</span>)
 
 <span class="co"># or use this function with the following setting</span>
-<span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="no">gobject</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>)</pre></div>
+<span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span>, method = <span class="st">'kNN'</span>)
+</pre></div>
 <ul>
 <li>The function names for extracting spatial genes have changed:</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="r"><span class="co"># binGetSpatialGenes is now:</span>
-<span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">gobject</span>) <span class="co"># binary Spatial extraction</span>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># binGetSpatialGenes is now:</span>
+<span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="kw">gobject</span>) <span class="co"># binary Spatial extraction</span>
 
 <span class="co"># spatial_genes_python is now:</span>
-<span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="no">gobject</span>)</pre></div>
+<span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="kw">gobject</span>)
+</pre></div>
 <ul>
 <li>Fixed multiple bugs</li>
 <li>Improved speed by changing code to Rcpp and implementing parallelization options</li>
@@ -383,7 +389,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

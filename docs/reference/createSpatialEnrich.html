@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
       </span>
     </div>
 
@@ -190,25 +190,28 @@
     <p>Function to calculate gene signature enrichment scores per spatial position using an enrichment test.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createSpatialEnrich</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>createSpatialEnrich</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='runSpatialEnrich.html'>runSpatialEnrich</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='runSpatialEnrich.html'>runSpatialEnrich</a></code></p><dl>
     <dt><code>gobject</code></dt><dd><p>Giotto object</p></dd>
     <dt><code>enrich_method</code></dt><dd><p>method for gene signature enrichment calculation</p></dd>
     <dt><code>sign_matrix</code></dt><dd><p>Matrix of signature genes for each cell type / process</p></dd>
     <dt><code>expression_values</code></dt><dd><p>expression values to use</p></dd>
     <dt><code>reverse_log_scale</code></dt><dd><p>reverse expression values from log scale</p></dd>
+    <dt><code>min_overlap_genes</code></dt><dd><p>minimum number of overlapping genes in sign_matrix required to calculate enrichment (PAGE)</p></dd>
     <dt><code>logbase</code></dt><dd><p>log base to use if reverse_log_scale = TRUE</p></dd>
     <dt><code>p_value</code></dt><dd><p>calculate p-value (default = FALSE)</p></dd>
     <dt><code>n_times</code></dt><dd><p>(page/rank) number of permutation iterations to calculate p-value</p></dd>
+    <dt><code>max_block</code></dt><dd><p>number of lines to process together (default = 20e6)</p></dd>
     <dt><code>top_percentage</code></dt><dd><p>(hyper) percentage of cells that will be considered to have gene expression with matrix binarization</p></dd>
     <dt><code>output_enrichment</code></dt><dd><p>how to return enrichment output</p></dd>
     <dt><code>name</code></dt><dd><p>to give to spatial enrichment results, default = PAGE</p></dd>
+    <dt><code>verbose</code></dt><dd><p>be verbose</p></dd>
     <dt><code>return_gobject</code></dt><dd><p>return giotto object</p></dd>
   
 </dl></td>
@@ -234,7 +237,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
