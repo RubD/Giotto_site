@@ -315,14 +315,27 @@ reference:
   - title: cell neighborhood; spatial interaction changed genes
     desc: Identify and visualize genes that change in a source cell type due to interaction with another neighboring cell type
     contents:
+    - findInteractionChangedGenes
+    - findICG
     - findCellProximityGenes
     - findCPG
     - filterCellProximityGenes
+    - filterInteractionChangedGenes
+    - filterICG
     - filterCPG
-    - plotCellProximityGenes
-    - plotCPG
+    - combineInteractionChangedGenes
+    - combineICG
+    - combineCellProximityGenes
+    - combineCPG
     - plotInteractionChangedGenes
     - plotICG
+    - plotCellProximityGenes
+    - plotCPG
+    - plotCombineInteractionChangedGenes
+    - plotCombineICG
+    - plotCombineCellProximityGenes
+    - plotCombineCPG
+ 
 
   - title: cell neighborhood; ligand-receptor cell communication
     desc: Find putative increased spatial ligand-receptor activity between cells of pairs of cell types
