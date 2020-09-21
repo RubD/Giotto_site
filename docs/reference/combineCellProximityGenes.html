@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="combineCellProximityGenes — combineCellProximityGenes" />
-<meta property="og:description" content="Combine CPG scores in a pairwise manner." />
+<meta property="og:description" content="Combine ICG scores in a pairwise manner." />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -187,89 +187,39 @@
     </div>
 
     <div class="ref-description">
-    <p>Combine CPG scores in a pairwise manner.</p>
+    <p>Combine ICG scores in a pairwise manner.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>combineCellProximityGenes</span>(
-  <span class='kw'>cpgObject</span>,
-  selected_ints = <span class='kw'>NULL</span>,
-  selected_genes = <span class='kw'>NULL</span>,
-  specific_genes_1 = <span class='kw'>NULL</span>,
-  specific_genes_2 = <span class='kw'>NULL</span>,
-  min_cells = <span class='fl'>5</span>,
-  min_int_cells = <span class='fl'>3</span>,
-  min_fdr = <span class='fl'>0.05</span>,
-  min_spat_diff = <span class='fl'>0</span>,
-  min_log2_fc = <span class='fl'>0.5</span>,
-  do_parallel = <span class='fl'>TRUE</span>,
-  cores = <span class='fl'>NA</span>,
-  verbose = <span class='kw'>T</span>
-)</pre>
+    <pre class="usage"><span class='fu'>combineCellProximityGenes</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>cpgObject</th>
-      <td><p>cell proximity gene score object</p></td>
-    </tr>
-    <tr>
-      <th>selected_ints</th>
-      <td><p>subset of selected cell-cell interactions (optional)</p></td>
-    </tr>
-    <tr>
-      <th>selected_genes</th>
-      <td><p>subset of selected genes (optional)</p></td>
-    </tr>
-    <tr>
-      <th>specific_genes_1</th>
-      <td><p>specific geneset combo (need to position match specific_genes_2)</p></td>
-    </tr>
-    <tr>
-      <th>specific_genes_2</th>
-      <td><p>specific geneset combo (need to position match specific_genes_1)</p></td>
-    </tr>
-    <tr>
-      <th>min_cells</th>
-      <td><p>minimum number of target cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_int_cells</th>
-      <td><p>minimum number of interacting cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_fdr</th>
-      <td><p>minimum adjusted p-value</p></td>
-    </tr>
-    <tr>
-      <th>min_spat_diff</th>
-      <td><p>minimum absolute spatial expression difference</p></td>
-    </tr>
-    <tr>
-      <th>min_log2_fc</th>
-      <td><p>minimum absolute log2 fold-change</p></td>
-    </tr>
-    <tr>
-      <th>do_parallel</th>
-      <td><p>run calculations in parallel with mclapply</p></td>
-    </tr>
-    <tr>
-      <th>cores</th>
-      <td><p>number of cores to use if do_parallel = TRUE</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>verbose</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='combineInteractionChangedGenes.html'>combineInteractionChangedGenes</a></code></p><dl>
+    <dt><code>cpgObject</code></dt><dd><p>ICG (interaction changed gene) score object</p></dd>
+    <dt><code>selected_ints</code></dt><dd><p>subset of selected cell-cell interactions (optional)</p></dd>
+    <dt><code>selected_genes</code></dt><dd><p>subset of selected genes (optional)</p></dd>
+    <dt><code>specific_genes_1</code></dt><dd><p>specific geneset combo (need to position match specific_genes_2)</p></dd>
+    <dt><code>specific_genes_2</code></dt><dd><p>specific geneset combo (need to position match specific_genes_1)</p></dd>
+    <dt><code>min_cells</code></dt><dd><p>minimum number of target cell type</p></dd>
+    <dt><code>min_int_cells</code></dt><dd><p>minimum number of interacting cell type</p></dd>
+    <dt><code>min_fdr</code></dt><dd><p>minimum adjusted p-value</p></dd>
+    <dt><code>min_spat_diff</code></dt><dd><p>minimum absolute spatial expression difference</p></dd>
+    <dt><code>min_log2_fc</code></dt><dd><p>minimum absolute log2 fold-change</p></dd>
+    <dt><code>do_parallel</code></dt><dd><p>run calculations in parallel with mclapply</p></dd>
+    <dt><code>cores</code></dt><dd><p>number of cores to use if do_parallel = TRUE</p></dd>
+    <dt><code>verbose</code></dt><dd><p>verbose</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>cpgObject that contains the filtered differential gene scores</p>
+    <div class='dont-index'><p><code><a href='combineInteractionChangedGenes.html'>combineInteractionChangedGenes</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>combineCellProximityGenes</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in "cpgObject" %in% class(cpgObject): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

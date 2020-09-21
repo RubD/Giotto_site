@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="filterCellProximityGenes — filterCellProximityGenes" />
-<meta property="og:description" content="Filter cell proximity gene scores." />
+<meta property="og:description" content="Filter Interaction Changed Gene scores." />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -187,79 +187,41 @@
     </div>
 
     <div class="ref-description">
-    <p>Filter cell proximity gene scores.</p>
+    <p>Filter Interaction Changed Gene scores.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filterCellProximityGenes</span>(
-  <span class='kw'>cpgObject</span>,
-  min_cells = <span class='fl'>4</span>,
-  min_cells_expr = <span class='fl'>1</span>,
-  min_int_cells = <span class='fl'>4</span>,
-  min_int_cells_expr = <span class='fl'>1</span>,
-  min_fdr = <span class='fl'>0.1</span>,
-  min_spat_diff = <span class='fl'>0.2</span>,
-  min_log2_fc = <span class='fl'>0.2</span>,
-  min_zscore = <span class='fl'>2</span>,
-  zscores_column = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cell_type"</span>, <span class='st'>"genes"</span>),
-  direction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>filterCellProximityGenes</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>cpgObject</th>
-      <td><p>cell proximity gene score object</p></td>
-    </tr>
-    <tr>
-      <th>min_cells</th>
-      <td><p>minimum number of source cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_cells_expr</th>
-      <td><p>minimum expression level for source cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_int_cells</th>
-      <td><p>minimum number of interacting neighbor cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_int_cells_expr</th>
-      <td><p>minimum expression level for interacting neighbor cell type</p></td>
-    </tr>
-    <tr>
-      <th>min_fdr</th>
-      <td><p>minimum adjusted p-value</p></td>
-    </tr>
-    <tr>
-      <th>min_spat_diff</th>
-      <td><p>minimum absolute spatial expression difference</p></td>
-    </tr>
-    <tr>
-      <th>min_log2_fc</th>
-      <td><p>minimum log2 fold-change</p></td>
-    </tr>
-    <tr>
-      <th>min_zscore</th>
-      <td><p>minimum z-score change</p></td>
-    </tr>
-    <tr>
-      <th>zscores_column</th>
-      <td><p>calculate z-scores over cell types or genes</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>differential expression directions to keep</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='findICG.html'>findICG</a></code></p><dl>
+    <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
+    <dt><code>expression_values</code></dt><dd><p>expression values to use</p></dd>
+    <dt><code>selected_genes</code></dt><dd><p>subset of selected genes (optional)</p></dd>
+    <dt><code>cluster_column</code></dt><dd><p>name of column to use for cell types</p></dd>
+    <dt><code>spatial_network_name</code></dt><dd><p>name of spatial network to use</p></dd>
+    <dt><code>minimum_unique_cells</code></dt><dd><p>minimum number of target cells required</p></dd>
+    <dt><code>minimum_unique_int_cells</code></dt><dd><p>minimum number of interacting cells required</p></dd>
+    <dt><code>diff_test</code></dt><dd><p>which differential expression test</p></dd>
+    <dt><code>mean_method</code></dt><dd><p>method to use to calculate the mean</p></dd>
+    <dt><code>offset</code></dt><dd><p>offset value to use when calculating log2 ratio</p></dd>
+    <dt><code>adjust_method</code></dt><dd><p>which method to adjust p-values</p></dd>
+    <dt><code>nr_permutations</code></dt><dd><p>number of permutations if diff_test = permutation</p></dd>
+    <dt><code>exclude_selected_cells_from_test</code></dt><dd><p>exclude interacting cells other cells</p></dd>
+    <dt><code>do_parallel</code></dt><dd><p>run calculations in parallel with mclapply</p></dd>
+    <dt><code>cores</code></dt><dd><p>number of cores to use if do_parallel = TRUE</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>cpgObject that contains the filtered differential gene scores</p>
+    <div class='dont-index'><p><code><a href='findICG.html'>findICG</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>filterCellProximityGenes</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in "cpgObject" %in% class(cpgObject): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

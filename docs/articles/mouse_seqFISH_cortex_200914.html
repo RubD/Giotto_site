@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -743,7 +743,7 @@
 <span class="kw">high_expressed_genes</span> <span class="op">=</span> <span class="kw">gene_metadata</span>[<span class="kw">mean_expr_det</span> <span class="op">&gt;</span> <span class="fl">1.31</span>]<span class="op">$</span><span class="kw">gene_ID</span>
 
 <span class="co">## identify genes that are associated with proximity to other cell types</span>
-<span class="kw">CPGscoresHighGenes</span> <span class="op">=</span>  <span class="fu"><a href="../reference/findCPG.html">findCPG</a></span>(gobject = <span class="kw">SS_seqfish</span>,
+<span class="kw">ICGscoresHighGenes</span> <span class="op">=</span>  <span class="fu"><a href="../reference/findICG.html">findICG</a></span>(gobject = <span class="kw">SS_seqfish</span>,
                               selected_genes = <span class="kw">high_expressed_genes</span>,
                               spatial_network_name = <span class="st">'Delaunay_network'</span>,
                               cluster_column = <span class="st">'cell_types'</span>,
@@ -753,13 +753,14 @@
                               do_parallel = <span class="kw">T</span>, cores = <span class="fl">4</span>)
 
 <span class="co">## visualize all genes</span>
-<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span>(<span class="kw">SS_seqfish</span>, cpgObject = <span class="kw">CPGscoresHighGenes</span>, method = <span class="st">'dotplot'</span>, 
+<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span>(<span class="kw">SS_seqfish</span>, cpgObject = <span class="kw">ICGscoresHighGenes</span>, 
+                       method = <span class="st">'dotplot'</span>, 
                        save_param = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name = <span class="st">'13_a_CPG_dotplot'</span>, base_width = <span class="fl">5</span>, base_height = <span class="fl">5</span>))
 </pre></div>
 <p><img src="../inst/images/mouse_seqFISH_SS_cortex/vignette_200914/13_a_CPG_dotplot.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb39"><pre class="downlit">
 <span class="co">## filter genes</span>
-<span class="kw">CPGscoresFilt</span> <span class="op">=</span> <span class="fu"><a href="../reference/filterCPG.html">filterCPG</a></span>(<span class="kw">CPGscoresHighGenes</span>)
+<span class="kw">ICGscoresFilt</span> <span class="op">=</span> <span class="fu"><a href="../reference/filterICG.html">filterICG</a></span>(<span class="kw">ICGscoresHighGenes</span>)
 
 <span class="co">## visualize subset of interaction changed genes (ICGs)</span>
 <span class="kw">ICG_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Jakmip1'</span>, <span class="st">'Golgb1'</span>, <span class="st">'Dact2'</span>, <span class="st">'Ddx27'</span>, <span class="st">'Abl1'</span>, <span class="st">'Zswim8'</span>)
@@ -767,7 +768,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">ICG_genes</span>) <span class="op">=</span> <span class="kw">ICG_genes_types</span>
 
 <span class="fu"><a href="../reference/plotICG.html">plotICG</a></span>(gobject = <span class="kw">SS_seqfish</span>,
-        cpgObject = <span class="kw">CPGscoresHighGenes</span>,
+        cpgObject = <span class="kw">ICGscoresHighGenes</span>,
         source_type = <span class="st">'endothelial'</span>,
         source_markers = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Pltp'</span>, <span class="st">'Cldn5'</span>, <span class="st">'Apcdd1'</span>),
         ICG_genes = <span class="kw">ICG_genes</span>,

@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="findCellProximityGenes — findCellProximityGenes" />
-<meta property="og:description" content="Identifies genes that are differentially expressed due to proximity to other cell types." />
+<meta property="og:description" content="Identifies cell-to-cell Interaction Changed Genes (ICG),
+i.e. genes that are differentially expressed due to proximity to other cell types." />
 
 
 
@@ -82,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -187,121 +188,42 @@
     </div>
 
     <div class="ref-description">
-    <p>Identifies genes that are differentially expressed due to proximity to other cell types.</p>
+    <p>Identifies cell-to-cell Interaction Changed Genes (ICG),
+i.e. genes that are differentially expressed due to proximity to other cell types.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findCellProximityGenes</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='st'>"normalized"</span>,
-  selected_genes = <span class='kw'>NULL</span>,
-  <span class='kw'>cluster_column</span>,
-  spatial_network_name = <span class='st'>"Delaunay_network"</span>,
-  minimum_unique_cells = <span class='fl'>1</span>,
-  minimum_unique_int_cells = <span class='fl'>1</span>,
-  diff_test = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"permutation"</span>, <span class='st'>"limma"</span>, <span class='st'>"t.test"</span>, <span class='st'>"wilcox"</span>),
-  mean_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"arithmic"</span>, <span class='st'>"geometric"</span>),
-  offset = <span class='fl'>0.1</span>,
-  adjust_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bonferroni"</span>, <span class='st'>"BH"</span>, <span class='st'>"holm"</span>, <span class='st'>"hochberg"</span>, <span class='st'>"hommel"</span>, <span class='st'>"BY"</span>, <span class='st'>"fdr"</span>,
-    <span class='st'>"none"</span>),
-  nr_permutations = <span class='fl'>1000</span>,
-  exclude_selected_cells_from_test = <span class='kw'>T</span>,
-  do_parallel = <span class='fl'>TRUE</span>,
-  cores = <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>findCellProximityGenes</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gobject</th>
-      <td><p>giotto object</p></td>
-    </tr>
-    <tr>
-      <th>expression_values</th>
-      <td><p>expression values to use</p></td>
-    </tr>
-    <tr>
-      <th>selected_genes</th>
-      <td><p>subset of selected genes (optional)</p></td>
-    </tr>
-    <tr>
-      <th>cluster_column</th>
-      <td><p>name of column to use for cell types</p></td>
-    </tr>
-    <tr>
-      <th>spatial_network_name</th>
-      <td><p>name of spatial network to use</p></td>
-    </tr>
-    <tr>
-      <th>minimum_unique_cells</th>
-      <td><p>minimum number of target cells required</p></td>
-    </tr>
-    <tr>
-      <th>minimum_unique_int_cells</th>
-      <td><p>minimum number of interacting cells required</p></td>
-    </tr>
-    <tr>
-      <th>diff_test</th>
-      <td><p>which differential expression test</p></td>
-    </tr>
-    <tr>
-      <th>mean_method</th>
-      <td><p>method to use to calculate the mean</p></td>
-    </tr>
-    <tr>
-      <th>offset</th>
-      <td><p>offset value to use when calculating log2 ratio</p></td>
-    </tr>
-    <tr>
-      <th>adjust_method</th>
-      <td><p>which method to adjust p-values</p></td>
-    </tr>
-    <tr>
-      <th>nr_permutations</th>
-      <td><p>number of permutations if diff_test = permutation</p></td>
-    </tr>
-    <tr>
-      <th>exclude_selected_cells_from_test</th>
-      <td><p>exclude interacting cells other cells</p></td>
-    </tr>
-    <tr>
-      <th>do_parallel</th>
-      <td><p>run calculations in parallel with mclapply</p></td>
-    </tr>
-    <tr>
-      <th>cores</th>
-      <td><p>number of cores to use if do_parallel = TRUE</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='findInteractionChangedGenes.html'>findInteractionChangedGenes</a></code></p><dl>
+    <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
+    <dt><code>expression_values</code></dt><dd><p>expression values to use</p></dd>
+    <dt><code>selected_genes</code></dt><dd><p>subset of selected genes (optional)</p></dd>
+    <dt><code>cluster_column</code></dt><dd><p>name of column to use for cell types</p></dd>
+    <dt><code>spatial_network_name</code></dt><dd><p>name of spatial network to use</p></dd>
+    <dt><code>minimum_unique_cells</code></dt><dd><p>minimum number of target cells required</p></dd>
+    <dt><code>minimum_unique_int_cells</code></dt><dd><p>minimum number of interacting cells required</p></dd>
+    <dt><code>diff_test</code></dt><dd><p>which differential expression test</p></dd>
+    <dt><code>mean_method</code></dt><dd><p>method to use to calculate the mean</p></dd>
+    <dt><code>offset</code></dt><dd><p>offset value to use when calculating log2 ratio</p></dd>
+    <dt><code>adjust_method</code></dt><dd><p>which method to adjust p-values</p></dd>
+    <dt><code>nr_permutations</code></dt><dd><p>number of permutations if diff_test = permutation</p></dd>
+    <dt><code>exclude_selected_cells_from_test</code></dt><dd><p>exclude interacting cells other cells</p></dd>
+    <dt><code>do_parallel</code></dt><dd><p>run calculations in parallel with mclapply</p></dd>
+    <dt><code>cores</code></dt><dd><p>number of cores to use if do_parallel = TRUE</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>cpgObject that contains the differential gene scores</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <div class='dont-index'><p><code><a href='findInteractionChangedGenes.html'>findInteractionChangedGenes</a></code></p></div>
 
-    <p>Function to calculate if genes are differentially expressed in cell types
- when they interact (approximated by physical proximity) with other cell types.
- The results data.table in the cpgObject contains - at least - the following columns:</p><ul>
-<li><p>genes: All or selected list of tested genes</p></li>
-<li><p>sel: average gene expression in the interacting cells from the target cell type</p></li>
-<li><p>other: average gene expression in the NOT-interacting cells from the target cell type</p></li>
-<li><p>log2fc: log2 fold-change between sel and other</p></li>
-<li><p>diff: spatial expression difference between sel and other</p></li>
-<li><p>p.value: associated p-value</p></li>
-<li><p>p.adj: adjusted p-value</p></li>
-<li><p>cell_type: target cell type</p></li>
-<li><p>int_cell_type: interacting cell type</p></li>
-<li><p>nr_select: number of cells for selected target cell type</p></li>
-<li><p>int_nr_select: number of cells for interacting cell type</p></li>
-<li><p>nr_other: number of other cells of selected target cell type</p></li>
-<li><p>int_nr_other: number of other cells for interacting cell type</p></li>
-<li><p>unif_int: cell-cell interaction</p></li>
-</ul>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>findCellProximityGenes</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in select_expression_values(gobject = gobject, values = values): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

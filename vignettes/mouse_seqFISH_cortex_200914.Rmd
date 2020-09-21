@@ -696,7 +696,7 @@ quantile(gene_metadata$mean_expr_det)
 high_expressed_genes = gene_metadata[mean_expr_det > 1.31]$gene_ID
 
 ## identify genes that are associated with proximity to other cell types
-CPGscoresHighGenes =  findCPG(gobject = SS_seqfish,
+ICGscoresHighGenes =  findICG(gobject = SS_seqfish,
                               selected_genes = high_expressed_genes,
                               spatial_network_name = 'Delaunay_network',
                               cluster_column = 'cell_types',
@@ -706,7 +706,8 @@ CPGscoresHighGenes =  findCPG(gobject = SS_seqfish,
                               do_parallel = T, cores = 4)
 
 ## visualize all genes
-plotCellProximityGenes(SS_seqfish, cpgObject = CPGscoresHighGenes, method = 'dotplot', 
+plotCellProximityGenes(SS_seqfish, cpgObject = ICGscoresHighGenes, 
+                       method = 'dotplot', 
                        save_param = c(save_name = '13_a_CPG_dotplot', base_width = 5, base_height = 5))
 
 ```
@@ -715,7 +716,7 @@ plotCellProximityGenes(SS_seqfish, cpgObject = CPGscoresHighGenes, method = 'dot
 
 ```{r eval=FALSE}
 ## filter genes
-CPGscoresFilt = filterCPG(CPGscoresHighGenes)
+ICGscoresFilt = filterICG(ICGscoresHighGenes)
 
 ## visualize subset of interaction changed genes (ICGs)
 ICG_genes = c('Jakmip1', 'Golgb1', 'Dact2', 'Ddx27', 'Abl1', 'Zswim8')
@@ -723,7 +724,7 @@ ICG_genes_types = c('Lhx6 iNeuron', 'Lhx6 iNeuron', 'L4 eNeuron', 'L4 eNeuron', 
 names(ICG_genes) = ICG_genes_types
 
 plotICG(gobject = SS_seqfish,
-        cpgObject = CPGscoresHighGenes,
+        cpgObject = ICGscoresHighGenes,
         source_type = 'endothelial',
         source_markers = c('Pltp', 'Cldn5', 'Apcdd1'),
         ICG_genes = ICG_genes,

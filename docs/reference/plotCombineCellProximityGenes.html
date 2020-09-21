@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="plotCombineCellProximityGenes — plotCombineCellProximityGenes" />
-<meta property="og:description" content="Create visualization for combined (pairwise) cell proximity gene scores" />
+<meta property="og:description" content="Create visualization for combined (pairwise) ICG scores" />
 
 
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -187,104 +187,42 @@
     </div>
 
     <div class="ref-description">
-    <p>Create visualization for combined (pairwise) cell proximity gene scores</p>
+    <p>Create visualization for combined (pairwise) ICG scores</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotCombineCellProximityGenes</span>(
-  <span class='kw'>gobject</span>,
-  <span class='kw'>combCpgObject</span>,
-  selected_interactions = <span class='kw'>NULL</span>,
-  selected_gene_to_gene = <span class='kw'>NULL</span>,
-  detail_plot = <span class='kw'>T</span>,
-  simple_plot = <span class='kw'>F</span>,
-  simple_plot_facet = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"interaction"</span>, <span class='st'>"genes"</span>),
-  facet_scales = <span class='st'>"fixed"</span>,
-  facet_ncol = <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>selected_gene_to_gene</span>),
-  facet_nrow = <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='kw'>selected_interactions</span>),
-  colors = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"#9932CC"</span>, <span class='st'>"#FF8C00"</span>),
-  show_plot = <span class='fl'>NA</span>,
-  return_plot = <span class='fl'>NA</span>,
-  save_plot = <span class='fl'>NA</span>,
-  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  default_save_name = <span class='st'>"plotCombineCPG"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plotCombineCellProximityGenes</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gobject</th>
-      <td><p>giotto object</p></td>
-    </tr>
-    <tr>
-      <th>combCpgObject</th>
-      <td><p>CPGscores, output from combineCellProximityGenes()</p></td>
-    </tr>
-    <tr>
-      <th>selected_interactions</th>
-      <td><p>interactions to show</p></td>
-    </tr>
-    <tr>
-      <th>selected_gene_to_gene</th>
-      <td><p>pairwise gene combinations to show</p></td>
-    </tr>
-    <tr>
-      <th>detail_plot</th>
-      <td><p>show detailed info in both interacting cell types</p></td>
-    </tr>
-    <tr>
-      <th>simple_plot</th>
-      <td><p>show a simplified plot</p></td>
-    </tr>
-    <tr>
-      <th>simple_plot_facet</th>
-      <td><p>facet on interactions or genes with simple plot</p></td>
-    </tr>
-    <tr>
-      <th>facet_scales</th>
-      <td><p>ggplot facet scales paramter</p></td>
-    </tr>
-    <tr>
-      <th>facet_ncol</th>
-      <td><p>ggplot facet ncol parameter</p></td>
-    </tr>
-    <tr>
-      <th>facet_nrow</th>
-      <td><p>ggplot facet nrow parameter</p></td>
-    </tr>
-    <tr>
-      <th>colors</th>
-      <td><p>vector with two colors to use</p></td>
-    </tr>
-    <tr>
-      <th>show_plot</th>
-      <td><p>show plots</p></td>
-    </tr>
-    <tr>
-      <th>return_plot</th>
-      <td><p>return plotting object</p></td>
-    </tr>
-    <tr>
-      <th>save_plot</th>
-      <td><p>directly save the plot [boolean]</p></td>
-    </tr>
-    <tr>
-      <th>save_param</th>
-      <td><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></td>
-    </tr>
-    <tr>
-      <th>default_save_name</th>
-      <td><p>default save name for saving, don't change, change save_name in save_param</p></td>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='plotCombineInteractionChangedGenes.html'>plotCombineInteractionChangedGenes</a></code></p><dl>
+    <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
+    <dt><code>combCpgObject</code></dt><dd><p>ICGscores, output from combineInteractionChangedGenes()</p></dd>
+    <dt><code>selected_interactions</code></dt><dd><p>interactions to show</p></dd>
+    <dt><code>selected_gene_to_gene</code></dt><dd><p>pairwise gene combinations to show</p></dd>
+    <dt><code>detail_plot</code></dt><dd><p>show detailed info in both interacting cell types</p></dd>
+    <dt><code>simple_plot</code></dt><dd><p>show a simplified plot</p></dd>
+    <dt><code>simple_plot_facet</code></dt><dd><p>facet on interactions or genes with simple plot</p></dd>
+    <dt><code>facet_scales</code></dt><dd><p>ggplot facet scales paramter</p></dd>
+    <dt><code>facet_ncol</code></dt><dd><p>ggplot facet ncol parameter</p></dd>
+    <dt><code>facet_nrow</code></dt><dd><p>ggplot facet nrow parameter</p></dd>
+    <dt><code>colors</code></dt><dd><p>vector with two colors to use</p></dd>
+    <dt><code>show_plot</code></dt><dd><p>show plots</p></dd>
+    <dt><code>return_plot</code></dt><dd><p>return plotting object</p></dd>
+    <dt><code>save_plot</code></dt><dd><p>directly save the plot [boolean]</p></dd>
+    <dt><code>save_param</code></dt><dd><p>list of saving parameters from <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p></dd>
+    <dt><code>default_save_name</code></dt><dd><p>default save name for saving, don't change, change save_name in save_param</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>ggplot</p>
+    <div class='dont-index'><p><code><a href='plotCombineInteractionChangedGenes.html'>plotCombineInteractionChangedGenes</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>plotCombineCellProximityGenes</span>(<span class='kw'>CPGscores</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in "combCpgObject" %in% class(combCpgObject): argument "combCpgObject" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

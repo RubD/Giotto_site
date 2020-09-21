@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9048</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
       </span>
     </div>
 
@@ -146,21 +146,23 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
-</pre></div>
-<div id="optional-set-giotto-instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#optional-set-giotto-instructions" class="anchor"></a>(optional) set giotto instructions</h3>
+<pre><code>#&gt; Warning: This tutorial was written with Giotto version 0.3.6.9038, your version
+#&gt; is 0.3.6.9051. This is a more recent version and results should be reproducible</code></pre>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># to automatically save figures in save_dir set save_plot to TRUE</span>
-<span class="kw">temp_dir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
-<span class="kw">temp_dir</span> <span class="op">=</span> <span class="st">'~/Temp/'</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://rubd.github.io/Giotto">Giotto</a></span>)
+
+<span class="co"># (optional) instructions</span>
+<span class="kw">temp_dir</span> <span class="op">=</span> <span class="st">'/~/Temp/'</span>
 <span class="kw">myinstructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(save_dir = <span class="kw">temp_dir</span>,
-                                          save_plot = <span class="fl">FALSE</span>, 
-                                          show_plot = <span class="kw">F</span>)
+                                          save_plot = <span class="fl">TRUE</span>, 
+                                          show_plot = <span class="fl">FALSE</span>)
+
+<span class="co"># set python_path if you want to or install giotto environment</span>
+<span class="kw">python_path</span> <span class="op">=</span> <span class="kw">NULL</span> 
+<span class="co">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="kw">python_path</span>)) {
+  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span>()
+}
 </pre></div>
-</div>
 <div id="create-a-giotto-object" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-giotto-object" class="anchor"></a>1. Create a Giotto object</h2>
@@ -223,16 +225,30 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(gobject = <span class="kw">seqfish_mini</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/HVGplot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(gobject = <span class="kw">seqfish_mini</span>)
 <span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="kw">seqfish_mini</span>, ncp = <span class="fl">20</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/screePlot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="../reference/jackstrawPlot.html">jackstrawPlot</a></span>(<span class="kw">seqfish_mini</span>, ncp = <span class="fl">20</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/jackstrawPlot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">seqfish_mini</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/PCA.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="kw">seqfish_mini</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, n_threads = <span class="fl">2</span>)
 <span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">seqfish_mini</span>)
+</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="kw">seqfish_mini</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>)
 <span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(gobject = <span class="kw">seqfish_mini</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/tSNE.png" style="width:50.0%"></p>
 </div>
 <div id="clustering" class="section level2">
 <h2 class="hasAnchor">
@@ -242,25 +258,32 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives)</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(gobject = <span class="kw">seqfish_mini</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, k = <span class="fl">5</span>)
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(gobject = <span class="kw">seqfish_mini</span>, resolution = <span class="fl">0.4</span>, n_iterations = <span class="fl">1000</span>)
 
 <span class="co"># visualize UMAP cluster results</span>
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">seqfish_mini</span>, cell_color = <span class="st">'leiden_clus'</span>, show_NN_network = <span class="kw">T</span>, point_size = <span class="fl">2.5</span>)
-
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">seqfish_mini</span>, cell_color = <span class="st">'leiden_clus'</span>, 
+         show_NN_network = <span class="kw">T</span>, point_size = <span class="fl">2.5</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/UMAP" style="width:50.0%"></p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="co"># visualize UMAP and spatial results</span>
 <span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(gobject = <span class="kw">seqfish_mini</span>, cell_color = <span class="st">'leiden_clus'</span>, spat_point_shape = <span class="st">'voronoi'</span>)
 
 <span class="co"># heatmap and dendrogram</span>
 <span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(gobject = <span class="kw">seqfish_mini</span>, cluster_column = <span class="st">'leiden_clus'</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/showClusterHeatmap" style="width:50.0%"></p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span>(<span class="kw">seqfish_mini</span>, h = <span class="fl">0.5</span>, rotate = <span class="kw">T</span>, cluster_column = <span class="st">'leiden_clus'</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/showClusterDendrogram.png" style="width:50.0%"></p>
 </div>
 <div id="differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#differential-expression" class="anchor"></a>5. differential expression</h2>
-<div class="sourceCode" id="cb8"><pre class="downlit">
+<div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="kw">gini_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(gobject = <span class="kw">seqfish_mini</span>,
                                                   method = <span class="st">'gini'</span>,
                                                   expression_values = <span class="st">'normalized'</span>,
@@ -272,17 +295,20 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="co"># get top 2 genes per cluster and visualize with violinplot</span>
 <span class="kw">topgenes_gini</span> <span class="op">=</span> <span class="kw">gini_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">2</span>), by = <span class="st">'cluster'</span>]
 <span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="kw">seqfish_mini</span>, genes = <span class="kw">topgenes_gini</span><span class="op">$</span><span class="kw">genes</span>, cluster_column = <span class="st">'leiden_clus'</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/violinPlot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="co"># get top 6 genes per cluster and visualize with heatmap</span>
 <span class="kw">topgenes_gini2</span> <span class="op">=</span> <span class="kw">gini_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">.SD</span>, <span class="fl">6</span>), by = <span class="st">'cluster'</span>]
 <span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">seqfish_mini</span>, selected_genes = <span class="kw">topgenes_gini2</span><span class="op">$</span><span class="kw">genes</span>,
                     metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>))
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotMetaDataHeatmap.png" style="width:50.0%"></p>
 </div>
 <div id="cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-type-annotation" class="anchor"></a>6. cell type annotation</h2>
-<div class="sourceCode" id="cb9"><pre class="downlit">
+<div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="kw">clusters_cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell A'</span>, <span class="st">'cell B'</span>, <span class="st">'cell C'</span>, <span class="st">'cell D'</span>,
                         <span class="st">'cell E'</span>, <span class="st">'cell F'</span>, <span class="st">'cell G'</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">clusters_cell_types</span>) <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>
@@ -297,12 +323,13 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(gobject = <span class="kw">seqfish_mini</span>, cell_color = <span class="st">'cell_types'</span>, 
             spat_point_size = <span class="fl">3</span>, dim_point_size = <span class="fl">3</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatDimPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-grid" class="anchor"></a>7. spatial grid</h2>
 <p>Create a grid based on defined stepsizes in the x,y(,z) axes.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
+<div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="kw">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(gobject = <span class="kw">seqfish_mini</span>,
                               sdimx_stepsize = <span class="fl">300</span>,
                               sdimy_stepsize = <span class="fl">300</span>,
@@ -323,7 +350,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>create a spatial kNN network</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span>(gobject = <span class="kw">seqfish_mini</span>, maximum_distance = <span class="fl">400</span>)
 <span class="kw">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(gobject = <span class="kw">seqfish_mini</span>, minimum_k = <span class="fl">2</span>, 
                                     maximum_distance_delaunay = <span class="fl">400</span>)
@@ -349,7 +376,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 - binSpect with rank binarization<br>
 - silhouetteRank</p>
 <p>Visualize top 4 genes per method.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
+<div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="kw">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="kw">seqfish_mini</span>)
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">seqfish_mini</span>, expression_values = <span class="st">'scaled'</span>, 
              genes = <span class="kw">km_spatialgenes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>]<span class="op">$</span><span class="kw">genes</span>,
@@ -364,7 +391,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
              show_network = <span class="kw">F</span>, network_color = <span class="st">'lightgrey'</span>, point_size = <span class="fl">2.5</span>,
              cow_n_col = <span class="fl">2</span>)
 </pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
+<div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="kw">silh_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(gobject = <span class="kw">seqfish_mini</span>) <span class="co"># TODO: suppress print output</span>
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">seqfish_mini</span>, expression_values = <span class="st">'scaled'</span>, 
              genes = <span class="kw">silh_spatialgenes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>]<span class="op">$</span><span class="kw">genes</span>,
@@ -372,6 +399,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
              show_network = <span class="kw">F</span>, network_color = <span class="st">'lightgrey'</span>, point_size = <span class="fl">2.5</span>,
              cow_n_col = <span class="fl">2</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatGenePlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-co-expression-patterns" class="section level2">
 <h2 class="hasAnchor">
@@ -379,7 +407,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <p>Identify robust spatial co-expression patterns using the spatial network or grid and a subset of individual spatial genes.<br>
 1. calculate spatial correlation scores<br>
 2. cluster correlation scores</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
+<div class="sourceCode" id="cb22"><pre class="downlit">
 
 <span class="co"># 1. calculate spatial correlation scores </span>
 <span class="kw">ext_spatial_genes</span> <span class="op">=</span> <span class="kw">km_spatialgenes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">500</span>]<span class="op">$</span><span class="kw">genes</span>
@@ -393,7 +421,9 @@ Of note, the python path can only be set once in an R session. See the reticulat
                                           name = <span class="st">'spat_netw_clus'</span>, k = <span class="fl">8</span>)
 <span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span>(<span class="kw">seqfish_mini</span>, spatCorObject = <span class="kw">spat_cor_netw_DT</span>, 
                      use_clus_name = <span class="st">'spat_netw_clus'</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/heatmSpatialCorGenes.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="kw">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span>(<span class="kw">seqfish_mini</span>, 
                                   spatCorObject = <span class="kw">spat_cor_netw_DT</span>, 
                                   use_clus_name = <span class="st">'spat_netw_clus'</span>)
@@ -407,18 +437,18 @@ Of note, the python path can only be set once in an R session. See the reticulat
                                        show_top_genes = <span class="fl">1</span>)
 <span class="kw">cluster_genes</span> <span class="op">=</span> <span class="kw">cluster_genes_DT</span><span class="op">$</span><span class="kw">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">cluster_genes</span>) <span class="op">=</span> <span class="kw">cluster_genes_DT</span><span class="op">$</span><span class="kw">gene_ID</span>
 
-
 <span class="kw">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span>(<span class="kw">seqfish_mini</span>, gene_clusters = <span class="kw">cluster_genes</span>, name = <span class="st">'cluster_metagene'</span>)
 <span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(<span class="kw">seqfish_mini</span>,
              spat_enr_names = <span class="st">'cluster_metagene'</span>,
              cell_annotation_values = <span class="kw">netw_ranks</span><span class="op">$</span><span class="kw">clusters</span>,
              point_size = <span class="fl">1.5</span>, cow_n_col = <span class="fl">3</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatCellPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-hmrf-domains" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-hmrf-domains" class="anchor"></a>11. spatial HMRF domains</h2>
-<div class="sourceCode" id="cb15"><pre class="downlit">
+<div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="kw">hmrf_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">temp_dir</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span>)
 <span class="co">if</span>(<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="kw">hmrf_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="kw">hmrf_folder</span>, recursive = <span class="kw">T</span>)
 
@@ -455,7 +485,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <div id="cell-neighborhood-cell-typecell-type-interactions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-neighborhood-cell-typecell-type-interactions" class="anchor"></a>12. cell neighborhood: cell-type/cell-type interactions</h2>
-<div class="sourceCode" id="cb16"><pre class="downlit">
+<div class="sourceCode" id="cb25"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(seed = <span class="fl">2841</span>)
 <span class="kw">cell_proximities</span> <span class="op">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span>(gobject = <span class="kw">seqfish_mini</span>,
                                            cluster_column = <span class="st">'cell_types'</span>,
@@ -466,16 +496,23 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span>(gobject = <span class="kw">seqfish_mini</span>, 
                      CPscore = <span class="kw">cell_proximities</span>, 
                      min_orig_ints = <span class="fl">5</span>, min_sim_ints = <span class="fl">5</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityBarplot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb26"><pre class="downlit">
 <span class="co">## heatmap</span>
 <span class="fu"><a href="../reference/cellProximityHeatmap.html">cellProximityHeatmap</a></span>(gobject = <span class="kw">seqfish_mini</span>, CPscore = <span class="kw">cell_proximities</span>, 
                      order_cell_types = <span class="kw">T</span>, scale = <span class="kw">T</span>,
                      color_breaks = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">0</span>, <span class="fl">1.5</span>), 
                      color_names = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'blue'</span>, <span class="st">'white'</span>, <span class="st">'red'</span>))
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatCellPlot2D.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="co"># network</span>
 <span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(gobject = <span class="kw">seqfish_mini</span>, CPscore = <span class="kw">cell_proximities</span>, 
                      remove_self_edges = <span class="kw">T</span>, only_show_enrichment_edges = <span class="kw">T</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityHeatmap.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb28"><pre class="downlit">
 <span class="co"># network with self-edges</span>
 <span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(gobject = <span class="kw">seqfish_mini</span>, CPscore = <span class="kw">cell_proximities</span>,
                      remove_self_edges = <span class="kw">F</span>, self_loop_strength = <span class="fl">0.3</span>,
@@ -485,10 +522,11 @@ Of note, the python path can only be set once in an R session. See the reticulat
                      edge_weight_range_depletion = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>),
                      edge_weight_range_enrichment = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">5</span>))
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityNetwork.png" style="width:50.0%"></p>
 <div id="visualization-of-specific-cell-types" class="section level3">
 <h3 class="hasAnchor">
 <a href="#visualization-of-specific-cell-types" class="anchor"></a>visualization of specific cell types</h3>
-<div class="sourceCode" id="cb17"><pre class="downlit">
+<div class="sourceCode" id="cb29"><pre class="downlit">
 
 <span class="co"># Option 1</span>
 <span class="kw">spec_interaction</span> <span class="op">=</span> <span class="st">"cell D--cell F"</span>
@@ -499,7 +537,9 @@ Of note, the python path can only be set once in an R session. See the reticulat
                         cell_color = <span class="st">'cell_types'</span>,
                         cell_color_code = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell D'</span> = <span class="st">'lightblue'</span>, <span class="st">'cell F'</span> = <span class="st">'red'</span>),
                         point_size_select = <span class="fl">4</span>, point_size_other = <span class="fl">2</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximitySpatPlot2D.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb30"><pre class="downlit">
 <span class="co"># Option 2: create additional metadata</span>
 <span class="kw">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellIntMetadata.html">addCellIntMetadata</a></span>(<span class="kw">seqfish_mini</span>,
                              spatial_network = <span class="st">'Delaunay_network'</span>,
@@ -509,11 +549,12 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">seqfish_mini</span>, cell_color = <span class="st">'D_F_interactions'</span>, legend_symbol_size = <span class="fl">3</span>,
          select_cell_groups =  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'other_cell D'</span>, <span class="st">'other_cell F'</span>, <span class="st">'select_cell D'</span>, <span class="st">'select_cell F'</span>))
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="cell-neighborhood-interaction-changed-genes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cell-neighborhood-interaction-changed-genes" class="anchor"></a>13. cell neighborhood: interaction changed genes</h3>
-<div class="sourceCode" id="cb18"><pre class="downlit">
+<div class="sourceCode" id="cb31"><pre class="downlit">
 
 <span class="co">## select top 25th highest expressing genes</span>
 <span class="kw">gene_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span>(<span class="kw">seqfish_mini</span>)
@@ -524,7 +565,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="kw">high_expressed_genes</span> <span class="op">=</span> <span class="kw">gene_metadata</span>[<span class="kw">mean_expr_det</span> <span class="op">&gt;</span> <span class="fl">4</span>]<span class="op">$</span><span class="kw">gene_ID</span>
 
 <span class="co">## identify genes that are associated with proximity to other cell types</span>
-<span class="kw">CPGscoresHighGenes</span> <span class="op">=</span>  <span class="fu"><a href="../reference/findCPG.html">findCPG</a></span>(gobject = <span class="kw">seqfish_mini</span>,
+<span class="kw">ICGscoresHighGenes</span> <span class="op">=</span>  <span class="fu"><a href="../reference/findICG.html">findICG</a></span>(gobject = <span class="kw">seqfish_mini</span>,
                               selected_genes = <span class="kw">high_expressed_genes</span>,
                               spatial_network_name = <span class="st">'Delaunay_network'</span>,
                               cluster_column = <span class="st">'cell_types'</span>,
@@ -534,10 +575,13 @@ Of note, the python path can only be set once in an R session. See the reticulat
                               do_parallel = <span class="kw">T</span>, cores = <span class="fl">2</span>)
 
 <span class="co">## visualize all genes</span>
-<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span>(<span class="kw">seqfish_mini</span>, cpgObject = <span class="kw">CPGscoresHighGenes</span>, method = <span class="st">'dotplot'</span>)
-
+<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span>(<span class="kw">seqfish_mini</span>, cpgObject = <span class="kw">ICGscoresHighGenes</span>, method = <span class="st">'dotplot'</span>)
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCellProximityGenes.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb32"><pre class="downlit">
 <span class="co">## filter genes</span>
-<span class="kw">CPGscoresFilt</span> <span class="op">=</span> <span class="fu"><a href="../reference/filterCPG.html">filterCPG</a></span>(<span class="kw">CPGscoresHighGenes</span>, min_cells = <span class="fl">2</span>, min_int_cells = <span class="fl">2</span>, min_fdr = <span class="fl">0.1</span>,
+<span class="kw">ICGscoresFilt</span> <span class="op">=</span> <span class="fu"><a href="../reference/filterICG.html">filterICG</a></span>(<span class="kw">ICGscoresHighGenes</span>, 
+                          min_cells = <span class="fl">2</span>, min_int_cells = <span class="fl">2</span>, min_fdr = <span class="fl">0.1</span>,
                           min_spat_diff = <span class="fl">0.1</span>, min_log2_fc = <span class="fl">0.1</span>, min_zscore = <span class="fl">1</span>)
 
 <span class="co">## visualize subset of interaction changed genes (ICGs)</span>
@@ -546,17 +590,18 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">ICG_genes</span>) <span class="op">=</span> <span class="kw">ICG_genes_types</span>
 
 <span class="fu"><a href="../reference/plotICG.html">plotICG</a></span>(gobject = <span class="kw">seqfish_mini</span>,
-        cpgObject = <span class="kw">CPGscoresHighGenes</span>,
+        cpgObject = <span class="kw">ICGscoresHighGenes</span>,
         source_type = <span class="st">'cell A'</span>,
         source_markers = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Csf1r'</span>, <span class="st">'Laptm5'</span>),
         ICG_genes = <span class="kw">ICG_genes</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotICG.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="cell-neighborhood-ligand-receptor-cell-cell-communication" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-neighborhood-ligand-receptor-cell-cell-communication" class="anchor"></a>14. cell neighborhood: ligand-receptor cell-cell communication</h2>
-<div class="sourceCode" id="cb19"><pre class="downlit">
+<div class="sourceCode" id="cb33"><pre class="downlit">
 
 <span class="kw">LR_data</span> <span class="op">=</span> <span class="kw">data.table</span>::<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"mouse_ligand_receptors.txt"</span>, package = <span class="st">'Giotto'</span>))
 
@@ -601,16 +646,17 @@ Of note, the python path can only be set once in an R session. See the reticulat
                  selected_LR = <span class="kw">top_LR_ints</span>,
                  selected_cell_LR = <span class="kw">top_LR_cell_ints</span>,
                  show = <span class="st">'LR_expr'</span>)
-
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCCcomHeatmap.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb34"><pre class="downlit">
 <span class="fu"><a href="../reference/plotCCcomDotplot.html">plotCCcomDotplot</a></span>(gobject = <span class="kw">seqfish_mini</span>,
                  comScores = <span class="kw">spatial_all_scores</span>,
                  selected_LR = <span class="kw">top_LR_ints</span>,
                  selected_cell_LR = <span class="kw">top_LR_cell_ints</span>,
                  cluster_on = <span class="st">'PI'</span>)
-
-
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCCcomDotplot.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb35"><pre class="downlit">
 <span class="co">## * spatial vs rank ####</span>
 <span class="kw">comb_comm</span> <span class="op">=</span> <span class="fu"><a href="../reference/combCCcom.html">combCCcom</a></span>(spatialCC = <span class="kw">spatial_all_scores</span>,
                       exprCC = <span class="kw">expr_only_scores</span>)
@@ -621,7 +667,9 @@ Of note, the python path can only be set once in an R session. See the reticulat
                    expr_rnk_column = <span class="st">'exprPI_rnk'</span>,
                    spat_rnk_column = <span class="st">'spatPI_rnk'</span>,
                    midpoint = <span class="fl">10</span>)
-
+</pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotRankSpatvsExpr.png" style="width:50.0%"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit">
 <span class="co">## * recovery ####</span>
 <span class="co">## predict maximum differential activity</span>
 <span class="fu"><a href="../reference/plotRecovery.html">plotRecovery</a></span>(gobject = <span class="kw">seqfish_mini</span>,
@@ -630,11 +678,12 @@ Of note, the python path can only be set once in an R session. See the reticulat
              spat_rnk_column = <span class="st">'spatPI_rnk'</span>,
              ground_truth = <span class="st">'spatial'</span>)
 </pre></div>
+<p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotRecovery.png" style="width:50.0%"></p>
 </div>
 <div id="export-giotto-analyzer-to-viewer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-giotto-analyzer-to-viewer" class="anchor"></a>15. export Giotto Analyzer to Viewer</h2>
-<div class="sourceCode" id="cb20"><pre class="downlit">
+<div class="sourceCode" id="cb37"><pre class="downlit">
 <span class="kw">viewer_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">temp_dir</span>, <span class="st">'/'</span>, <span class="st">'Mouse_cortex_viewer'</span>)
 
 <span class="co"># select annotations, reductions and expression values to view in Giotto Viewer</span>
