@@ -39,9 +39,17 @@ xcode-select --install
 ## 1. Python manual installation  
 
 ### Install with pip in python 3  
+
+For OSX:  
 ``` bash
 pip3 install pandas python-igraph networkx python-louvain leidenalg python.app scikit-learn smfishHmrf
 ```
+
+For Windows or Linux (exclude the python.app):  
+``` bash
+pip3 install pandas python-igraph networkx python-louvain leidenalg scikit-learn smfishHmrf
+```
+
 
 ### Conda install   
 If pip install does not work, try installing them within a conda [conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands). Something
