@@ -5,13 +5,13 @@ output: github_document
 
 # Giotto 0.4.0  
 - **NEW:** Addition of **getSpatialDataset** to directly download a spatial dataset  
-(expression matrix, spatial coordinates and metadata)  
+(expression matrix, spatial coordinates and metadata)    
 
 - **NEW:** Addition of tools to install, remove and check a Giotto r-miniconda environment
 which is needed to run functions that require Python modules.  
   - **installGiottoEnvironment**: installs a Giotto miniconda environment  
   - **removeGiottoEnvironment**: removes a Giotto miniconda environment  
-  - **checkGiottoEnvironmnet**: verifies if a Giotto environment can be found  
+  - **checkGiottoEnvironmnet**: verifies if a Giotto environment can be found    
   
 
 - extension and improvement of spatial gene detection methods:
@@ -23,7 +23,7 @@ which is needed to run functions that require Python modules.
 - Spatial cell type enrichment methods have been streamlined and updated  
   - **runPAGEEnrich** to run enrichment using PAGE algorithm  and selected marker genes
   - **runRankEnrich** to run enrichment using a whole expression matrix  
-  - **runHyperGeometricEnrich** to run enrichment using the hypergeomitric test  
+  - **runHyperGeometricEnrich** to run enrichment using the hypergeomitric test   
   
   
 - **NEW:** Spatial cell type deconvolution has been added:  
@@ -31,14 +31,18 @@ which is needed to run functions that require Python modules.
   
   
 - **NEW:** Addition of **addCellIntMetadata** to add information about interacting cell types, 
-which can subsequently be viewed with the spatPlot commands. 
+which can subsequently be viewed with the spatPlot commands.   
 
 - **NEW:** Addition of 3 small vignettes that cover different types of spatial datasets:
   - single-cell resolution ([mini seqFISH+](../articles/mini_seqfish.html)) 
   - multi-cell resolution ([mini visium](../articles/mini_visium.html))  
   - 3D dataset ([mini STARmap](../articles/mini_starmap.html))
-  - See **data(package = 'Giotto')**  
+  - See **data(package = 'Giotto')**    
   
+- Cell Proximity Genes has been changed to Interaction Changed Genes
+    - This better reflects the nature of gene changes due to neighboring cell interactions
+    - CPG functions are deprecated and will be removed in the future  
+    
 - Several function help pages have been updated with dummy example code  
 - several small and big fixes to code
 

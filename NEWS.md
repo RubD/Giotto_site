@@ -50,6 +50,12 @@
       - 3D dataset ([mini STARmap](../articles/mini_starmap.html))
       - See **data(package = ‘Giotto’)**
 
+  - Cell Proximity Genes has been changed to Interaction Changed Genes
+    
+      - This better reflects the nature of gene changes due to
+        neighboring cell interactions
+      - CPG functions are deprecated and will be removed in the future
+
   - Several function help pages have been updated with dummy example
     code  
 
