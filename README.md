@@ -49,6 +49,7 @@ You can install Giotto with (\~1-5 mins):
 library(devtools)  # if not installed: install.packages('devtools')
 library(remotes)  # if not installed: install.packages('remotes')
 remotes::install_github("RubD/Giotto")
+remotes::install_github("RubD/Giotto@development") # to install the latest development version
 ```
 
 #### Required python modules
@@ -103,7 +104,7 @@ See
 [![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_visium_kidney_200916.html)
 [![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png)](https://rubd.github.io/Giotto_site/articles/human_cycif_PDAC_200916.html)
 [![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_osmFISH_SScortex_200915.html)
-[![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_CODEX_spleen.html)
+[![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png)](https://rubd.github.io/Giotto_site/articles/mouse_CODEX_spleen_200921.html)
 
 ## References
 

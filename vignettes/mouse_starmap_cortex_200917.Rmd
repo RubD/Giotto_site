@@ -68,7 +68,8 @@ getSpatialDataset(dataset = 'starmap_3D_cortex', directory = results_folder, met
 ## instructions allow us to automatically save all plots into a chosen results folder
 instrs = createGiottoInstructions(show_plot = FALSE,
                                   save_plot = TRUE, 
-                                  save_dir = results_folder,python_path = python_path)
+                                  save_dir = results_folder,
+                                  python_path = python_path)
 
 expr_path = paste0(results_folder, "STARmap_3D_data_expression.txt")
 loc_path = paste0(results_folder, "STARmap_3D_data_cell_locations.txt")

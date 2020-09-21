@@ -72,7 +72,8 @@ getSpatialDataset(dataset = 'osmfish_SS_cortex', directory = results_folder, met
 ## instructions allow us to automatically save all plots into a chosen results folder
 instrs = createGiottoInstructions(save_plot = TRUE, 
                                   show_plot = FALSE,
-                                  save_dir = results_folder)
+                                  save_dir = results_folder,
+                                  python_path = python_path)
 
 expr_path = paste0(results_folder, "osmFISH_prep_expression.txt")
 loc_path = paste0(results_folder, "osmFISH_prep_cell_coordinates.txt")

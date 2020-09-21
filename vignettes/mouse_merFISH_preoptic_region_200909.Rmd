@@ -71,7 +71,9 @@ getSpatialDataset(dataset = 'merfish_preoptic', directory = my_working_dir, meth
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 # 1. (optional) set Giotto instructions
-instrs = createGiottoInstructions(save_plot = T, save_dir = my_working_dir)
+instrs = createGiottoInstructions(save_plot = TRUE, 
+                                  save_dir = my_working_dir, 
+                                  python_path = python_path)
 
 # 2. create giotto object from provided paths ####
 expr_path = paste0(my_working_dir, "merFISH_3D_data_expression.txt.gz")

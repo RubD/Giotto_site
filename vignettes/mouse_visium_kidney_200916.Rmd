@@ -67,7 +67,8 @@ High resolution png from original tissue:
 ## create instructions
 instrs = createGiottoInstructions(save_dir = results_folder,
                                   save_plot = TRUE,
-                                  show_plot = FALSE)
+                                  show_plot = FALSE,
+                                  python_path = python_path)
 
 ## provide path to visium folder
 data_path = '/path/to/Kidney_data/'

@@ -14,7 +14,7 @@ articles:
   mini_seqfish: mini_seqfish.html
   mini_starmap: mini_starmap.html
   mini_visium: mini_visium.html
-  mouse_CODEX_spleen: mouse_CODEX_spleen.html
+  mouse_CODEX_spleen_200921: mouse_CODEX_spleen_200921.html
   mouse_merFISH_preoptic_region_200909: mouse_merFISH_preoptic_region_200909.html
   mouse_osmFISH_SScortex_200915: mouse_osmFISH_SScortex_200915.html
   mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
@@ -29,5 +29,5 @@ articles:
   tut3_giotto_dim_reduction: tut3_giotto_dim_reduction.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-21T15:21Z
+last_built: 2020-09-21T18:43Z
 

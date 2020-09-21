@@ -99,7 +99,7 @@
       <a href="../articles/mouse_visium_kidney_200916.html">mouse Visium kidney</a>
     </li>
     <li>
-      <a href="../articles/mouse_CODEX_spleen.html">mouse CODEX spleen</a>
+      <a href="../articles/mouse_CODEX_spleen_200921.html">mouse CODEX spleen</a>
     </li>
     <li>
       <a href="../articles/mouse_osmFISH_SScortex_200915.html">mouse osmFISH SScortex</a>
@@ -187,7 +187,9 @@
 <a href="#part-1-giotto-global-instructions-and-preparations" class="anchor"></a>Part 1: Giotto global instructions and preparations</h2>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="co"># 1. (optional) set Giotto instructions</span>
-<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(save_plot = <span class="kw">T</span>, save_dir = <span class="kw">my_working_dir</span>)
+<span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(save_plot = <span class="fl">TRUE</span>, 
+                                  save_dir = <span class="kw">my_working_dir</span>, 
+                                  python_path = <span class="kw">python_path</span>)
 
 <span class="co"># 2. create giotto object from provided paths ####</span>
 <span class="kw">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">my_working_dir</span>, <span class="st">"merFISH_3D_data_expression.txt.gz"</span>)

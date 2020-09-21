@@ -99,7 +99,7 @@
       <a href="../articles/mouse_visium_kidney_200916.html">mouse Visium kidney</a>
     </li>
     <li>
-      <a href="../articles/mouse_CODEX_spleen.html">mouse CODEX spleen</a>
+      <a href="../articles/mouse_CODEX_spleen_200921.html">mouse CODEX spleen</a>
     </li>
     <li>
       <a href="../articles/mouse_osmFISH_SScortex_200915.html">mouse osmFISH SScortex</a>
@@ -185,7 +185,8 @@
 <span class="co">## instructions allow us to automatically save all plots into a chosen results folder</span>
 <span class="kw">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(save_plot = <span class="fl">TRUE</span>, 
                                   show_plot = <span class="fl">FALSE</span>,
-                                  save_dir = <span class="kw">results_folder</span>)
+                                  save_dir = <span class="kw">results_folder</span>,
+                                  python_path = <span class="kw">python_path</span>)
 
 <span class="kw">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>, <span class="st">"osmFISH_prep_expression.txt"</span>)
 <span class="kw">loc_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>, <span class="st">"osmFISH_prep_cell_coordinates.txt"</span>)
