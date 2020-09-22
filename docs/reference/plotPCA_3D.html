@@ -191,10 +191,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>plotPCA_3D</span>(
-  <span class='kw'>gobject</span>,
-  dim_reduction_name = <span class='st'>"pca"</span>,
-  default_save_name = <span class='st'>"PCA_3D"</span>,
-  <span class='kw'>...</span>
+  <span class='no'>gobject</span>,
+  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
+  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"PCA_3D"</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -214,7 +214,7 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='dimPlot3D.html'>dimPlot3D</a></code></p><dl>
+      <td><p>Arguments passed on to <code><a href='dimPlot3D.html'>dimPlot3D</a></code></p><dl'>
     <dt><code>dim1_to_use</code></dt><dd><p>dimension to use on x-axis</p></dd>
     <dt><code>dim2_to_use</code></dt><dd><p>dimension to use on y-axis</p></dd>
     <dt><code>dim3_to_use</code></dt><dd><p>dimension to use on z-axis</p></dd>
@@ -267,8 +267,7 @@
 <code><a href='plotUMAP.html'>plotUMAP</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>plotPCA_3D</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; create 3D plot</div><div class='output co'>#&gt; <span class='error'>Error in select_dimReduction(gobject, reduction = "cells", reduction_method = dim_reduction_to_use,     name = dim_reduction_name, return_dimObj = FALSE): object 'gobject' not found</span></div></pre>
+    <pre class="examples">    <span class='fu'>plotPCA_3D</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -284,7 +283,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

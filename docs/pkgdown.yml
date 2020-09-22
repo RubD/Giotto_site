@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.7.2
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   contribute: contribute.html
@@ -29,5 +29,5 @@ articles:
   tut3_giotto_dim_reduction: tut3_giotto_dim_reduction.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-21T22:47Z
+last_built: 2020-09-22T03:27Z
 

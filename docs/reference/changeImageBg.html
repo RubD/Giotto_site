@@ -191,11 +191,11 @@
     </div>
 
     <pre class="usage"><span class='fu'>changeImageBg</span>(
-  <span class='kw'>mg_object</span>,
-  <span class='kw'>bg_color</span>,
-  perc_range = <span class='fl'>10</span>,
-  new_color = <span class='st'>"#FFFFFF"</span>,
-  new_name = <span class='kw'>NULL</span>
+  <span class='no'>mg_object</span>,
+  <span class='no'>bg_color</span>,
+  <span class='kw'>perc_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>new_color</span> <span class='kw'>=</span> <span class='st'>"#FFFFFF"</span>,
+  <span class='kw'>new_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -228,8 +228,7 @@
     <p>magick image or giotto image object with updated background color</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>changeImageBg</span>(<span class='kw'>mg_object</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in methods::is(mg_object, "imageGiottoObj"): object 'mg_object' not found</span></div></pre>
+    <pre class="examples">    <span class='fu'>changeImageBg</span>(<span class='no'>mg_object</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -245,7 +244,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

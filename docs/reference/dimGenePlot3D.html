@@ -191,35 +191,35 @@
     </div>
 
     <pre class="usage"><span class='fu'>dimGenePlot3D</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  genes = <span class='kw'>NULL</span>,
-  dim_reduction_to_use = <span class='st'>"umap"</span>,
-  dim_reduction_name = <span class='st'>"umap"</span>,
-  dim1_to_use = <span class='fl'>1</span>,
-  dim2_to_use = <span class='fl'>2</span>,
-  dim3_to_use = <span class='fl'>3</span>,
-  show_NN_network = <span class='kw'>F</span>,
-  nn_network_to_use = <span class='st'>"sNN"</span>,
-  network_name = <span class='st'>"sNN.pca"</span>,
-  network_color = <span class='st'>"lightgray"</span>,
-  cluster_column = <span class='kw'>NULL</span>,
-  select_cell_groups = <span class='kw'>NULL</span>,
-  select_cells = <span class='kw'>NULL</span>,
-  show_other_cells = <span class='kw'>T</span>,
-  other_cell_color = <span class='st'>"lightgrey"</span>,
-  other_point_size = <span class='fl'>1</span>,
-  edge_alpha = <span class='kw'>NULL</span>,
-  point_size = <span class='fl'>2</span>,
-  genes_high_color = <span class='kw'>NULL</span>,
-  genes_mid_color = <span class='st'>"white"</span>,
-  genes_low_color = <span class='st'>"blue"</span>,
-  show_legend = <span class='kw'>T</span>,
-  show_plot = <span class='fl'>NA</span>,
-  return_plot = <span class='fl'>NA</span>,
-  save_plot = <span class='fl'>NA</span>,
-  save_param = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  default_save_name = <span class='st'>"dimGenePlot3D"</span>
+  <span class='no'>gobject</span>,
+  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
+  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
+  <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>dim3_to_use</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
+  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
+  <span class='kw'>network_color</span> <span class='kw'>=</span> <span class='st'>"lightgray"</span>,
+  <span class='kw'>cluster_column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
+  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>edge_alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>genes_high_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>genes_mid_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
+  <span class='kw'>genes_low_color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
+  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"dimGenePlot3D"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -356,8 +356,7 @@
 <code><a href='dimGenePlot.html'>dimGenePlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>dimGenePlot3D</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in select_expression_values(gobject = gobject, values = values): object 'gobject' not found</span></div></pre>
+    <pre class="examples">    <span class='fu'>dimGenePlot3D</span>(<span class='no'>gobject</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -373,7 +372,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

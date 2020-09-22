@@ -191,14 +191,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>createGiottoImage</span>(
-  gobject = <span class='kw'>NULL</span>,
-  spatial_locs = <span class='kw'>NULL</span>,
-  <span class='kw'>mg_object</span>,
-  name = <span class='st'>"image"</span>,
-  xmax_adj = <span class='fl'>0</span>,
-  xmin_adj = <span class='fl'>0</span>,
-  ymax_adj = <span class='fl'>0</span>,
-  ymin_adj = <span class='fl'>0</span>
+  <span class='kw'>gobject</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>spatial_locs</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>mg_object</span>,
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"image"</span>,
+  <span class='kw'>xmax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>xmin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>ymax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>ymin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -243,8 +243,7 @@
     <p>a giotto image object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>createGiottoImage</span>(<span class='kw'>mg_object</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in methods::is(mg_object, "magick-image"): argument "mg_object" is missing, with no default</span></div></pre>
+    <pre class="examples">    <span class='fu'>createGiottoImage</span>(<span class='no'>mg_object</span>)</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -260,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

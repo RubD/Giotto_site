@@ -15,17 +15,35 @@ knitr::opts_chunk$set(
 options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
-```{r setup, eval=FALSE}
-library(Giotto)
+
+```{r eval=TRUE, echo=FALSE}
+giotto_version = utils::packageVersion(pkg = 'Giotto')
+
+if(giotto_version == '0.3.6.9038') {
+  NULL
+} else if(giotto_version > '0.3.6.9038'){
+  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
+  ' This is a more recent version and results should be reproducible')
+} else {
+  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
+  ' This is an older version and results could be slightly different')
+}
 ```
 
-### (optional) set giotto instructions
-```{r eval=FALSE}
-# to automatically save figures in save_dir set save_plot to TRUE
-temp_dir = '~/Temp/'
+```{r setup, eval=FALSE}
+library(Giotto)
+
+# (optional)
+temp_dir = '/path/to/directory/'
 myinstructions = createGiottoInstructions(save_dir = temp_dir,
-                                          save_plot = FALSE, 
-                                          show_plot = F)
+                                          save_plot = TRUE, 
+                                          show_plot = FALSE)
+
+# set python_path if you want to or install giotto environment
+python_path = NULL 
+if(is.null(python_path)) {
+  installGiottoEnvironment()
+}
 ```
 
 
@@ -66,20 +84,38 @@ showGiottoInstructions(starmap_mini)
 - adjust expression matrix for technical covariates or batches (optional). These results will be stored in the *custom* slot. 
 
 ```{r eval=FALSE}
-filterDistributions(starmap_mini, detection = 'genes')
-filterDistributions(starmap_mini, detection = 'cells')
+filterDistributions(starmap_mini, detection = 'genes',
+                    save_param = list(save_name = '2_a_filtergenes'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/2_a_filtergenes.png){ width=50% } 
+
+```{r eval=FALSE}
+filterDistributions(starmap_mini, detection = 'cells',
+                    save_param = list(save_name = '2_b_filtercells'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/2_a_filtergenes.png){ width=50% } 
+
+```{r eval=FALSE}
 filterCombinations(starmap_mini,
                    expression_thresholds = c(1),
                    gene_det_in_min_cells = c(50, 100, 200),
-                   min_det_genes_per_cell = c(20, 28, 28))
+                   min_det_genes_per_cell = c(20, 28, 28),
+                   save_param = list(save_name = '2_c_filtercombos'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/2_c_filtercombos.png){ width=50% } 
+
+```{r eval=FALSE}
 starmap_mini <- filterGiotto(gobject = starmap_mini,
                            expression_threshold = 1,
                            gene_det_in_min_cells = 50,
                            min_det_genes_per_cell = 20,
                            expression_values = c('raw'),
                            verbose = T)
-starmap_mini <- normalizeGiotto(gobject = starmap_mini, scalefactor = 6000, verbose = T)
+starmap_mini <- normalizeGiotto(gobject = starmap_mini,
+                                scalefactor = 6000, verbose = T)
 starmap_mini <- addStatistics(gobject = starmap_mini)
 ```
 
@@ -92,21 +128,46 @@ starmap_mini <- addStatistics(gobject = starmap_mini)
 - run UMAP and/or TSNE on PCs  (or directly on matrix)  
 ```{r eval=FALSE}
 starmap_mini <- runPCA(gobject = starmap_mini, method = 'factominer')
-screePlot(starmap_mini, ncp = 30)
-plotPCA(gobject = starmap_mini)
+screePlot(starmap_mini, ncp = 30, 
+          save_param = list(save_name = '3_a_screeplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/3_a_screeplot.png){ width=50% } 
+
+```{r eval=FALSE}
+plotPCA(gobject = starmap_mini,
+        save_param = list(save_name = '3_b_PCA'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/3_b_PCA.png){ width=50% } 
+
+```{r eval=FALSE}
 # 2D umap
 starmap_mini <- runUMAP(starmap_mini, dimensions_to_use = 1:8)
-plotUMAP(gobject = starmap_mini)
+plotUMAP(gobject = starmap_mini,
+         save_param = list(save_name = '3_c_UMAP'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/3_c_UMAP.png){ width=50% } 
+
+```{r eval=FALSE}
 # 3D umap
 starmap_mini <- runUMAP(starmap_mini, dimensions_to_use = 1:8, name = '3D_umap', n_components = 3)
-plotUMAP_3D(gobject = starmap_mini, dim_reduction_name = '3D_umap')
+plotUMAP_3D(gobject = starmap_mini, dim_reduction_name = '3D_umap',
+            save_param = list(save_name = '3_d_UMAP_3D'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/3_d_UMAP_3D.png){ width=50% } 
+
+```{r eval=FALSE}
 # 2D tsne
 starmap_mini <- runtSNE(starmap_mini, dimensions_to_use = 1:8)
-plotTSNE(gobject = starmap_mini)
+plotTSNE(gobject = starmap_mini,
+         save_param = list(save_name = '3_e_TSNE'))
 ```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/3_e_TSNE.png){ width=50% } 
+
 
 
 ## 4. clustering
@@ -114,27 +175,60 @@ plotTSNE(gobject = starmap_mini)
 - cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives) 
 
 ```{r eval=FALSE}
-starmap_mini <- createNearestNetwork(gobject = starmap_mini, dimensions_to_use = 1:8, k = 25)
-starmap_mini <- doLeidenCluster(gobject = starmap_mini, resolution = 0.5, n_iterations = 1000)
+starmap_mini <- createNearestNetwork(gobject = starmap_mini,
+                                     dimensions_to_use = 1:8, k = 25)
+starmap_mini <- doLeidenCluster(gobject = starmap_mini,
+                                resolution = 0.5, n_iterations = 1000)
 
 # 2D umap
-plotUMAP(gobject = starmap_mini, cell_color = 'leiden_clus', show_NN_network = T, point_size = 2.5)
-
-# 3D umap
-plotUMAP_3D(gobject = starmap_mini, dim_reduction_name = '3D_umap', cell_color = 'leiden_clus')
-
-# 2D umap + coordinates
-spatDimPlot(gobject = starmap_mini, cell_color = 'leiden_clus',
-            dim_point_size = 2, spat_point_size = 2.5)
-
-# 3D umap + coordinates
-spatDimPlot3D(gobject = starmap_mini, cell_color = 'leiden_clus', dim_reduction_name = '3D_umap')
-
-# heatmap and dendrogram
-showClusterHeatmap(gobject = starmap_mini, cluster_column = 'leiden_clus')
-showClusterDendrogram(starmap_mini, h = 0.5, rotate = T, cluster_column = 'leiden_clus')
+plotUMAP(gobject = starmap_mini,
+         cell_color = 'leiden_clus', show_NN_network = T, point_size = 2.5,
+         save_param = list(save_name = '4_a_UMAP'))
 ```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/4_a_UMAP.png){ width=50% }
+
+```{r eval=FALSE}
+# 3D umap
+plotUMAP_3D(gobject = starmap_mini, dim_reduction_name = '3D_umap',
+            cell_color = 'leiden_clus',
+            save_param = list(save_name = '4_b_UMAP_3D'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/4_b_UMAP_3D.png){ width=50% }
+
+```{r eval=FALSE}
+# 2D umap + coordinates
+spatDimPlot(gobject = starmap_mini, cell_color = 'leiden_clus',
+            dim_point_size = 2, spat_point_size = 2.5,
+            save_param = list(save_name = '4_c_spatdimplot'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/4_c_spatdimplot.png){ width=50% }
+
+```{r eval=FALSE}
+# 3D umap + coordinates
+spatDimPlot3D(gobject = starmap_mini,
+              cell_color = 'leiden_clus', dim_reduction_name = '3D_umap',
+              save_param = list(save_name = '4_d_spatdimplot3D'))
+```
+
+
+```{r eval=FALSE}
+# heatmap and dendrogram
+showClusterHeatmap(gobject = starmap_mini, cluster_column = 'leiden_clus',
+                   save_param = list(save_name = '4_e_clusterheatmap'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/4_e_clusterheatmap.png){ width=50% }
+
+```{r eval=FALSE}
+showClusterDendrogram(starmap_mini, h = 0.5, rotate = T,
+                      cluster_column = 'leiden_clus',
+                      save_param = list(save_name = '4_f_clusterdendrogram'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/4_f_clusterdendrogram.png){ width=50% }
 
 ## 5. differential expression
 ```{r eval=FALSE}
@@ -148,15 +242,22 @@ gini_markers = findMarkers_one_vs_all(gobject = starmap_mini,
 
 # get top 2 genes per cluster and visualize with violinplot
 topgenes_gini = gini_markers[, head(.SD, 2), by = 'cluster']
-violinPlot(starmap_mini, genes = topgenes_gini$genes, cluster_column = 'leiden_clus')
+violinPlot(starmap_mini, genes = topgenes_gini$genes,
+           cluster_column = 'leiden_clus',
+           save_param = list(save_name = '5_a_violinplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/5_a_violinplot.png){ width=50% }
+
+```{r eval=FALSE}
 # get top 6 genes per cluster and visualize with heatmap
 topgenes_gini2 = gini_markers[, head(.SD, 6), by = 'cluster']
 plotMetaDataHeatmap(starmap_mini, selected_genes = topgenes_gini2$genes,
-                    metadata_cols = c('leiden_clus'))
+                    metadata_cols = c('leiden_clus'),
+                    save_param = list(save_name = '5_b_metaheatmap'))
 ```
 
-
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/5_b_metaheatmap.png){ width=50% }
 
 ## 6. A. cell type annotation
 ```{r eval=FALSE}
@@ -172,8 +273,11 @@ pDataDT(starmap_mini)
 
 # visualize annotations
 spatDimPlot(gobject = starmap_mini, cell_color = 'cell_types', 
-            spat_point_size = 2, dim_point_size = 2)
+            spat_point_size = 2, dim_point_size = 2,
+            save_param = list(save_name = '6_a_spatdimplot'))
 ```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/6_a_spatdimplot.png){ width=50% }
 
 ## 6. B. cell type gene expression
 ```{r eval=FALSE}
@@ -181,17 +285,23 @@ dimGenePlot3D(starmap_mini,
               dim_reduction_name = '3D_umap',
               expression_values = 'scaled',
               genes = "Pcp4",
-              genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'darkblue')
+              genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'darkblue',
+              save_param = list(save_name = '6_b_dimgeneplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/6_b_dimgeneplot.png){ width=50% }
+
+```{r eval=FALSE}
 spatGenePlot3D(starmap_mini,
                expression_values = 'scaled',
                genes = "Pcp4",
                show_other_cells = F,
-               genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'darkblue')
+               genes_high_color = 'red', genes_mid_color = 'white', genes_low_color = 'darkblue',
+               save_param = list(save_name = '6_c_spatgeneplot'))
 
 ```
 
-
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/6_c_spatgeneplot.png){ width=50% }
 
 ## 7. spatial grid
 Create a grid based on defined stepsizes in the x,y(,z) axes.  
@@ -204,9 +314,11 @@ starmap_mini <- createSpatialGrid(gobject = starmap_mini,
 showGrids(starmap_mini)
 
 # visualize grid
-spatPlot2D(gobject = starmap_mini, show_grid = T, point_size = 1.5)
+spatPlot2D(gobject = starmap_mini, show_grid = T, point_size = 1.5,
+           save_param = list(save_name = '7_a_spatplot'))
 ```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/7_a_spatplot.png){ width=50% }
 
 
 ## 8. spatial network
@@ -218,7 +330,14 @@ geometry to be installed.
 - create a spatial kNN network   
 ```{r eval=FALSE}
 plotStatDelaunayNetwork(gobject = starmap_mini, maximum_distance = 200, 
-                        method = 'delaunayn_geometry')
+                        method = 'delaunayn_geometry',
+                        save_param = list(save_name = '8_aa_delnetwork'))
+```
+
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/plotStatDelaunayNetwork.png){ width=50% }
+
+```{r eval=FALSE}
 starmap_mini = createSpatialNetwork(gobject = starmap_mini, minimum_k = 2, 
                                     maximum_distance_delaunay = 200, 
                                     method = 'Delaunay', 
@@ -230,13 +349,20 @@ showNetworks(starmap_mini)
 # visualize the two different spatial networks  
 spatPlot(gobject = starmap_mini, show_network = T,
          network_color = 'blue', spatial_network_name = 'Delaunay_network',
-         point_size = 2.5, cell_color = 'leiden_clus')
-
-spatPlot(gobject = starmap_mini, show_network = T,
-         network_color = 'blue', spatial_network_name = 'kNN_network',
-         point_size = 2.5, cell_color = 'leiden_clus')
+         point_size = 2.5, cell_color = 'leiden_clus',
+         save_param = list(save_name = '8_a_spatplot'))
 ```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/8_a_spatplot.png){ width=50% }
+
+```{r eval=FALSE}
+spatPlot(gobject = starmap_mini, show_network = T,
+         network_color = 'blue', spatial_network_name = 'kNN_network',
+         point_size = 2.5, cell_color = 'leiden_clus',
+         save_param = list(save_name = '8_b_spatplot'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/8_b_spatplot.png){ width=50% }
 
 
 ## 9. spatial genes
@@ -252,16 +378,24 @@ spatGenePlot(starmap_mini, expression_values = 'scaled',
              genes = km_spatialgenes[1:4]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5,
-             cow_n_col = 2)
+             cow_n_col = 2,
+             save_param = list(save_name = '9_a_spatgeneplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/9_a_spatgeneplot.png){ width=50% }
+
+```{r eval=FALSE, fig.width=10, fig.height=10}
 rank_spatialgenes = binSpect(starmap_mini, bin_method = 'rank')
 spatGenePlot(starmap_mini, expression_values = 'scaled', 
              genes = rank_spatialgenes[1:4]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5,
-             cow_n_col = 2)
+             cow_n_col = 2,
+             save_param = list(save_name = '9_b_spatgeneplot'))
 
 ```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/9_b_spatgeneplot.png){ width=50% }
 
 ```{r eval=FALSE, fig.width=10, fig.height=10}
 silh_spatialgenes = silhouetteRank(gobject = starmap_mini) # TODO: suppress print output
@@ -269,8 +403,11 @@ spatGenePlot(starmap_mini, expression_values = 'scaled',
              genes = silh_spatialgenes[1:4]$genes,
              point_shape = 'border', point_border_stroke = 0.1,
              show_network = F, network_color = 'lightgrey', point_size = 2.5,
-             cow_n_col = 2)
+             cow_n_col = 2,
+             save_param = list(save_name = '9_c_spatgeneplot'))
 ```
+
+
 
 
 ## 10. spatial co-expression patterns
@@ -291,11 +428,22 @@ spat_cor_netw_DT = detectSpatialCorGenes(starmap_mini,
 spat_cor_netw_DT = clusterSpatialCorGenes(spat_cor_netw_DT, 
                                           name = 'spat_netw_clus', k = 6)
 heatmSpatialCorGenes(starmap_mini, spatCorObject = spat_cor_netw_DT, 
-                     use_clus_name = 'spat_netw_clus')
+                     use_clus_name = 'spat_netw_clus',
+                     save_param = list(save_name = '10_a_heatmspatcor', units = 'in'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/10_a_heatmspatcor.png){ width=50% }
+
+```{r eval=FALSE, fig.width=10, fig.height=10}
 netw_ranks = rankSpatialCorGroups(starmap_mini, 
                                   spatCorObject = spat_cor_netw_DT, 
-                                  use_clus_name = 'spat_netw_clus')
+                                  use_clus_name = 'spat_netw_clus',
+                                  save_param = list(save_name = '10_b_rankcorgroup'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/10_b_rankcorgroup.png){ width=50% }
+
+```{r eval=FALSE, fig.width=10, fig.height=10}
 top_netw_spat_cluster = showSpatialCorGenes(spat_cor_netw_DT, 
                                             use_clus_name = 'spat_netw_clus',
                                             selected_clusters = 6, 
@@ -307,14 +455,17 @@ cluster_genes_DT = showSpatialCorGenes(spat_cor_netw_DT,
 cluster_genes = cluster_genes_DT$clus; names(cluster_genes) = cluster_genes_DT$gene_ID
 
 
-starmap_mini = createMetagenes(starmap_mini, gene_clusters = cluster_genes, name = 'cluster_metagene')
+starmap_mini = createMetagenes(starmap_mini,
+                               gene_clusters = cluster_genes,
+                               name = 'cluster_metagene')
 spatCellPlot(starmap_mini,
              spat_enr_names = 'cluster_metagene',
              cell_annotation_values = netw_ranks$clusters,
-             point_size = 1.5, cow_n_col = 3)
+             point_size = 1.5, cow_n_col = 3,
+             save_param = list(save_name = '10_c_spatcellplot'))
 ```
 
-
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/10_c_spatcellplot.png){ width=50% }
 
 ## 11. spatial HMRF domains
 ```{r eval=FALSE}
@@ -348,7 +499,8 @@ starmap_mini = addHMRF(gobject = starmap_mini,
 giotto_colors = Giotto:::getDistinctColors(6)
 names(giotto_colors) = 1:6
 spatPlot(gobject = starmap_mini, cell_color = 'HMRF_k6_b.12',
-         point_size = 3, coord_fix_ratio = 1, cell_color_code = giotto_colors)
+         point_size = 3, coord_fix_ratio = 1, cell_color_code = giotto_colors,
+         save_param = list(save_name = '11_a_spatplot'))
 ```
 
 
@@ -363,17 +515,33 @@ cell_proximities = cellProximityEnrichment(gobject = starmap_mini,
 # barplot
 cellProximityBarplot(gobject = starmap_mini, 
                      CPscore = cell_proximities, 
-                     min_orig_ints = 5, min_sim_ints = 5)
+                     min_orig_ints = 2, min_sim_ints = 2, p_val = 0.5,
+                     save_param = list(save_name = '12_a_barplot'))
+```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_a_barplot.png){ width=50% }
+
+```{r eval=FALSE}
 ## heatmap
 cellProximityHeatmap(gobject = starmap_mini, CPscore = cell_proximities, 
                      order_cell_types = T, scale = T,
                      color_breaks = c(-1.5, 0, 1.5), 
-                     color_names = c('blue', 'white', 'red'))
+                     color_names = c('blue', 'white', 'red'),
+                     save_param = list(save_name = '12_b_heatmap', units = 'in'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_b_heatmap.png){ width=50% }
+
+```{r eval=FALSE}
 # network
 cellProximityNetwork(gobject = starmap_mini, CPscore = cell_proximities, 
-                     remove_self_edges = T, only_show_enrichment_edges = T)
+                     remove_self_edges = T, only_show_enrichment_edges = T,
+                     save_param = list(save_name = '12_c_network'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_c_network.png){ width=50% }
+
+```{r eval=FALSE}
 # network with self-edges
 cellProximityNetwork(gobject = starmap_mini, CPscore = cell_proximities,
                      remove_self_edges = F, self_loop_strength = 0.3,
@@ -381,8 +549,11 @@ cellProximityNetwork(gobject = starmap_mini, CPscore = cell_proximities,
                      rescale_edge_weights = T,
                      node_size = 8,
                      edge_weight_range_depletion = c(1, 2),
-                     edge_weight_range_enrichment = c(2,5))
+                     edge_weight_range_enrichment = c(2,5),
+                     save_param = list(save_name = '12_d_network'))
 ```
+
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_d_network.png){ width=50% }
 
 
 ### visualization of specific cell types
@@ -396,8 +567,13 @@ cellProximitySpatPlot2D(gobject = starmap_mini,
                         cluster_column = 'cell_types',
                         cell_color = 'cell_types',
                         cell_color_code = c('cell H' = 'lightblue', 'cell D' = 'red'),
-                        point_size_select = 4, point_size_other = 2)
+                        point_size_select = 4, point_size_other = 2,
+                        save_param = list(save_name = '12_e_cellproximity'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_e_cellproximity.png){ width=50% }
+
+```{r eval=FALSE}
 # Option 2: create additional metadata
 starmap_mini = addCellIntMetadata(starmap_mini,
                              spatial_network = 'Delaunay_network',
@@ -405,10 +581,11 @@ starmap_mini = addCellIntMetadata(starmap_mini,
                              cell_interaction = spec_interaction,
                              name = 'D_H_interactions')
 spatPlot(starmap_mini, cell_color = 'D_H_interactions', legend_symbol_size = 3,
-         select_cell_groups =  c('other_cell D', 'other_cell H', 'select_cell D', 'select_cell H'))
+         select_cell_groups =  c('other_cell D', 'other_cell H', 'select_cell D', 'select_cell H'),
+         save_param = list(save_name = '12_e_spatplot'))
 ```
 
-
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/12_e_spatplot.png){ width=50% }
 
 ## 13. 2D cross sections from 3D object
 ```{r eval=FALSE}
@@ -422,38 +599,62 @@ starmap_mini = createCrossSection(starmap_mini,
 # show cross section
 insertCrossSectionSpatPlot3D(starmap_mini, cell_color = 'leiden_clus',
                              axis_scale = 'cube',
-                             point_size = 2)
+                             point_size = 2,
+                             save_param = list(save_name = '13_a_insertcross'))
+```
 
+
+```{r eval=FALSE}
 insertCrossSectionGenePlot3D(starmap_mini, expression_values = 'scaled',
                              axis_scale = "cube",
-                             genes = "Slc17a7")
+                             genes = "Slc17a7",
+                             save_param = list(save_name = '13_b_insertcrossgene'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/13_b_insert.png){ width=50% }
 
+```{r eval=FALSE}
 # for cell annotation
 crossSectionPlot(starmap_mini,
                  point_size = 2, point_shape = "border",
-                 cell_color = "leiden_clus")
+                 cell_color = "leiden_clus",
+                 save_param = list(save_name = '13_c_crossplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/13_c_crossplot.png){ width=50% }
+
+```{r eval=FALSE}
 crossSectionPlot3D(starmap_mini,
                    point_size = 2, cell_color = "leiden_clus",
-                   axis_scale = "cube")
+                   axis_scale = "cube",
+                   save_param = list(save_name = '13_c_crossplot3D'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/13_c_cross.png){ width=50% }
 
+```{r eval=FALSE}
 # for gene expression
 crossSectionGenePlot(starmap_mini,
                      genes = "Slc17a7",
                      point_size = 2,
                      point_shape = "border",
                      cow_n_col = 1.5,
-                     expression_values = 'scaled')
+                     expression_values = 'scaled',
+                     save_param = list(save_name = '13_d_crossgeneplot'))
+```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/13_d_crossgeneplot.png){ width=50% }
+
+```{r eval=FALSE}
 crossSectionGenePlot3D(starmap_mini,
                        point_size = 2,
                        genes = c("Slc17a7"),
-                       expression_values = 'scaled')
+                       expression_values = 'scaled',
+                       save_param = list(save_name = '13_e_crossgeneplot3D'))
 
 ```
 
+![](../inst/images/mini_datasets/mini_starmap/vignette_200922/13_e_crossgene.png){ width=50% }
 
 ## 14. export Giotto Analyzer to Viewer
 ```{r eval=FALSE}
@@ -471,6 +672,8 @@ exportGiottoViewer(gobject = starmap_mini, output_directory = viewer_folder,
                    expression_rounding = 3,
                    overwrite_dir = T)
 ```
+
+
 
 
 
