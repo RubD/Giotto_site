@@ -17,8 +17,6 @@
 #' @details This function creates a barplot that shows the  spatial proximity
 #'  enrichment or depletion of cell type pairs.
 #' @export
-#' @examples
-#'     cellProximityBarplot(CPscore)
 cellProximityBarplot = function(gobject,
                                 CPscore,
                                 min_orig_ints = 5,
@@ -98,8 +96,6 @@ cellProximityBarplot = function(gobject,
 #' @details This function creates a heatmap that shows the  spatial proximity
 #'  enrichment or depletion of cell type pairs.
 #' @export
-#' @examples
-#'     cellProximityHeatmap(CPscore)
 cellProximityHeatmap = function(gobject,
                                 CPscore,
                                 scale = T,
@@ -227,8 +223,6 @@ cellProximityHeatmap = function(gobject,
 #' @details This function creates a network that shows the  spatial proximity
 #'  enrichment or depletion of cell type pairs.
 #' @export
-#' @examples
-#'     cellProximityNetwork(CPscore)
 cellProximityNetwork = function(gobject,
                                 CPscore,
                                 remove_self_edges = FALSE,
@@ -956,8 +950,6 @@ cellProximityVisPlot_3D_plotly <- function(gobject,
 #' @return ggplot or plotly
 #' @details Description of parameters.
 #' @export
-#' @examples
-#'     cellProximityVisPlot(gobject)
 cellProximityVisPlot <- function(gobject,
                                  interaction_name = NULL,
                                  cluster_column = NULL,
@@ -1147,8 +1139,6 @@ cellProximityVisPlot <- function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return plot
 #' @export
-#' @examples
-#'     plotCellProximityGenes(CPGscores)
 plotCellProximityGenes = function(gobject,
                                   cpgObject,
                                   method = c('volcano', 'cell_barplot', 'cell-cell', 'cell_sankey', 'heatmap', 'dotplot'),
@@ -1416,8 +1406,6 @@ plotCellProximityGenes = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return plot
 #' @export
-#' @examples
-#'     plotCPG(CPGscores)
 plotCPG = function(gobject,
                    cpgObject,
                    method = c('volcano', 'cell_barplot', 'cell-cell', 'cell_sankey', 'heatmap', 'dotplot'),
@@ -1482,8 +1470,6 @@ plotCPG = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return plot
 #' @export
-#' @examples
-#'     plotInteractionChangedGenes(CPGscores)
 plotInteractionChangedGenes = function(gobject,
                                        cpgObject,
                                        source_type,
@@ -1587,8 +1573,6 @@ plotInteractionChangedGenes = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return plot
 #' @export
-#' @examples
-#'     plotICG(CPGscores)
 plotICG = function(gobject,
                    cpgObject,
                    source_type,
@@ -1873,8 +1857,6 @@ plotCombineCPG <- function(...) {
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotCombineCellCellCommunication(CPGscores)
 plotCombineCellCellCommunication <- function(gobject,
                                              combCCcom,
                                              selected_LR = NULL,
@@ -2005,8 +1987,6 @@ plotCombineCellCellCommunication <- function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotCombineCCcom(CPGscores)
 plotCombineCCcom = function(gobject,
                             combCCcom,
                             selected_LR = NULL,
@@ -2065,8 +2045,6 @@ plotCombineCCcom = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotCCcomHeatmap(CPGscores)
 plotCCcomHeatmap = function(gobject,
                             comScores,
                             selected_LR = NULL,
@@ -2184,8 +2162,6 @@ plotCCcomHeatmap = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotCCcomDotplot(CPGscores)
 plotCCcomDotplot = function(gobject,
                             comScores,
                             selected_LR = NULL,
@@ -2310,8 +2286,6 @@ plotCCcomDotplot = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotRankSpatvsExpr(CPGscores)
 plotRankSpatvsExpr = function(gobject,
                               combCC,
                               expr_rnk_column = 'LR_expr_rnk',
@@ -2406,8 +2380,6 @@ plotRankSpatvsExpr = function(gobject,
 #' @param combCC combined communinication scores from \code{\link{combCCcom}}
 #' @param first_col first column to use
 #' @param second_col second column to use
-#' @examples
-#'     plotRecovery_sub(CPGscores)
 plotRecovery_sub = function(combCC,
                             first_col = 'LR_expr_rnk',
                             second_col = 'LR_spat_rnk') {
@@ -2474,8 +2446,6 @@ plotRecovery_sub = function(combCC,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     plotRecovery(CPGscores)
 plotRecovery = function(gobject,
                         combCC,
                         expr_rnk_column = 'exprPI_rnk',
@@ -2575,8 +2545,6 @@ plotRecovery = function(gobject,
 #' @return ggplot
 #' @details Description of parameters.
 #' @export
-#' @examples
-#'     cellProximitySpatPlot2D(gobject)
 cellProximitySpatPlot2D <- function(gobject,
                                     interaction_name = NULL,
                                     cluster_column = NULL,
@@ -2775,8 +2743,6 @@ cellProximitySpatPlot2D <- function(gobject,
 #' @details Description of parameters.
 #' @export
 #' @seealso  \code{\link{cellProximitySpatPlot2D}} and \code{\link{cellProximitySpatPlot3D}} for 3D
-#' @examples
-#'     cellProximitySpatPlot(gobject)
 cellProximitySpatPlot = function(gobject, ...) {
 
   cellProximitySpatPlot2D(gobject = gobject, ...)
@@ -2822,9 +2788,6 @@ cellProximitySpatPlot = function(gobject, ...) {
 #' @return plotly
 #' @details Description of parameters.
 #' @export
-#' @examples
-#'     cellProximitySpatPlot3D(gobject)
-
 cellProximitySpatPlot3D = function(gobject,
                                    interaction_name = NULL,
                                    cluster_column = NULL,
