@@ -93,7 +93,7 @@
       <a href="../articles/human_cycif_PDAC_200916.html">human CyCIF PDAC</a>
     </li>
     <li>
-      <a href="../articles/mouse_visium_brain_200601.html">mouse Visium brain</a>
+      <a href="../articles/mouse_visium_brain_200918.html">mouse Visium brain</a>
     </li>
     <li>
       <a href="../articles/mouse_visium_kidney_200916.html">mouse Visium kidney</a>
@@ -198,7 +198,7 @@
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">visium_brain</span>, cell_color = <span class="st">'in_tissue'</span>, show_image = <span class="kw">T</span>, point_alpha = <span class="fl">0.7</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_a_spatplot_image'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/2_a_spatplot_image.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/2_a_spatplot_image.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="co"># check name</span>
 <span class="fu"><a href="../reference/showGiottoImageNames.html">showGiottoImageNames</a></span>(<span class="kw">visium_brain</span>) <span class="co"># "image" is the default name</span>
@@ -211,7 +211,7 @@
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">visium_brain</span>, cell_color = <span class="st">'in_tissue'</span>, show_image = <span class="kw">T</span>, point_alpha = <span class="fl">0.7</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_b_spatplot_image_adjusted'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/2_b_spatplot_image_adjusted.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/2_b_spatplot_image_adjusted.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="co">## check metadata</span>
 <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="kw">visium_brain</span>)
@@ -221,7 +221,7 @@
          cell_color_code = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'0'</span> = <span class="st">'lightgrey'</span>, <span class="st">'1'</span> = <span class="st">'blue'</span>),
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_c_in_tissue'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/2_c_in_tissue.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/2_c_in_tissue.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="co">## subset on spots that were covered by tissue</span>
 <span class="kw">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="kw">visium_brain</span>)
@@ -246,13 +246,13 @@
 <span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(gobject = <span class="kw">visium_brain</span>, show_image = <span class="kw">T</span>, point_alpha = <span class="fl">0.7</span>,
            save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_d_spatial_locations'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/2_d_spatial_locations.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/2_d_spatial_locations.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(gobject = <span class="kw">visium_brain</span>, show_image = <span class="kw">T</span>, point_alpha = <span class="fl">0.7</span>,
            cell_color = <span class="st">'nr_genes'</span>, color_as_factor = <span class="kw">F</span>,
            save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'2_e_nr_genes'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/2_e_nr_genes.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/2_e_nr_genes.png" style="width:50.0%"></p>
 </div>
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
@@ -262,7 +262,7 @@
 <span class="kw">visium_brain</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(gobject = <span class="kw">visium_brain</span>,
                               save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_a_HVGplot'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/3_a_HVGplot.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/3_a_HVGplot.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co">## run PCA on expression values (default)</span>
 <span class="kw">gene_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span>(<span class="kw">visium_brain</span>)
@@ -275,25 +275,25 @@
 
 <span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="kw">visium_brain</span>, ncp = <span class="fl">30</span>, save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_b_screeplot'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/3_b_screeplot.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/3_b_screeplot.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(gobject = <span class="kw">visium_brain</span>,
         save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_c_PCA_reduction'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/3_c_PCA_reduction.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/3_c_PCA_reduction.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="co">## run UMAP and tSNE on PCA space (default)</span>
 <span class="kw">visium_brain</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="kw">visium_brain</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
 <span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(gobject = <span class="kw">visium_brain</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_d_UMAP_reduction'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/3_d_UMAP_reduction.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/3_d_UMAP_reduction.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="kw">visium_brain</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="kw">visium_brain</span>, dimensions_to_use = <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>)
 <span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(gobject = <span class="kw">visium_brain</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'3_e_tSNE_reduction'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/3_e_tSNE_reduction.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/3_e_tSNE_reduction.png" style="width:50.0%"></p>
 </div>
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
@@ -307,7 +307,7 @@
          cell_color = <span class="st">'leiden_clus'</span>, show_NN_network = <span class="kw">T</span>, point_size = <span class="fl">2.5</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'4_a_UMAP_leiden'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/4_a_UMAP_leiden.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/4_a_UMAP_leiden.png" style="width:50.0%"></p>
 </div>
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
@@ -321,13 +321,13 @@
             dim_point_size = <span class="fl">2</span>, spat_point_size = <span class="fl">2.5</span>,
             save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_a_covis_leiden'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/5_a_covis_leiden.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/5_a_covis_leiden.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(gobject = <span class="kw">visium_brain</span>, cell_color = <span class="st">'nr_genes'</span>, color_as_factor = <span class="kw">F</span>,
             dim_point_size = <span class="fl">2</span>, spat_point_size = <span class="fl">2.5</span>,
             save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_b_nr_genes'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/5_b_nr_genes.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/5_b_nr_genes.png" style="width:50.0%"></p>
 </div>
 <div id="subset-dataset-on-dg-region" class="section level3">
 <h3 class="hasAnchor">
@@ -341,7 +341,7 @@
             cell_color = <span class="st">'leiden_clus'</span>, spat_point_size = <span class="fl">5</span>, 
             save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'5_c_DEG_subset'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/5_c_DEG_subset.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/5_c_DEG_subset.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="part-6-cell-type-marker-gene-detection" class="section level2">
@@ -365,7 +365,7 @@
            strip_text = <span class="fl">8</span>, strip_position = <span class="st">'right'</span>,
            save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_a_violinplot_gini'</span>, base_width = <span class="fl">5</span>, base_height = <span class="fl">10</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_a_violinplot_gini.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_a_violinplot_gini.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="co"># cluster heatmap</span>
 <span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">visium_brain</span>, selected_genes = <span class="kw">topgenes_gini</span>,
@@ -373,7 +373,7 @@
                     x_text_size = <span class="fl">10</span>, y_text_size = <span class="fl">10</span>,
                     save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_b_metaheatmap_gini'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_b_metaheatmap_gini.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_b_metaheatmap_gini.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit">
 <span class="co"># umap plots</span>
 <span class="fu"><a href="../reference/dimGenePlot2D.html">dimGenePlot2D</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
@@ -381,7 +381,7 @@
               cow_n_col = <span class="fl">3</span>, point_size = <span class="fl">1</span>,
               save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_c_gini_umap'</span>, base_width = <span class="fl">8</span>, base_height = <span class="fl">5</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_c_gini_umap.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_c_gini_umap.png" style="width:50.0%"></p>
 </div>
 <div id="scran" class="section level4">
 <h4 class="hasAnchor">
@@ -398,14 +398,14 @@
            strip_text = <span class="fl">10</span>, strip_position = <span class="st">'right'</span>,
            save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_d_violinplot_scran'</span>, base_width = <span class="fl">5</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_d_violinplot_scran.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_d_violinplot_scran.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit">
 <span class="co"># cluster heatmap</span>
 <span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="kw">visium_brain</span>, selected_genes = <span class="kw">topgenes_scran</span>,
                     metadata_cols = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>),
                     save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_e_metaheatmap_scran'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_e_metaheatmap_scran.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_e_metaheatmap_scran.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="co"># umap plots</span>
 <span class="fu"><a href="../reference/dimGenePlot.html">dimGenePlot</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
@@ -413,7 +413,7 @@
             cow_n_col = <span class="fl">3</span>, point_size = <span class="fl">1</span>,
             save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'6_f_scran_umap'</span>, base_width = <span class="fl">8</span>, base_height = <span class="fl">5</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/6_f_scran_umap.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/6_f_scran_umap.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="part-7-cell-type-annotation" class="section level2">
@@ -443,7 +443,7 @@
                          x_text_size = <span class="fl">8</span>, y_text_size = <span class="fl">8</span>,
                          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"7_a_metaheatmap"</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/7_a_metaheatmap.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/7_a_metaheatmap.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit">
 <span class="kw">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="kw">sig_matrix</span>)[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]
 <span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(gobject = <span class="kw">visium_brain</span>, 
@@ -451,7 +451,7 @@
              cow_n_col = <span class="fl">4</span>,coord_fix_ratio = <span class="kw">NULL</span>, point_size = <span class="fl">0.75</span>,
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"7_b_spatcellplot_1"</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/7_b_spatcellplot_1.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/7_b_spatcellplot_1.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb26"><pre class="downlit">
 <span class="kw">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="kw">sig_matrix</span>)[<span class="fl">11</span><span class="op">:</span><span class="fl">20</span>]
 <span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(gobject = <span class="kw">visium_brain</span>, spat_enr_names = <span class="st">'PAGE'</span>, 
@@ -459,7 +459,7 @@
              coord_fix_ratio = <span class="kw">NULL</span>, point_size = <span class="fl">0.75</span>, 
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"7_c_spatcellplot_2"</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/7_c_spatcellplot_2.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/7_c_spatcellplot_2.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="fu"><a href="../reference/spatDimCellPlot.html">spatDimCellPlot</a></span>(gobject = <span class="kw">visium_brain</span>, 
                 spat_enr_names = <span class="st">'PAGE'</span>,
@@ -468,7 +468,7 @@
                 plot_alignment = <span class="st">'horizontal'</span>, 
                 save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"7_d_spatDimCellPlot"</span>, base_width=<span class="fl">7</span>, base_height=<span class="fl">10</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/7_d_spatDimCellPlot.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/7_d_spatDimCellPlot.png" style="width:50.0%"></p>
 </div>
 <div id="part-8-spatial-grid" class="section level2">
 <h2 class="hasAnchor">
@@ -482,7 +482,7 @@
          grid_color = <span class="st">'red'</span>, spatial_grid_name = <span class="st">'spatial_grid'</span>, 
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'8_grid'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/8_grid.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/8_grid.png" style="width:50.0%"></p>
 </div>
 <div id="part-9-spatial-network" class="section level2">
 <h2 class="hasAnchor">
@@ -499,7 +499,7 @@
          network_color = <span class="st">'blue'</span>, spatial_network_name = <span class="st">'spatial_network'</span>,
          save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'9_a_knn_network'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/9_a_knn_network.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/9_a_knn_network.png" style="width:50.0%"></p>
 </div>
 <div id="part-10-spatial-genes" class="section level2">
 <h2 class="hasAnchor">
@@ -515,7 +515,7 @@
              genes = <span class="kw">kmtest</span><span class="op">$</span><span class="kw">genes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">6</span>], cow_n_col = <span class="fl">2</span>, point_size = <span class="fl">1.5</span>,
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'10_a_spatial_genes_km'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_a_spatial_genes_km.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_a_spatial_genes_km.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit">
 <span class="co">## rank binarization</span>
 <span class="kw">ranktest</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="kw">visium_brain</span>, bin_method = <span class="st">'rank'</span>, 
@@ -525,16 +525,17 @@
              genes = <span class="kw">ranktest</span><span class="op">$</span><span class="kw">genes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">6</span>], cow_n_col = <span class="fl">2</span>, point_size = <span class="fl">1.5</span>,
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'10_b_spatial_genes_rank'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_b_spatial_genes_rank.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_b_spatial_genes_rank.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb32"><pre class="downlit">
-<span class="kw">spatial_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(gobject = <span class="kw">visium_brain</span>, 
+<span class="kw">spatial_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRankTest.html">silhouetteRankTest</a></span>(gobject = <span class="kw">visium_brain</span>, 
                                expression_values = <span class="st">'scaled'</span>, 
-                               rbp_p = <span class="fl">0.95</span>, examine_top = <span class="fl">0.3</span>)
+                               rbp_ps = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.95</span>, <span class="fl">0.99</span>), examine_tops = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>),
+                               parallel_path = <span class="st">"/usr/local/bin"</span>)
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
-             genes = <span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">genes</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">6</span>], cow_n_col = <span class="fl">2</span>, point_size = <span class="fl">1</span>,
+             genes = <span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">gene</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">6</span>], cow_n_col = <span class="fl">2</span>, point_size = <span class="fl">1</span>,
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name = <span class="st">'10_c_silhouette'</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_c_silhouette.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_c_silhouette.png" style="width:50.0%"></p>
 <p>show top 90 genes identified by silhouetteRank:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit">
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
@@ -542,28 +543,31 @@
              cow_n_col = <span class="fl">6</span>, point_size = <span class="fl">1</span>, 
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"10_d_silhouette_1"</span>, base_width=<span class="fl">20</span>, base_height=<span class="fl">10</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_d_silhouette_1.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_1.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb34"><pre class="downlit">
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
              genes = <span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">gene</span>[<span class="fl">31</span><span class="op">:</span><span class="fl">60</span>], 
              cow_n_col = <span class="fl">6</span>, point_size = <span class="fl">1</span>, 
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"10_d_silhouette_2"</span>, base_width=<span class="fl">20</span>, base_height=<span class="fl">10</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_d_silhouette_2.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_2.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb35"><pre class="downlit">
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="kw">visium_brain</span>, expression_values = <span class="st">'scaled'</span>,
              genes = <span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">gene</span>[<span class="fl">61</span><span class="op">:</span><span class="fl">90</span>], 
              cow_n_col = <span class="fl">6</span>, point_size = <span class="fl">1</span>, 
              save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"10_d_silhouette_3"</span>, base_width=<span class="fl">20</span>, base_height=<span class="fl">10</span>))
 </pre></div>
-<p><img src="../inst/images/mouse_visium_brain/vignette_200916/10_d_silhouette_3.png" style="width:50.0%"></p>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_3.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb36"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(x = <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">14414</span>), 
-     y = <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span>(<span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">pval</span>), 
-     xlab = <span class="st">"Rank of genes by spatial score"</span>, 
-     ylab = <span class="st">"-log10Pvalue"</span>)
+<span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span>(filename = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">results_folder</span>,<span class="st">'/'</span>, <span class="st">'10_e_plot.png'</span>))
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(x=<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1</span>, <span class="fl">14414</span>), 
+     y=<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span>(<span class="kw">spatial_genes</span><span class="op">$</span><span class="kw">pval</span>), 
+     xlab=<span class="st">"Rank of genes by spatial score"</span>, 
+     ylab=<span class="st">"-log10Pvalue"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(v=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1500</span>))
+<span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span>()
 </pre></div>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_e_plot.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-patterns" class="section level3">
 <h3 class="hasAnchor">
@@ -588,11 +592,17 @@
                      heatmap_legend_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(title = <span class="kw">NULL</span>), 
                      save_param = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(save_name=<span class="st">"10_e_heatmap"</span>))
 </pre></div>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_e_heatmap.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb38"><pre class="downlit">
 <span class="co"># sample the spatial genes at a per cluster basis</span>
 <span class="co"># but different from regular sampling, sampling is based on cluster size</span>
 <span class="co"># controlled by sample_rate (between 1 to 10. 1 means equal number per cluster, 10 means number of samples is directly proportional to cluster size)</span>
 <span class="co"># target number of spatial genes = 500</span>
+
+<span class="co"># extract cluster information</span>
+<span class="kw">clusters</span> <span class="op">=</span> <span class="kw">spat_cor_netw_DT</span><span class="op">$</span><span class="kw">cor_clusters</span>
+<span class="kw">clust</span> <span class="op">=</span> <span class="kw">clusters</span><span class="op">$</span><span class="kw">spat_netw_clus</span>
+
 <span class="kw">sample_rate</span><span class="op">=</span><span class="fl">2</span>
 <span class="kw">target</span><span class="op">=</span><span class="fl">500</span>
 <span class="kw">tot</span><span class="op">=</span><span class="fl">0</span>
@@ -645,6 +655,7 @@
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(gobject = <span class="kw">visium_brain</span>, cell_color = <span class="st">'HMRF_k20_b.40'</span>,
          point_size = <span class="fl">2</span>, save_param=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(save_name=<span class="st">"10_d_spatPlot2D_HMRF"</span>))
 </pre></div>
+<p><img src="../inst/images/mouse_visium_brain/vignette_200918/10_d_spatPlot2D_HMRF.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="export-and-create-giotto-viewer" class="section level2">
