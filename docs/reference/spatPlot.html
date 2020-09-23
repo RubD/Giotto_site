@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
       </span>
     </div>
 
@@ -190,14 +190,14 @@
     <p>Visualize cells according to spatial coordinates</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spatPlot</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>spatPlot</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='spatPlot2D.html'>spatPlot2D</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='spatPlot2D.html'>spatPlot2D</a></code></p><dl>
     <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
     <dt><code>show_image</code></dt><dd><p>show a tissue background image</p></dd>
     <dt><code>gimage</code></dt><dd><p>a giotto image</p></dd>
@@ -277,7 +277,8 @@
 <code><a href='spatPlot3D.html'>spatPlot3D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>spatPlot</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>spatPlot</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in spatPlot2D_single(gobject = gobject, show_image = show_image,     gimage = gimage, image_name = image_name, sdimx = sdimx,     sdimy = sdimy, spat_enr_names = spat_enr_names, cell_color = cell_color,     color_as_factor = color_as_factor, cell_color_code = cell_color_code,     cell_color_gradient = cell_color_gradient, gradient_midpoint = gradient_midpoint,     gradient_limits = gradient_limits, select_cell_groups = select_cell_groups,     select_cells = select_cells, point_shape = point_shape, point_size = point_size,     point_alpha = point_alpha, point_border_col = point_border_col,     point_border_stroke = point_border_stroke, show_cluster_center = show_cluster_center,     show_center_label = show_center_label, center_point_size = center_point_size,     center_point_border_col = center_point_border_col, center_point_border_stroke = center_point_border_stroke,     label_size = label_size, label_fontface = label_fontface,     show_network = show_network, spatial_network_name = spatial_network_name,     network_color = network_color, network_alpha = network_alpha,     show_grid = show_grid, spatial_grid_name = spatial_grid_name,     grid_color = grid_color, show_other_cells = show_other_cells,     other_cell_color = other_cell_color, other_point_size = other_point_size,     other_cells_alpha = other_cells_alpha, coord_fix_ratio = coord_fix_ratio,     show_legend = show_legend, legend_text = legend_text, legend_symbol_size = legend_symbol_size,     background_color = background_color, vor_border_color = vor_border_color,     vor_max_radius = vor_max_radius, vor_alpha = vor_alpha, axis_text = axis_text,     axis_title = axis_title, title = title, show_plot = show_plot,     return_plot = return_plot, save_plot = save_plot, save_param = save_param,     default_save_name = default_save_name): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -293,7 +294,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

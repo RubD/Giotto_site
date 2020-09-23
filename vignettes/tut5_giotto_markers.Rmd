@@ -1,0 +1,71 @@
+---
+output: html_document
+---
+
+
+# Marker gene detection 
+
+```{r eval=FALSE}
+library(Giotto)
+data("mini_giotto_single_cell")
+```
+This tutorial starts from a pre-computed mini Giotto object, which has already undergone pre-processing, dimensions reduction and clustering steps.  Currently provides 3 different methods to identify marker genes:  
+- using a new Gini-index method  
+- using Scran  
+- using Mast  
+
+Each  method can either identify marker genes between 2 selected (groups of) clusters or for each individual cluster.  
+
+$~$
+
+#### 1. Gini
+```{r eval=FALSE}
+# between 2 groups
+gini_markers = findGiniMarkers(gobject = mini_giotto_single_cell,
+                               cluster_column = 'leiden_clus',
+                               group_1 = 1,
+                               group_2 = 2)
+# for each cluster
+gini_markers = findGiniMarkers_one_vs_all(gobject = mini_giotto_single_cell,
+                                          cluster_column = 'leiden_clus')
+```
+
+$~$
+
+#### 2. Scran
+```{r eval=FALSE}
+# between 2 groups
+scran_markers = findScranMarkers(gobject = mini_giotto_single_cell,
+                                 cluster_column = 'leiden_clus',
+                                 group_1 = 1,
+                                 group_2 = 2)
+# for each cluster
+scran_markers = findScranMarkers_one_vs_all(gobject = mini_giotto_single_cell,
+                                            cluster_column = 'leiden_clus')
+```
+
+$~$
+
+#### 3. Mast
+```{r eval=FALSE}
+# between 2 groups
+mast_markers = findMastMarkers(gobject = mini_giotto_single_cell,
+                                cluster_column = 'leiden_clus',
+                                group_1 = 1,
+                                group_2 = 2)
+
+# for each cluster
+mast_markers = findMastMarkers_one_vs_all(gobject = mini_giotto_single_cell,
+                                          cluster_column = 'leiden_clus')
+```
+
+$~$
+
+#### 4. Wrapper
+A general wrapper has also been created which covers all three methods:  
+see **findMarkers**  and **findMarkers_one_vs_all** and specify the method parameter.  
+
+
+
+
+

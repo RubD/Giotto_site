@@ -1,0 +1,75 @@
+---
+output: html_document
+---
+
+
+# Clustering 
+
+```{r eval=FALSE}
+library(Giotto)
+data("mini_giotto_single_cell")
+```
+This tutorial starts from a pre-computed mini Giotto object, which has already undergone pre-processing and dimensions reductions steps.  
+
+$~$
+
+#### 1. clustering algorithms
+Giotto provides a number of different clustering algorithms, here we show some of the most popular.  
+```{r eval=FALSE}
+# leiden
+mini_giotto_single_cell = doLeidenCluster(mini_giotto_single_cell, name = 'leiden_clus')
+plotUMAP_2D(mini_giotto_single_cell, cell_color = 'leiden_clus', point_size = 3)
+
+# louvain
+mini_giotto_single_cell = doLouvainCluster(mini_giotto_single_cell, name = 'louvain_clus')
+plotUMAP_2D(mini_giotto_single_cell, cell_color = 'louvain_clus', point_size = 3)
+
+# kmeans
+mini_giotto_single_cell = doKmeans(mini_giotto_single_cell, centers = 4, name = 'kmeans_clus')
+plotUMAP_2D(mini_giotto_single_cell, cell_color = 'kmeans_clus', point_size = 3)
+
+# hierarchical
+mini_giotto_single_cell = doHclust(mini_giotto_single_cell, k = 4, name = 'hier_clus')
+plotUMAP_2D(mini_giotto_single_cell, cell_color = 'hier_clus', point_size = 3)
+```
+
+$~$
+
+#### 2. cluster similarity and merging
+To finetune clustering results Giotto provides methods to calculate similarities between clusters and merge clusters based on correlation and size parameters.  
+```{r eval=FALSE}
+# calculate cluster similarities to see how individual clusters are correlated
+cluster_similarities = getClusterSimilarity(mini_giotto_single_cell,
+                                            cluster_column = 'leiden_clus')
+
+# merge similar clusters based on correlation and size parameters
+mini_giotto_single_cell = mergeClusters(mini_giotto_single_cell, 
+                                        cluster_column = 'leiden_clus', 
+                                        min_cor_score = 0.7, 
+                                        force_min_group_size = 4)
+
+# visualize
+pDataDT(mini_giotto_single_cell)
+plotUMAP_2D(mini_giotto_single_cell, cell_color = 'merged_cluster', point_size = 3)
+```
+
+$~$
+
+#### 3. dendrogram splits
+A dendrogram can be created from the clustering results. This may for example help in identifying genes that are most differentially expressed between branches.  
+```{r eval=FALSE}
+splits = getDendrogramSplits(mini_giotto_single_cell, cluster_column = 'merged_cluster')
+```
+
+$~$
+
+#### 4. Subclustering
+
+See seqfish+ clustering [example](https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200914.html#part-4-cluster-1).
+
+
+
+
+
+
+

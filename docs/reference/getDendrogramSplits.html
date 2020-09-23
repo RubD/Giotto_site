@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
       </span>
     </div>
 
@@ -191,15 +191,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>getDendrogramSplits</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='no'>cluster_column</span>,
-  <span class='kw'>cor</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>),
-  <span class='kw'>distance</span> <span class='kw'>=</span> <span class='st'>"ward.D"</span>,
-  <span class='kw'>h</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>h_color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
-  <span class='kw'>show_dend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>gobject</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  <span class='kw'>cluster_column</span>,
+  cor = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>),
+  distance = <span class='st'>"ward.D"</span>,
+  h = <span class='kw'>NULL</span>,
+  h_color = <span class='st'>"red"</span>,
+  show_dend = <span class='fl'>TRUE</span>,
+  verbose = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -254,7 +254,8 @@ subdendrograms. This information can be used to determine in a hierarchical mann
 differentially expressed marker genes at each node.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>getDendrogramSplits</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>getDendrogramSplits</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in calculateMetaTable(gobject = gobject, expression_values = values,     metadata_cols = cluster_column): argument "cluster_column" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -270,7 +271,7 @@ differentially expressed marker genes at each node.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

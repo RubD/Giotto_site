@@ -34,9 +34,8 @@ Giotto provides a lot of analyses, visualizations and other options to facilitat
 We are working on providing easy-to-understand examples or tutorials, but if anything is not clear or if there is something you
 would like to see in particular, then do not hesitate to contact [us](https://github.com/RubD/Giotto/issues).
 
-Howto's examples:  
 
-##### Giotto tips & tricks [work in progress]
+##### Giotto tips & tricks
 - [Different ways of subsetting Giotto results?](./subset_giotto.html)
 - [How to create global instructions and show or save your created plots?](./instructions_and_plotting.html)
 - [Different ways to visualize your spatial data?](./visualization_options.html)
@@ -50,9 +49,9 @@ Howto's examples:
 - [1. Create a Giotto object](./tut1_giotto_object.html)
 - [2. Process and filter a Giotto object](./tut2_giotto_object_process.html)
 - [3. Dimension reduction](./tut3_giotto_dim_reduction.html)
-- 4. Cluster cells or spots  
-- 5. Identify differentially expressed genes
-- 6. Annotate clusters  
+- [4. Cluster cells or spots](./tut4_giotto_clustering.html)
+- [5. Identify differentially expressed genes](./tut5_giotto_markers.html)
+- [6. Annotate clusters](./tut6_giotto_annotation.html)
 - 7. Cell-type enrichment or deconvolution per spot
 - 8. Create a Spatial grid or Network  
 - 9. Find genes with a spatially coherent gene expression pattern

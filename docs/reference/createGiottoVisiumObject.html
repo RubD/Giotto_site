@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
       </span>
     </div>
 
@@ -191,16 +191,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>createGiottoVisiumObject</span>(
-  <span class='kw'>visium_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>expr_data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"filter"</span>),
-  <span class='kw'>gene_column_index</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>png_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xmax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>xmin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>ymax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>ymin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>instructions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>NA</span>
+  visium_dir = <span class='kw'>NULL</span>,
+  expr_data = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"filter"</span>),
+  gene_column_index = <span class='fl'>1</span>,
+  png_name = <span class='kw'>NULL</span>,
+  xmax_adj = <span class='fl'>0</span>,
+  xmin_adj = <span class='fl'>0</span>,
+  ymax_adj = <span class='fl'>0</span>,
+  ymin_adj = <span class='fl'>0</span>,
+  instructions = <span class='kw'>NULL</span>,
+  cores = <span class='fl'>NA</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -262,7 +262,8 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>createGiottoVisiumObject</span>(<span class='no'>visium_dir</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>createGiottoVisiumObject</span>(<span class='kw'>visium_dir</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in createGiottoVisiumObject(visium_dir): object 'visium_dir' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -278,7 +279,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

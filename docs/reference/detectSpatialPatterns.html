@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9051</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
       </span>
     </div>
 
@@ -191,14 +191,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>detectSpatialPatterns</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
-  <span class='kw'>min_cells_per_grid</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>scale_unit</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>ncp</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>PC_zscore</span> <span class='kw'>=</span> <span class='fl'>1.5</span>
+  <span class='kw'>gobject</span>,
+  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
+  spatial_grid_name = <span class='st'>"spatial_grid"</span>,
+  min_cells_per_grid = <span class='fl'>4</span>,
+  scale_unit = <span class='kw'>F</span>,
+  ncp = <span class='fl'>100</span>,
+  show_plot = <span class='kw'>T</span>,
+  PC_zscore = <span class='fl'>1.5</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -251,7 +251,8 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>detectSpatialPatterns</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>detectSpatialPatterns</span>(<span class='kw'>gobject</span>)
+</div><div class='output co'>#&gt; <span class='error'>Error in select_expression_values(gobject = gobject, values = values): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,7 +268,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
