@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,20 +190,20 @@
     <p>Multi parameter aggregator version of <code><a href='silhouetteRank.html'>silhouetteRank</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>silhouetteRankTest</span>(
-  <span class='kw'>gobject</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  subset_genes = <span class='kw'>NULL</span>,
-  overwrite_input_bin = <span class='fl'>TRUE</span>,
-  rbp_ps = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.95</span>, <span class='fl'>0.99</span>),
-  examine_tops = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.005</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>0.3</span>),
-  matrix_type = <span class='st'>"dissim"</span>,
-  num_core = <span class='fl'>4</span>,
-  parallel_path = <span class='st'>"/usr/bin"</span>,
-  output = <span class='kw'>NULL</span>,
-  query_sizes = <span class='fl'>10L</span>,
-  verbose = <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>silhouetteRankTest</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  subset_genes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  overwrite_input_bin <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rbp_ps <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.95</span>, <span class='fl'>0.99</span><span class='op'>)</span>,
+  examine_tops <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.005</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>0.3</span><span class='op'>)</span>,
+  matrix_type <span class='op'>=</span> <span class='st'>"dissim"</span>,
+  num_core <span class='op'>=</span> <span class='fl'>4</span>,
+  parallel_path <span class='op'>=</span> <span class='st'>"/usr/bin"</span>,
+  output <span class='op'>=</span> <span class='cn'>NULL</span>,
+  query_sizes <span class='op'>=</span> <span class='fl'>10L</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

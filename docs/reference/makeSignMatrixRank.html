@@ -84,7 +84,7 @@ a rank matrix that can be used with the Rank enrichment option." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -194,12 +194,12 @@ and a corresponding single-cell cluster vector into
 a rank matrix that can be used with the Rank enrichment option.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>makeSignMatrixRank</span>(
-  <span class='kw'>sc_matrix</span>,
-  <span class='kw'>sc_cluster_ids</span>,
-  ties_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"random"</span>, <span class='st'>"max"</span>),
-  gobject = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>makeSignMatrixRank</span><span class='op'>(</span>
+  <span class='va'>sc_matrix</span>,
+  <span class='va'>sc_cluster_ids</span>,
+  ties_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"random"</span>, <span class='st'>"max"</span><span class='op'>)</span>,
+  gobject <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,9 +229,6 @@ a rank matrix that can be used with the Rank enrichment option.</p>
 
     <div class='dont-index'><p><code><a href='rankEnrich.html'>rankEnrich</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>makeSignMatrixRank</span>()
-</div><div class='output co'>#&gt; <span class='error'>Error in is(sc_matrix, "sparseMatrix"): argument "sc_matrix" is missing, with no default</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

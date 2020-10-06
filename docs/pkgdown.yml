@@ -29,7 +29,11 @@ articles:
   tut4_giotto_clustering: tut4_giotto_clustering.html
   tut5_giotto_markers: tut5_giotto_markers.html
   tut6_giotto_annotation: tut6_giotto_annotation.html
+  tut6_giotto_enrichment: tut6_giotto_enrichment.html
+  tut7_giotto_enrichment: tut7_giotto_enrichment.html
+  tut8_giotto_grid_network: tut8_giotto_grid_network.html
+  tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-09-25T13:17Z
+last_built: 2020-10-06T18:17Z
 

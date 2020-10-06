@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,27 +190,27 @@
     <p>Function to create a giotto object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createGiottoObject</span>(
-  <span class='kw'>raw_exprs</span>,
-  spatial_locs = <span class='kw'>NULL</span>,
-  norm_expr = <span class='kw'>NULL</span>,
-  norm_scaled_expr = <span class='kw'>NULL</span>,
-  custom_expr = <span class='kw'>NULL</span>,
-  cell_metadata = <span class='kw'>NULL</span>,
-  gene_metadata = <span class='kw'>NULL</span>,
-  spatial_network = <span class='kw'>NULL</span>,
-  spatial_network_name = <span class='kw'>NULL</span>,
-  spatial_grid = <span class='kw'>NULL</span>,
-  spatial_grid_name = <span class='kw'>NULL</span>,
-  spatial_enrichment = <span class='kw'>NULL</span>,
-  spatial_enrichment_name = <span class='kw'>NULL</span>,
-  dimension_reduction = <span class='kw'>NULL</span>,
-  nn_network = <span class='kw'>NULL</span>,
-  images = <span class='kw'>NULL</span>,
-  offset_file = <span class='kw'>NULL</span>,
-  instructions = <span class='kw'>NULL</span>,
-  cores = <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>createGiottoObject</span><span class='op'>(</span>
+  <span class='va'>raw_exprs</span>,
+  spatial_locs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  norm_expr <span class='op'>=</span> <span class='cn'>NULL</span>,
+  norm_scaled_expr <span class='op'>=</span> <span class='cn'>NULL</span>,
+  custom_expr <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cell_metadata <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gene_metadata <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_network <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_network_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_grid <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_grid_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_enrichment <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_enrichment_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dimension_reduction <span class='op'>=</span> <span class='cn'>NULL</span>,
+  nn_network <span class='op'>=</span> <span class='cn'>NULL</span>,
+  images <span class='op'>=</span> <span class='cn'>NULL</span>,
+  offset_file <span class='op'>=</span> <span class='cn'>NULL</span>,
+  instructions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cores <span class='op'>=</span> <span class='cn'>NA</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -324,9 +324,6 @@ This data can also be added afterwards using the <code><a href='addGeneMetadata.
 </ul>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>createGiottoObject</span>(<span class='kw'>raw_exprs</span>, <span class='kw'>spatial_locs</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in initialize(value, ...): object 'raw_exprs' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

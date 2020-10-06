@@ -83,7 +83,7 @@ that identifies genes with a spatially coherent expression pattern." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -192,36 +192,36 @@ that identifies genes with a spatially coherent expression pattern." />
 that identifies genes with a spatially coherent expression pattern.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>binSpect</span>(
-  <span class='kw'>gobject</span>,
-  bin_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kmeans"</span>, <span class='st'>"rank"</span>),
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  subset_genes = <span class='kw'>NULL</span>,
-  spatial_network_name = <span class='st'>"Delaunay_network"</span>,
-  spatial_network_k = <span class='kw'>NULL</span>,
-  reduce_network = <span class='fl'>FALSE</span>,
-  kmeans_algo = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kmeans"</span>, <span class='st'>"kmeans_arma"</span>, <span class='st'>"kmeans_arma_subset"</span>),
-  nstart = <span class='fl'>3</span>,
-  iter_max = <span class='fl'>10</span>,
-  extreme_nr = <span class='fl'>50</span>,
-  sample_nr = <span class='fl'>50</span>,
-  percentage_rank = <span class='fl'>30</span>,
-  do_fisher_test = <span class='fl'>TRUE</span>,
-  adjust_method = <span class='st'>"fdr"</span>,
-  calc_hub = <span class='fl'>FALSE</span>,
-  hub_min_int = <span class='fl'>3</span>,
-  get_av_expr = <span class='fl'>TRUE</span>,
-  get_high_expr = <span class='fl'>TRUE</span>,
-  implementation = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"data.table"</span>, <span class='st'>"simple"</span>, <span class='st'>"matrix"</span>),
-  group_size = <span class='st'>"automatic"</span>,
-  do_parallel = <span class='fl'>TRUE</span>,
-  cores = <span class='fl'>NA</span>,
-  verbose = <span class='kw'>T</span>,
-  knn_params = <span class='kw'>NULL</span>,
-  set.seed = <span class='kw'>NULL</span>,
-  bin_matrix = <span class='kw'>NULL</span>,
-  summarize = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"p.value"</span>, <span class='st'>"adj.p.value"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>binSpect</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  bin_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"kmeans"</span>, <span class='st'>"rank"</span><span class='op'>)</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  subset_genes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_network_name <span class='op'>=</span> <span class='st'>"Delaunay_network"</span>,
+  spatial_network_k <span class='op'>=</span> <span class='cn'>NULL</span>,
+  reduce_network <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  kmeans_algo <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"kmeans"</span>, <span class='st'>"kmeans_arma"</span>, <span class='st'>"kmeans_arma_subset"</span><span class='op'>)</span>,
+  nstart <span class='op'>=</span> <span class='fl'>3</span>,
+  iter_max <span class='op'>=</span> <span class='fl'>10</span>,
+  extreme_nr <span class='op'>=</span> <span class='fl'>50</span>,
+  sample_nr <span class='op'>=</span> <span class='fl'>50</span>,
+  percentage_rank <span class='op'>=</span> <span class='fl'>30</span>,
+  do_fisher_test <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  adjust_method <span class='op'>=</span> <span class='st'>"fdr"</span>,
+  calc_hub <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  hub_min_int <span class='op'>=</span> <span class='fl'>3</span>,
+  get_av_expr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  get_high_expr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  implementation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"data.table"</span>, <span class='st'>"simple"</span>, <span class='st'>"matrix"</span><span class='op'>)</span>,
+  group_size <span class='op'>=</span> <span class='st'>"automatic"</span>,
+  do_parallel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  cores <span class='op'>=</span> <span class='cn'>NA</span>,
+  verbose <span class='op'>=</span> <span class='cn'>T</span>,
+  knn_params <span class='op'>=</span> <span class='cn'>NULL</span>,
+  set.seed <span class='op'>=</span> <span class='cn'>NULL</span>,
+  bin_matrix <span class='op'>=</span> <span class='cn'>NULL</span>,
+  summarize <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"p.value"</span>, <span class='st'>"adj.p.value"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -364,10 +364,6 @@ Both methods are identicial except for how binarization is performed.</p><ul>
 The simple implementation is usually faster, but lacks the possibility to run in parallel and to calculate hub cells.
 The data.table implementation might be more appropriate for large datasets by setting the group_size (number of genes) parameter to divide the workload.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>binSpect</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; 
-#&gt;  This is the single parameter version of binSpect</div><div class='output co'>#&gt; <span class='error'>Error in is.element(name, names(gobject@spatial_network)): object 'gobject' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

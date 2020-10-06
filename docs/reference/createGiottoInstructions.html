@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,19 +190,19 @@
     <p>Function to set global instructions for giotto functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createGiottoInstructions</span>(
-  python_path = <span class='kw'>NULL</span>,
-  show_plot = <span class='kw'>NULL</span>,
-  return_plot = <span class='kw'>NULL</span>,
-  save_plot = <span class='kw'>NULL</span>,
-  save_dir = <span class='kw'>NULL</span>,
-  plot_format = <span class='kw'>NULL</span>,
-  dpi = <span class='kw'>NULL</span>,
-  units = <span class='kw'>NULL</span>,
-  height = <span class='kw'>NULL</span>,
-  width = <span class='kw'>NULL</span>,
-  is_docker = <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>createGiottoInstructions</span><span class='op'>(</span>
+  python_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NULL</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NULL</span>,
+  save_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot_format <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dpi <span class='op'>=</span> <span class='cn'>NULL</span>,
+  units <span class='op'>=</span> <span class='cn'>NULL</span>,
+  height <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='cn'>NULL</span>,
+  is_docker <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -260,42 +260,6 @@
 
     <div class='dont-index'><p>More online information can be found here <a href='https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html'>https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html</a></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>createGiottoInstructions</span>()
-</div><div class='output co'>#&gt; 
-#&gt;  no external python path was provided, but a giotto python environment was found and will be used </div><div class='output co'>#&gt; $python_path
-#&gt; [1] "/Users/rubendries/Library/r-miniconda/envs/giotto_env/bin/pythonw"
-#&gt; 
-#&gt; $show_plot
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $return_plot
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $save_plot
-#&gt; [1] FALSE
-#&gt; 
-#&gt; $save_dir
-#&gt; [1] "/Users/rubendries/Packages/R_Packages/Giotto_site/docs/reference"
-#&gt; 
-#&gt; $plot_format
-#&gt; [1] "png"
-#&gt; 
-#&gt; $dpi
-#&gt; [1] 300
-#&gt; 
-#&gt; $units
-#&gt; [1] "in"
-#&gt; 
-#&gt; $height
-#&gt; [1] 9
-#&gt; 
-#&gt; $width
-#&gt; [1] 9
-#&gt; 
-#&gt; $is_docker
-#&gt; [1] FALSE
-#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

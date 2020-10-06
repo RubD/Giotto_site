@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@
     <p>Visualize gene expression according to dimension reduction coordinates</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dimGenePlot</span>(<span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dimGenePlot</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -252,8 +252,14 @@
 <code><a href='dimGenePlot3D.html'>dimGenePlot3D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>    <span class='fu'>dimGenePlot</span>(<span class='kw'>gobject</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in readGiottoInstructions(gobject, param = "show_plot"): object 'gobject' not found</span></div></pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+
+<span class='va'>all_genes</span> <span class='op'>=</span> <span class='fu'>slot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, <span class='st'>'gene_ID'</span><span class='op'>)</span>
+<span class='va'>selected_genes</span> <span class='op'>=</span> <span class='va'>all_genes</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='fu'>dimGenePlot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, genes <span class='op'>=</span> <span class='va'>selected_genes</span>, point_size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='dimGenePlot-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='dimGenePlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

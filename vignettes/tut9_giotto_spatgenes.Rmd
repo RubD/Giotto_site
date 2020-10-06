@@ -1,0 +1,83 @@
+---
+output: html_document
+---
+
+
+# Spatial gene detection tools
+
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = seqfish_mini, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# create network (required for binSpect methods)
+my_giotto_object = createSpatialNetwork(gobject = my_giotto_object, minimum_k = 2)
+```
+
+$~$
+
+#### 2. Run spatial gene detection methods
+```{r eval=FALSE}
+
+# binSpect kmeans method
+km_spatialgenes = binSpect(my_giotto_object, bin_method = 'kmeans')
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = km_spatialgenes[1:2]$genes, point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+# binSpect rank method
+rnk_spatialgenes = binSpect(my_giotto_object, bin_method = 'rank')
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = rnk_spatialgenes[1:2]$genes, point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+# silhouetteRank method
+silh_spatialgenes = silhouetteRank(my_giotto_object)
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = silh_spatialgenes[1:2]$genes,  point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+# spatialDE method
+spatDE_spatialgenes = spatialDE(my_giotto_object)
+results = data.table::as.data.table(spatDE_spatialgenes$results)
+setorder(results, -LLR)
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = results$g[1:2],  point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+# spark method
+spark_spatialgenes = spark(my_giotto_object)
+setorder(spark_spatialgenes, adjusted_pvalue, combined_pvalue)
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = spark_spatialgenes[1:2]$genes,  point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+# trendsceek method
+trendsc_spatialgenes = trendSceek(my_giotto_object)
+trendsc_spatialgenes = data.table::as.data.table(trendsc_spatialgenes)
+
+spatGenePlot(my_giotto_object, expression_values = 'scaled', 
+             genes = trendsc_spatialgenes[1:2]$gene,  point_size = 3,
+             point_shape = 'border', point_border_stroke = 0.1, cow_n_col = 2)
+
+```
+
+
+

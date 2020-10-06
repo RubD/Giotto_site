@@ -5,32 +5,51 @@ output: html_document
 
 # Clustering 
 
+
+#### 1. processing steps
 ```{r eval=FALSE}
 library(Giotto)
-data("mini_giotto_single_cell")
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = seqfish_mini, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# dimension reduction
+my_giotto_object <- calculateHVG(gobject = my_giotto_object)
+my_giotto_object <- runPCA(gobject = my_giotto_object)
+my_giotto_object <- runUMAP(my_giotto_object, dimensions_to_use = 1:5)
 ```
-This tutorial starts from a pre-computed mini Giotto object, which has already undergone pre-processing and dimensions reductions steps.  
+
 
 $~$
 
-#### 1. clustering algorithms
+#### 2. clustering algorithms
 Giotto provides a number of different clustering algorithms, here we show some of the most popular.  
 ```{r eval=FALSE}
 # leiden
-mini_giotto_single_cell = doLeidenCluster(mini_giotto_single_cell, name = 'leiden_clus')
-plotUMAP_2D(mini_giotto_single_cell, cell_color = 'leiden_clus', point_size = 3)
+my_giotto_object = doLeidenCluster(my_giotto_object, name = 'leiden_clus')
+plotUMAP_2D(my_giotto_object, cell_color = 'leiden_clus', point_size = 3)
 
 # louvain
-mini_giotto_single_cell = doLouvainCluster(mini_giotto_single_cell, name = 'louvain_clus')
-plotUMAP_2D(mini_giotto_single_cell, cell_color = 'louvain_clus', point_size = 3)
+my_giotto_object = doLouvainCluster(my_giotto_object, name = 'louvain_clus')
+plotUMAP_2D(my_giotto_object, cell_color = 'louvain_clus', point_size = 3)
 
 # kmeans
-mini_giotto_single_cell = doKmeans(mini_giotto_single_cell, centers = 4, name = 'kmeans_clus')
-plotUMAP_2D(mini_giotto_single_cell, cell_color = 'kmeans_clus', point_size = 3)
+my_giotto_object = doKmeans(my_giotto_object, centers = 4, name = 'kmeans_clus')
+plotUMAP_2D(my_giotto_object, cell_color = 'kmeans_clus', point_size = 3)
 
 # hierarchical
-mini_giotto_single_cell = doHclust(mini_giotto_single_cell, k = 4, name = 'hier_clus')
-plotUMAP_2D(mini_giotto_single_cell, cell_color = 'hier_clus', point_size = 3)
+my_giotto_object = doHclust(my_giotto_object, k = 4, name = 'hier_clus')
+plotUMAP_2D(my_giotto_object, cell_color = 'hier_clus', point_size = 3)
 ```
 
 $~$
@@ -39,18 +58,18 @@ $~$
 To finetune clustering results Giotto provides methods to calculate similarities between clusters and merge clusters based on correlation and size parameters.  
 ```{r eval=FALSE}
 # calculate cluster similarities to see how individual clusters are correlated
-cluster_similarities = getClusterSimilarity(mini_giotto_single_cell,
+cluster_similarities = getClusterSimilarity(my_giotto_object,
                                             cluster_column = 'leiden_clus')
 
 # merge similar clusters based on correlation and size parameters
-mini_giotto_single_cell = mergeClusters(mini_giotto_single_cell, 
+mini_giotto_single_cell = mergeClusters(my_giotto_object, 
                                         cluster_column = 'leiden_clus', 
                                         min_cor_score = 0.7, 
                                         force_min_group_size = 4)
 
 # visualize
-pDataDT(mini_giotto_single_cell)
-plotUMAP_2D(mini_giotto_single_cell, cell_color = 'merged_cluster', point_size = 3)
+pDataDT(my_giotto_object)
+plotUMAP_2D(my_giotto_object, cell_color = 'merged_cluster', point_size = 3)
 ```
 
 $~$
@@ -58,7 +77,7 @@ $~$
 #### 3. dendrogram splits
 A dendrogram can be created from the clustering results. This may for example help in identifying genes that are most differentially expressed between branches.  
 ```{r eval=FALSE}
-splits = getDendrogramSplits(mini_giotto_single_cell, cluster_column = 'merged_cluster')
+splits = getDendrogramSplits(my_giotto_object, cluster_column = 'merged_cluster')
 ```
 
 $~$

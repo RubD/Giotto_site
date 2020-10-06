@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,21 +190,22 @@
     <p>Function to calculate gene signature enrichment scores per spatial position using PAGE.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runPAGEEnrich</span>(
-  <span class='kw'>gobject</span>,
-  <span class='kw'>sign_matrix</span>,
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  min_overlap_genes = <span class='fl'>5</span>,
-  reverse_log_scale = <span class='fl'>TRUE</span>,
-  logbase = <span class='fl'>2</span>,
-  output_enrichment = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"original"</span>, <span class='st'>"zscore"</span>),
-  p_value = <span class='fl'>FALSE</span>,
-  n_times = <span class='fl'>1000</span>,
-  max_block = <span class='fl'>2e+07</span>,
-  name = <span class='kw'>NULL</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  return_gobject = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>runPAGEEnrich</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  <span class='va'>sign_matrix</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  min_overlap_genes <span class='op'>=</span> <span class='fl'>5</span>,
+  reverse_log_scale <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  logbase <span class='op'>=</span> <span class='fl'>2</span>,
+  output_enrichment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"original"</span>, <span class='st'>"zscore"</span><span class='op'>)</span>,
+  p_value <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  include_depletion <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  n_times <span class='op'>=</span> <span class='fl'>1000</span>,
+  max_block <span class='op'>=</span> <span class='fl'>2e+07</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -240,6 +241,10 @@
     <tr>
       <th>p_value</th>
       <td><p>calculate p-values (boolean, default = FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>include_depletion</th>
+      <td><p>calculate both enrichment and depletion</p></td>
     </tr>
     <tr>
       <th>n_times</th>

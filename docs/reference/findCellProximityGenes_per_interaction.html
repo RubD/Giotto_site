@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,22 +190,24 @@
     <p>Identifies genes that are differentially expressed due to proximity to other cell types.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findCellProximityGenes_per_interaction</span>(
-  <span class='kw'>expr_values</span>,
-  <span class='kw'>cell_metadata</span>,
-  <span class='kw'>annot_spatnetwork</span>,
-  <span class='kw'>sel_int</span>,
-  cluster_column = <span class='kw'>NULL</span>,
-  minimum_unique_cells = <span class='fl'>1</span>,
-  minimum_unique_int_cells = <span class='fl'>1</span>,
-  exclude_selected_cells_from_test = <span class='kw'>T</span>,
-  diff_test = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"permutation"</span>, <span class='st'>"limma"</span>, <span class='st'>"t.test"</span>, <span class='st'>"wilcox"</span>),
-  mean_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"arithmic"</span>, <span class='st'>"geometric"</span>),
-  offset = <span class='fl'>0.1</span>,
-  adjust_method = <span class='st'>"bonferroni"</span>,
-  nr_permutations = <span class='fl'>100</span>,
-  cores = <span class='fl'>1</span>
-)</pre>
+    <pre class="usage"><span class='fu'>findCellProximityGenes_per_interaction</span><span class='op'>(</span>
+  <span class='va'>expr_values</span>,
+  <span class='va'>cell_metadata</span>,
+  <span class='va'>annot_spatnetwork</span>,
+  <span class='va'>sel_int</span>,
+  cluster_column <span class='op'>=</span> <span class='cn'>NULL</span>,
+  minimum_unique_cells <span class='op'>=</span> <span class='fl'>1</span>,
+  minimum_unique_int_cells <span class='op'>=</span> <span class='fl'>1</span>,
+  exclude_selected_cells_from_test <span class='op'>=</span> <span class='cn'>T</span>,
+  diff_test <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"permutation"</span>, <span class='st'>"limma"</span>, <span class='st'>"t.test"</span>, <span class='st'>"wilcox"</span><span class='op'>)</span>,
+  mean_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"arithmic"</span>, <span class='st'>"geometric"</span><span class='op'>)</span>,
+  offset <span class='op'>=</span> <span class='fl'>0.1</span>,
+  adjust_method <span class='op'>=</span> <span class='st'>"bonferroni"</span>,
+  nr_permutations <span class='op'>=</span> <span class='fl'>100</span>,
+  cores <span class='op'>=</span> <span class='fl'>1</span>,
+  set_seed <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  seed_number <span class='op'>=</span> <span class='fl'>1234</span>
+<span class='op'>)</span></pre>
 
 
 

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,18 +190,18 @@
     <p>Function to perform deconvolution based on single cell expression data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runSpatialDeconv</span>(
-  <span class='kw'>gobject</span>,
-  deconv_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DWLS"</span>),
-  expression_values = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>),
-  logbase = <span class='fl'>2</span>,
-  cluster_column = <span class='st'>"leiden_clus"</span>,
-  <span class='kw'>sign_matrix</span>,
-  n_cell = <span class='fl'>50</span>,
-  cutoff = <span class='fl'>2</span>,
-  name = <span class='kw'>NULL</span>,
-  return_gobject = <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>runSpatialDeconv</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  deconv_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DWLS"</span><span class='op'>)</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span><span class='op'>)</span>,
+  logbase <span class='op'>=</span> <span class='fl'>2</span>,
+  cluster_column <span class='op'>=</span> <span class='st'>"leiden_clus"</span>,
+  <span class='va'>sign_matrix</span>,
+  n_cell <span class='op'>=</span> <span class='fl'>50</span>,
+  cutoff <span class='op'>=</span> <span class='fl'>2</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

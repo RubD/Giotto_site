@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@
     <p>Function to calculate gene signature enrichment scores per spatial position using PAGE.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PAGEEnrich</span>(<span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>PAGEEnrich</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,6 +206,7 @@
     <dt><code>logbase</code></dt><dd><p>log base to use if reverse_log_scale = TRUE</p></dd>
     <dt><code>output_enrichment</code></dt><dd><p>how to return enrichment output</p></dd>
     <dt><code>p_value</code></dt><dd><p>calculate p-values (boolean, default = FALSE)</p></dd>
+    <dt><code>include_depletion</code></dt><dd><p>calculate both enrichment and depletion</p></dd>
     <dt><code>n_times</code></dt><dd><p>number of permutations to calculate for p_value</p></dd>
     <dt><code>max_block</code></dt><dd><p>number of lines to process together (default = 20e6)</p></dd>
     <dt><code>name</code></dt><dd><p>to give to spatial enrichment results, default = PAGE</p></dd>

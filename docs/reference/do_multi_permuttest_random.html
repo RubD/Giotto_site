@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9053</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.6.9058</span>
       </span>
     </div>
 
@@ -190,15 +190,17 @@
     <p>calculate multiple random values</p>
     </div>
 
-    <pre class="usage"><span class='fu'>do_multi_permuttest_random</span>(
-  <span class='kw'>expr_values</span>,
-  <span class='kw'>select_ind</span>,
-  <span class='kw'>other_ind</span>,
-  <span class='kw'>mean_method</span>,
-  offset = <span class='fl'>0.1</span>,
-  n = <span class='fl'>100</span>,
-  cores = <span class='fl'>2</span>
-)</pre>
+    <pre class="usage"><span class='fu'>do_multi_permuttest_random</span><span class='op'>(</span>
+  <span class='va'>expr_values</span>,
+  <span class='va'>select_ind</span>,
+  <span class='va'>other_ind</span>,
+  <span class='va'>mean_method</span>,
+  offset <span class='op'>=</span> <span class='fl'>0.1</span>,
+  n <span class='op'>=</span> <span class='fl'>100</span>,
+  cores <span class='op'>=</span> <span class='fl'>2</span>,
+  set_seed <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  seed_number <span class='op'>=</span> <span class='fl'>1234</span>
+<span class='op'>)</span></pre>
 
 
 

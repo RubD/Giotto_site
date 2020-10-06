@@ -1,0 +1,72 @@
+---
+output: html_document
+---
+
+
+# Spatial grid or network
+
+```{r eval=FALSE}
+library(Giotto)
+data("mini_giotto_single_cell")
+```
+
+$~$
+
+#### 1. Create a spatial grid
+```{r eval=FALSE}
+mini_giotto_single_cell <- createSpatialGrid(gobject = mini_giotto_single_cell,
+                                            sdimx_stepsize = 250,
+                                            sdimy_stepsize = 250,
+                                            minimum_padding = 50)
+# visualize grid
+spatPlot(gobject = mini_giotto_single_cell, show_grid = T, point_size = 1.5)
+
+# create another larger grid
+mini_giotto_single_cell <- createSpatialGrid(gobject = mini_giotto_single_cell,
+                                            sdimx_stepsize = 350,
+                                            sdimy_stepsize = 350,
+                                            minimum_padding = 50, 
+                                            name = 'large_grid')
+
+# show available grids
+showGrids(mini_giotto_single_cell)
+
+# visualize other grid
+spatPlot2D(gobject = mini_giotto_single_cell, point_size = 1.5, 
+           show_grid = T, spatial_grid_name = 'large_grid')
+
+```
+
+$~$
+
+#### 2. Create a spatial network
+```{r eval=FALSE}
+# get information about the Delaunay network
+plotStatDelaunayNetwork(gobject = mini_giotto_single_cell, maximum_distance = 400)
+
+# create a spatial network, the Delaunay network is the default network
+# default name = 'Delaunay_network'
+mini_giotto_single_cell = createSpatialNetwork(gobject = mini_giotto_single_cell, minimum_k = 2, 
+                                    maximum_distance_delaunay = 400)
+
+# create a kNN network with 4 spatial neighbors
+# default name = 'kNN_network'
+mini_giotto_single_cell = createSpatialNetwork(gobject = mini_giotto_single_cell, minimum_k = 2, 
+                                    method = 'kNN', k = 4)
+
+# show available networks
+showNetworks(mini_giotto_single_cell)
+
+# visualize the two different spatial networks  
+spatPlot(gobject = mini_giotto_single_cell, show_network = T,
+         network_color = 'blue', spatial_network_name = 'Delaunay_network',
+         point_size = 2.5, cell_color = 'cell_types')
+
+spatPlot(gobject = mini_giotto_single_cell, show_network = T,
+         network_color = 'blue', spatial_network_name = 'kNN_network',
+         point_size = 2.5, cell_color = 'cell_types')
+
+```
+
+
+

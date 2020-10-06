@@ -52,9 +52,9 @@ would like to see in particular, then do not hesitate to contact [us](https://gi
 - [4. Cluster cells or spots](./tut4_giotto_clustering.html)
 - [5. Identify differentially expressed genes](./tut5_giotto_markers.html)
 - [6. Annotate clusters](./tut6_giotto_annotation.html)
-- 7. Cell-type enrichment or deconvolution per spot
-- 8. Create a Spatial grid or Network  
-- 9. Find genes with a spatially coherent gene expression pattern
+- [7. Cell-type enrichment or deconvolution per spot](./tut7_giotto_enrichment.html)
+- [8. Create a Spatial grid or Network](./tut8_giotto_grid_network.html)  
+- [9. Find genes with a spatially coherent gene expression pattern](./tut9_giotto_spatgenes.html)
 - 10. Identify genes that are spatially co-expressed
 - 11. Explore spatial domains with HMRF  
 - 12. Calculate spatial cell-cell interaction enrichment  
