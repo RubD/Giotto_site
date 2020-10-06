@@ -75,8 +75,12 @@ spat_fish_func = function(gene,
 spat_fish_func_DT = function(bin_matrix_DTm,
                              spat_netw_min,
                              calc_hub = F,
-                             hub_min_int = 3) {
+                             hub_min_int = 3,
+                             cores = NA) {
 
+  # set number of cores automatically, but with limit of 10
+  cores = determine_cores(cores)
+  data.table::setDTthreads(threads = cores)
 
   # data.table variables
   from_value = to_value = gene_ID = N = to = from = cell_ID = V1 = NULL
@@ -220,8 +224,12 @@ spat_OR_func = function(gene,
 spat_OR_func_DT = function(bin_matrix_DTm,
                            spat_netw_min,
                            calc_hub = F,
-                           hub_min_int = 3) {
+                           hub_min_int = 3,
+                           cores = NA) {
 
+  # set number of cores automatically, but with limit of 10
+  cores = determine_cores(cores)
+  data.table::setDTthreads(threads = cores)
 
   # data.table variables
   from_value = to_value = gene_ID = N = to = from = cell_ID = V1 = NULL
@@ -420,12 +428,12 @@ calc_spatial_enrichment_matrix = function(spatial_network,
 
     if(do_fisher_test == TRUE) {
 
-      save_list = suppressMessages(Giotto:::giotto_lapply(X = rownames(bin_matrix), cores = cores, fun = spat_fish_func,
+      save_list = suppressMessages(giotto_lapply(X = rownames(bin_matrix), cores = cores, fun = spat_fish_func,
                                                           bin_matrix = bin_matrix, spat_mat = spat_mat,
                                                           calc_hub = calc_hub, hub_min_int = hub_min_int))
 
     } else {
-      save_list =  suppressMessages(Giotto:::giotto_lapply(X = rownames(bin_matrix), cores = cores, fun = spat_OR_func,
+      save_list =  suppressMessages(giotto_lapply(X = rownames(bin_matrix), cores = cores, fun = spat_OR_func,
                                                            bin_matrix = bin_matrix, spat_mat = spat_mat,
                                                            calc_hub = calc_hub, hub_min_int = hub_min_int))
 
@@ -492,8 +500,13 @@ calc_spatial_enrichment_DT = function(bin_matrix,
                                       hub_min_int = 3,
                                       group_size = 'automatic',
                                       do_fisher_test = TRUE,
-                                      adjust_method = 'fdr') {
+                                      adjust_method = 'fdr',
+                                      cores = NA) {
 
+
+  # set number of cores automatically, but with limit of 10
+  cores = determine_cores(cores)
+  data.table::setDTthreads(threads = cores)
 
   # data.table variables
   from = to = gene_ID = p.value = adj.p.value = score = estimate = NULL
@@ -532,12 +545,14 @@ calc_spatial_enrichment_DT = function(bin_matrix,
       test = spat_fish_func_DT(bin_matrix_DTm = bin_matrix_DTm,
                                spat_netw_min = spat_netw_min,
                                calc_hub = calc_hub,
-                               hub_min_int = hub_min_int)
+                               hub_min_int = hub_min_int,
+                               cores = cores)
     } else {
       test = spat_OR_func_DT(bin_matrix_DTm = bin_matrix_DTm,
                              spat_netw_min = spat_netw_min,
                              calc_hub = calc_hub,
-                             hub_min_int = hub_min_int)
+                             hub_min_int = hub_min_int,
+                             cores = cores)
     }
 
 
@@ -624,8 +639,6 @@ calc_spatial_enrichment_DT = function(bin_matrix,
 #' The simple implementation is usually faster, but lacks the possibility to run in parallel and to calculate hub cells.
 #' The data.table implementation might be more appropriate for large datasets by setting the group_size (number of genes) parameter to divide the workload.
 #' @export
-#' @examples
-#'     binSpectSingle(gobject)
 binSpectSingle = function(gobject,
                           bin_method = c('kmeans', 'rank'),
                           expression_values = c('normalized', 'scaled', 'custom'),
@@ -653,6 +666,11 @@ binSpectSingle = function(gobject,
                           bin_matrix = NULL) {
 
   if(verbose == TRUE) cat('\n This is the single parameter version of binSpect')
+
+
+  # set number of cores automatically, but with limit of 10
+  cores = determine_cores(cores)
+  data.table::setDTthreads(threads = cores)
 
   # data.table: set global variable
   genes = p.value = estimate = score = NULL
@@ -755,7 +773,8 @@ binSpectSingle = function(gobject,
                                         hub_min_int = hub_min_int,
                                         group_size = group_size,
                                         do_fisher_test = do_fisher_test,
-                                        adjust_method = adjust_method)
+                                        adjust_method = adjust_method,
+                                        cores = cores)
   }
 
   if(verbose == TRUE) cat('\n 2. spatial enrichment test completed \n')
@@ -871,8 +890,6 @@ binSpectSingle = function(gobject,
 #' The simple implementation is usually faster, but lacks the possibility to run in parallel and to calculate hub cells.
 #' The data.table implementation might be more appropriate for large datasets by setting the group_size (number of genes) parameter to divide the workload.
 #' @export
-#' @examples
-#'     binSpectMulti(gobject)
 binSpectMulti = function(gobject,
                          bin_method = c('kmeans', 'rank'),
                          expression_values = c('normalized', 'scaled', 'custom'),
@@ -903,6 +920,10 @@ binSpectMulti = function(gobject,
 
 
   if(verbose == TRUE) cat('\n This is the multi parameter version of binSpect')
+
+  # set number of cores automatically, but with limit of 10
+  cores = determine_cores(cores)
+  data.table::setDTthreads(threads = cores)
 
   # check bin_method
   bin_method = match.arg(bin_method, choices = c('kmeans', 'rank'))
@@ -1094,8 +1115,6 @@ binSpectMulti = function(gobject,
 #' The simple implementation is usually faster, but lacks the possibility to run in parallel and to calculate hub cells.
 #' The data.table implementation might be more appropriate for large datasets by setting the group_size (number of genes) parameter to divide the workload.
 #' @export
-#' @examples
-#'     binSpect(gobject)
 binSpect = function(gobject,
                     bin_method = c('kmeans', 'rank'),
                     expression_values = c('normalized', 'scaled', 'custom'),
@@ -1489,8 +1508,8 @@ spatialDE <- function(gobject = NULL,
 
   # print message with information #
   message("using 'SpatialDE' for spatial gene/pattern detection. If used in published research, please cite:
-  Svensson, Valentine, Sarah A. Teichmann, and Oliver Stegle. “SpatialDE: Identification of Spatially Variable Genes.”
-          Nature Methods 15, no. 5 (May 2018): 343–46. https://doi.org/10.1038/nmeth.4636.")
+  Svensson, Valentine, Sarah A. Teichmann, and Oliver Stegle. 'SpatialDE: Identification of Spatially Variable Genes.'
+          Nature Methods 15, no. 5 (May 2018): 343-46. https://doi.org/10.1038/nmeth.4636.")
 
 
 
@@ -1732,8 +1751,8 @@ trendSceek <- function(gobject,
 
   # print message with information #
   message("using 'trendsceek' for spatial gene/pattern detection. If used in published research, please cite:
-  Edsgärd, Daniel, Per Johnsson, and Rickard Sandberg. “Identification of Spatial Expression Trends in Single-Cell Gene Expression Data.”
-          Nature Methods 15, no. 5 (May 2018): 339–42. https://doi.org/10.1038/nmeth.4634.")
+  Edsgard, Daniel, Per Johnsson, and Rickard Sandberg. 'Identification of Spatial Expression Trends in Single-Cell Gene Expression Data.'
+          Nature Methods 15, no. 5 (May 2018): 339-42. https://doi.org/10.1038/nmeth.4634.")
 
   ## expression data
   values = match.arg(expression_values, c("normalized", "raw"))
@@ -1825,7 +1844,7 @@ spark = function(gobject,
 
   # print message with information #
   message("using 'SPARK' for spatial gene/pattern detection. If used in published research, please cite:
-  Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. “Statistical Analysis of Spatial Expression Pattern for Spatially Resolved Transcriptomic Studies.”
+  Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. 'Statistical Analysis of Spatial Expression Pattern for Spatially Resolved Transcriptomic Studies.'
           BioRxiv, October 21, 2019, 810903. https://doi.org/10.1101/810903.")
 
 
@@ -1916,8 +1935,6 @@ spark = function(gobject,
 #'   \item{3. convert variance of principlal components (PCs) to z-scores and select PCs based on a z-score threshold}
 #' }
 #' @export
-#' @examples
-#'     detectSpatialPatterns(gobject)
 detectSpatialPatterns <- function(gobject,
                                   expression_values = c('normalized', 'scaled', 'custom'),
                                   spatial_grid_name = 'spatial_grid',
@@ -2057,8 +2074,6 @@ detectSpatialPatterns <- function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     showPattern2D(gobject)
 showPattern2D <- function(gobject,
                           spatPatObj,
                           dimension = 1,
@@ -2145,8 +2160,6 @@ showPattern2D <- function(gobject,
 #' @return ggplot
 #' @seealso \code{\link{showPattern2D}}
 #' @export
-#' @examples
-#'     showPattern(gobject)
 showPattern = function(gobject, spatPatObj, ...) {
 
   showPattern2D(gobject = gobject, spatPatObj = spatPatObj, ...)
@@ -2176,8 +2189,6 @@ showPattern = function(gobject, spatPatObj, ...) {
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return plotly
 #' @export
-#' @examples
-#'     showPattern3D(gobject)
 showPattern3D <- function(gobject,
                           spatPatObj,
                           dimension = 1,
@@ -2291,8 +2302,6 @@ showPattern3D <- function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return ggplot
 #' @export
-#' @examples
-#'     showPatternGenes(gobject)
 showPatternGenes <- function(gobject,
                              spatPatObj,
                              dimension = 1,
@@ -2377,8 +2386,6 @@ showPatternGenes <- function(gobject,
 #' @return Data.table with genes associated with selected dimension (PC).
 #' @details Description.
 #' @export
-#' @examples
-#'     selectPatternGenes(gobject)
 selectPatternGenes <- function(spatPatObj,
                                dimensions = 1:5,
                                top_pos_genes = 10,
@@ -2459,8 +2466,6 @@ selectPatternGenes <- function(spatPatObj,
 #' k-neighbors in the selected spatial network. Setting b = 0 means no smoothing and b = 1
 #' means no contribution from its own expression.
 #' @keywords internal
-#' @examples
-#'     do_spatial_knn_smoothing(gobject)
 do_spatial_knn_smoothing = function(gobject,
                                     expression_values = c('normalized', 'scaled', 'custom'),
                                     subset_genes = NULL,
@@ -2498,7 +2503,7 @@ do_spatial_knn_smoothing = function(gobject,
 
   #print(spatial_network)
 
-  spatial_network_ext = data.table:::merge.data.table(spatial_network, expr_values_dt_m, by.x = 'target', by.y = 'cell_ID', allow.cartesian = T)
+  spatial_network_ext = data.table::merge.data.table(spatial_network, expr_values_dt_m, by.x = 'target', by.y = 'cell_ID', allow.cartesian = T)
 
   #print(spatial_network_ext)
 
@@ -2551,8 +2556,6 @@ do_spatial_knn_smoothing = function(gobject,
 #' @param min_cells_per_grid minimum number of cells to consider a grid
 #' @return matrix with smoothened gene expression values based on spatial grid
 #' @keywords internal
-#' @examples
-#'     do_spatial_grid_averaging(gobject)
 do_spatial_grid_averaging = function(gobject,
                                      expression_values = c('normalized', 'scaled', 'custom'),
                                      subset_genes = NULL,
@@ -2645,8 +2648,6 @@ do_spatial_grid_averaging = function(gobject,
 #' The spatCorObject can be further explored with showSpatialCorGenes()
 #' @seealso \code{\link{showSpatialCorGenes}}
 #' @export
-#' @examples
-#'     detectSpatialCorGenes(gobject)
 detectSpatialCorGenes <- function(gobject,
                                   method = c('grid', 'network'),
                                   expression_values = c('normalized', 'scaled', 'custom'),
@@ -2768,8 +2769,6 @@ detectSpatialCorGenes <- function(gobject,
 #' @param show_top_genes show top genes per gene
 #' @return data.table with filtered information
 #' @export
-#' @examples
-#'     showSpatialCorGenes(gobject)
 showSpatialCorGenes = function(spatCorObject,
                                use_clus_name = NULL,
                                selected_clusters = NULL,
@@ -2797,7 +2796,7 @@ showSpatialCorGenes = function(spatCorObject,
     clusters = clusters_part
     names_clusters = names(clusters_part)
     clusters_DT = data.table::data.table('gene_ID' = names_clusters, 'clus' = clusters)
-    filter_DT = data.table:::merge.data.table(filter_DT, clusters_DT, by = 'gene_ID')
+    filter_DT = data.table::merge.data.table(filter_DT, clusters_DT, by = 'gene_ID')
   }
 
   ## 0. subset clusters
@@ -2852,8 +2851,6 @@ showSpatialCorGenes = function(spatCorObject,
 #' @param return_obj return spatial correlation object (spatCorObject)
 #' @return spatCorObject or cluster results
 #' @export
-#' @examples
-#'     clusterSpatialCorGenes(gobject)
 clusterSpatialCorGenes = function(spatCorObject,
                                   name = 'spat_clus',
                                   hclust_method = 'ward.D',
@@ -2914,8 +2911,6 @@ clusterSpatialCorGenes = function(spatCorObject,
 #' @param \dots additional parameters to the \code{\link[ComplexHeatmap]{Heatmap}} function from ComplexHeatmap
 #' @return Heatmap generated by ComplexHeatmap
 #' @export
-#' @examples
-#'     heatmSpatialCorGenes(gobject)
 heatmSpatialCorGenes = function(gobject,
                                 spatCorObject,
                                 use_clus_name = NULL,
@@ -3028,8 +3023,6 @@ heatmSpatialCorGenes = function(gobject,
 #' @param default_save_name default save name for saving, don't change, change save_name in save_param
 #' @return data.table with positive (within group) and negative (outside group) scores
 #' @export
-#' @examples
-#'     rankSpatialCorGroups(gobject)
 rankSpatialCorGroups = function(gobject,
                                 spatCorObject,
                                 use_clus_name = NULL,
@@ -3154,8 +3147,6 @@ rankSpatialCorGroups = function(gobject,
 #' @param \dots additional parameters for (re-)normalizing
 #' @return Reprocessed Giotto object for which one gene has a forced spatial pattern
 #' @export
-#' @examples
-#'     simulateOneGenePatternGiottoObject(gobject)
 simulateOneGenePatternGiottoObject = function(gobject,
                                               pattern_name = 'pattern',
                                               pattern_cell_ids = NULL,
@@ -3672,6 +3663,7 @@ run_spatial_sim_tests_multi = function(gobject,
 #' @description Creates a known spatial pattern for selected genes one-by-one and runs the different spatial gene detection tests
 #' @param gobject giotto object
 #' @param pattern_name name of spatial pattern
+#' @param pattern_colors 2 color vector for the spatial pattern
 #' @param pattern_cell_ids cell ids that make up the spatial pattern
 #' @param gene_names selected genes
 #' @param spatial_probs probabilities to test for a high expressing gene value to be part of the spatial pattern
@@ -3680,6 +3672,7 @@ run_spatial_sim_tests_multi = function(gobject,
 #' @param spat_methods vector of spatial methods to test
 #' @param spat_methods_params list of parameters list for each element in the vector of spatial methods to test
 #' @param spat_methods_names name for each element in the vector of spatial elements to test
+#' @param scalefactor library size scaling factor when re-normalizing dataset
 #' @param save_plot save intermediate random simulation plots or not
 #' @param save_raw save the raw expression matrix of the simulation
 #' @param save_norm save the normalized expression matrix of the simulation
@@ -3688,13 +3681,12 @@ run_spatial_sim_tests_multi = function(gobject,
 #' @param height height of final plots
 #' @param width width of final plots
 #' @param run_simulations run simulations (default = TRUE)
-#' @param \dots additional parameters for spatial gene detection tests
+#' @param \dots additional parameters for renormalization
 #' @return data.table with results
 #' @export
-#' @examples
-#'     runPatternSimulation(gobject)
 runPatternSimulation = function(gobject,
                                 pattern_name = 'pattern',
+                                pattern_colors = c('in' = 'green', 'out' = 'red'),
                                 pattern_cell_ids = NULL,
                                 gene_names = NULL,
                                 spatial_probs = c(0.5, 1),
@@ -3703,6 +3695,7 @@ runPatternSimulation = function(gobject,
                                 spat_methods = c('binSpect_single', 'binSpect_multi', 'spatialDE', 'spark', 'silhouetteRank'),
                                 spat_methods_params = list(NA, NA, NA, NA, NA),
                                 spat_methods_names = c('binSpect_single', 'binSpect_multi', 'spatialDE', 'spark', 'silhouetteRank'),
+                                scalefactor = 6000,
                                 save_plot = T,
                                 save_raw = T,
                                 save_norm = T,
@@ -3724,10 +3717,10 @@ runPatternSimulation = function(gobject,
                                                      pattern_cell_ids = pattern_cell_ids,
                                                      gene_name = gene_names[[1]],
                                                      spatial_prob = 1,
-                                                     scalefactor = 6000,
+                                                     scalefactor = scalefactor,
                                                      verbose = T)
 
-  spatPlot2D(example_patch, cell_color = pattern_name,
+  spatPlot2D(example_patch, cell_color = pattern_name, cell_color_code = pattern_colors,
              save_plot = save_plot, save_param = list(save_dir = save_dir, save_folder = 'original', save_name = paste0(pattern_name,'_pattern'),
                                                       base_width = 9, base_height = 7, units = 'cm'))
 
