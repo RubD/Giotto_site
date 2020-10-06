@@ -1,0 +1,135 @@
+---
+output: html_document
+---
+
+
+# Interaction changed genes
+
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = my_giotto_object, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# dimension reduction
+my_giotto_object <- calculateHVG(gobject = my_giotto_object)
+my_giotto_object <- runPCA(gobject = my_giotto_object)
+my_giotto_object <- runUMAP(my_giotto_object, dimensions_to_use = 1:5)
+
+# leiden clustering
+my_giotto_object = doLeidenCluster(my_giotto_object, name = 'leiden_clus')
+
+# annotate
+metadata = pDataDT(my_giotto_object)
+uniq_clusters = length(unique(metadata$leiden_clus))
+
+clusters_cell_types = paste0('cell ', LETTERS[1:uniq_clusters])
+names(clusters_cell_types) = 1:uniq_clusters
+
+my_giotto_object = annotateGiotto(gobject = my_giotto_object, 
+                              annotation_vector = clusters_cell_types, 
+                              cluster_column = 'leiden_clus', 
+                              name = 'cell_types')
+
+# create network (required for binSpect methods)
+my_giotto_object = createSpatialNetwork(gobject = my_giotto_object, minimum_k = 2)
+
+# identify genes with a spatial coherent expression profile
+km_spatialgenes = binSpect(my_giotto_object, bin_method = 'kmeans')
+```
+
+$~$
+
+
+#### 2. Run Ligand Receptor signaling
+```{r eval=FALSE}
+
+
+LR_data = data.table::fread(system.file("extdata", "mouse_ligand_receptors.txt", package = 'Giotto'))
+
+LR_data[, ligand_det := ifelse(mouseLigand %in% my_giotto_object@gene_ID, T, F)]
+LR_data[, receptor_det := ifelse(mouseReceptor %in% my_giotto_object@gene_ID, T, F)]
+LR_data_det = LR_data[ligand_det == T & receptor_det == T]
+select_ligands = LR_data_det$mouseLigand
+select_receptors = LR_data_det$mouseReceptor
+
+
+## get statistical significance of gene pair expression changes based on expression ##
+expr_only_scores = exprCellCellcom(gobject = my_giotto_object,
+                                   cluster_column = 'cell_types',
+                                   random_iter = 500,
+                                   gene_set_1 = select_ligands,
+                                   gene_set_2 = select_receptors)
+
+## get statistical significance of gene pair expression changes upon cell-cell interaction
+spatial_all_scores = spatCellCellcom(my_giotto_object,
+                                     spatial_network_name = 'Delaunay_network',
+                                     cluster_column = 'cell_types',
+                                     random_iter = 500,
+                                     gene_set_1 = select_ligands,
+                                     gene_set_2 = select_receptors,
+                                     adjust_method = 'fdr',
+                                     do_parallel = T,
+                                     cores = 4,
+                                     verbose = 'none')
+
+```
+
+$~$
+
+#### 3. Plot ligand receptor signaling results
+```{r eval=FALSE}
+
+## select top LR ##
+selected_spat = spatial_all_scores[p.adj <= 0.5 & abs(log2fc) > 0.1 & lig_nr >= 2 & rec_nr >= 2]
+data.table::setorder(selected_spat, -PI)
+
+top_LR_ints = unique(selected_spat[order(-abs(PI))]$LR_comb)[1:33]
+top_LR_cell_ints = unique(selected_spat[order(-abs(PI))]$LR_cell_comb)[1:33]
+
+plotCCcomHeatmap(gobject = my_giotto_object,
+                 comScores = spatial_all_scores,
+                 selected_LR = top_LR_ints,
+                 selected_cell_LR = top_LR_cell_ints,
+                 show = 'LR_expr')
+
+plotCCcomDotplot(gobject = my_giotto_object,
+                 comScores = spatial_all_scores,
+                 selected_LR = top_LR_ints,
+                 selected_cell_LR = top_LR_cell_ints,
+                 cluster_on = 'PI')
+
+## * spatial vs rank ####
+comb_comm = combCCcom(spatialCC = spatial_all_scores,
+                      exprCC = expr_only_scores)
+
+# top differential activity levels for ligand receptor pairs
+plotRankSpatvsExpr(gobject = my_giotto_object,
+                   comb_comm,
+                   expr_rnk_column = 'exprPI_rnk',
+                   spat_rnk_column = 'spatPI_rnk',
+                   midpoint = 10)
+
+## * recovery ####
+## predict maximum differential activity
+plotRecovery(gobject = my_giotto_object,
+             comb_comm,
+             expr_rnk_column = 'exprPI_rnk',
+             spat_rnk_column = 'spatPI_rnk',
+             ground_truth = 'spatial')
+```
+
+
+
+

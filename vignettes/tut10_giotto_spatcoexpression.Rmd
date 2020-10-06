@@ -1,0 +1,78 @@
+---
+output: html_document
+---
+
+
+# Spatial gene coexpression
+
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = seqfish_mini, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# create network (required for binSpect methods)
+my_giotto_object = createSpatialNetwork(gobject = my_giotto_object, minimum_k = 2)
+
+# identify genes with a spatial coherent expression profile
+km_spatialgenes = binSpect(my_giotto_object, bin_method = 'kmeans')
+
+```
+
+$~$
+
+#### 2. Run spatial gene co-expression method
+```{r eval=FALSE}
+
+# 1. calculate spatial correlation scores 
+ext_spatial_genes = km_spatialgenes[1:500]$genes
+spat_cor_netw_DT = detectSpatialCorGenes(my_giotto_object,
+                                         method = 'network', 
+                                         spatial_network_name = 'Delaunay_network',
+                                         subset_genes = ext_spatial_genes)
+
+# 2. cluster correlation scores
+spat_cor_netw_DT = clusterSpatialCorGenes(spat_cor_netw_DT, 
+                                          name = 'spat_netw_clus', k = 8)
+heatmSpatialCorGenes(my_giotto_object, spatCorObject = spat_cor_netw_DT, 
+                     use_clus_name = 'spat_netw_clus')
+```
+
+
+```{r eval=FALSE}
+# rank spatial correlation clusters based on how similar they are
+netw_ranks = rankSpatialCorGroups(my_giotto_object, 
+                                  spatCorObject = spat_cor_netw_DT, 
+                                  use_clus_name = 'spat_netw_clus')
+
+# extract information about clusters
+top_netw_spat_cluster = showSpatialCorGenes(spat_cor_netw_DT, 
+                                            use_clus_name = 'spat_netw_clus',
+                                            selected_clusters = 6, 
+                                            show_top_genes = 1)
+
+cluster_genes_DT = showSpatialCorGenes(spat_cor_netw_DT, 
+                                       use_clus_name = 'spat_netw_clus',
+                                       show_top_genes = 1)
+
+cluster_genes = cluster_genes_DT$clus; names(cluster_genes) = cluster_genes_DT$gene_ID
+
+# create spatial metagenes and visualize
+my_giotto_object = createMetagenes(my_giotto_object, gene_clusters = cluster_genes, name = 'cluster_metagene')
+spatCellPlot(my_giotto_object,
+             spat_enr_names = 'cluster_metagene',
+             cell_annotation_values = netw_ranks$clusters,
+             point_size = 1.5, cow_n_col = 3)
+
+```

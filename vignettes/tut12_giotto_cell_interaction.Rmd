@@ -1,0 +1,124 @@
+---
+output: html_document
+---
+
+
+# Cell-cell interaction analysis and visualization
+
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = seqfish_mini, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# dimension reduction
+my_giotto_object <- calculateHVG(gobject = my_giotto_object)
+my_giotto_object <- runPCA(gobject = my_giotto_object)
+my_giotto_object <- runUMAP(my_giotto_object, dimensions_to_use = 1:5)
+
+# leiden clustering
+my_giotto_object = doLeidenCluster(my_giotto_object, name = 'leiden_clus')
+
+# annotate
+metadata = pDataDT(my_giotto_object)
+uniq_clusters = length(unique(metadata$leiden_clus))
+
+clusters_cell_types = paste0('cell ', LETTERS[1:uniq_clusters])
+names(clusters_cell_types) = 1:uniq_clusters
+
+my_giotto_object = annotateGiotto(gobject = my_giotto_object, 
+                              annotation_vector = clusters_cell_types, 
+                              cluster_column = 'leiden_clus', 
+                              name = 'cell_types')
+
+# create network (required for binSpect methods)
+my_giotto_object = createSpatialNetwork(gobject = my_giotto_object, minimum_k = 2)
+
+# identify genes with a spatial coherent expression profile
+km_spatialgenes = binSpect(my_giotto_object, bin_method = 'kmeans')
+```
+
+$~$
+
+
+#### 2. Run Cell-cell interaction
+```{r eval=FALSE}
+set.seed(seed = 2841)
+cell_proximities = cellProximityEnrichment(gobject = my_giotto_object,
+                                           cluster_column = 'cell_types',
+                                           spatial_network_name = 'Delaunay_network',
+                                           adjust_method = 'fdr',
+                                           number_of_simulations = 1000)
+```
+
+$~$
+
+#### 3. Visualize Cell-cell interaction
+```{r eval=FALSE}
+# barplot
+cellProximityBarplot(gobject = my_giotto_object, 
+                     CPscore = cell_proximities, 
+                     min_orig_ints = 3, min_sim_ints = 3)
+
+# heatmap
+cellProximityHeatmap(gobject = my_giotto_object, 
+                     CPscore = cell_proximities, 
+                     order_cell_types = T, scale = T,
+                     color_breaks = c(-1.5, 0, 1.5), 
+                     color_names = c('blue', 'white', 'red'))
+
+# network
+cellProximityNetwork(gobject = my_giotto_object, 
+                     CPscore = cell_proximities, 
+                     remove_self_edges = T, only_show_enrichment_edges = T)
+
+
+# network with self-edges
+cellProximityNetwork(gobject = my_giotto_object, 
+                     CPscore = cell_proximities,
+                     remove_self_edges = F, self_loop_strength = 0.3,
+                     only_show_enrichment_edges = F,
+                     rescale_edge_weights = T,
+                     node_size = 8,
+                     edge_weight_range_depletion = c(1, 2),
+                     edge_weight_range_enrichment = c(2,5))
+```
+
+
+#### 4. visualize interactions at the spatial level
+```{r eval=FALSE}
+
+# Option 1
+spec_interaction = "cell D--cell F"
+cellProximitySpatPlot2D(gobject = my_giotto_object,
+                        interaction_name = spec_interaction,
+                        show_network = T,
+                        cluster_column = 'cell_types',
+                        cell_color = 'cell_types',
+                        cell_color_code = c('cell D' = 'lightblue', 'cell F' = 'red'),
+                        point_size_select = 4, point_size_other = 2)
+
+
+# Option 2: create additional metadata
+my_giotto_object = addCellIntMetadata(my_giotto_object,
+                             spatial_network = 'Delaunay_network',
+                             cluster_column = 'cell_types',
+                             cell_interaction = spec_interaction,
+                             name = 'D_F_interactions')
+spatPlot(my_giotto_object, cell_color = 'D_F_interactions', legend_symbol_size = 3,
+         select_cell_groups =  c('other_cell D', 'other_cell F', 'select_cell D', 'select_cell F'))
+```
+
+
+

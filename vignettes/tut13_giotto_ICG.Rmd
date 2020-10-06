@@ -1,0 +1,110 @@
+---
+output: html_document
+---
+
+
+# Interaction changed genes
+
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- filterGiotto(gobject = seqfish_mini, 
+                             expression_threshold = 0.5, 
+                             gene_det_in_min_cells = 20, 
+                             min_det_genes_per_cell = 0)
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+
+# dimension reduction
+my_giotto_object <- calculateHVG(gobject = my_giotto_object)
+my_giotto_object <- runPCA(gobject = my_giotto_object)
+my_giotto_object <- runUMAP(my_giotto_object, dimensions_to_use = 1:5)
+
+# leiden clustering
+my_giotto_object = doLeidenCluster(my_giotto_object, name = 'leiden_clus')
+
+# annotate
+metadata = pDataDT(my_giotto_object)
+uniq_clusters = length(unique(metadata$leiden_clus))
+
+clusters_cell_types = paste0('cell ', LETTERS[1:uniq_clusters])
+names(clusters_cell_types) = 1:uniq_clusters
+
+my_giotto_object = annotateGiotto(gobject = my_giotto_object, 
+                              annotation_vector = clusters_cell_types, 
+                              cluster_column = 'leiden_clus', 
+                              name = 'cell_types')
+
+# create network (required for binSpect methods)
+my_giotto_object = createSpatialNetwork(gobject = my_giotto_object, minimum_k = 2)
+
+# identify genes with a spatial coherent expression profile
+km_spatialgenes = binSpect(my_giotto_object, bin_method = 'kmeans')
+```
+
+$~$
+
+
+#### 2. Run Interaction Changed Genes (ICG)
+```{r eval=FALSE}
+
+## select top 25th highest expressing genes
+gene_metadata = fDataDT(my_giotto_object)
+plot(gene_metadata$nr_cells, gene_metadata$mean_expr)
+plot(gene_metadata$nr_cells, gene_metadata$mean_expr_det)
+
+quantile(gene_metadata$mean_expr_det)
+high_expressed_genes = gene_metadata[mean_expr_det > 4]$gene_ID
+
+## identify genes that are associated with proximity to other cell types
+ICGscoresHighGenes =  findICG(gobject = my_giotto_object,
+                              selected_genes = high_expressed_genes,
+                              spatial_network_name = 'Delaunay_network',
+                              cluster_column = 'cell_types',
+                              diff_test = 'permutation',
+                              adjust_method = 'fdr',
+                              nr_permutations = 500,
+                              do_parallel = T, cores = 2)
+
+## visualize all genes
+plotCellProximityGenes(seqfish_mini, cpgObject = ICGscoresHighGenes, method = 'dotplot')
+```
+
+$~$
+
+#### 3. Filter ICGs
+```{r eval=FALSE}
+## filter genes
+ICGscoresFilt = filterICG(ICGscoresHighGenes, 
+                          min_cells = 2, min_int_cells = 2, min_fdr = 0.1,
+                          min_spat_diff = 0.1, min_log2_fc = 0.1, min_zscore = 1)
+
+
+```
+
+
+#### 4. visualize selected ICG
+```{r eval=FALSE}
+
+## visualize subset of interaction changed genes (ICGs)
+# random subset
+ICG_genes = c('Cpne2', 'Scg3', 'Cmtm3', 'Cplx1', 'Lingo1')
+ICG_genes_types = c('cell E', 'cell D', 'cell D', 'cell G', 'cell E')
+names(ICG_genes) = ICG_genes_types
+
+plotICG(gobject = my_giotto_object,
+        cpgObject = ICGscoresHighGenes,
+        source_type = 'cell A',
+        source_markers = c('Csf1r', 'Laptm5'),
+        ICG_genes = ICG_genes)
+```
+
+
+

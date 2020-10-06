@@ -55,11 +55,11 @@ would like to see in particular, then do not hesitate to contact [us](https://gi
 - [7. Cell-type enrichment or deconvolution per spot](./tut7_giotto_enrichment.html)
 - [8. Create a Spatial grid or Network](./tut8_giotto_grid_network.html)  
 - [9. Find genes with a spatially coherent gene expression pattern](./tut9_giotto_spatgenes.html)
-- 10. Identify genes that are spatially co-expressed
-- 11. Explore spatial domains with HMRF  
-- 12. Calculate spatial cell-cell interaction enrichment  
-- 13. Find cell-cell interaction changed genes (ICG)  
-- 14. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions  
+- [10. Identify genes that are spatially co-expressed](./tut10_giotto_spatcoexpression.html)
+- [11. Explore spatial domains with HMRF](./tut11_giotto_hmrf.html)
+- [12. Calculate spatial cell-cell interaction enrichment](./tut12_giotto_cell_interaction.html)
+- [13. Find cell-cell interaction changed genes (ICG)](./tut13_giotto_ICG.html)
+- [14. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions](./tut14_giotto_signaling.html)
 - 15. Export Giotto results to use in Giotto viewer
 
 

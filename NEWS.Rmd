@@ -23,7 +23,7 @@ which is needed to run functions that require Python modules.
 - Spatial cell type enrichment methods have been streamlined and updated  
   - **runPAGEEnrich** to run enrichment using PAGE algorithm  and selected marker genes
   - **runRankEnrich** to run enrichment using a whole expression matrix  
-  - **runHyperGeometricEnrich** to run enrichment using the hypergeomitric test   
+  - **runHyperGeometricEnrich** to run enrichment using the hypergeometric test   
   
   
 - **NEW:** Spatial cell type deconvolution has been added:  
