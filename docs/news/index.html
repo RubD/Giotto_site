@@ -184,17 +184,19 @@
       <small>Source: <a href='https://github.com/RubD/Giotto/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="giotto-040" class="section level1">
-<h1 class="page-header" data-toc-text="0.4.0">
-<a href="#giotto-040" class="anchor"></a>Giotto 0.4.0</h1>
+    <div id="giotto-100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#giotto-100" class="anchor"></a>Giotto 1.0.0</h1>
+<p>This is the first major release of Giotto. If you still want to work with the previous version, then you can find the older releases <a href="https://github.com/RubD/Giotto/tags">here</a>.</p>
+<p>Here is an overview about what has changed in the meantime:</p>
 <ul>
 <li><p><strong>NEW:</strong> Addition of <strong>getSpatialDataset</strong> to directly download a spatial dataset<br>
-(expression matrix, spatial coordinates and metadata)</p></li>
+(expression matrix, spatial coordinates and metadata). This is now also included in the examples that you can find under the <strong>Datasets</strong> tab on this website.</p></li>
 <li>
-<p><strong>NEW:</strong> Addition of tools to install, remove and check a Giotto r-miniconda environment which is needed to run functions that require Python modules.</p>
+<p><strong>NEW:</strong> We have added tools to install, remove and check a Giotto r-miniconda environment. This miniconda environment is one way to make sure that you can run functions that require Python modules.</p>
 <ul>
 <li>
-<strong>installGiottoEnvironment</strong>: installs a Giotto miniconda environment<br>
+<strong>installGiottoEnvironment</strong>: (re-)installs a Giotto miniconda environment<br>
 </li>
 <li>
 <strong>removeGiottoEnvironment</strong>: removes a Giotto miniconda environment<br>
@@ -203,27 +205,44 @@
 <strong>checkGiottoEnvironmnet</strong>: verifies if a Giotto environment can be found</li>
 </ul>
 </li>
+</ul>
+<p>The other alternative is to <a href="https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation">install</a> them in your own favorite Python environment and provide the path in the <strong>createGiottoInstructions</strong> command.</p>
+<ul>
 <li>
 <p>extension and improvement of spatial gene detection methods:</p>
 <ul>
 <li>
 <strong>NEW:</strong> addition of <strong>spark</strong> method<br>
 </li>
-<li>improved method for silhouetteRank<br>
+<li>improvements for silhouetteRank:
+<ul>
+<li>faster implementation<br>
 </li>
-<li>improved method for binSpect</li>
+<li>multi parameter version as <strong>silhouetteRankTest</strong>
+</li>
+</ul>
+</li>
+<li>improvements for binSpect:
+<ul>
+<li>faster implementation<br>
+</li>
+<li>multi parameter version: <strong>binSpectSingle</strong> or <strong>binSpectMulti</strong>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
 <p>Spatial cell type enrichment methods have been streamlined and updated</p>
 <ul>
 <li>
-<strong>runPAGEEnrich</strong> to run enrichment using PAGE algorithm and selected marker genes</li>
+<strong>runPAGEEnrich</strong> to run enrichment using PAGE algorithm and selected marker genes<br>
+</li>
 <li>
 <strong>runRankEnrich</strong> to run enrichment using a whole expression matrix<br>
 </li>
 <li>
-<strong>runHyperGeometricEnrich</strong> to run enrichment using the hypergeomitric test</li>
+<strong>runHyperGeometricEnrich</strong> to run enrichment using the hypergeometric test</li>
 </ul>
 </li>
 <li>
@@ -253,7 +272,7 @@
 </ul>
 </li>
 <li><p>Several function help pages have been updated with dummy example code</p></li>
-<li><p>several small and big fixes to code</p></li>
+<li><p>several small and big fixes to the code</p></li>
 </ul>
 </div>
     <div id="giotto-035" class="section level1">
@@ -303,10 +322,11 @@
 </li>
 </ul>
 <p>example to acces the seqFISH+ mini dataset:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># raw counts</span>
-<span class="no">small_seqfish_expr_matrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>))
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># raw counts</span>
+<span class="va">small_seqfish_expr_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># cell locations</span>
-<span class="no">small_seqfish_locations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>))</pre></div>
+<span class="va">small_seqfish_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
     <div id="giotto-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
@@ -314,19 +334,21 @@
 <ul>
 <li>Default spatial network created with <strong>createSpatialNetwork</strong> is now a Delaunay spatial network.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb2"><pre class="r"><span class="co"># to create the old default kNN spatial network use:</span>
-<span class="fu"><a href="../reference/createSpatialKNNnetwork.html">createSpatialKNNnetwork</a></span>(<span class="no">gobject</span>)
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># to create the old default kNN spatial network use:</span>
+<span class="fu"><a href="../reference/createSpatialKNNnetwork.html">createSpatialKNNnetwork</a></span><span class="op">(</span><span class="va">gobject</span><span class="op">)</span>
 
 <span class="co"># or use this function with the following setting</span>
-<span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="no">gobject</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>)</pre></div>
+<span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span><span class="va">gobject</span>, method <span class="op">=</span> <span class="st">'kNN'</span><span class="op">)</span></pre></div>
 <ul>
 <li>The function names for extracting spatial genes have changed:</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="r"><span class="co"># binGetSpatialGenes is now:</span>
-<span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">gobject</span>) <span class="co"># binary Spatial extraction</span>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># binGetSpatialGenes is now:</span>
+<span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">gobject</span><span class="op">)</span> <span class="co"># binary Spatial extraction</span>
 
 <span class="co"># spatial_genes_python is now:</span>
-<span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="no">gobject</span>)</pre></div>
+<span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span><span class="op">(</span><span class="va">gobject</span><span class="op">)</span></pre></div>
 <ul>
 <li>Fixed multiple bugs</li>
 <li>Improved speed by changing code to Rcpp and implementing parallelization options</li>
@@ -390,7 +412,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

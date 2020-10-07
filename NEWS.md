@@ -1,36 +1,54 @@
 
-# Giotto 0.4.0
+# Giotto 1.0.0
+
+This is the first major release of Giotto. If you still want to work
+with the previous version, then you can find the older releases
+[here](https://github.com/RubD/Giotto/tags).
+
+Here is an overview about what has changed in the meantime:
 
   - **NEW:** Addition of **getSpatialDataset** to directly download a
     spatial dataset  
-    (expression matrix, spatial coordinates and metadata)
+    (expression matrix, spatial coordinates and metadata). This is now
+    also included in the examples that you can find under the
+    **Datasets** tab on this website.
 
-  - **NEW:** Addition of tools to install, remove and check a Giotto
-    r-miniconda environment which is needed to run functions that
-    require Python modules.
+  - **NEW:** We have added tools to install, remove and check a Giotto
+    r-miniconda environment. This miniconda environment is one way to
+    make sure that you can run functions that require Python modules.
     
-      - **installGiottoEnvironment**: installs a Giotto miniconda
+      - **installGiottoEnvironment**: (re-)installs a Giotto miniconda
         environment  
       - **removeGiottoEnvironment**: removes a Giotto miniconda
         environment  
       - **checkGiottoEnvironmnet**: verifies if a Giotto environment can
         be found
 
+The other alternative is to
+[install](https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation)
+them in your own favorite Python environment and provide the path in the
+**createGiottoInstructions** command.
+
   - extension and improvement of spatial gene detection methods:
     
       - **NEW:** addition of **spark** method  
-      - improved method for silhouetteRank  
-      - improved method for binSpect
+      - improvements for silhouetteRank:
+          - faster implementation  
+          - multi parameter version as **silhouetteRankTest**
+      - improvements for binSpect:
+          - faster implementation  
+          - multi parameter version: **binSpectSingle** or
+            **binSpectMulti**
 
   - Spatial cell type enrichment methods have been streamlined and
     updated
     
       - **runPAGEEnrich** to run enrichment using PAGE algorithm and
-        selected marker genes
+        selected marker genes  
       - **runRankEnrich** to run enrichment using a whole expression
         matrix  
       - **runHyperGeometricEnrich** to run enrichment using the
-        hypergeomitric test
+        hypergeometric test
 
   - **NEW:** Spatial cell type deconvolution has been added:
     
@@ -59,7 +77,7 @@
   - Several function help pages have been updated with dummy example
     code  
 
-  - several small and big fixes to code
+  - several small and big fixes to the code
 
 # Giotto 0.3.5
 
