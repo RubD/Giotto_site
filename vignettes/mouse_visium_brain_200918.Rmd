@@ -90,7 +90,7 @@ spatPlot(gobject = visium_brain, cell_color = 'in_tissue', show_image = T, point
 
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/2_a_spatplot_image.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/2_a_spatplot_image.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # check name
@@ -105,7 +105,7 @@ spatPlot(gobject = visium_brain, cell_color = 'in_tissue', show_image = T, point
          save_param = list(save_name = '2_b_spatplot_image_adjusted'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/2_b_spatplot_image_adjusted.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/2_b_spatplot_image_adjusted.png){ width=50% } 
 
 ```{r, eval=FALSE}
 ## check metadata
@@ -117,7 +117,7 @@ spatPlot(gobject = visium_brain, cell_color = 'in_tissue', point_size = 2,
          save_param = list(save_name = '2_c_in_tissue'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/2_c_in_tissue.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/2_c_in_tissue.png){ width=50% } 
 
 ```{r, eval=FALSE}
 ## subset on spots that were covered by tissue
@@ -144,7 +144,7 @@ spatPlot2D(gobject = visium_brain, show_image = T, point_alpha = 0.7,
            save_param = list(save_name = '2_d_spatial_locations'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/2_d_spatial_locations.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/2_d_spatial_locations.png){ width=50% } 
 
 
 ```{r, eval=FALSE}
@@ -154,7 +154,7 @@ spatPlot2D(gobject = visium_brain, show_image = T, point_alpha = 0.7,
 
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/2_e_nr_genes.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/2_e_nr_genes.png){ width=50% } 
 
 
 ## part 3: dimension reduction
@@ -165,7 +165,7 @@ visium_brain <- calculateHVG(gobject = visium_brain,
                               save_param = list(save_name = '3_a_HVGplot'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/3_a_HVGplot.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/3_a_HVGplot.png){ width=50% } 
 
 ```{r, eval=FALSE}
 ## run PCA on expression values (default)
@@ -180,14 +180,14 @@ visium_brain <- runPCA(gobject = visium_brain,
 screePlot(visium_brain, ncp = 30, save_param = list(save_name = '3_b_screeplot'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/3_b_screeplot.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/3_b_screeplot.png){ width=50% } 
 
 ```{r, eval=FALSE}
 plotPCA(gobject = visium_brain,
         save_param = list(save_name = '3_c_PCA_reduction'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/3_c_PCA_reduction.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/3_c_PCA_reduction.png){ width=50% } 
 
 ```{r, eval=FALSE}
 ## run UMAP and tSNE on PCA space (default)
@@ -196,7 +196,7 @@ plotUMAP(gobject = visium_brain,
          save_param = list(save_name = '3_d_UMAP_reduction'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/3_d_UMAP_reduction.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/3_d_UMAP_reduction.png){ width=50% } 
 
 ```{r, eval=FALSE}
 visium_brain <- runtSNE(visium_brain, dimensions_to_use = 1:10)
@@ -204,7 +204,7 @@ plotTSNE(gobject = visium_brain,
          save_param = list(save_name = '3_e_tSNE_reduction'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/3_e_tSNE_reduction.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/3_e_tSNE_reduction.png){ width=50% } 
 
 
 
@@ -221,7 +221,7 @@ plotUMAP(gobject = visium_brain,
 ```
 
 
-![](../inst/images/mouse_visium_brain/vignette_200918/4_a_UMAP_leiden.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/4_a_UMAP_leiden.png){ width=50% } 
 
 ## part 5: co-visualize
 
@@ -233,7 +233,7 @@ spatDimPlot(gobject = visium_brain, cell_color = 'leiden_clus',
             save_param = list(save_name = '5_a_covis_leiden'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/5_a_covis_leiden.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/5_a_covis_leiden.png){ width=50% } 
 
 ```{r, eval=FALSE}
 spatDimPlot(gobject = visium_brain, cell_color = 'nr_genes', color_as_factor = F,
@@ -241,7 +241,7 @@ spatDimPlot(gobject = visium_brain, cell_color = 'nr_genes', color_as_factor = F
             save_param = list(save_name = '5_b_nr_genes'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/5_b_nr_genes.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/5_b_nr_genes.png){ width=50% } 
 
 
 ### 5.2 subset dataset on DG region
@@ -257,7 +257,7 @@ spatDimPlot(gobject = DG_subset,
 
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/5_c_DEG_subset.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/5_c_DEG_subset.png){ width=50% } 
 
 
 ## part 6: cell type marker gene detection
@@ -280,7 +280,7 @@ violinPlot(visium_brain, genes = unique(topgenes_gini), cluster_column = 'leiden
 ```
 
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_a_violinplot_gini.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_a_violinplot_gini.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # cluster heatmap
@@ -291,7 +291,7 @@ plotMetaDataHeatmap(visium_brain, selected_genes = topgenes_gini,
 ```
 
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_b_metaheatmap_gini.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_b_metaheatmap_gini.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # umap plots
@@ -302,7 +302,7 @@ dimGenePlot2D(visium_brain, expression_values = 'scaled',
 ```
 
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_c_gini_umap.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_c_gini_umap.png){ width=50% } 
 
 
 #### scran
@@ -320,7 +320,7 @@ violinPlot(visium_brain, genes = unique(topgenes_scran), cluster_column = 'leide
            save_param = list(save_name = '6_d_violinplot_scran', base_width = 5))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_d_violinplot_scran.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_d_violinplot_scran.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # cluster heatmap
@@ -329,7 +329,7 @@ plotMetaDataHeatmap(visium_brain, selected_genes = topgenes_scran,
                     save_param = list(save_name = '6_e_metaheatmap_scran'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_e_metaheatmap_scran.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_e_metaheatmap_scran.png){ width=50% } 
 
 ```{r, eval=FALSE}
 # umap plots
@@ -339,7 +339,7 @@ dimGenePlot(visium_brain, expression_values = 'scaled',
             save_param = list(save_name = '6_f_scran_umap', base_width = 8, base_height = 5))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/6_f_scran_umap.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/6_f_scran_umap.png){ width=50% } 
 
 
 
@@ -371,7 +371,7 @@ plotMetaDataCellsHeatmap(gobject = visium_brain,
                          save_param = list(save_name="7_a_metaheatmap"))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/7_a_metaheatmap.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/7_a_metaheatmap.png){ width=50% } 
 
 ```{r, eval=FALSE}
 cell_types_subset = colnames(sig_matrix)[1:10]
@@ -381,7 +381,7 @@ spatCellPlot(gobject = visium_brain,
              save_param = list(save_name="7_b_spatcellplot_1"))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/7_b_spatcellplot_1.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/7_b_spatcellplot_1.png){ width=50% } 
 
 ```{r, eval=FALSE}
 cell_types_subset = colnames(sig_matrix)[11:20]
@@ -391,7 +391,7 @@ spatCellPlot(gobject = visium_brain, spat_enr_names = 'PAGE',
              save_param = list(save_name="7_c_spatcellplot_2"))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/7_c_spatcellplot_2.png){ width=50% }
+![](../inst/images/mouse_Visium_brain/vignette_200918/7_c_spatcellplot_2.png){ width=50% }
 
 ```{r, eval=FALSE}
 spatDimCellPlot(gobject = visium_brain, 
@@ -402,7 +402,7 @@ spatDimCellPlot(gobject = visium_brain,
                 save_param = list(save_name="7_d_spatDimCellPlot", base_width=7, base_height=10))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/7_d_spatDimCellPlot.png){ width=50% }
+![](../inst/images/mouse_Visium_brain/vignette_200918/7_d_spatDimCellPlot.png){ width=50% }
 
 
 
@@ -419,7 +419,7 @@ spatPlot(visium_brain, cell_color = 'leiden_clus', show_grid = T,
          save_param = list(save_name = '8_grid'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/8_grid.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/8_grid.png){ width=50% } 
 
 ## part 9: spatial network ####
 
@@ -436,7 +436,7 @@ spatPlot(gobject = visium_brain, show_network = T,
          save_param = list(save_name = '9_a_knn_network'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/9_a_knn_network.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/9_a_knn_network.png){ width=50% } 
 
 ## part 10: spatial genes ####
 
@@ -451,7 +451,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
              save_param = list(save_name = '10_a_spatial_genes_km'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_a_spatial_genes_km.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_a_spatial_genes_km.png){ width=50% } 
 
 ```{r, eval=FALSE}
 ## rank binarization
@@ -463,7 +463,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
              save_param = list(save_name = '10_b_spatial_genes_rank'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_b_spatial_genes_rank.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_b_spatial_genes_rank.png){ width=50% } 
 
 ```{r, eval=FALSE}
 spatial_genes = silhouetteRankTest(gobject = visium_brain, 
@@ -475,7 +475,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
              save_param = list(save_name = '10_c_silhouette'))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_c_silhouette.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_c_silhouette.png){ width=50% } 
 
 
 
@@ -489,7 +489,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
              save_param = list(save_name="10_d_silhouette_1", base_width=20, base_height=10))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_1.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_d_silhouette_1.png){ width=50% } 
 
 ```{r, eval=FALSE}
 spatGenePlot(visium_brain, expression_values = 'scaled',
@@ -498,7 +498,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
              save_param = list(save_name="10_d_silhouette_2", base_width=20, base_height=10))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_2.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_d_silhouette_2.png){ width=50% } 
 
 ```{r, eval=FALSE}
 spatGenePlot(visium_brain, expression_values = 'scaled',
@@ -508,7 +508,7 @@ spatGenePlot(visium_brain, expression_values = 'scaled',
 
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_d_silhouette_3.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_d_silhouette_3.png){ width=50% } 
 
 
 
@@ -522,7 +522,7 @@ abline(v=c(1500))
 dev.off()
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_e_plot.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_e_plot.png){ width=50% } 
 
 ### Spatial patterns
 
@@ -547,7 +547,7 @@ heatmSpatialCorGenes(visium_brain,
                      save_param = list(save_name="10_e_heatmap"))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_e_heatmap.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_e_heatmap.png){ width=50% } 
 
 
 ```{r, eval=FALSE}
@@ -616,7 +616,7 @@ spatPlot(gobject = visium_brain, cell_color = 'HMRF_k20_b.40',
          point_size = 2, save_param=c(save_name="10_d_spatPlot2D_HMRF"))
 ```
 
-![](../inst/images/mouse_visium_brain/vignette_200918/10_d_spatPlot2D_HMRF.png){ width=50% } 
+![](../inst/images/mouse_Visium_brain/vignette_200918/10_d_spatPlot2D_HMRF.png){ width=50% } 
 
 
 ## Export and create Giotto Viewer 
@@ -627,7 +627,7 @@ spatPlot(gobject = visium_brain, cell_color = 'HMRF_k20_b.40',
 combineMetadata(visium_brain, spat_enr_names = 'PAGE')
 
 # select annotations, reductions and expression values to view in Giotto Viewer
-viewer_folder = paste0(results_folder, '/', 'mouse_visium_brain_viewer')
+viewer_folder = paste0(results_folder, '/', 'mouse_Visium_brain_viewer')
 
 exportGiottoViewer(gobject = visium_brain,
                    output_directory = viewer_folder,
