@@ -538,6 +538,7 @@ create_delaunayNetwork_geometry_3D <- function(spatial_locations,
                                                   options = options,
                                                   ...){
 
+
   # verify if optional package is installed
   package_check(pkg_name = "geometry", repository = "CRAN")
 
@@ -1014,6 +1015,7 @@ createSpatialDelaunayNetwork <- function(gobject,
                                          return_gobject = TRUE,
                                          ...) {
 
+
   # get parameter values
   method = match.arg(method, c("deldir", "delaunayn_geometry", "RTriangle"))
 
@@ -1200,7 +1202,6 @@ create_KNNnetwork_dbscan = function(spatial_locations,
                                     k = 4,
                                     ...) {
 
-
   # data.table variables
   from = to = NULL
 
@@ -1340,7 +1341,6 @@ createSpatialKNNnetwork <- function (gobject,
 
   # data.table variables
   distance = rank_int = NULL
-
 
   # get parameter values
   method = match.arg(method, c("dbscan"))
@@ -1736,8 +1736,8 @@ create_spatialGridObject <- function(name = NULL,
 
   class(gridObj) <- append(class(gridObj), "spatialGridObj")
   return(gridObj)
+  }
 
-}
 
 #' @title create_spatialGrid_default_2D
 #' @description create a 2D spatial grid
@@ -1752,6 +1752,7 @@ create_spatialGrid_default_2D <- function(gobject,
   gr_name = gr_x_name = gr_y_name = gr_x_loc = gr_y_loc = gr_loc = NULL
 
   spatlocs = data.table::copy(gobject@spatial_locs)
+
   if(is.null(spatlocs)) stop('\n spatial locations are needed to create a spatial grid \n')
 
   ## calculate sequences for desired stepsize
@@ -1826,6 +1827,7 @@ create_spatialGrid_default_3D <- function(gobject,
   gr_name = gr_x_name = gr_y_name = gr_z_name = gr_x_loc = gr_y_loc = gr_z_loc = gr_loc = NULL
 
   spatlocs = data.table::copy(gobject@spatial_locs)
+
   if(is.null(spatlocs)) stop('\n spatial locations are needed to create a spatial grid \n')
 
   ## calculate sequences for desired stepsize
