@@ -64,12 +64,8 @@ Required python modules:
 \- leidenalg  
 \- python-louvain (community)  
 \- smfishHmrf  
-<<<<<<< HEAD
 \- python.app (\!\!OSX only\!\!)  
 \- scikit-learn
-=======
-\- python.app (\!\!OSX only\!\!) - scikit-learn
->>>>>>> upstream/master
 
 ##### Automatic installation
 
