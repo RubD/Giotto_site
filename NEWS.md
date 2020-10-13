@@ -21,7 +21,7 @@ Here is an overview about what has changed in the meantime:
         environment  
       - **removeGiottoEnvironment**: removes a Giotto miniconda
         environment  
-      - **checkGiottoEnvironmnet**: verifies if a Giotto environment can
+      - **checkGiottoEnvironment**: verifies if a Giotto environment can
         be found
 
 The other alternative is to
