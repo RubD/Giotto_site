@@ -18,3 +18,21 @@ output: html_document
 - Where to find other spatial datasets?  
 **Checkout https://www.spatialomics.org/SpatialDB/ to download expression matrix and location information**
 
+- How to automatically download tutorial datasets? (merFISH example)
+
+```{r eval=FALSE, }
+# choose your directory
+my_working_dir = getwd()
+
+# standard download data to working directory
+getSpatialDataset(dataset = 'merfish_preoptic', directory = my_working_dir)
+
+# use wget to  download data to working directory (much faster)
+getSpatialDataset(dataset = 'merfish_preoptic', directory = my_working_dir, method = 'wget')
+
+# avoid certification issues with wget
+getSpatialDataset(dataset = 'merfish_preoptic', directory = my_working_dir, method = 'wget', extra = '--no-check-certificate')
+
+# see download.file for more options
+?download.file
+```
