@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mouse_merFISH_preoptic_region_200909_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>merFISH hypoth. preopt. region</h1>
@@ -148,22 +148,23 @@
     
 <!-- mouse_cortex_1_simple.md is generated from mouse_cortex_1_simple.Rmd Please edit that file -->
 <pre><code>#&gt; Warning: This tutorial was written with Giotto version 0.3.6.9038, your version
-#&gt; is 1.0.0.This is a more recent version and results should be reproducible</code></pre>
+#&gt; is 1.0.1.This is a more recent version and results should be reproducible</code></pre>
 <div id="start-giotto" class="section level2">
 <h2 class="hasAnchor">
 <a href="#start-giotto" class="anchor"></a>Start Giotto</h2>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
 
 <span class="co"># 1. set working directory</span>
-<span class="no">my_working_dir</span> <span class="kw">=</span> <span class="st">'/path/to/directory/'</span>
+<span class="va">my_working_dir</span> <span class="op">=</span> <span class="st">'/path/to/directory/'</span>
 
 <span class="co"># 2. set giotto python path</span>
 <span class="co"># set python path to your preferred python version path</span>
 <span class="co"># set python path to NULL if you want to automatically install (only the 1st time) and use the giotto miniconda environment</span>
-<span class="no">python_path</span> <span class="kw">=</span> <span class="kw">NULL</span>
-<span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">python_path</span>)) {
-  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span>()
-}</pre></body></html></div>
+<span class="va">python_path</span> <span class="op">=</span> <span class="cn">NULL</span> 
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">python_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span></pre></div>
 </div>
 <div id="dataset-explanation" class="section level2">
 <h2 class="hasAnchor">
@@ -174,132 +175,147 @@
 <h2 class="hasAnchor">
 <a href="#dataset-download" class="anchor"></a>Dataset download</h2>
 <p>The merFISH data to run this tutorial can be found <a href="https://github.com/RubD/spatial-datasets/tree/master/data/2018_merFISH_science_hypo_preoptic">here</a>. Alternatively you can use the <strong>getSpatialDataset</strong> to automatically download this dataset like we do in this example.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># download data to working directory </span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># download data to working directory </span>
 <span class="co"># if wget is installed, set method = 'wget'</span>
-<span class="fu"><a href="../reference/getSpatialDataset.html">getSpatialDataset</a></span>(<span class="kw">dataset</span> <span class="kw">=</span> <span class="st">'merfish_preoptic'</span>, <span class="kw">directory</span> <span class="kw">=</span> <span class="no">my_working_dir</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'wget'</span>)</pre></body></html></div>
+<span class="co"># if you run into authentication issues with wget, then add " extra = '--no-check-certificate' "</span>
+<span class="fu"><a href="../reference/getSpatialDataset.html">getSpatialDataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">'merfish_preoptic'</span>, directory <span class="op">=</span> <span class="va">my_working_dir</span>, method <span class="op">=</span> <span class="st">'wget'</span><span class="op">)</span></pre></div>
 </div>
 <div id="part-1-giotto-global-instructions-and-preparations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-1-giotto-global-instructions-and-preparations" class="anchor"></a>Part 1: Giotto global instructions and preparations</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># 1. (optional) set Giotto instructions</span>
-<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                  <span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">my_working_dir</span>,
-                                  <span class="kw">python_path</span> <span class="kw">=</span> <span class="no">python_path</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># 1. (optional) set Giotto instructions</span>
+<span class="va">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>save_plot <span class="op">=</span> <span class="cn">TRUE</span>, 
+                                  save_dir <span class="op">=</span> <span class="va">my_working_dir</span>, 
+                                  python_path <span class="op">=</span> <span class="va">python_path</span><span class="op">)</span>
 
 <span class="co"># 2. create giotto object from provided paths ####</span>
-<span class="no">expr_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">my_working_dir</span>, <span class="st">"merFISH_3D_data_expression.txt.gz"</span>)
-<span class="no">loc_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">my_working_dir</span>, <span class="st">"merFISH_3D_data_cell_locations.txt"</span>)
-<span class="no">meta_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">my_working_dir</span>, <span class="st">"merFISH_3D_metadata.txt"</span>)</pre></body></html></div>
+<span class="va">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_working_dir</span>, <span class="st">"merFISH_3D_data_expression.txt.gz"</span><span class="op">)</span>
+<span class="va">loc_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_working_dir</span>, <span class="st">"merFISH_3D_data_cell_locations.txt"</span><span class="op">)</span>
+<span class="va">meta_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">my_working_dir</span>, <span class="st">"merFISH_3D_metadata.txt"</span><span class="op">)</span></pre></div>
 </div>
 <div id="part-2-create-giotto-object-process-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-2-create-giotto-object-process-data" class="anchor"></a>part 2: Create Giotto object &amp; process data</h2>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">## create Giotto object</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr_path</span>,
-                                   <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">loc_path</span>,
-                                   <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co">## create Giotto object</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">expr_path</span>,
+                                   spatial_locs <span class="op">=</span> <span class="va">loc_path</span>,
+                                   instructions <span class="op">=</span> <span class="va">instrs</span><span class="op">)</span>
 
 
 <span class="co">## add additional metadata if wanted</span>
-<span class="no">metadata</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="no">meta_path</span>)
-<span class="no">merFISH_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="no">merFISH_test</span>, <span class="kw">new_metadata</span> <span class="kw">=</span> <span class="no">metadata</span>$<span class="no">layer_ID</span>, <span class="kw">vector_name</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>)
-<span class="no">merFISH_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span>(<span class="no">merFISH_test</span>, <span class="kw">new_metadata</span> <span class="kw">=</span> <span class="no">metadata</span>$<span class="no">orig_cell_types</span>, <span class="kw">vector_name</span> <span class="kw">=</span> <span class="st">'orig_cell_types'</span>)
+<span class="va">metadata</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="va">meta_path</span><span class="op">)</span>
+<span class="va">merFISH_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span><span class="op">(</span><span class="va">merFISH_test</span>, new_metadata <span class="op">=</span> <span class="va">metadata</span><span class="op">$</span><span class="va">layer_ID</span>, vector_name <span class="op">=</span> <span class="st">'layer_ID'</span><span class="op">)</span>
+<span class="va">merFISH_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span><span class="op">(</span><span class="va">merFISH_test</span>, new_metadata <span class="op">=</span> <span class="va">metadata</span><span class="op">$</span><span class="va">orig_cell_types</span>, vector_name <span class="op">=</span> <span class="st">'orig_cell_types'</span><span class="op">)</span>
 
 <span class="co">## filter raw data</span>
 <span class="co"># 1. pre-test filter parameters</span>
-<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">merFISH_test</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'genes'</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_a_distribution_genes'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">merFISH_test</span>, detection <span class="op">=</span> <span class="st">'genes'</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_a_distribution_genes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/2_a_distribution_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">merFISH_test</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'cells'</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_b_distribution_cells'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">merFISH_test</span>, detection <span class="op">=</span> <span class="st">'cells'</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_b_distribution_cells'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/2_b_distribution_cells.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span>(<span class="no">merFISH_test</span>,
-                   <span class="kw">expression_thresholds</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">1e-6</span>,<span class="fl">1e-5</span>),
-                   <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">500</span>, <span class="fl">1000</span>, <span class="fl">1500</span>),
-                   <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span>),
-                   <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_c_filter_combos'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+                   expression_thresholds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1e-6</span>,<span class="fl">1e-5</span><span class="op">)</span>,
+                   gene_det_in_min_cells <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">1000</span>, <span class="fl">1500</span><span class="op">)</span>,
+                   min_det_genes_per_cell <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, 
+                   save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_c_filter_combos'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/2_c_filter_combos.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># 2. filter data</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>,
-                             <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">0</span>,
-                             <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">0</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># 2. filter data</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>,
+                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">0</span>,
+                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="co">## normalize</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">10000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>)
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
-                                   <span class="kw">batch_columns</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">covariate_columns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span>),
-                                   <span class="kw">return_gobject</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                   <span class="kw">update_slot</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'custom'</span>))
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, scalefactor <span class="op">=</span> <span class="fl">10000</span>, verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span><span class="op">)</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, expression_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'normalized'</span><span class="op">)</span>,
+                                   batch_columns <span class="op">=</span> <span class="cn">NULL</span>, covariate_columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span><span class="op">)</span>,
+                                   return_gobject <span class="op">=</span> <span class="cn">TRUE</span>,
+                                   update_slot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'custom'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># save according to giotto instructions</span>
 <span class="co"># 2D</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_d_spatial_locations2D'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>, 
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_d_spatial_locations2D'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/2_d_spatial_locations2D.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># 3D</span>
-<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.0</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_e_spatial_locations3D'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co"># 3D</span>
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">2.0</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_e_spatial_locations3D'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/2_e_spatial_locations3D.png" style="width:50.0%"></p>
 </div>
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-3-dimension-reduction" class="anchor"></a>part 3: dimension reduction</h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># only 155 genes, use them all (default)</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">genes_to_use</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">merFISH_test</span>, <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_a_screeplot'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co"># only 155 genes, use them all (default)</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, genes_to_use <span class="op">=</span> <span class="cn">NULL</span>, scale_unit <span class="op">=</span> <span class="cn">FALSE</span>, center <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span><span class="op">(</span><span class="va">merFISH_test</span>, save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_a_screeplot'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/3_a_screeplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">merFISH_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>, <span class="kw">n_components</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">n_threads</span> <span class="kw">=</span> <span class="fl">4</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">merFISH_test</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, n_components <span class="op">=</span> <span class="fl">3</span>, n_threads <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_b_UMAP_reduction'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_b_UMAP_reduction'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/3_b_UMAP_reduction" style="width:50.0%"></p>
 </div>
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-4-cluster" class="anchor"></a>part 4: cluster</h2>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co">## sNN network (default)</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">15</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co">## sNN network (default)</span>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
 <span class="co">## Leiden clustering</span>
-<span class="no">merFISH_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.2</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">200</span>,
-                                <span class="kw">name</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>)
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_a_UMAP_leiden'</span>))</pre></body></html></div>
+<span class="va">merFISH_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, resolution <span class="op">=</span> <span class="fl">0.2</span>, n_iterations <span class="op">=</span> <span class="fl">200</span>,
+                                name <span class="op">=</span> <span class="st">'leiden_0.2'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, cell_color <span class="op">=</span> <span class="st">'leiden_0.2'</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>, show_center_label <span class="op">=</span> <span class="cn">F</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'4_a_UMAP_leiden'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/4_a_UMAP_leiden.png" style="width:50.0%"></p>
 </div>
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-5-co-visualize" class="anchor"></a>part 5: co-visualize</h2>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">
-<span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">show_center_label</span> <span class="kw">=</span> <span class="no">F</span>,
-              <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">dim3_to_use</span> <span class="kw">=</span> <span class="fl">3</span>,
-              <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>, <span class="kw">spatial_point_size</span> <span class="kw">=</span> <span class="fl">2.0</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_a_covis_leiden'</span>))</pre></body></html></div>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">260</span>, <span class="fl">160</span>, <span class="fl">60</span>, -<span class="fl">40</span>, -<span class="fl">140</span>, -<span class="fl">240</span>),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_b_leiden_2D'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+
+<span class="fu"><a href="../reference/spatDimPlot3D.html">spatDimPlot3D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, show_center_label <span class="op">=</span> <span class="cn">F</span>,
+              cell_color <span class="op">=</span> <span class="st">'leiden_0.2'</span>, dim3_to_use <span class="op">=</span> <span class="fl">3</span>,
+              axis_scale <span class="op">=</span> <span class="st">'real'</span>, spatial_point_size <span class="op">=</span> <span class="fl">2.0</span>,
+              save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'5_a_covis_leiden'</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>, 
+           cell_color <span class="op">=</span> <span class="st">'leiden_0.2'</span>, 
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">260</span>, <span class="fl">160</span>, <span class="fl">60</span>, <span class="op">-</span><span class="fl">40</span>, <span class="op">-</span><span class="fl">140</span>, <span class="op">-</span><span class="fl">240</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'5_b_leiden_2D'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/5_b_leiden_2D.png" style="width:50.0%"></p>
 </div>
 <div id="part-6-cell-type-marker-gene-detection" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-6-cell-type-marker-gene-detection" class="anchor"></a>part 6: cell type marker gene detection</h2>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>,
-                                 <span class="kw">method</span> <span class="kw">=</span> <span class="st">'gini'</span>,
-                                 <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                 <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>,
-                                 <span class="kw">min_genes</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">rank_score</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="no">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>,
+                                 method <span class="op">=</span> <span class="st">'gini'</span>,
+                                 expression_values <span class="op">=</span> <span class="st">'normalized'</span>,
+                                 cluster_column <span class="op">=</span> <span class="st">'leiden_0.2'</span>,
+                                 min_genes <span class="op">=</span> <span class="fl">1</span>, rank_score <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span>
 
 <span class="co"># violinplot</span>
-<span class="no">topgini_genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>)
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">merFISH_test</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="no">topgini_genes</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_a_violinplot'</span>))</pre></body></html></div>
+<span class="va">topgini_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span><span class="op">)</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span><span class="va">merFISH_test</span>, genes <span class="op">=</span> <span class="va">topgini_genes</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_0.2'</span>, strip_position <span class="op">=</span> <span class="st">'right'</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_a_violinplot'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/6_a_violinplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">topgini_genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">6</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>)
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">merFISH_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_0.2'</span>),
-                    <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">topgini_genes</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_b_clusterheatmap_markers'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="va">topgini_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">6</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">merFISH_test</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_0.2'</span><span class="op">)</span>,
+                    selected_genes <span class="op">=</span> <span class="va">topgini_genes</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_b_clusterheatmap_markers'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/6_b_clusterheatmap_markers.png" style="width:50.0%"></p>
 </div>
 <div id="part-7-cell-type-annotation" class="section level2">
@@ -308,124 +324,137 @@
 <div id="annotation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#annotation" class="anchor"></a>Annotation</h3>
-<div class="sourceCode" id="cb17"><html><body><pre class="r">
-<span class="co"># known markers and DEGs</span>
-<span class="no">selected_genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Myh11'</span>, <span class="st">'Klf4'</span>, <span class="st">'Fn1'</span>, <span class="st">'Cd24a'</span>, <span class="st">'Cyr61'</span>, <span class="st">'Nnat'</span>, <span class="st">'Trh'</span>, <span class="st">'Selplg'</span>, <span class="st">'Pou3f2'</span>, <span class="st">'Aqp4'</span>, <span class="st">'Traf4'</span>,
-                   <span class="st">'Pdgfra'</span>, <span class="st">'Opalin'</span>, <span class="st">'Mbp'</span>, <span class="st">'Ttyh2'</span>, <span class="st">'Fezf1'</span>, <span class="st">'Cbln1'</span>, <span class="st">'Slc17a6'</span>, <span class="st">'Scg2'</span>, <span class="st">'Isl1'</span>, <span class="st">'Gad1'</span>)
-<span class="no">cluster_order</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">6</span>, <span class="fl">11</span>, <span class="fl">9</span>, <span class="fl">12</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">5</span>, <span class="fl">13</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">10</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
 
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">merFISH_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_0.2'</span>),
-                    <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">selected_genes</span>,
-                    <span class="kw">custom_gene_order</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="no">selected_genes</span>),
-                    <span class="kw">custom_cluster_order</span> <span class="kw">=</span> <span class="no">cluster_order</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_a_clusterheatmap_markers'</span>))</pre></body></html></div>
+<span class="co"># known markers and DEGs</span>
+<span class="va">selected_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Myh11'</span>, <span class="st">'Klf4'</span>, <span class="st">'Fn1'</span>, <span class="st">'Cd24a'</span>, <span class="st">'Cyr61'</span>, <span class="st">'Nnat'</span>, <span class="st">'Trh'</span>, <span class="st">'Selplg'</span>, <span class="st">'Pou3f2'</span>, <span class="st">'Aqp4'</span>, <span class="st">'Traf4'</span>,
+                   <span class="st">'Pdgfra'</span>, <span class="st">'Opalin'</span>, <span class="st">'Mbp'</span>, <span class="st">'Ttyh2'</span>, <span class="st">'Fezf1'</span>, <span class="st">'Cbln1'</span>, <span class="st">'Slc17a6'</span>, <span class="st">'Scg2'</span>, <span class="st">'Isl1'</span>, <span class="st">'Gad1'</span><span class="op">)</span>
+<span class="va">cluster_order</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">11</span>, <span class="fl">9</span>, <span class="fl">12</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">5</span>, <span class="fl">13</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">merFISH_test</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_0.2'</span><span class="op">)</span>,
+                    selected_genes <span class="op">=</span> <span class="va">selected_genes</span>,
+                    custom_gene_order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">selected_genes</span><span class="op">)</span>,
+                    custom_cluster_order <span class="op">=</span> <span class="va">cluster_order</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_a_clusterheatmap_markers'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_a_clusterheatmap_markers.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co">## name clusters</span>
-<span class="no">clusters_cell_types_hypo</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Inhibitory'</span>, <span class="st">'Inhibitory'</span>, <span class="st">'Excitatory'</span>, <span class="st">'Astrocyte'</span>,<span class="st">'OD Mature'</span>, <span class="st">'Endothelial'</span>,
-                             <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Ambiguous'</span>, <span class="st">'Endothelial'</span>, <span class="st">'Microglia'</span>, <span class="st">'OD Mature'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types_hypo</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">cluster_order</span>))
-<span class="no">merFISH_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types_hypo</span>,
-                              <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_0.2'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cell_types'</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co">## name clusters</span>
+<span class="va">clusters_cell_types_hypo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Inhibitory'</span>, <span class="st">'Inhibitory'</span>, <span class="st">'Excitatory'</span>, <span class="st">'Astrocyte'</span>,<span class="st">'OD Mature'</span>, <span class="st">'Endothelial'</span>,
+                             <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Ambiguous'</span>, <span class="st">'Endothelial'</span>, <span class="st">'Microglia'</span>, <span class="st">'OD Mature'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">clusters_cell_types_hypo</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">cluster_order</span><span class="op">)</span><span class="op">)</span>
+<span class="va">merFISH_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, annotation_vector <span class="op">=</span> <span class="va">clusters_cell_types_hypo</span>,
+                              cluster_column <span class="op">=</span> <span class="st">'leiden_0.2'</span>, name <span class="op">=</span> <span class="st">'cell_types'</span><span class="op">)</span>
 
 <span class="co">## show heatmap</span>
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">merFISH_test</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>),
-                    <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">selected_genes</span>,
-                    <span class="kw">custom_gene_order</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span>(<span class="no">selected_genes</span>),
-                    <span class="kw">custom_cluster_order</span> <span class="kw">=</span> <span class="no">clusters_cell_types_hypo</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_b_clusterheatmap_markers_celltypes'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">merFISH_test</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell_types'</span><span class="op">)</span>,
+                    selected_genes <span class="op">=</span> <span class="va">selected_genes</span>,
+                    custom_gene_order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">selected_genes</span><span class="op">)</span>,
+                    custom_cluster_order <span class="op">=</span> <span class="va">clusters_cell_types_hypo</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_b_clusterheatmap_markers_celltypes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_b_clusterheatmap_markers_celltypes.png" style="width:50.0%"></p>
 </div>
 <div id="visualization" class="section level3">
 <h3 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h3>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co">## visualize ##</span>
-<span class="no">mycolorcode</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'red'</span>, <span class="st">'lightblue'</span>, <span class="st">'yellowgreen'</span>,<span class="st">'purple'</span>, <span class="st">'darkred'</span>, <span class="st">'magenta'</span>, <span class="st">'mediumblue'</span>, <span class="st">'yellow'</span>, <span class="st">'gray'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">mycolorcode</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Inhibitory'</span>, <span class="st">'Excitatory'</span>,<span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>, <span class="st">'Astrocyte'</span>, <span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>,<span class="st">'Endothelial'</span>, <span class="st">'Ambiguous'</span>)
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="co">## visualize ##</span>
+<span class="va">mycolorcode</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span>, <span class="st">'lightblue'</span>, <span class="st">'yellowgreen'</span>,<span class="st">'purple'</span>, <span class="st">'darkred'</span>, <span class="st">'magenta'</span>, <span class="st">'mediumblue'</span>, <span class="st">'yellow'</span>, <span class="st">'gray'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">mycolorcode</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Inhibitory'</span>, <span class="st">'Excitatory'</span>,<span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>, <span class="st">'Astrocyte'</span>, <span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>,<span class="st">'Endothelial'</span>, <span class="st">'Ambiguous'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span>(<span class="no">merFISH_test</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_c_umap_cell_types'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/plotUMAP_3D.html">plotUMAP_3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>, cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_c_umap_cell_types'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_c_umap_cell_types.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="no">merFISH_test</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">sdimx</span> <span class="kw">=</span> <span class="st">'sdimx'</span>, <span class="kw">sdimy</span> <span class="kw">=</span> <span class="st">'sdimy'</span>, <span class="kw">sdimz</span> <span class="kw">=</span> <span class="st">'sdimz'</span>,
-           <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_d_spatPlot_cell_types_all'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           sdimx <span class="op">=</span> <span class="st">'sdimx'</span>, sdimy <span class="op">=</span> <span class="st">'sdimy'</span>, sdimz <span class="op">=</span> <span class="st">'sdimz'</span>,
+           show_grid <span class="op">=</span> <span class="cn">F</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_d_spatPlot_cell_types_all'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_d_spatPlot_cell_types_all.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.0</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">260</span>, -<span class="fl">290</span>, -<span class="fl">100</span>)),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_e_spatPlot2D_cell_types_all'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.0</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">260</span>, <span class="op">-</span><span class="fl">290</span>, <span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_e_spatPlot2D_cell_types_all'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_e_spatPlot2D_cell_types_all.png" style="width:50.0%"></p>
 </div>
 <div id="excitatory-cells-only" class="section level3">
 <h3 class="hasAnchor">
 <a href="#excitatory-cells-only" class="anchor"></a>Excitatory cells only</h3>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="no">merFISH_test</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">sdimx</span> <span class="kw">=</span> <span class="st">'sdimx'</span>, <span class="kw">sdimy</span> <span class="kw">=</span> <span class="st">'sdimy'</span>, <span class="kw">sdimz</span> <span class="kw">=</span> <span class="st">'sdimz'</span>,
-           <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'Excitatory'</span>, <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_f_spatPlot_cell_types_excit'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           sdimx <span class="op">=</span> <span class="st">'sdimx'</span>, sdimy <span class="op">=</span> <span class="st">'sdimy'</span>, sdimz <span class="op">=</span> <span class="st">'sdimz'</span>,
+           show_grid <span class="op">=</span> <span class="cn">F</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="st">'Excitatory'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_f_spatPlot_cell_types_excit'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_f_spatPlot_cell_types_excit.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.0</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'Excitatory'</span>, <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">260</span>, -<span class="fl">290</span>, -<span class="fl">100</span>)),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_g_spatPlot2D_cell_types_excit'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.0</span>, 
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="st">'Excitatory'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">260</span>, <span class="op">-</span><span class="fl">290</span>, <span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_g_spatPlot2D_cell_types_excit'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_g_spatPlot2D_cell_types_excit.png" style="width:50.0%"></p>
 </div>
 <div id="inhibitory-cells-only" class="section level3">
 <h3 class="hasAnchor">
 <a href="#inhibitory-cells-only" class="anchor"></a>Inhibitory cells only</h3>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co"># inhibitory</span>
-<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="no">merFISH_test</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">sdimx</span> <span class="kw">=</span> <span class="st">'sdimx'</span>, <span class="kw">sdimy</span> <span class="kw">=</span> <span class="st">'sdimy'</span>, <span class="kw">sdimz</span> <span class="kw">=</span> <span class="st">'sdimz'</span>,
-           <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'Inhibitory'</span>, <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_h_spatPlot_cell_types_inhib'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="co"># inhibitory</span>
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           sdimx <span class="op">=</span> <span class="st">'sdimx'</span>, sdimy <span class="op">=</span> <span class="st">'sdimy'</span>, sdimz <span class="op">=</span> <span class="st">'sdimz'</span>,
+           show_grid <span class="op">=</span> <span class="cn">F</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="st">'Inhibitory'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_h_spatPlot_cell_types_inhib'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_h_spatPlot_cell_types_inhib.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.0</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'Inhibitory'</span>, <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">260</span>, -<span class="fl">290</span>, -<span class="fl">100</span>)),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_i_spatPlot2D_cell_types_inhib'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.0</span>, 
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="st">'Inhibitory'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">260</span>, <span class="op">-</span><span class="fl">290</span>, <span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_i_spatPlot2D_cell_types_inhib'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_i_spatPlot2D_cell_types_inhib.png" style="width:50.0%"></p>
 </div>
 <div id="od-and-astrocytes-only" class="section level3">
 <h3 class="hasAnchor">
 <a href="#od-and-astrocytes-only" class="anchor"></a>OD and astrocytes only</h3>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="no">merFISH_test</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">sdimx</span> <span class="kw">=</span> <span class="st">'sdimx'</span>, <span class="kw">sdimy</span> <span class="kw">=</span> <span class="st">'sdimy'</span>, <span class="kw">sdimz</span> <span class="kw">=</span> <span class="st">'sdimz'</span>,
-           <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Astrocyte'</span>, <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>), <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_j_spatPlot_cell_types_ODandAstro'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           sdimx <span class="op">=</span> <span class="st">'sdimx'</span>, sdimy <span class="op">=</span> <span class="st">'sdimy'</span>, sdimz <span class="op">=</span> <span class="st">'sdimz'</span>,
+           show_grid <span class="op">=</span> <span class="cn">F</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Astrocyte'</span>, <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_j_spatPlot_cell_types_ODandAstro'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_j_spatPlot_cell_types_ODandAstro.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.0</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Astrocyte'</span>, <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span>), <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">260</span>, -<span class="fl">290</span>, -<span class="fl">100</span>)),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_k_spatPlot2D_cell_types_ODandAstro'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.0</span>, 
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Astrocyte'</span>, <span class="st">'OD Mature'</span>, <span class="st">'OD Immature'</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">260</span>, <span class="op">-</span><span class="fl">290</span>, <span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_k_spatPlot2D_cell_types_ODandAstro'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_k_spatPlot2D_cell_types_ODandAstro.png" style="width:50.0%"></p>
 </div>
 <div id="other-cells-only" class="section level3">
 <h3 class="hasAnchor">
 <a href="#other-cells-only" class="anchor"></a>Other cells only</h3>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span>(<span class="no">merFISH_test</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">axis_scale</span> <span class="kw">=</span> <span class="st">'real'</span>,
-           <span class="kw">sdimx</span> <span class="kw">=</span> <span class="st">'sdimx'</span>, <span class="kw">sdimy</span> <span class="kw">=</span> <span class="st">'sdimy'</span>, <span class="kw">sdimz</span> <span class="kw">=</span> <span class="st">'sdimz'</span>,
-           <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Endothelial'</span>), <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_l_spatPlot_cell_types_other'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot3D.html">spatPlot3D</a></span><span class="op">(</span><span class="va">merFISH_test</span>,
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, axis_scale <span class="op">=</span> <span class="st">'real'</span>,
+           sdimx <span class="op">=</span> <span class="st">'sdimx'</span>, sdimy <span class="op">=</span> <span class="st">'sdimy'</span>, sdimz <span class="op">=</span> <span class="st">'sdimz'</span>,
+           show_grid <span class="op">=</span> <span class="cn">F</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Endothelial'</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_l_spatPlot_cell_types_other'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_l_spatPlot_cell_types_other.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">merFISH_test</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.0</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">mycolorcode</span>,
-           <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Endothelial'</span>), <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'layer_ID'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">260</span>, -<span class="fl">290</span>, -<span class="fl">100</span>)),
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'7_m_spatPlot2D_cell_types_other'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">merFISH_test</span>, point_size <span class="op">=</span> <span class="fl">1.0</span>, 
+           cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, cell_color_code <span class="op">=</span> <span class="va">mycolorcode</span>,
+           select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Microglia'</span>, <span class="st">'Ependymal'</span>, <span class="st">'Endothelial'</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+           group_by <span class="op">=</span> <span class="st">'layer_ID'</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">260</span>, <span class="op">-</span><span class="fl">290</span>, <span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'7_m_spatPlot2D_cell_types_other'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_merFISH_hypoth/vignette_200909/7_m_spatPlot2D_cell_types_other.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -446,7 +475,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
