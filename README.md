@@ -26,10 +26,17 @@ Giotto Analyzer can be found at <https://rubd.github.io/Giotto_site/>.
 
 <img src="inst/images/general_figs/overview_datasets.png" />
 
+<<<<<<< HEAD
 ## Reference
+=======
+## References
+>>>>>>> upstream/master
 
   - [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative
     analysis and visualization of spatial expression data.
     bioRxiv 701680
     (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
+<<<<<<< HEAD
     <doi:10.1101/701680>
+=======
+>>>>>>> upstream/master
