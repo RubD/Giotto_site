@@ -21,22 +21,15 @@ Visium, STARmap) and imaging-based multiplexing/proteomics (CyCIF, MIBI,
 CODEX). These technologies differ in terms of resolution (single cell vs
 multiple cells), spatial dimension (2D vs 3D), molecular modality
 (protein vs RNA), and throughput (number of cells and genes). More
-information and documentation about the latest **released version** of
-Giotto Analyzer can be found at <https://rubd.github.io/Giotto_site/>.
+information and documentation about the latest version of Giotto
+Analyzer can be found at <https://rubd.github.io/Giotto_site/> (**URL
+change \!\!**).
 
 <img src="inst/images/general_figs/overview_datasets.png" />
 
-<<<<<<< HEAD
 ## Reference
-=======
-## References
->>>>>>> upstream/master
 
   - [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative
     analysis and visualization of spatial expression data.
     bioRxiv 701680
     (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
-<<<<<<< HEAD
-    <doi:10.1101/701680>
-=======
->>>>>>> upstream/master

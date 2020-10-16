@@ -15,28 +15,7 @@ knitr::opts_chunk$set(
 options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
-<<<<<<< HEAD
 
-```{r eval=TRUE, echo=FALSE}
-giotto_version = utils::packageVersion(pkg = 'Giotto')
-
-if(giotto_version == '0.3.6.9038') {
-  NULL
-} else if(giotto_version > '0.3.6.9038'){
-  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
-  ' This is a more recent version and results should be reproducible')
-} else {
-  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
-  ' This is an older version and results could be slightly different')
-}
-```
-
-```{r setup, eval=FALSE}
-library(Giotto)
-
-# (optional)
-temp_dir = '/path/to/directory/'
-=======
 ```{r setup, eval=FALSE}
 library(Giotto)
 ```
@@ -54,16 +33,9 @@ To run this vignette you need to install all the necessary Python modules.
 ```{r eval=FALSE}
 # to automatically save figures in save_dir set save_plot to TRUE
 temp_dir = '~/Temp/'
->>>>>>> upstream/master
 myinstructions = createGiottoInstructions(save_dir = temp_dir,
                                           save_plot = TRUE, 
                                           show_plot = FALSE)
-
-# set python_path if you want to or install giotto environment
-python_path = NULL 
-if(is.null(python_path)) {
-  installGiottoEnvironment()
-}
 ```
 
 
