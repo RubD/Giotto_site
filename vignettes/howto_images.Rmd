@@ -255,11 +255,11 @@ mypl_image
 
 
 
-## 4. Add image form scratch
+## 4. Add image from scratch
 ```{r eval=FALSE}
 ## use magick library to load (and optionally modify) figure ##
 # original image
-png_path = '/Volumes/Ruben_Seagate/Dropbox/Projects/GC_lab/Ruben_Dries/190225_spatial_package/Data/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'
+png_path = '/your/data/path/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'
 mg_img = magick::image_read(png_path)
 ```
 
