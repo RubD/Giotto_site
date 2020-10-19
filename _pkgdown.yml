@@ -79,6 +79,7 @@ reference:
     - getSpatialDataset
     - readExprMatrix
     - get10Xmatrix
+    - get10Xmatrix_h5
     - stitchFieldCoordinates
     - stitchTileCoordinates
 

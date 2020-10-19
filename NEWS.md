@@ -1,4 +1,13 @@
 
+# Giotto 1.0.1 - 1.0.3
+
+  - Fixed bugs
+  - Added seed to HMRF
+  - Created functions to read 10X Visium .h5 files
+      - see **createGiottoVisiumObject** to create a Giotto object
+        directly  
+      - see **get10Xmatrix\_h5** to extract the count matrix
+
 # Giotto 1.0.0
 
 This is the first major release of Giotto. If you still want to work

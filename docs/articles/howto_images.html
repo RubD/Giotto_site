@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -368,13 +368,13 @@ ymax_adj and ymin_adj: adjust the y location (in data coordinates) giving vertic
 <span class="va">mypl_image</span></pre></div>
 <p><img src="../inst/howtos/giotto_images/vignette_1/2_c_white_background.png" style="width:50.0%"></p>
 </div>
-<div id="add-image-form-scratch" class="section level2">
+<div id="add-image-from-scratch" class="section level2">
 <h2 class="hasAnchor">
-<a href="#add-image-form-scratch" class="anchor"></a>4. Add image form scratch</h2>
+<a href="#add-image-from-scratch" class="anchor"></a>4. Add image from scratch</h2>
 <div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="co">## use magick library to load (and optionally modify) figure ##</span>
 <span class="co"># original image</span>
-<span class="va">png_path</span> <span class="op">=</span> <span class="st">'/Volumes/Ruben_Seagate/Dropbox/Projects/GC_lab/Ruben_Dries/190225_spatial_package/Data/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'</span>
+<span class="va">png_path</span> <span class="op">=</span> <span class="st">'/your/data/path/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'</span>
 <span class="va">mg_img</span> <span class="op">=</span> <span class="fu">magick</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span><span class="op">(</span><span class="va">png_path</span><span class="op">)</span></pre></div>
 <p>create a negated image</p>
 <div class="sourceCode" id="cb20"><pre class="downlit">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>doLouvainSubCluster_community — doLouvainSubCluster_community • Giotto</title>
+<title>get10Xmatrix_h5 — get10Xmatrix_h5 • Giotto</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="doLouvainSubCluster_community — doLouvainSubCluster_community" />
-<meta property="og:description" content="subcluster cells using a NN-network and the Louvain community detection algorithm" />
+<meta property="og:title" content="get10Xmatrix_h5 — get10Xmatrix_h5" />
+<meta property="og:description" content="This function creates an expression matrix from a 10X h5 file path" />
 
 
 
@@ -181,131 +181,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>doLouvainSubCluster_community</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/clustering.R'><code>R/clustering.R</code></a></small>
-    <div class="hidden name"><code>doLouvainSubCluster_community.Rd</code></div>
+    <h1>get10Xmatrix_h5</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RubD/Giotto/blob/master/R/general_help.R'><code>R/general_help.R</code></a></small>
+    <div class="hidden name"><code>get10Xmatrix_h5.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>subcluster cells using a NN-network and the Louvain community detection algorithm</p>
+    <p>This function creates an expression matrix from a 10X h5 file path</p>
     </div>
 
-    <pre class="usage"><span class='fu'>doLouvainSubCluster_community</span><span class='op'>(</span>
-  <span class='va'>gobject</span>,
-  name <span class='op'>=</span> <span class='st'>"sub_louvain_comm_clus"</span>,
-  cluster_column <span class='op'>=</span> <span class='cn'>NULL</span>,
-  selected_clusters <span class='op'>=</span> <span class='cn'>NULL</span>,
-  hvg_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>reverse_log_scale <span class='op'>=</span> <span class='cn'>T</span>, difference_in_cov <span class='op'>=</span> <span class='fl'>1</span>, expression_values <span class='op'>=</span>
-    <span class='st'>"normalized"</span><span class='op'>)</span>,
-  hvg_min_perc_cells <span class='op'>=</span> <span class='fl'>5</span>,
-  hvg_mean_expr_det <span class='op'>=</span> <span class='fl'>1</span>,
-  use_all_genes_as_hvg <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  min_nr_of_hvg <span class='op'>=</span> <span class='fl'>5</span>,
-  pca_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>expression_values <span class='op'>=</span> <span class='st'>"normalized"</span>, scale_unit <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>,
-  nn_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>dimensions_to_use <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>,
-  k_neighbors <span class='op'>=</span> <span class='fl'>10</span>,
-  resolution <span class='op'>=</span> <span class='fl'>0.5</span>,
-  python_path <span class='op'>=</span> <span class='cn'>NULL</span>,
-  nn_network_to_use <span class='op'>=</span> <span class='st'>"sNN"</span>,
-  network_name <span class='op'>=</span> <span class='st'>"sNN.pca"</span>,
-  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  verbose <span class='op'>=</span> <span class='cn'>T</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>get10Xmatrix_h5</span><span class='op'>(</span><span class='va'>path_to_data</span>, gene_ids <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"symbols"</span>, <span class='st'>"ensembl"</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gobject</th>
-      <td><p>giotto object</p></td>
+      <th>path_to_data</th>
+      <td><p>path to the 10X .h5 file</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>name for new clustering result</p></td>
-    </tr>
-    <tr>
-      <th>cluster_column</th>
-      <td><p>cluster column to subcluster</p></td>
-    </tr>
-    <tr>
-      <th>selected_clusters</th>
-      <td><p>only do subclustering on these clusters</p></td>
-    </tr>
-    <tr>
-      <th>hvg_param</th>
-      <td><p>parameters for calculateHVG</p></td>
-    </tr>
-    <tr>
-      <th>hvg_min_perc_cells</th>
-      <td><p>threshold for detection in min percentage of cells</p></td>
-    </tr>
-    <tr>
-      <th>hvg_mean_expr_det</th>
-      <td><p>threshold for mean expression level in cells with detection</p></td>
-    </tr>
-    <tr>
-      <th>use_all_genes_as_hvg</th>
-      <td><p>forces all genes to be HVG and to be used as input for PCA</p></td>
-    </tr>
-    <tr>
-      <th>min_nr_of_hvg</th>
-      <td><p>minimum number of HVG, or all genes will be used as input for PCA</p></td>
-    </tr>
-    <tr>
-      <th>pca_param</th>
-      <td><p>parameters for runPCA</p></td>
-    </tr>
-    <tr>
-      <th>nn_param</th>
-      <td><p>parameters for parameters for createNearestNetwork</p></td>
-    </tr>
-    <tr>
-      <th>k_neighbors</th>
-      <td><p>number of k for createNearestNetwork</p></td>
-    </tr>
-    <tr>
-      <th>resolution</th>
-      <td><p>resolution</p></td>
-    </tr>
-    <tr>
-      <th>python_path</th>
-      <td><p>specify specific path to python if required</p></td>
-    </tr>
-    <tr>
-      <th>nn_network_to_use</th>
-      <td><p>type of NN network to use (kNN vs sNN)</p></td>
-    </tr>
-    <tr>
-      <th>network_name</th>
-      <td><p>name of NN network to use</p></td>
-    </tr>
-    <tr>
-      <th>return_gobject</th>
-      <td><p>boolean: return giotto object (default = TRUE)</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>verbose</p></td>
+      <th>gene_ids</th>
+      <td><p>use gene symbols (default) or ensembl ids for the gene expression matrix</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>giotto object with new subclusters appended to cell metadata</p>
+    <p>(list of) sparse expression matrix from 10X</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function performs subclustering using the Louvain community algorithm on selected clusters.
-The systematic steps are:</p><ul>
-<li><p>1. subset Giotto object</p></li>
-<li><p>2. identify highly variable genes</p></li>
-<li><p>3. run PCA</p></li>
-<li><p>4. create nearest neighbouring network</p></li>
-<li><p>5. do Louvain community clustering</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='doLouvainCluster_community.html'>doLouvainCluster_community</a></code></p></div>
+    <p>If the .h5 10x file has multiple modalities (e.g. RNA and protein),
+ multiple matrices will be returned</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
