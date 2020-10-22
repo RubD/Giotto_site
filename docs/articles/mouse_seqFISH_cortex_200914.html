@@ -425,8 +425,11 @@
 <span class="va">cell_type_order</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'L6 eNeuron'</span>, <span class="st">'L5 eNeuron'</span>, <span class="st">'L4 eNeuron'</span>, <span class="st">'L2/3 eNeuron'</span>,
                     <span class="st">'astrocytes'</span>, <span class="st">'Olig'</span>, <span class="st">'OPC'</span>,<span class="st">'Adarb2 iNeuron'</span>, <span class="st">'Lhx6 iNeuron'</span>,
                     <span class="st">'endothelial'</span>, <span class="st">'mural'</span>, <span class="st">'microglia'</span><span class="op">)</span>
-<span class="va">cell_type_colors</span> <span class="op">=</span> <span class="fu">Giotto</span><span class="fu">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">cell_type_order</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cell_type_colors</span><span class="op">)</span> <span class="op">=</span> <span class="va">cell_type_order</span>
+
+<span class="va">cell_type_colors</span> <span class="op">=</span> <span class="va">subleiden_colors</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cell_type_colors</span><span class="op">)</span> <span class="op">=</span> <span class="va">clusters_cell_types_cortex</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">subleiden_colors</span><span class="op">)</span><span class="op">]</span>
+<span class="va">cell_type_colors</span> <span class="op">=</span> <span class="va">cell_type_colors</span><span class="op">[</span><span class="va">cell_type_order</span><span class="op">]</span>
+
 
 <span class="co">## violinplot</span>
 <span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">SS_seqfish</span>, genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">topgenes_gini</span><span class="op">$</span><span class="va">genes</span><span class="op">)</span>,

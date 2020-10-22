@@ -229,6 +229,12 @@ reference:
     - spatialAEH
     - trendSceek
     - spark 
+  
+  - title: Spatial gene simulation
+    desc: Functions to simulate a gene expression pattern
+    contents:
+    - simulateOneGenePatternGiottoObject
+    - runPatternSimulation
 
   - title: Spatial co-expression patterns / modules
     desc: Functions to identify spatial co-expression patterns

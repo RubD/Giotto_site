@@ -356,8 +356,11 @@ SS_seqfish = annotateGiotto(gobject = SS_seqfish, annotation_vector = clusters_c
 cell_type_order = c('L6 eNeuron', 'L5 eNeuron', 'L4 eNeuron', 'L2/3 eNeuron',
                     'astrocytes', 'Olig', 'OPC','Adarb2 iNeuron', 'Lhx6 iNeuron',
                     'endothelial', 'mural', 'microglia')
-cell_type_colors = Giotto:::getDistinctColors(length(cell_type_order)) 
-names(cell_type_colors) = cell_type_order
+
+cell_type_colors = subleiden_colors
+names(cell_type_colors) = clusters_cell_types_cortex[names(subleiden_colors)]
+cell_type_colors = cell_type_colors[cell_type_order]
+
 
 ## violinplot
 violinPlot(gobject = SS_seqfish, genes = unique(topgenes_gini$genes),
