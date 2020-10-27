@@ -601,6 +601,7 @@ spatPlot(gobject = SS_seqfish, cell_color = 'HMRF_2_k9_b.28', point_size = 3, co
 
 ```
 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200914/11_HMRF_2_k9_b.28.png){ width=50% } 
 
 ## part 12: cell neighborhood: cell-type/cell-type interactions
 
