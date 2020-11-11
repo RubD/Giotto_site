@@ -5,6 +5,7 @@ articles:
   contribute: contribute.html
   faqs: faqs.html
   getting_started: getting_started.html
+  howto_giotto_class: howto_giotto_class.html
   howto_images: howto_images.html
   howto_voronoi_plots: howto_voronoi_plots.html
   human_cycif_PDAC_200916: human_cycif_PDAC_200916.html
@@ -40,5 +41,5 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-10-28T14:08Z
+last_built: 2020-11-11T16:16Z
 

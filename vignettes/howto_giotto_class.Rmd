@@ -1,0 +1,109 @@
+---
+output: html_document
+title: 'How to create Giotto object with precomputed results?'
+---
+
+
+## 1. The Giotto class
+ 
+A Giotto object or gobject can be created with **createGiottoObject** or **createGiottoVisiumObject** for Visium datasets.
+
+```{r eval=FALSE}
+
+gobject = createGiottoObject()
+
+gvisiumobject = createGiottoVisiumObject()
+
+```
+ 
+createGiottoVisiumObject expects a typical Visium 10X data folder structure or a path to the h5 file, 
+but createGiottoObject is more flexible and can also accept precomputed results (e.g. PCA, UMAP, network, ...)
+
+
+## 2. Giotto slots
+
+### 2.1 Required slots
+
+The minimum requirements to make a Giotto class object are:  
+- raw_exprs: matrix with raw expression values  
+- spatial_locs: spatial coordinates for the cell (or spot) centroids. If this is not provided it will actually create dummy coordinates. 
+
+### 2.2 Additional matrix slots
+
+- norm_expr: slot to keep matrix with normalized expression values  
+    - use expression_values = 'normalized'  to access this slot in downstream functions  
+- norm_scaled_expr: slot to keep matrix with normalized and scaled expression values   
+    - use expression_values = 'scaled'  to access this slot in downstream functions  
+- custom_expr: slot to keep matrix with custom values    
+    - use expression_values = 'custom'  to access this slot in downstream functions  
+
+### 2.3 Metadata slots  
+
+- cell_metadata:  
+- gene_metadata:  
+
+### 2.4 spatial information slots
+
+- spatial_network:  
+- spatial_network_name:  
+- spatial_grid:  
+- spatial_grid_name:  
+
+### 2.5 spatial enrichment slots  
+
+- spatial_enrichment:  
+- spatial_enrichment_name:  
+
+### 2.6 dimension reduction slots
+
+- dimension_reduction: accepts list of dimension reduction objects
+
+Example to add your own pre-computed PCA results    
+```{r eval=FALSE}
+# step1: create matrix from PCA coordinates and name the columns (PCs): Dim.1, Dim.2, Dim.3, ...
+# e.g. PCA_matrix
+
+
+# step2: create a pca dimension reduction object
+PCA_list <- list(
+     'type' = "cells", # only PCA on cells is currently supported
+     'name' = "pca",   # name of your pca, 'pca' is the default name
+     'reduction_method' = "pca", # needs to be pca
+     'coordinates' = as.matrix(PCA_matrix), # make sure to provide a matrix
+     'misc' = NULL) # slot for miscellaneous data, e.g. list(eigenvalues = ..., loadings = ...)
+
+
+# step3a: add PCA_list to createGiottoObject
+gobj <- createGiottoObject(...,
+                           dimension_reduction=list(PCA_list), ...)
+
+# step3b: add multiple PCA_lists to createGiottoObject
+# the name parameter should be different for each PCA list
+gobj <- createGiottoObject(...,
+                           dimension_reduction=list(PCA_list1, PCA_list2, ...))
+
+# step4: for UMAP or tSNE:
+# same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}
+# same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}
+
+```
+
+
+### 2.7 nearest neighbor network slots
+
+- nn_network:
+
+### 2.8 slot for images
+
+- images:  
+
+### 2.9 slot for offset file
+
+- offset_file:  
+
+### 2.10 slot for instructions  
+
+- instructions:
+
+
+

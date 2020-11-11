@@ -201,23 +201,20 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>adjust expression matrix for technical covariates or batches (optional). These results will be stored in the <em>custom</em> slot.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">filterDistributions</span>(starmap_mini, <span class="dt">detection =</span> <span class="st">'genes'</span>,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                    <span class="dt">save_param =</span> <span class="kw">list</span>(<span class="dt">save_name =</span> <span class="st">'2_a_filtergenes'</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">starmap_mini</span>, detection <span class="op">=</span> <span class="st">'genes'</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_a_filtergenes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_starmap/vignette_200922/2_a_filtergenes.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">starmap_mini</span>, detection <span class="op">=</span> <span class="st">'cells'</span>,
                     save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_b_filtercells'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_starmap/vignette_200922/2_a_filtergenes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="op">==</span><span class="er">=====</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">filterDistributions</span>(starmap_mini, <span class="dt">detection =</span> <span class="st">'genes'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">filterDistributions</span>(starmap_mini, <span class="dt">detection =</span> <span class="st">'cells'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>upstream<span class="op">/</span>master</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">filterCombinations</span>(starmap_mini,</span>
-<span id="cb7-6"><a href="#cb7-6"></a>                   <span class="dt">expression_thresholds =</span> <span class="kw">c</span>(<span class="dv">1</span>),</span>
-<span id="cb7-7"><a href="#cb7-7"></a>                   <span class="dt">gene_det_in_min_cells =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>),</span>
-<span id="cb7-8"><a href="#cb7-8"></a>                   <span class="dt">min_det_genes_per_cell =</span> <span class="kw">c</span>(<span class="dv">20</span>, <span class="dv">28</span>, <span class="dv">28</span>),</span>
-<span id="cb7-9"><a href="#cb7-9"></a>                   <span class="dt">save_param =</span> <span class="kw">list</span>(<span class="dt">save_name =</span> <span class="st">'2_c_filtercombos'</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span><span class="op">(</span><span class="va">starmap_mini</span>,
+                   expression_thresholds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
+                   gene_det_in_min_cells <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">200</span><span class="op">)</span>,
+                   min_det_genes_per_cell <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">28</span>, <span class="fl">28</span><span class="op">)</span>,
+                   save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_c_filtercombos'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_starmap/vignette_200922/2_c_filtercombos.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="va">starmap_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">starmap_mini</span>,
@@ -278,20 +275,14 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives)</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</span>
-<span id="cb14-2"><a href="#cb14-2"></a>starmap_mini &lt;-<span class="st"> </span><span class="kw">createNearestNetwork</span>(<span class="dt">gobject =</span> starmap_mini,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>                                     <span class="dt">dimensions_to_use =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">k =</span> <span class="dv">25</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a>starmap_mini &lt;-<span class="st"> </span><span class="kw">doLeidenCluster</span>(<span class="dt">gobject =</span> starmap_mini,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>                                <span class="dt">resolution =</span> <span class="fl">0.5</span>, <span class="dt">n_iterations =</span> <span class="dv">1000</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="op">==</span><span class="er">=====</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>starmap_mini &lt;-<span class="st"> </span><span class="kw">createNearestNetwork</span>(<span class="dt">gobject =</span> starmap_mini, <span class="dt">dimensions_to_use =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">k =</span> <span class="dv">25</span>)</span>
-<span id="cb14-8"><a href="#cb14-8"></a>starmap_mini &lt;-<span class="st"> </span><span class="kw">doLeidenCluster</span>(<span class="dt">gobject =</span> starmap_mini, <span class="dt">resolution =</span> <span class="fl">0.5</span>, <span class="dt">n_iterations =</span> <span class="dv">1000</span>)</span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="op">&gt;</span><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>upstream<span class="op">/</span>master</span>
-<span id="cb14-10"><a href="#cb14-10"></a></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co"># 2D umap</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="kw">plotUMAP</span>(<span class="dt">gobject =</span> starmap_mini,</span>
-<span id="cb14-13"><a href="#cb14-13"></a>         <span class="dt">cell_color =</span> <span class="st">'leiden_clus'</span>, <span class="dt">show_NN_network =</span> T, <span class="dt">point_size =</span> <span class="fl">2.5</span>,</span>
-<span id="cb14-14"><a href="#cb14-14"></a>         <span class="dt">save_param =</span> <span class="kw">list</span>(<span class="dt">save_name =</span> <span class="st">'4_a_UMAP'</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">starmap_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">starmap_mini</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, k <span class="op">=</span> <span class="fl">25</span><span class="op">)</span>
+<span class="va">starmap_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">starmap_mini</span>, resolution <span class="op">=</span> <span class="fl">0.5</span>, n_iterations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+
+<span class="co"># 2D umap</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">starmap_mini</span>,
+         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, show_NN_network <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'4_a_UMAP'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_starmap/vignette_200922/4_a_UMAP.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="co"># 3D umap</span>

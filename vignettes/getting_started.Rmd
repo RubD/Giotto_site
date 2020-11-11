@@ -42,7 +42,7 @@ would like to see in particular, then do not hesitate to contact [us](https://gi
 - [How to test and store multiple parameters or analyses?](./work_with_multiple_analyses.html)
 - [Visualize spatial data with voronoi plots](./howto_voronoi_plots.html)
 - [Adding and working with images in Giotto](./howto_images.html)  
-
+- [Working with the Giotto class](./howto_giotto_class.html)  
 
 ##### Giotto analyses [work in progress]
 - [0. Install a Giotto environment (optional)](./tut0_giotto_environment.html)
