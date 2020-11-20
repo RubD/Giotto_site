@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,33 +190,33 @@
     <p>binSpect for a single spatial network</p>
     </div>
 
-    <pre class="usage"><span class='fu'>binSpectSingle</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>bin_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kmeans"</span>, <span class='st'>"rank"</span>),
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>subset_genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>reduce_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>kmeans_algo</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"kmeans"</span>, <span class='st'>"kmeans_arma"</span>, <span class='st'>"kmeans_arma_subset"</span>),
-  <span class='kw'>nstart</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>iter_max</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>extreme_nr</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>sample_nr</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>percentage_rank</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>do_fisher_test</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>adjust_method</span> <span class='kw'>=</span> <span class='st'>"fdr"</span>,
-  <span class='kw'>calc_hub</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>hub_min_int</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>get_av_expr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>get_high_expr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>implementation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"data.table"</span>, <span class='st'>"simple"</span>, <span class='st'>"matrix"</span>),
-  <span class='kw'>group_size</span> <span class='kw'>=</span> <span class='st'>"automatic"</span>,
-  <span class='kw'>do_parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>set.seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>bin_matrix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>binSpectSingle</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  bin_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"kmeans"</span>, <span class='st'>"rank"</span><span class='op'>)</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  subset_genes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_network_name <span class='op'>=</span> <span class='st'>"Delaunay_network"</span>,
+  reduce_network <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  kmeans_algo <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"kmeans"</span>, <span class='st'>"kmeans_arma"</span>, <span class='st'>"kmeans_arma_subset"</span><span class='op'>)</span>,
+  nstart <span class='op'>=</span> <span class='fl'>3</span>,
+  iter_max <span class='op'>=</span> <span class='fl'>10</span>,
+  extreme_nr <span class='op'>=</span> <span class='fl'>50</span>,
+  sample_nr <span class='op'>=</span> <span class='fl'>50</span>,
+  percentage_rank <span class='op'>=</span> <span class='fl'>30</span>,
+  do_fisher_test <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  adjust_method <span class='op'>=</span> <span class='st'>"fdr"</span>,
+  calc_hub <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  hub_min_int <span class='op'>=</span> <span class='fl'>3</span>,
+  get_av_expr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  get_high_expr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  implementation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"data.table"</span>, <span class='st'>"simple"</span>, <span class='st'>"matrix"</span><span class='op'>)</span>,
+  group_size <span class='op'>=</span> <span class='st'>"automatic"</span>,
+  do_parallel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  cores <span class='op'>=</span> <span class='cn'>NA</span>,
+  verbose <span class='op'>=</span> <span class='cn'>T</span>,
+  set.seed <span class='op'>=</span> <span class='cn'>NULL</span>,
+  bin_matrix <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -362,7 +362,7 @@ The data.table implementation might be more appropriate for large datasets by se
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

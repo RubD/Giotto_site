@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="contribute_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Contribute</h1>
@@ -262,134 +262,137 @@
 <ol style="list-style-type: decimal">
 <li>write python wrapper and store as python_leiden.py in <em>/inst/python</em>:</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="im">import</span> igraph <span class="im">as</span> ig</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="im">import</span> leidenalg <span class="im">as</span> la</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="im">import</span> pandas <span class="im">as</span> pd</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="im">import</span> networkx <span class="im">as</span> nx</a>
-<a class="sourceLine" id="cb1-5" title="5"></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">def</span> python_leiden(df, partition_type, initial_membership<span class="op">=</span><span class="va">None</span>, weights<span class="op">=</span><span class="va">None</span>, n_iterations<span class="op">=</span><span class="dv">2</span>, seed<span class="op">=</span><span class="va">None</span>, resolution_parameter <span class="op">=</span> <span class="dv">1</span>):</a>
-<a class="sourceLine" id="cb1-7" title="7">    </a>
-<a class="sourceLine" id="cb1-8" title="8">    <span class="co"># create networkx object</span></a>
-<a class="sourceLine" id="cb1-9" title="9">    Gx <span class="op">=</span> nx.from_pandas_edgelist(df <span class="op">=</span> df, source <span class="op">=</span> <span class="st">'from'</span>, target <span class="op">=</span>  <span class="st">'to'</span>, edge_attr <span class="op">=</span> <span class="st">'weight'</span>)  </a>
-<a class="sourceLine" id="cb1-10" title="10">    </a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="co"># get weight attribute</span></a>
-<a class="sourceLine" id="cb1-12" title="12">    myweights <span class="op">=</span> nx.get_edge_attributes(Gx, <span class="st">'weight'</span>)</a>
-<a class="sourceLine" id="cb1-13" title="13"></a>
-<a class="sourceLine" id="cb1-14" title="14">    ....</a>
-<a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16">    <span class="cf">return</span>(leiden_dfr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> igraph <span class="im">as</span> ig</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> leidenalg <span class="im">as</span> la</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">def</span> python_leiden(df, partition_type, initial_membership<span class="op">=</span><span class="va">None</span>, weights<span class="op">=</span><span class="va">None</span>, n_iterations<span class="op">=</span><span class="dv">2</span>, seed<span class="op">=</span><span class="va">None</span>, resolution_parameter <span class="op">=</span> <span class="dv">1</span>):</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    </span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="co"># create networkx object</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    Gx <span class="op">=</span> nx.from_pandas_edgelist(df <span class="op">=</span> df, source <span class="op">=</span> <span class="st">'from'</span>, target <span class="op">=</span>  <span class="st">'to'</span>, edge_attr <span class="op">=</span> <span class="st">'weight'</span>)  </span>
+<span id="cb1-10"><a href="#cb1-10"></a>    </span>
+<span id="cb1-11"><a href="#cb1-11"></a>    <span class="co"># get weight attribute</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    myweights <span class="op">=</span> nx.get_edge_attributes(Gx, <span class="st">'weight'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    ....</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">return</span>(leiden_dfr)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>source python code with reticulate:</li>
 </ol>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">python_leiden_function</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"python"</span>, <span class="st">"python_leiden.py"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="kw pkg">reticulate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/source_python.html">source_python</a></span>(<span class="kw">file</span> <span class="kw">=</span> <span class="no">python_leiden_function</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">python_leiden_function</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"python"</span>, <span class="st">"python_leiden.py"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/source_python.html">source_python</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">python_leiden_function</span><span class="op">)</span></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>use python code as if R code:<br>
 See <strong>doLeidenCLuster</strong> for more detailed information.</li>
 </ol>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"> <span class="no">pyth_leid_result</span> <span class="kw">=</span> <span class="fu">python_leiden</span>(<span class="kw">df</span> <span class="kw">=</span> <span class="no">network_edge_dt</span>,
-                                   <span class="kw">partition_type</span> <span class="kw">=</span> <span class="no">partition_type</span>,
-                                   <span class="kw">initial_membership</span> <span class="kw">=</span> <span class="no">init_membership</span>,
-                                   <span class="kw">weights</span> <span class="kw">=</span> <span class="st">'weight'</span>,
-                                   <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="no">n_iterations</span>,
-                                   <span class="kw">seed</span> <span class="kw">=</span> <span class="no">seed_number</span>,
-                                   <span class="kw">resolution_parameter</span> <span class="kw">=</span> <span class="no">resolution</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+ <span class="va">pyth_leid_result</span> <span class="op">=</span> <span class="fu">python_leiden</span><span class="op">(</span>df <span class="op">=</span> <span class="va">network_edge_dt</span>,
+                                   partition_type <span class="op">=</span> <span class="va">partition_type</span>,
+                                   initial_membership <span class="op">=</span> <span class="va">init_membership</span>,
+                                   weights <span class="op">=</span> <span class="st">'weight'</span>,
+                                   n_iterations <span class="op">=</span> <span class="va">n_iterations</span>,
+                                   seed <span class="op">=</span> <span class="va">seed_number</span>,
+                                   resolution_parameter <span class="op">=</span> <span class="va">resolution</span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>As an example we show the implementation of SPARK, which is a recent method developed by <a href="https://doi.org/10.1038/s41592-019-0701-7">Sun et al</a> and provide some comments within the code.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">spark</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">gobject</span>,
-                 <span class="no">percentage</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-                 <span class="no">min_count</span> <span class="kw">=</span> <span class="fl">10</span>,
-                 <span class="no">expression_values</span> <span class="kw">=</span> <span class="st">'raw'</span>,
-                 <span class="no">num_core</span> <span class="kw">=</span> <span class="fl">5</span>,
-                 <span class="no">covariates</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-                 <span class="no">return_object</span> <span class="kw">=</span> <span class="st">'data.table'</span>,
-                 <span class="no">...</span>) {
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">spark</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">gobject</span>,
+                 <span class="va">percentage</span> <span class="op">=</span> <span class="fl">0.1</span>,
+                 <span class="va">min_count</span> <span class="op">=</span> <span class="fl">10</span>,
+                 <span class="va">expression_values</span> <span class="op">=</span> <span class="st">'raw'</span>,
+                 <span class="va">num_core</span> <span class="op">=</span> <span class="fl">5</span>,
+                 <span class="va">covariates</span> <span class="op">=</span> <span class="cn">NULL</span>,
+                 <span class="va">return_object</span> <span class="op">=</span> <span class="st">'data.table'</span>,
+                 <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
 
 
   <span class="co"># data.table variables; this is necessary when setting new variables within a data.table</span>
-  <span class="no">genes</span> <span class="kw">=</span>  <span class="no">adjusted_pvalue</span> <span class="kw">=</span> <span class="no">combined_pvalue</span> <span class="kw">=</span> <span class="kw">NULL</span>
+  <span class="va">genes</span> <span class="op">=</span>  <span class="va">adjusted_pvalue</span> <span class="op">=</span> <span class="va">combined_pvalue</span> <span class="op">=</span> <span class="cn">NULL</span>
 
   <span class="co"># test if SPARK is installed </span>
   <span class="co"># if false, it will suggest how to install SPARK</span>
-  <span class="fu"><a href="../reference/package_check.html">package_check</a></span>(<span class="kw">pkg_name</span> <span class="kw">=</span> <span class="st">'SPARK'</span>,
-                <span class="kw">repository</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'github'</span>),
-                <span class="kw">github_repo</span> <span class="kw">=</span> <span class="st">'xzhoulab/SPARK'</span>)
+  <span class="fu"><a href="../reference/package_check.html">package_check</a></span><span class="op">(</span>pkg_name <span class="op">=</span> <span class="st">'SPARK'</span>,
+                repository <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'github'</span><span class="op">)</span>,
+                github_repo <span class="op">=</span> <span class="st">'xzhoulab/SPARK'</span><span class="op">)</span>
 
 
   <span class="co"># print message with information and encouraging users to cite the authors their work  </span>
-  <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span>(<span class="st">"using 'SPARK' for spatial gene/pattern detection. If used in published research, please cite:
+  <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="st">"using 'SPARK' for spatial gene/pattern detection. If used in published research, please cite:
   Sun, Shiquan, Jiaqiang Zhu, and Xiang Zhou. “Statistical Analysis of Spatial Expression Pattern for Spatially Resolved Transcriptomic Studies.”
-          BioRxiv, October 21, 2019, 810903. https://doi.org/10.1101/810903."</span>)
+          BioRxiv, October 21, 2019, 810903. https://doi.org/10.1101/810903."</span><span class="op">)</span>
 
 
   <span class="co"># extract expression values from gobject using one of the accessors</span>
-  <span class="no">expr</span> <span class="kw">=</span> <span class="fu"><a href="../reference/select_expression_values.html">select_expression_values</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">gobject</span>, <span class="kw">values</span> <span class="kw">=</span> <span class="no">expression_values</span>)
+  <span class="va">expr</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_expression_values.html">select_expression_values</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">gobject</span>, values <span class="op">=</span> <span class="va">expression_values</span><span class="op">)</span>
 
   <span class="co"># extract coordinates from gobject</span>
   <span class="co"># check the different slots of the giotto S4 object</span>
-  <span class="no">locs</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">gobject</span>@<span class="kw">spatial_locs</span>)
-  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">locs</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">expr</span>)
+  <span class="va">locs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">gobject</span><span class="op">@</span><span class="va">spatial_locs</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">locs</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">expr</span><span class="op">)</span>
 
-
+  
   <span class="co"># Here we implemented spark according to their github example code: </span>
-
+  
   <span class="co"># create SPARK object for analysis and filter out lowly expressed genes</span>
-  <span class="no">sobject</span> <span class="kw">=</span> <span class="kw pkg">SPARK</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/CreateSPARKObject.html">CreateSPARKObject</a></span>(<span class="kw">counts</span> <span class="kw">=</span> <span class="no">expr</span>,
-                                     <span class="kw">location</span> <span class="kw">=</span> <span class="no">locs</span>[,<span class="fl">1</span>:<span class="fl">2</span>],
-                                     <span class="kw">percentage</span> <span class="kw">=</span> <span class="no">percentage</span>,
-                                     <span class="kw">min_total_counts</span> <span class="kw">=</span> <span class="no">min_count</span>)
+  <span class="va">sobject</span> <span class="op">=</span> <span class="fu">SPARK</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/CreateSPARKObject.html">CreateSPARKObject</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">expr</span>,
+                                     location <span class="op">=</span> <span class="va">locs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+                                     percentage <span class="op">=</span> <span class="va">percentage</span>,
+                                     min_total_counts <span class="op">=</span> <span class="va">min_count</span><span class="op">)</span>
 
   <span class="co"># total counts for each cell</span>
-  <span class="no">sobject</span>@<span class="kw">lib_size</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">sobject</span>@<span class="kw">counts</span>, <span class="fl">2</span>, <span class="no">sum</span>)
+  <span class="va">sobject</span><span class="op">@</span><span class="va">lib_size</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">@</span><span class="va">counts</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span>
 
   <span class="co"># extract covariates to adjust for from the cell metadata </span>
-  <span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">covariates</span>)) {
+  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">covariates</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
 
     <span class="co"># first filter giotto object based on spark object</span>
-    <span class="no">filter_cell_ids</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">sobject</span>@<span class="kw">counts</span>)
-    <span class="no">filter_gene_ids</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">sobject</span>@<span class="kw">counts</span>)
-    <span class="no">tempgobject</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">gobject</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">filter_cell_ids</span>, <span class="kw">gene_ids</span> <span class="kw">=</span> <span class="no">filter_gene_ids</span>)
+    <span class="va">filter_cell_ids</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">@</span><span class="va">counts</span><span class="op">)</span>
+    <span class="va">filter_gene_ids</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">@</span><span class="va">counts</span><span class="op">)</span>
+    <span class="va">tempgobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">gobject</span>, cell_ids <span class="op">=</span> <span class="va">filter_cell_ids</span>, gene_ids <span class="op">=</span> <span class="va">filter_gene_ids</span><span class="op">)</span>
 
-    <span class="no">metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">tempgobject</span>)
+    <span class="va">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">tempgobject</span><span class="op">)</span>
 
-    <span class="kw">if</span>(!<span class="no">covariates</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">metadata</span>)) {
-      <span class="fu"><a href="https://rdrr.io/r/base/warning.html">warning</a></span>(<span class="no">covariates</span>, <span class="st">' was not found in the cell metadata of the giotto object, will be set to NULL \n'</span>)
-      <span class="no">covariates</span> <span class="kw">=</span> <span class="kw">NULL</span>
-    } <span class="kw">else</span> {
-      <span class="no">covariates</span> <span class="kw">=</span> <span class="no">metadata</span><span class="kw">[[</span><span class="no">covariates</span>]]
-    }
-  }
+    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">covariates</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">metadata</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+      <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span><span class="op">(</span><span class="va">covariates</span>, <span class="st">' was not found in the cell metadata of the giotto object, will be set to NULL \n'</span><span class="op">)</span>
+      <span class="va">covariates</span> <span class="op">=</span> <span class="cn">NULL</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+      <span class="va">covariates</span> <span class="op">=</span> <span class="va">metadata</span><span class="op">[[</span><span class="va">covariates</span><span class="op">]</span><span class="op">]</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
 
   <span class="co"># Fit statistical model under null hypothesis</span>
-  <span class="no">sobject</span> <span class="kw">=</span> <span class="kw pkg">SPARK</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/spark.vc.html">spark.vc</a></span>(<span class="no">sobject</span>,
-                            <span class="kw">covariates</span> <span class="kw">=</span> <span class="no">covariates</span>,
-                            <span class="kw">lib_size</span> <span class="kw">=</span> <span class="no">sobject</span>@<span class="kw">lib_size</span>,
-                            <span class="kw">num_core</span> <span class="kw">=</span> <span class="no">num_core</span>,
-                            <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">F</span>,
-                            <span class="no">...</span>)
+  <span class="va">sobject</span> <span class="op">=</span> <span class="fu">SPARK</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/spark.vc.html">spark.vc</a></span><span class="op">(</span><span class="va">sobject</span>,
+                            covariates <span class="op">=</span> <span class="va">covariates</span>,
+                            lib_size <span class="op">=</span> <span class="va">sobject</span><span class="op">@</span><span class="va">lib_size</span>,
+                            num_core <span class="op">=</span> <span class="va">num_core</span>,
+                            verbose <span class="op">=</span> <span class="cn">F</span>,
+                            <span class="va">...</span><span class="op">)</span>
 
   <span class="co"># test spatially expressed pattern genes</span>
   <span class="co"># calculating pval</span>
-  <span class="no">sobject</span> <span class="kw">=</span> <span class="kw pkg">SPARK</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/spark.test.html">spark.test</a></span>(<span class="no">sobject</span>,
-                              <span class="kw">check_positive</span> <span class="kw">=</span> <span class="no">T</span>,
-                              <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">F</span>)
+  <span class="va">sobject</span> <span class="op">=</span> <span class="fu">SPARK</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SPARK/man/spark.test.html">spark.test</a></span><span class="op">(</span><span class="va">sobject</span>,
+                              check_positive <span class="op">=</span> <span class="cn">T</span>,
+                              verbose <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 
   <span class="co"># return results</span>
   <span class="co"># return full output or a simple data.table format with the essental information</span>
-  <span class="kw">if</span>(<span class="no">return_object</span> <span class="kw">==</span> <span class="st">'spark'</span>){
-    <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">sobject</span>)
-  } <span class="kw">else</span> <span class="kw">if</span>(<span class="no">return_object</span> <span class="kw">==</span> <span class="st">'data.table'</span>){
-    <span class="no">DT_results</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span>(<span class="no">sobject</span>@<span class="kw">res_mtest</span>)
-    <span class="no">gene_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">sobject</span>@<span class="kw">counts</span>)
-    <span class="no">DT_results</span>[, <span class="no">genes</span> <span class="kw">:=</span> <span class="no">gene_names</span>]
-    <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">setorder</a></span>(<span class="no">DT_results</span>, <span class="no">adjusted_pvalue</span>, <span class="no">combined_pvalue</span>)
-    <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">DT_results</span>)
-  }
-}</pre></body></html></div>
+  <span class="kw">if</span><span class="op">(</span><span class="va">return_object</span> <span class="op">==</span> <span class="st">'spark'</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">return_object</span> <span class="op">==</span> <span class="st">'data.table'</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">DT_results</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">@</span><span class="va">res_mtest</span><span class="op">)</span>
+    <span class="va">gene_names</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sobject</span><span class="op">@</span><span class="va">counts</span><span class="op">)</span>
+    <span class="va">DT_results</span><span class="op">[</span>, <span class="va">genes</span> <span class="op">:=</span> <span class="va">gene_names</span><span class="op">]</span>
+    <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">setorder</a></span><span class="op">(</span><span class="va">DT_results</span>, <span class="va">adjusted_pvalue</span>, <span class="va">combined_pvalue</span><span class="op">)</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">DT_results</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></pre></div>
 </div>
 </div>
   </div>
@@ -409,7 +412,7 @@ See <strong>doLeidenCLuster</strong> for more detailed information.</li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

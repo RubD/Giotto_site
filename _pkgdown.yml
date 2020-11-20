@@ -79,6 +79,7 @@ reference:
     - getSpatialDataset
     - readExprMatrix
     - get10Xmatrix
+    - get10Xmatrix_h5
     - stitchFieldCoordinates
     - stitchTileCoordinates
 
@@ -228,6 +229,12 @@ reference:
     - spatialAEH
     - trendSceek
     - spark 
+  
+  - title: Spatial gene simulation
+    desc: Functions to simulate a gene expression pattern
+    contents:
+    - simulateOneGenePatternGiottoObject
+    - runPatternSimulation
 
   - title: Spatial co-expression patterns / modules
     desc: Functions to identify spatial co-expression patterns

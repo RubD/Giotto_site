@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,32 +190,32 @@
     <p>creat ggplot point layer for spatial coordinates without borders</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_spat_point_layer_ggplot_noFILL</span>(
-  <span class='no'>ggobject</span>,
-  <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>cell_locations_metadata_selected</span>,
-  <span class='no'>cell_locations_metadata_other</span>,
-  <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color_as_factor</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_color_gradient</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span>),
-  <span class='kw'>gradient_midpoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gradient_limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point_size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>show_center_label</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label_fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>show_legend</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_spat_point_layer_ggplot_noFILL</span><span class='op'>(</span>
+  <span class='va'>ggobject</span>,
+  sdimx <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sdimy <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>cell_locations_metadata_selected</span>,
+  <span class='va'>cell_locations_metadata_other</span>,
+  cell_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_as_factor <span class='op'>=</span> <span class='cn'>T</span>,
+  cell_color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cell_color_gradient <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span>,
+  gradient_midpoint <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gradient_limits <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select_cell_groups <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select_cells <span class='op'>=</span> <span class='cn'>NULL</span>,
+  point_size <span class='op'>=</span> <span class='fl'>2</span>,
+  point_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  show_cluster_center <span class='op'>=</span> <span class='cn'>F</span>,
+  show_center_label <span class='op'>=</span> <span class='cn'>T</span>,
+  center_point_size <span class='op'>=</span> <span class='fl'>4</span>,
+  label_size <span class='op'>=</span> <span class='fl'>4</span>,
+  label_fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+  show_other_cells <span class='op'>=</span> <span class='cn'>T</span>,
+  other_cell_color <span class='op'>=</span> <span class='st'>"lightgrey"</span>,
+  other_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  show_legend <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -340,7 +340,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,19 +190,19 @@
     <p>fast normalize and/or scale expresion values of Giotto object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>normalizeGiotto</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>norm_methods</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"standard"</span>, <span class='st'>"osmFISH"</span>),
-  <span class='kw'>library_size_norm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>scalefactor</span> <span class='kw'>=</span> <span class='fl'>6000</span>,
-  <span class='kw'>log_norm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>log_offset</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>scale_genes</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>scale_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>scale_order</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"first_genes"</span>, <span class='st'>"first_cells"</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>
-)</pre>
+    <pre class="usage"><span class='fu'>normalizeGiotto</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  norm_methods <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"standard"</span>, <span class='st'>"osmFISH"</span><span class='op'>)</span>,
+  library_size_norm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  scalefactor <span class='op'>=</span> <span class='fl'>6000</span>,
+  log_norm <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  log_offset <span class='op'>=</span> <span class='fl'>1</span>,
+  logbase <span class='op'>=</span> <span class='fl'>2</span>,
+  scale_genes <span class='op'>=</span> <span class='cn'>T</span>,
+  scale_cells <span class='op'>=</span> <span class='cn'>T</span>,
+  scale_order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"first_genes"</span>, <span class='st'>"first_cells"</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>F</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -272,11 +272,14 @@ counts per cell and multiply by the total number of cells.</p></li>
 </ul><p>This data will be saved in the Giotto slot for custom expression.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
+    <pre class="examples"><div class='input'>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
-<span class='no'>norm_gobject</span> <span class='kw'>=</span> <span class='fu'>normalizeGiotto</span>(<span class='no'>mini_giotto_single_cell</span>)</pre>
+<span class='va'>norm_gobject</span> <span class='op'>=</span> <span class='fu'>normalizeGiotto</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -292,7 +295,7 @@ counts per cell and multiply by the total number of cells.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

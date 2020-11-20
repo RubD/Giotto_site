@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mini_seqfish_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>mini seqFISH</h1>
@@ -146,41 +146,50 @@
 
     
     
-<pre><code>#&gt; Warning: This tutorial was written with Giotto version 0.3.6.9038, your version
-#&gt; is 1.0.0. This is a more recent version and results should be reproducible</code></pre>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
-
-<span class="co"># (optional) instructions</span>
-<span class="no">temp_dir</span> <span class="kw">=</span> <span class="st">'/~/Temp/'</span>
-<span class="no">myinstructions</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">temp_dir</span>,
-                                          <span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                          <span class="kw">show_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-
-<span class="co"># set python_path if you want to or install giotto environment</span>
-<span class="no">python_path</span> <span class="kw">=</span> <span class="kw">NULL</span>
-<span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">python_path</span>)) {
-  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span>()
-}</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span></pre></div>
+<div id="install-python-modules" class="section level3">
+<h3 class="hasAnchor">
+<a href="#install-python-modules" class="anchor"></a>Install Python modules</h3>
+<p>To run this vignette you need to install all the necessary Python modules.</p>
+<ol style="list-style-type: decimal">
+<li><p>This can be done manually, see <a href="https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation" class="uri">https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation</a></p></li>
+<li><p>This can be done within R using our installation tools (installGiottoEnvironment), see <a href="https://rubd.github.io/Giotto_site/articles/tut0_giotto_environment.html" class="uri">https://rubd.github.io/Giotto_site/articles/tut0_giotto_environment.html</a> for more information.</p></li>
+</ol>
+</div>
+<div id="optional-set-giotto-instructions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#optional-set-giotto-instructions" class="anchor"></a>(optional) set giotto instructions</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># to automatically save figures in save_dir set save_plot to TRUE</span>
+<span class="va">temp_dir</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">temp_dir</span> <span class="op">=</span> <span class="st">'~/Temp/'</span>
+<span class="va">myinstructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>save_dir <span class="op">=</span> <span class="va">temp_dir</span>,
+                                          save_plot <span class="op">=</span> <span class="cn">TRUE</span>, 
+                                          show_plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></pre></div>
+</div>
 <div id="create-a-giotto-object" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-giotto-object" class="anchor"></a>1. Create a Giotto object</h2>
 <p>minimum requirements:<br>
 - matrix with expression information (or path to)<br>
 - x,y(,z) coordinates for cells or spots (or path to)</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># giotto object </span>
-<span class="no">expr_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">loc_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr_path</span>,
-                                   <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">loc_path</span>,
-                                   <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">myinstructions</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># giotto object </span>
+<span class="va">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">loc_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">expr_path</span>,
+                                   spatial_locs <span class="op">=</span> <span class="va">loc_path</span>,
+                                   instructions <span class="op">=</span> <span class="va">myinstructions</span><span class="op">)</span></pre></div>
 <p>How to work with Giotto instructions that are part of your Giotto object:<br>
 - show the instructions associated with your Giotto object with <strong>showGiottoInstructions</strong><br>
 - change one or more instructions with <strong>changeGiottoInstructions</strong><br>
 - replace all instructions at once with <strong>replaceGiottoInstructions</strong><br>
 - read or get a specific giotto instruction with <strong>readGiottoInstructions</strong><br>
 Of note, the python path can only be set once in an R session. See the reticulate package for more information.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># show instructions associated with giotto object (seqfish_mini)</span>
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="no">seqfish_mini</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># show instructions associated with giotto object (seqfish_mini)</span>
+<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span></pre></div>
 </div>
 <div id="processing-steps" class="section level2">
 <h2 class="hasAnchor">
@@ -193,15 +202,16 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>adjust expression matrix for technical covariates or batches (optional). These results will be stored in the <em>custom</em> slot.</li>
 </ul>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                             <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-                             <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">20</span>,
-                             <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">0</span>)
-<span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">6000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>)
-<span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                                   <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'normalized'</span>),
-                                   <span class="kw">covariate_columns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
+                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, 
+                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, 
+                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, scalefactor <span class="op">=</span> <span class="fl">6000</span>, verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adjustGiottoMatrix.html">adjustGiottoMatrix</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
+                                   expression_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'normalized'</span><span class="op">)</span>,
+                                   covariate_columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'nr_genes'</span>, <span class="st">'total_expr'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
@@ -215,19 +225,25 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>run UMAP and/or TSNE on PCs (or directly on matrix)</li>
 </ul>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/HVGplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>)
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">20</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span>
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, ncp <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/screePlot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/jackstrawPlot.html">jackstrawPlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">20</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/jackstrawPlot.html">jackstrawPlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, ncp <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/jackstrawPlot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="no">seqfish_mini</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/PCA.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>, <span class="kw">n_threads</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>)
-<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, n_threads <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/tSNE.png" style="width:50.0%"></p>
 </div>
 <div id="clustering" class="section level2">
@@ -238,73 +254,80 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives)</li>
 </ul>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">5</span>)
-<span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.4</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, resolution <span class="op">=</span> <span class="fl">0.4</span>, n_iterations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
 
 <span class="co"># visualize UMAP cluster results</span>
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-         <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
+         show_NN_network <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/UMAP.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># visualize UMAP and spatial results</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">spat_point_shape</span> <span class="kw">=</span> <span class="st">'voronoi'</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co"># visualize UMAP and spatial results</span>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, spat_point_shape <span class="op">=</span> <span class="st">'voronoi'</span><span class="op">)</span>
 
 <span class="co"># heatmap and dendrogram</span>
-<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/showClusterHeatmap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">h</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">rotate</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, h <span class="op">=</span> <span class="fl">0.5</span>, rotate <span class="op">=</span> <span class="cn">T</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/showClusterDendrogram.png" style="width:50.0%"></p>
 </div>
 <div id="differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#differential-expression" class="anchor"></a>5. differential expression</h2>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">gini_markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                                                  <span class="kw">method</span> <span class="kw">=</span> <span class="st">'gini'</span>,
-                                                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                                  <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-                                                  <span class="kw">min_genes</span> <span class="kw">=</span> <span class="fl">20</span>,
-                                                  <span class="kw">min_expr_gini_score</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-                                                  <span class="kw">min_det_gini_score</span> <span class="kw">=</span> <span class="fl">0.5</span>)
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">gini_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                                                  method <span class="op">=</span> <span class="st">'gini'</span>,
+                                                  expression_values <span class="op">=</span> <span class="st">'normalized'</span>,
+                                                  cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+                                                  min_genes <span class="op">=</span> <span class="fl">20</span>,
+                                                  min_expr_gini_score <span class="op">=</span> <span class="fl">0.5</span>,
+                                                  min_det_gini_score <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 
 <span class="co"># get top 2 genes per cluster and visualize with violinplot</span>
-<span class="no">topgenes_gini</span> <span class="kw">=</span> <span class="no">gini_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="no">topgenes_gini</span>$<span class="no">genes</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<span class="va">topgenes_gini</span> <span class="op">=</span> <span class="va">gini_markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, genes <span class="op">=</span> <span class="va">topgenes_gini</span><span class="op">$</span><span class="va">genes</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/violinPlot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co"># get top 6 genes per cluster and visualize with heatmap</span>
-<span class="no">topgenes_gini2</span> <span class="kw">=</span> <span class="no">gini_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">6</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">topgenes_gini2</span>$<span class="no">genes</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="co"># get top 6 genes per cluster and visualize with heatmap</span>
+<span class="va">topgenes_gini2</span> <span class="op">=</span> <span class="va">gini_markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">6</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, selected_genes <span class="op">=</span> <span class="va">topgenes_gini2</span><span class="op">$</span><span class="va">genes</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_clus'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotMetaDataHeatmap.png" style="width:50.0%"></p>
 </div>
 <div id="cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-type-annotation" class="anchor"></a>6. cell type annotation</h2>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">clusters_cell_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell A'</span>, <span class="st">'cell B'</span>, <span class="st">'cell C'</span>, <span class="st">'cell D'</span>,
-                        <span class="st">'cell E'</span>, <span class="st">'cell F'</span>, <span class="st">'cell G'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types</span>) <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">7</span>
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                              <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types</span>,
-                              <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-                              <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cell_types'</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">clusters_cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell A'</span>, <span class="st">'cell B'</span>, <span class="st">'cell C'</span>, <span class="st">'cell D'</span>,
+                        <span class="st">'cell E'</span>, <span class="st">'cell F'</span>, <span class="st">'cell G'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">clusters_cell_types</span><span class="op">)</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
+                              annotation_vector <span class="op">=</span> <span class="va">clusters_cell_types</span>, 
+                              cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
+                              name <span class="op">=</span> <span class="st">'cell_types'</span><span class="op">)</span>
 <span class="co"># check new cell metadata</span>
-<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">seqfish_mini</span>)
+<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span>
 
 <span class="co"># visualize annotations</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-            <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, 
+            spat_point_size <span class="op">=</span> <span class="fl">3</span>, dim_point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatDimPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-grid" class="anchor"></a>7. spatial grid</h2>
 <p>Create a grid based on defined stepsizes in the x,y(,z) axes.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">seqfish_mini</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                              <span class="kw">sdimx_stepsize</span> <span class="kw">=</span> <span class="fl">300</span>,
-                              <span class="kw">sdimy_stepsize</span> <span class="kw">=</span> <span class="fl">300</span>,
-                              <span class="kw">minimum_padding</span> <span class="kw">=</span> <span class="fl">50</span>)
-<span class="fu"><a href="../reference/showGrids.html">showGrids</a></span>(<span class="no">seqfish_mini</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">seqfish_mini</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                              sdimx_stepsize <span class="op">=</span> <span class="fl">300</span>,
+                              sdimy_stepsize <span class="op">=</span> <span class="fl">300</span>,
+                              minimum_padding <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showGrids.html">showGrids</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span>
 
 <span class="co"># visualize grid</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, show_grid <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-network" class="section level2">
 <h2 class="hasAnchor">
@@ -316,21 +339,22 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>create a spatial kNN network</li>
 </ul>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">maximum_distance</span> <span class="kw">=</span> <span class="fl">400</span>)
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>,
-                                    <span class="kw">maximum_distance_delaunay</span> <span class="kw">=</span> <span class="fl">400</span>)
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>,
-                                    <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">10</span>)
-<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span>(<span class="no">seqfish_mini</span>)
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, maximum_distance <span class="op">=</span> <span class="fl">400</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, 
+                                    maximum_distance_delaunay <span class="op">=</span> <span class="fl">400</span><span class="op">)</span>
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, 
+                                    method <span class="op">=</span> <span class="st">'kNN'</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span>
 
 <span class="co"># visualize the two different spatial networks  </span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'kNN_network'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'kNN_network'</span>,
+         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-genes" class="section level2">
 <h2 class="hasAnchor">
@@ -340,25 +364,27 @@ Of note, the python path can only be set once in an R session. See the reticulat
 - binSpect with rank binarization<br>
 - silhouetteRank</p>
 <p>Visualize top 4 genes per method.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">km_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">seqfish_mini</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
-<span class="no">rank_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">rank_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">silh_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>) <span class="co"># TODO: suppress print output</span>
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">silh_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="va">rank_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, bin_method <span class="op">=</span> <span class="st">'rank'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">rank_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="va">silh_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span><span class="op">)</span> <span class="co"># TODO: suppress print output</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">silh_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatGenePlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-co-expression-patterns" class="section level2">
@@ -367,265 +393,281 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <p>Identify robust spatial co-expression patterns using the spatial network or grid and a subset of individual spatial genes.<br>
 1. calculate spatial correlation scores<br>
 2. cluster correlation scores</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r">
+<div class="sourceCode" id="cb22"><pre class="downlit">
+
 <span class="co"># 1. calculate spatial correlation scores </span>
-<span class="no">ext_spatial_genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">500</span>]$<span class="no">genes</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span>(<span class="no">seqfish_mini</span>,
-                                         <span class="kw">method</span> <span class="kw">=</span> <span class="st">'network'</span>,
-                                         <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                                         <span class="kw">subset_genes</span> <span class="kw">=</span> <span class="no">ext_spatial_genes</span>)
+<span class="va">ext_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span><span class="op">(</span><span class="va">seqfish_mini</span>,
+                                         method <span class="op">=</span> <span class="st">'network'</span>, 
+                                         spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                                         subset_genes <span class="op">=</span> <span class="va">ext_spatial_genes</span><span class="op">)</span>
 
 <span class="co"># 2. cluster correlation scores</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>,
-                                          <span class="kw">name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>)
-<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>,
-                     <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>)</pre></body></html></div>
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
+                                          name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, 
+                     use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/heatmSpatialCorGenes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">netw_ranks</span> <span class="kw">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span>(<span class="no">seqfish_mini</span>,
-                                  <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>,
-                                  <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>)
-<span class="no">top_netw_spat_cluster</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>,
-                                            <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                            <span class="kw">selected_clusters</span> <span class="kw">=</span> <span class="fl">6</span>,
-                                            <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="va">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, 
+                                  spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, 
+                                  use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span>
+<span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
+                                            use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                            selected_clusters <span class="op">=</span> <span class="fl">6</span>, 
+                                            show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
-<span class="no">cluster_genes_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>,
-                                       <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                       <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="no">cluster_genes</span> <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">cluster_genes</span>) <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">gene_ID</span>
+<span class="va">cluster_genes_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
+                                       use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                       show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">cluster_genes</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cluster_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">gene_ID</span>
 
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">gene_clusters</span> <span class="kw">=</span> <span class="no">cluster_genes</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>)
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(<span class="no">seqfish_mini</span>,
-             <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>,
-             <span class="kw">cell_annotation_values</span> <span class="kw">=</span> <span class="no">netw_ranks</span>$<span class="no">clusters</span>,
-             <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, gene_clusters <span class="op">=</span> <span class="va">cluster_genes</span>, name <span class="op">=</span> <span class="st">'cluster_metagene'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>,
+             spat_enr_names <span class="op">=</span> <span class="st">'cluster_metagene'</span>,
+             cell_annotation_values <span class="op">=</span> <span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span>,
+             point_size <span class="op">=</span> <span class="fl">1.5</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatCellPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-hmrf-domains" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-hmrf-domains" class="anchor"></a>11. spatial HMRF domains</h2>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">hmrf_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">temp_dir</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="no">hmrf_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">hmrf_folder</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="no">T</span>)
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="va">hmrf_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">temp_dir</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">hmrf_folder</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, recursive <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># perform hmrf</span>
-<span class="no">my_spatial_genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">100</span>]$<span class="no">genes</span>
-<span class="no">HMRF_spatial_genes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                            <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                            <span class="kw">spatial_genes</span> <span class="kw">=</span> <span class="no">my_spatial_genes</span>,
-                            <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                            <span class="kw">k</span> <span class="kw">=</span> <span class="fl">9</span>,
-                            <span class="kw">betas</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28</span>,<span class="fl">2</span>,<span class="fl">2</span>),
-                            <span class="kw">output_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes/SG_top100_k9_scaled'</span>))
+<span class="va">my_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="va">HMRF_spatial_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                            expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                            spatial_genes <span class="op">=</span> <span class="va">my_spatial_genes</span>,
+                            spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                            k <span class="op">=</span> <span class="fl">9</span>,
+                            betas <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,
+                            output_folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes/SG_top100_k9_scaled'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># check and select hmrf</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">28</span>, <span class="fl">30</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">2</span>)) {
-  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                    <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                    <span class="kw">k</span> <span class="kw">=</span> <span class="fl">9</span>, <span class="kw">betas_to_view</span> <span class="kw">=</span> <span class="no">i</span>,
-                    <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>)
-}
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                    HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                    k <span class="op">=</span> <span class="fl">9</span>, betas_to_view <span class="op">=</span> <span class="va">i</span>,
+                    point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="op">}</span>
 
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                  <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                  <span class="kw">k</span> <span class="kw">=</span> <span class="fl">9</span>, <span class="kw">betas_to_add</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28</span>),
-                  <span class="kw">hmrf_name</span> <span class="kw">=</span> <span class="st">'HMRF'</span>)
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                  HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                  k <span class="op">=</span> <span class="fl">9</span>, betas_to_add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>,
+                  hmrf_name <span class="op">=</span> <span class="st">'HMRF'</span><span class="op">)</span>
 
 <span class="co"># visualize selected hmrf result</span>
-<span class="no">giotto_colors</span> <span class="kw">=</span> <span class="kw pkg">Giotto</span><span class="kw ns">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="fl">9</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">giotto_colors</span>) <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">9</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'HMRF_k9_b.28'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">giotto_colors</span>)</pre></body></html></div>
+<span class="va">giotto_colors</span> <span class="op">=</span> <span class="fu">Giotto</span><span class="fu">:::</span><span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">giotto_colors</span><span class="op">)</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">9</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k9_b.28'</span>,
+         point_size <span class="op">=</span> <span class="fl">3</span>, coord_fix_ratio <span class="op">=</span> <span class="fl">1</span>, cell_color_code <span class="op">=</span> <span class="va">giotto_colors</span><span class="op">)</span></pre></div>
 </div>
 <div id="cell-neighborhood-cell-typecell-type-interactions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-neighborhood-cell-typecell-type-interactions" class="anchor"></a>12. cell neighborhood: cell-type/cell-type interactions</h2>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="kw">seed</span> <span class="kw">=</span> <span class="fl">2841</span>)
-<span class="no">cell_proximities</span> <span class="kw">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                                           <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                                           <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                                           <span class="kw">adjust_method</span> <span class="kw">=</span> <span class="st">'fdr'</span>,
-                                           <span class="kw">number_of_simulations</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2841</span><span class="op">)</span>
+<span class="va">cell_proximities</span> <span class="op">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                                           cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                                           spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                                           adjust_method <span class="op">=</span> <span class="st">'fdr'</span>,
+                                           number_of_simulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
 <span class="co"># barplot</span>
-<span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                     <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>,
-                     <span class="kw">min_orig_ints</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">min_sim_ints</span> <span class="kw">=</span> <span class="fl">5</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
+                     CPscore <span class="op">=</span> <span class="va">cell_proximities</span>, 
+                     min_orig_ints <span class="op">=</span> <span class="fl">5</span>, min_sim_ints <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityBarplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co">## heatmap</span>
-<span class="fu"><a href="../reference/cellProximityHeatmap.html">cellProximityHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>,
-                     <span class="kw">order_cell_types</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">scale</span> <span class="kw">=</span> <span class="no">T</span>,
-                     <span class="kw">color_breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1.5</span>, <span class="fl">0</span>, <span class="fl">1.5</span>),
-                     <span class="kw">color_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'blue'</span>, <span class="st">'white'</span>, <span class="st">'red'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="co">## heatmap</span>
+<span class="fu"><a href="../reference/cellProximityHeatmap.html">cellProximityHeatmap</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, CPscore <span class="op">=</span> <span class="va">cell_proximities</span>, 
+                     order_cell_types <span class="op">=</span> <span class="cn">T</span>, scale <span class="op">=</span> <span class="cn">T</span>,
+                     color_breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.5</span>, <span class="fl">0</span>, <span class="fl">1.5</span><span class="op">)</span>, 
+                     color_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'white'</span>, <span class="st">'red'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatCellPlot2D.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co"># network</span>
-<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>,
-                     <span class="kw">remove_self_edges</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">only_show_enrichment_edges</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="co"># network</span>
+<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, CPscore <span class="op">=</span> <span class="va">cell_proximities</span>, 
+                     remove_self_edges <span class="op">=</span> <span class="cn">T</span>, only_show_enrichment_edges <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityHeatmap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co"># network with self-edges</span>
-<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">CPscore</span> <span class="kw">=</span> <span class="no">cell_proximities</span>,
-                     <span class="kw">remove_self_edges</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">self_loop_strength</span> <span class="kw">=</span> <span class="fl">0.3</span>,
-                     <span class="kw">only_show_enrichment_edges</span> <span class="kw">=</span> <span class="no">F</span>,
-                     <span class="kw">rescale_edge_weights</span> <span class="kw">=</span> <span class="no">T</span>,
-                     <span class="kw">node_size</span> <span class="kw">=</span> <span class="fl">8</span>,
-                     <span class="kw">edge_weight_range_depletion</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>),
-                     <span class="kw">edge_weight_range_enrichment</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">5</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="co"># network with self-edges</span>
+<span class="fu"><a href="../reference/cellProximityNetwork.html">cellProximityNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, CPscore <span class="op">=</span> <span class="va">cell_proximities</span>,
+                     remove_self_edges <span class="op">=</span> <span class="cn">F</span>, self_loop_strength <span class="op">=</span> <span class="fl">0.3</span>,
+                     only_show_enrichment_edges <span class="op">=</span> <span class="cn">F</span>,
+                     rescale_edge_weights <span class="op">=</span> <span class="cn">T</span>,
+                     node_size <span class="op">=</span> <span class="fl">8</span>,
+                     edge_weight_range_depletion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
+                     edge_weight_range_enrichment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximityNetwork.png" style="width:50.0%"></p>
 <div id="visualization-of-specific-cell-types" class="section level3">
 <h3 class="hasAnchor">
 <a href="#visualization-of-specific-cell-types" class="anchor"></a>visualization of specific cell types</h3>
-<div class="sourceCode" id="cb29"><html><body><pre class="r">
+<div class="sourceCode" id="cb29"><pre class="downlit">
+
 <span class="co"># Option 1</span>
-<span class="no">spec_interaction</span> <span class="kw">=</span> <span class="st">"cell D--cell F"</span>
-<span class="fu"><a href="../reference/cellProximitySpatPlot2D.html">cellProximitySpatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                        <span class="kw">interaction_name</span> <span class="kw">=</span> <span class="no">spec_interaction</span>,
-                        <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-                        <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                        <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                        <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell D'</span> <span class="kw">=</span> <span class="st">'lightblue'</span>, <span class="st">'cell F'</span> <span class="kw">=</span> <span class="st">'red'</span>),
-                        <span class="kw">point_size_select</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">point_size_other</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="va">spec_interaction</span> <span class="op">=</span> <span class="st">"cell D--cell F"</span>
+<span class="fu"><a href="../reference/cellProximitySpatPlot2D.html">cellProximitySpatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                        interaction_name <span class="op">=</span> <span class="va">spec_interaction</span>,
+                        show_network <span class="op">=</span> <span class="cn">T</span>,
+                        cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                        cell_color <span class="op">=</span> <span class="st">'cell_types'</span>,
+                        cell_color_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell D'</span> <span class="op">=</span> <span class="st">'lightblue'</span>, <span class="st">'cell F'</span> <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span>,
+                        point_size_select <span class="op">=</span> <span class="fl">4</span>, point_size_other <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/cellProximitySpatPlot2D.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># Option 2: create additional metadata</span>
-<span class="no">seqfish_mini</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addCellIntMetadata.html">addCellIntMetadata</a></span>(<span class="no">seqfish_mini</span>,
-                             <span class="kw">spatial_network</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                             <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                             <span class="kw">cell_interaction</span> <span class="kw">=</span> <span class="no">spec_interaction</span>,
-                             <span class="kw">name</span> <span class="kw">=</span> <span class="st">'D_F_interactions'</span>)
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'D_F_interactions'</span>, <span class="kw">legend_symbol_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-         <span class="kw">select_cell_groups</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'other_cell D'</span>, <span class="st">'other_cell F'</span>, <span class="st">'select_cell D'</span>, <span class="st">'select_cell F'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="co"># Option 2: create additional metadata</span>
+<span class="va">seqfish_mini</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellIntMetadata.html">addCellIntMetadata</a></span><span class="op">(</span><span class="va">seqfish_mini</span>,
+                             spatial_network <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                             cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                             cell_interaction <span class="op">=</span> <span class="va">spec_interaction</span>,
+                             name <span class="op">=</span> <span class="st">'D_F_interactions'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, cell_color <span class="op">=</span> <span class="st">'D_F_interactions'</span>, legend_symbol_size <span class="op">=</span> <span class="fl">3</span>,
+         select_cell_groups <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'other_cell D'</span>, <span class="st">'other_cell F'</span>, <span class="st">'select_cell D'</span>, <span class="st">'select_cell F'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatPlot2D.png" style="width:50.0%"></p>
 </div>
 <div id="cell-neighborhood-interaction-changed-genes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cell-neighborhood-interaction-changed-genes" class="anchor"></a>13. cell neighborhood: interaction changed genes</h3>
-<div class="sourceCode" id="cb31"><html><body><pre class="r">
-<span class="co">## select top 25th highest expressing genes</span>
-<span class="no">gene_metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span>(<span class="no">seqfish_mini</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">gene_metadata</span>$<span class="no">nr_cells</span>, <span class="no">gene_metadata</span>$<span class="no">mean_expr</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">gene_metadata</span>$<span class="no">nr_cells</span>, <span class="no">gene_metadata</span>$<span class="no">mean_expr_det</span>)
+<div class="sourceCode" id="cb31"><pre class="downlit">
 
-<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(<span class="no">gene_metadata</span>$<span class="no">mean_expr_det</span>)
-<span class="no">high_expressed_genes</span> <span class="kw">=</span> <span class="no">gene_metadata</span>[<span class="no">mean_expr_det</span> <span class="kw">&gt;</span> <span class="fl">4</span>]$<span class="no">gene_ID</span>
+<span class="co">## select top 25th highest expressing genes</span>
+<span class="va">gene_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span><span class="op">(</span><span class="va">seqfish_mini</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gene_metadata</span><span class="op">$</span><span class="va">nr_cells</span>, <span class="va">gene_metadata</span><span class="op">$</span><span class="va">mean_expr</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gene_metadata</span><span class="op">$</span><span class="va">nr_cells</span>, <span class="va">gene_metadata</span><span class="op">$</span><span class="va">mean_expr_det</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">gene_metadata</span><span class="op">$</span><span class="va">mean_expr_det</span><span class="op">)</span>
+<span class="va">high_expressed_genes</span> <span class="op">=</span> <span class="va">gene_metadata</span><span class="op">[</span><span class="va">mean_expr_det</span> <span class="op">&gt;</span> <span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">gene_ID</span>
 
 <span class="co">## identify genes that are associated with proximity to other cell types</span>
-<span class="no">ICGscoresHighGenes</span> <span class="kw">=</span>  <span class="fu"><a href="../reference/findICG.html">findICG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                              <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">high_expressed_genes</span>,
-                              <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                              <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                              <span class="kw">diff_test</span> <span class="kw">=</span> <span class="st">'permutation'</span>,
-                              <span class="kw">adjust_method</span> <span class="kw">=</span> <span class="st">'fdr'</span>,
-                              <span class="kw">nr_permutations</span> <span class="kw">=</span> <span class="fl">500</span>,
-                              <span class="kw">do_parallel</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">cores</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="va">ICGscoresHighGenes</span> <span class="op">=</span>  <span class="fu"><a href="../reference/findICG.html">findICG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                              selected_genes <span class="op">=</span> <span class="va">high_expressed_genes</span>,
+                              spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                              cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                              diff_test <span class="op">=</span> <span class="st">'permutation'</span>,
+                              adjust_method <span class="op">=</span> <span class="st">'fdr'</span>,
+                              nr_permutations <span class="op">=</span> <span class="fl">500</span>,
+                              do_parallel <span class="op">=</span> <span class="cn">T</span>, cores <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co">## visualize all genes</span>
-<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span>(<span class="no">seqfish_mini</span>, <span class="kw">cpgObject</span> <span class="kw">=</span> <span class="no">ICGscoresHighGenes</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'dotplot'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotCellProximityGenes.html">plotCellProximityGenes</a></span><span class="op">(</span><span class="va">seqfish_mini</span>, cpgObject <span class="op">=</span> <span class="va">ICGscoresHighGenes</span>, method <span class="op">=</span> <span class="st">'dotplot'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCellProximityGenes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co">## filter genes</span>
-<span class="no">ICGscoresFilt</span> <span class="kw">=</span> <span class="fu"><a href="../reference/filterICG.html">filterICG</a></span>(<span class="no">ICGscoresHighGenes</span>,
-                          <span class="kw">min_cells</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">min_int_cells</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">min_fdr</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-                          <span class="kw">min_spat_diff</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">min_log2_fc</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">min_zscore</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="co">## filter genes</span>
+<span class="va">ICGscoresFilt</span> <span class="op">=</span> <span class="fu"><a href="../reference/filterICG.html">filterICG</a></span><span class="op">(</span><span class="va">ICGscoresHighGenes</span>, 
+                          min_cells <span class="op">=</span> <span class="fl">2</span>, min_int_cells <span class="op">=</span> <span class="fl">2</span>, min_fdr <span class="op">=</span> <span class="fl">0.1</span>,
+                          min_spat_diff <span class="op">=</span> <span class="fl">0.1</span>, min_log2_fc <span class="op">=</span> <span class="fl">0.1</span>, min_zscore <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
 <span class="co">## visualize subset of interaction changed genes (ICGs)</span>
-<span class="no">ICG_genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Cpne2'</span>, <span class="st">'Scg3'</span>, <span class="st">'Cmtm3'</span>, <span class="st">'Cplx1'</span>, <span class="st">'Lingo1'</span>)
-<span class="no">ICG_genes_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell E'</span>, <span class="st">'cell D'</span>, <span class="st">'cell D'</span>, <span class="st">'cell G'</span>, <span class="st">'cell E'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">ICG_genes</span>) <span class="kw">=</span> <span class="no">ICG_genes_types</span>
+<span class="va">ICG_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Cpne2'</span>, <span class="st">'Scg3'</span>, <span class="st">'Cmtm3'</span>, <span class="st">'Cplx1'</span>, <span class="st">'Lingo1'</span><span class="op">)</span>
+<span class="va">ICG_genes_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell E'</span>, <span class="st">'cell D'</span>, <span class="st">'cell D'</span>, <span class="st">'cell G'</span>, <span class="st">'cell E'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ICG_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">ICG_genes_types</span>
 
-<span class="fu"><a href="../reference/plotICG.html">plotICG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-        <span class="kw">cpgObject</span> <span class="kw">=</span> <span class="no">ICGscoresHighGenes</span>,
-        <span class="kw">source_type</span> <span class="kw">=</span> <span class="st">'cell A'</span>,
-        <span class="kw">source_markers</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Csf1r'</span>, <span class="st">'Laptm5'</span>),
-        <span class="kw">ICG_genes</span> <span class="kw">=</span> <span class="no">ICG_genes</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotICG.html">plotICG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+        cpgObject <span class="op">=</span> <span class="va">ICGscoresHighGenes</span>,
+        source_type <span class="op">=</span> <span class="st">'cell A'</span>,
+        source_markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Csf1r'</span>, <span class="st">'Laptm5'</span><span class="op">)</span>,
+        ICG_genes <span class="op">=</span> <span class="va">ICG_genes</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotICG.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="cell-neighborhood-ligand-receptor-cell-cell-communication" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-neighborhood-ligand-receptor-cell-cell-communication" class="anchor"></a>14. cell neighborhood: ligand-receptor cell-cell communication</h2>
-<div class="sourceCode" id="cb33"><html><body><pre class="r">
-<span class="no">LR_data</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"mouse_ligand_receptors.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>))
+<div class="sourceCode" id="cb33"><pre class="downlit">
 
-<span class="no">LR_data</span>[, <span class="no">ligand_det</span> <span class="kw">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="no">mouseLigand</span> <span class="kw">%in%</span> <span class="no">seqfish_mini</span>@<span class="kw">gene_ID</span>, <span class="no">T</span>, <span class="no">F</span>)]
-<span class="no">LR_data</span>[, <span class="no">receptor_det</span> <span class="kw">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="no">mouseReceptor</span> <span class="kw">%in%</span> <span class="no">seqfish_mini</span>@<span class="kw">gene_ID</span>, <span class="no">T</span>, <span class="no">F</span>)]
-<span class="no">LR_data_det</span> <span class="kw">=</span> <span class="no">LR_data</span>[<span class="no">ligand_det</span> <span class="kw">==</span> <span class="no">T</span> <span class="kw">&amp;</span> <span class="no">receptor_det</span> <span class="kw">==</span> <span class="no">T</span>]
-<span class="no">select_ligands</span> <span class="kw">=</span> <span class="no">LR_data_det</span>$<span class="no">mouseLigand</span>
-<span class="no">select_receptors</span> <span class="kw">=</span> <span class="no">LR_data_det</span>$<span class="no">mouseReceptor</span>
+<span class="va">LR_data</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"mouse_ligand_receptors.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">LR_data</span><span class="op">[</span>, <span class="va">ligand_det</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">mouseLigand</span> <span class="op">%in%</span> <span class="va">seqfish_mini</span><span class="op">@</span><span class="va">gene_ID</span>, <span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span><span class="op">]</span>
+<span class="va">LR_data</span><span class="op">[</span>, <span class="va">receptor_det</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">mouseReceptor</span> <span class="op">%in%</span> <span class="va">seqfish_mini</span><span class="op">@</span><span class="va">gene_ID</span>, <span class="cn">T</span>, <span class="cn">F</span><span class="op">)</span><span class="op">]</span>
+<span class="va">LR_data_det</span> <span class="op">=</span> <span class="va">LR_data</span><span class="op">[</span><span class="va">ligand_det</span> <span class="op">==</span> <span class="cn">T</span> <span class="op">&amp;</span> <span class="va">receptor_det</span> <span class="op">==</span> <span class="cn">T</span><span class="op">]</span>
+<span class="va">select_ligands</span> <span class="op">=</span> <span class="va">LR_data_det</span><span class="op">$</span><span class="va">mouseLigand</span>
+<span class="va">select_receptors</span> <span class="op">=</span> <span class="va">LR_data_det</span><span class="op">$</span><span class="va">mouseReceptor</span>
 
 
 <span class="co">## get statistical significance of gene pair expression changes based on expression ##</span>
-<span class="no">expr_only_scores</span> <span class="kw">=</span> <span class="fu"><a href="../reference/exprCellCellcom.html">exprCellCellcom</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                                   <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                                   <span class="kw">random_iter</span> <span class="kw">=</span> <span class="fl">500</span>,
-                                   <span class="kw">gene_set_1</span> <span class="kw">=</span> <span class="no">select_ligands</span>,
-                                   <span class="kw">gene_set_2</span> <span class="kw">=</span> <span class="no">select_receptors</span>)
+<span class="va">expr_only_scores</span> <span class="op">=</span> <span class="fu"><a href="../reference/exprCellCellcom.html">exprCellCellcom</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                                   cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                                   random_iter <span class="op">=</span> <span class="fl">500</span>,
+                                   gene_set_1 <span class="op">=</span> <span class="va">select_ligands</span>,
+                                   gene_set_2 <span class="op">=</span> <span class="va">select_receptors</span><span class="op">)</span>
 
 <span class="co">## get statistical significance of gene pair expression changes upon cell-cell interaction</span>
-<span class="no">spatial_all_scores</span> <span class="kw">=</span> <span class="fu"><a href="../reference/spatCellCellcom.html">spatCellCellcom</a></span>(<span class="no">seqfish_mini</span>,
-                                     <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                                     <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'cell_types'</span>,
-                                     <span class="kw">random_iter</span> <span class="kw">=</span> <span class="fl">500</span>,
-                                     <span class="kw">gene_set_1</span> <span class="kw">=</span> <span class="no">select_ligands</span>,
-                                     <span class="kw">gene_set_2</span> <span class="kw">=</span> <span class="no">select_receptors</span>,
-                                     <span class="kw">adjust_method</span> <span class="kw">=</span> <span class="st">'fdr'</span>,
-                                     <span class="kw">do_parallel</span> <span class="kw">=</span> <span class="no">T</span>,
-                                     <span class="kw">cores</span> <span class="kw">=</span> <span class="fl">4</span>,
-                                     <span class="kw">verbose</span> <span class="kw">=</span> <span class="st">'none'</span>)
+<span class="va">spatial_all_scores</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatCellCellcom.html">spatCellCellcom</a></span><span class="op">(</span><span class="va">seqfish_mini</span>,
+                                     spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                                     cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
+                                     random_iter <span class="op">=</span> <span class="fl">500</span>,
+                                     gene_set_1 <span class="op">=</span> <span class="va">select_ligands</span>,
+                                     gene_set_2 <span class="op">=</span> <span class="va">select_receptors</span>,
+                                     adjust_method <span class="op">=</span> <span class="st">'fdr'</span>,
+                                     do_parallel <span class="op">=</span> <span class="cn">T</span>,
+                                     cores <span class="op">=</span> <span class="fl">4</span>,
+                                     verbose <span class="op">=</span> <span class="st">'none'</span><span class="op">)</span>
 
 
 <span class="co">## * plot communication scores ####</span>
 
 <span class="co">## select top LR ##</span>
-<span class="no">selected_spat</span> <span class="kw">=</span> <span class="no">spatial_all_scores</span>[<span class="no">p.adj</span> <span class="kw">&lt;=</span> <span class="fl">0.5</span> <span class="kw">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">log2fc</span>) <span class="kw">&gt;</span> <span class="fl">0.1</span> <span class="kw">&amp;</span> <span class="no">lig_nr</span> <span class="kw">&gt;=</span> <span class="fl">2</span> <span class="kw">&amp;</span> <span class="no">rec_nr</span> <span class="kw">&gt;=</span> <span class="fl">2</span>]
-<span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">setorder</a></span>(<span class="no">selected_spat</span>, -<span class="no">PI</span>)
+<span class="va">selected_spat</span> <span class="op">=</span> <span class="va">spatial_all_scores</span><span class="op">[</span><span class="va">p.adj</span> <span class="op">&lt;=</span> <span class="fl">0.5</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">log2fc</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="va">lig_nr</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">rec_nr</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">]</span>
+<span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setorder.html">setorder</a></span><span class="op">(</span><span class="va">selected_spat</span>, <span class="op">-</span><span class="va">PI</span><span class="op">)</span>
 
-<span class="no">top_LR_ints</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">selected_spat</span>[<span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span>(-<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">PI</span>))]$<span class="no">LR_comb</span>)[<span class="fl">1</span>:<span class="fl">33</span>]
-<span class="no">top_LR_cell_ints</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">selected_spat</span>[<span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span>(-<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">PI</span>))]$<span class="no">LR_cell_comb</span>)[<span class="fl">1</span>:<span class="fl">33</span>]
+<span class="va">top_LR_ints</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">selected_spat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">PI</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">$</span><span class="va">LR_comb</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">33</span><span class="op">]</span>
+<span class="va">top_LR_cell_ints</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">selected_spat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">PI</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">$</span><span class="va">LR_cell_comb</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">33</span><span class="op">]</span>
 
-<span class="fu"><a href="../reference/plotCCcomHeatmap.html">plotCCcomHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                 <span class="kw">comScores</span> <span class="kw">=</span> <span class="no">spatial_all_scores</span>,
-                 <span class="kw">selected_LR</span> <span class="kw">=</span> <span class="no">top_LR_ints</span>,
-                 <span class="kw">selected_cell_LR</span> <span class="kw">=</span> <span class="no">top_LR_cell_ints</span>,
-                 <span class="kw">show</span> <span class="kw">=</span> <span class="st">'LR_expr'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotCCcomHeatmap.html">plotCCcomHeatmap</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                 comScores <span class="op">=</span> <span class="va">spatial_all_scores</span>,
+                 selected_LR <span class="op">=</span> <span class="va">top_LR_ints</span>,
+                 selected_cell_LR <span class="op">=</span> <span class="va">top_LR_cell_ints</span>,
+                 show <span class="op">=</span> <span class="st">'LR_expr'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCCcomHeatmap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="../reference/plotCCcomDotplot.html">plotCCcomDotplot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                 <span class="kw">comScores</span> <span class="kw">=</span> <span class="no">spatial_all_scores</span>,
-                 <span class="kw">selected_LR</span> <span class="kw">=</span> <span class="no">top_LR_ints</span>,
-                 <span class="kw">selected_cell_LR</span> <span class="kw">=</span> <span class="no">top_LR_cell_ints</span>,
-                 <span class="kw">cluster_on</span> <span class="kw">=</span> <span class="st">'PI'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="fu"><a href="../reference/plotCCcomDotplot.html">plotCCcomDotplot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                 comScores <span class="op">=</span> <span class="va">spatial_all_scores</span>,
+                 selected_LR <span class="op">=</span> <span class="va">top_LR_ints</span>,
+                 selected_cell_LR <span class="op">=</span> <span class="va">top_LR_cell_ints</span>,
+                 cluster_on <span class="op">=</span> <span class="st">'PI'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotCCcomDotplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="co">## * spatial vs rank ####</span>
-<span class="no">comb_comm</span> <span class="kw">=</span> <span class="fu"><a href="../reference/combCCcom.html">combCCcom</a></span>(<span class="kw">spatialCC</span> <span class="kw">=</span> <span class="no">spatial_all_scores</span>,
-                      <span class="kw">exprCC</span> <span class="kw">=</span> <span class="no">expr_only_scores</span>)
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="co">## * spatial vs rank ####</span>
+<span class="va">comb_comm</span> <span class="op">=</span> <span class="fu"><a href="../reference/combCCcom.html">combCCcom</a></span><span class="op">(</span>spatialCC <span class="op">=</span> <span class="va">spatial_all_scores</span>,
+                      exprCC <span class="op">=</span> <span class="va">expr_only_scores</span><span class="op">)</span>
 
 <span class="co"># top differential activity levels for ligand receptor pairs</span>
-<span class="fu"><a href="../reference/plotRankSpatvsExpr.html">plotRankSpatvsExpr</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                   <span class="no">comb_comm</span>,
-                   <span class="kw">expr_rnk_column</span> <span class="kw">=</span> <span class="st">'exprPI_rnk'</span>,
-                   <span class="kw">spat_rnk_column</span> <span class="kw">=</span> <span class="st">'spatPI_rnk'</span>,
-                   <span class="kw">midpoint</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotRankSpatvsExpr.html">plotRankSpatvsExpr</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+                   <span class="va">comb_comm</span>,
+                   expr_rnk_column <span class="op">=</span> <span class="st">'exprPI_rnk'</span>,
+                   spat_rnk_column <span class="op">=</span> <span class="st">'spatPI_rnk'</span>,
+                   midpoint <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotRankSpatvsExpr.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co">## * recovery ####</span>
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="co">## * recovery ####</span>
 <span class="co">## predict maximum differential activity</span>
-<span class="fu"><a href="../reference/plotRecovery.html">plotRecovery</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-             <span class="no">comb_comm</span>,
-             <span class="kw">expr_rnk_column</span> <span class="kw">=</span> <span class="st">'exprPI_rnk'</span>,
-             <span class="kw">spat_rnk_column</span> <span class="kw">=</span> <span class="st">'spatPI_rnk'</span>,
-             <span class="kw">ground_truth</span> <span class="kw">=</span> <span class="st">'spatial'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotRecovery.html">plotRecovery</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>,
+             <span class="va">comb_comm</span>,
+             expr_rnk_column <span class="op">=</span> <span class="st">'exprPI_rnk'</span>,
+             spat_rnk_column <span class="op">=</span> <span class="st">'spatPI_rnk'</span>,
+             ground_truth <span class="op">=</span> <span class="st">'spatial'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mini_datasets/mini_seqfish/vignette_200921/plotRecovery.png" style="width:50.0%"></p>
 </div>
 <div id="export-giotto-analyzer-to-viewer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-giotto-analyzer-to-viewer" class="anchor"></a>15. export Giotto Analyzer to Viewer</h2>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="no">viewer_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">temp_dir</span>, <span class="st">'/'</span>, <span class="st">'Mouse_cortex_viewer'</span>)
+<div class="sourceCode" id="cb37"><pre class="downlit">
+<span class="va">viewer_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">temp_dir</span>, <span class="st">'/'</span>, <span class="st">'Mouse_cortex_viewer'</span><span class="op">)</span>
 
 <span class="co"># select annotations, reductions and expression values to view in Giotto Viewer</span>
-<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>, <span class="kw">output_directory</span> <span class="kw">=</span> <span class="no">viewer_folder</span>,
-                   <span class="kw">factor_annotations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>,
+<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, output_directory <span class="op">=</span> <span class="va">viewer_folder</span>,
+                   factor_annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell_types'</span>,
                                           <span class="st">'leiden_clus'</span>,
-                                          <span class="st">'HMRF_k9_b.28'</span>),
-                   <span class="kw">numeric_annotations</span> <span class="kw">=</span> <span class="st">'total_expr'</span>,
-                   <span class="kw">dim_reductions</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'umap'</span>),
-                   <span class="kw">dim_reduction_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'umap'</span>),
-                   <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                   <span class="kw">expression_rounding</span> <span class="kw">=</span> <span class="fl">3</span>,
-                   <span class="kw">overwrite_dir</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
+                                          <span class="st">'HMRF_k9_b.28'</span><span class="op">)</span>,
+                   numeric_annotations <span class="op">=</span> <span class="st">'total_expr'</span>,
+                   dim_reductions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'umap'</span><span class="op">)</span>,
+                   dim_reduction_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'umap'</span><span class="op">)</span>,
+                   expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                   expression_rounding <span class="op">=</span> <span class="fl">3</span>,
+                   overwrite_dir <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></pre></div>
 </div>
   </div>
 
@@ -644,7 +686,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

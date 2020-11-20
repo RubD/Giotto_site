@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mini_visium_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>mini Visium</h1>
@@ -146,15 +146,26 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span></pre></div>
+<div id="install-python-modules" class="section level3">
+<h3 class="hasAnchor">
+<a href="#install-python-modules" class="anchor"></a>Install Python modules</h3>
+<p>To run this vignette you need to install all the necessary Python modules.</p>
+<ol style="list-style-type: decimal">
+<li><p>This can be done manually, see <a href="https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation" class="uri">https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation</a></p></li>
+<li><p>This can be done within R using our installation tools (installGiottoEnvironment), see <a href="https://rubd.github.io/Giotto_site/articles/tut0_giotto_environment.html" class="uri">https://rubd.github.io/Giotto_site/articles/tut0_giotto_environment.html</a> for more information.</p></li>
+</ol>
+</div>
 <div id="optional-set-giotto-instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#optional-set-giotto-instructions" class="anchor"></a>(optional) set giotto instructions</h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># to automatically save figures in save_dir set save_plot to TRUE</span>
-<span class="no">temp_dir</span> <span class="kw">=</span> <span class="st">'~/Temp/'</span>
-<span class="no">myinstructions</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">temp_dir</span>,
-                                          <span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-                                          <span class="kw">show_plot</span> <span class="kw">=</span> <span class="no">F</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># to automatically save figures in save_dir set save_plot to TRUE</span>
+<span class="va">temp_dir</span> <span class="op">=</span> <span class="st">'~/Temp/'</span>
+<span class="va">myinstructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>save_dir <span class="op">=</span> <span class="va">temp_dir</span>,
+                                          save_plot <span class="op">=</span> <span class="cn">FALSE</span>, 
+                                          show_plot <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
 </div>
 <div id="a--create-a-giotto-object" class="section level2">
 <h2 class="hasAnchor">
@@ -162,41 +173,44 @@
 <p>minimum requirements:<br>
 - matrix with expression information (or path to)<br>
 - x,y(,z) coordinates for cells or spots (or path to)</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># giotto object </span>
-<span class="no">expr_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"visium_DG_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">loc_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"visium_DG_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">expr_path</span>,
-                                   <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">loc_path</span>,
-                                   <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">myinstructions</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># giotto object </span>
+<span class="va">expr_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">loc_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">expr_path</span>,
+                                   spatial_locs <span class="op">=</span> <span class="va">loc_path</span>,
+                                   instructions <span class="op">=</span> <span class="va">myinstructions</span><span class="op">)</span></pre></div>
 <p>How to work with Giotto instructions that are part of your Giotto object:<br>
 - show the instructions associated with your Giotto object with <strong>showGiottoInstructions</strong><br>
 - change one or more instructions with <strong>changeGiottoInstructions</strong><br>
 - replace all instructions at once with <strong>replaceGiottoInstructions</strong><br>
 - read or get a specific giotto instruction with <strong>readGiottoInstructions</strong><br>
 Of note, the python path can only be set once in an R session. See the reticulate package for more information.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># show instructions associated with giotto object (mini_visium)</span>
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span>(<span class="no">mini_visium</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># show instructions associated with giotto object (mini_visium)</span>
+<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span></pre></div>
 </div>
 <div id="b--add-image" class="section level2">
 <h2 class="hasAnchor">
 <a href="#b--add-image" class="anchor"></a>1. B. Add image</h2>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co">## 1. read image</span>
-<span class="no">png_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"deg_image.png"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">mg_img</span> <span class="kw">=</span> <span class="kw pkg">magick</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span>(<span class="no">png_path</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co">## 1. read image</span>
+<span class="va">png_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"deg_image.png"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">mg_img</span> <span class="op">=</span> <span class="fu">magick</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span><span class="op">(</span><span class="va">png_path</span><span class="op">)</span>
 
 <span class="co">## 2. test and modify image alignment</span>
-<span class="no">mypl</span> <span class="kw">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">return_plot</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">0.8</span>)
-<span class="no">orig_png</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoImage.html">createGiottoImage</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">mg_object</span> <span class="kw">=</span> <span class="no">mg_img</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'image'</span>,
-                             <span class="kw">xmax_adj</span> <span class="kw">=</span> <span class="fl">450</span>, <span class="kw">xmin_adj</span> <span class="kw">=</span> <span class="fl">550</span>,
-                             <span class="kw">ymax_adj</span> <span class="kw">=</span> <span class="fl">200</span>, <span class="kw">ymin_adj</span> <span class="kw">=</span> <span class="fl">200</span>)
-<span class="no">mypl_image</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addGiottoImageToSpatPlot.html">addGiottoImageToSpatPlot</a></span>(<span class="no">mypl</span>, <span class="no">orig_png</span>)
-<span class="no">mypl_image</span>
+<span class="va">mypl</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, return_plot <span class="op">=</span> <span class="cn">T</span>, point_alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+<span class="va">orig_png</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoImage.html">createGiottoImage</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, mg_object <span class="op">=</span> <span class="va">mg_img</span>, name <span class="op">=</span> <span class="st">'image'</span>,
+                             xmax_adj <span class="op">=</span> <span class="fl">450</span>, xmin_adj <span class="op">=</span> <span class="fl">550</span>,
+                             ymax_adj <span class="op">=</span> <span class="fl">200</span>, ymin_adj <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
+<span class="va">mypl_image</span> <span class="op">=</span> <span class="fu"><a href="../reference/addGiottoImageToSpatPlot.html">addGiottoImageToSpatPlot</a></span><span class="op">(</span><span class="va">mypl</span>, <span class="va">orig_png</span><span class="op">)</span>
+<span class="va">mypl_image</span>
 
 <span class="co">## 3. add images to Giotto object ##</span>
-<span class="no">image_list</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">orig_png</span>)
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addGiottoImage.html">addGiottoImage</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                             <span class="kw">images</span> <span class="kw">=</span> <span class="no">image_list</span>)
-<span class="fu"><a href="../reference/showGiottoImageNames.html">showGiottoImageNames</a></span>(<span class="no">mini_visium</span>)</pre></body></html></div>
+<span class="va">image_list</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">orig_png</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/addGiottoImage.html">addGiottoImage</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                             images <span class="op">=</span> <span class="va">image_list</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showGiottoImageNames.html">showGiottoImageNames</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span></pre></div>
 </div>
 <div id="processing-steps" class="section level2">
 <h2 class="hasAnchor">
@@ -209,23 +223,24 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>adjust expression matrix for technical covariates or batches (optional). These results will be stored in the <em>custom</em> slot.</li>
 </ul>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># explore gene and cell distribution</span>
-<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">mini_visium</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'genes'</span>)
-<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span>(<span class="no">mini_visium</span>, <span class="kw">detection</span> <span class="kw">=</span> <span class="st">'cells'</span>)
-<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span>(<span class="no">mini_visium</span>,
-                   <span class="kw">expression_thresholds</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>),
-                   <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">50</span>),
-                   <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">100</span>, <span class="fl">200</span>))
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># explore gene and cell distribution</span>
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">mini_visium</span>, detection <span class="op">=</span> <span class="st">'genes'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/filterDistributions.html">filterDistributions</a></span><span class="op">(</span><span class="va">mini_visium</span>, detection <span class="op">=</span> <span class="st">'cells'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/filterCombinations.html">filterCombinations</a></span><span class="op">(</span><span class="va">mini_visium</span>,
+                   expression_thresholds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,
+                   gene_det_in_min_cells <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">50</span>, <span class="fl">50</span><span class="op">)</span>,
+                   min_det_genes_per_cell <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">100</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># filter and normalize</span>
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                            <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">1</span>,
-                            <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">50</span>,
-                            <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">100</span>,
-                            <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
-                            <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">6000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)</pre></body></html></div>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                            expression_threshold <span class="op">=</span> <span class="fl">1</span>,
+                            gene_det_in_min_cells <span class="op">=</span> <span class="fl">50</span>,
+                            min_det_genes_per_cell <span class="op">=</span> <span class="fl">100</span>,
+                            expression_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'raw'</span><span class="op">)</span>,
+                            verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, scalefactor <span class="op">=</span> <span class="fl">6000</span>, verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span></pre></div>
 </div>
 <div id="dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
@@ -239,16 +254,17 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>run UMAP and/or TSNE on PCs (or directly on matrix)</li>
 </ul>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span>
 
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">30</span>)
-<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span>
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, ncp <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span>
 
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">mini_visium</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">mini_visium</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>)
-<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>)</pre></body></html></div>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">mini_visium</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span><span class="op">(</span><span class="va">mini_visium</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span></pre></div>
 </div>
 <div id="clustering" class="section level2">
 <h2 class="hasAnchor">
@@ -258,50 +274,53 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives)</li>
 </ul>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">15</span>)
-<span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.4</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, resolution <span class="op">=</span> <span class="fl">0.4</span>, n_iterations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
 
 <span class="co"># visualize UMAP cluster results</span>
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>)
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, show_NN_network <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>
 
 <span class="co"># visualize UMAP and spatial results</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">spat_point_shape</span> <span class="kw">=</span> <span class="st">'voronoi'</span>)
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, spat_point_shape <span class="op">=</span> <span class="st">'voronoi'</span><span class="op">)</span>
 
 <span class="co"># heatmap and dendrogram</span>
-<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
-<span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span>(<span class="no">mini_visium</span>, <span class="kw">h</span> <span class="kw">=</span> <span class="fl">0.5</span>, <span class="kw">rotate</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/showClusterHeatmap.html">showClusterHeatmap</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showClusterDendrogram.html">showClusterDendrogram</a></span><span class="op">(</span><span class="va">mini_visium</span>, h <span class="op">=</span> <span class="fl">0.5</span>, rotate <span class="op">=</span> <span class="cn">T</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 </div>
 <div id="differential-expression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#differential-expression" class="anchor"></a>5. differential expression</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">scran_markers</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                                       <span class="kw">method</span> <span class="kw">=</span> <span class="st">'scran'</span>,
-                                       <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                       <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">scran_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                                       method <span class="op">=</span> <span class="st">'scran'</span>,
+                                       expression_values <span class="op">=</span> <span class="st">'normalized'</span>,
+                                       cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
 <span class="co"># violinplot</span>
-<span class="no">topgenes_scran</span> <span class="kw">=</span> <span class="no">scran_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="no">topgenes_scran</span>, <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>)
+<span class="va">topgenes_scran</span> <span class="op">=</span> <span class="va">scran_markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, genes <span class="op">=</span> <span class="va">topgenes_scran</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+           strip_text <span class="op">=</span> <span class="fl">10</span>, strip_position <span class="op">=</span> <span class="st">'right'</span><span class="op">)</span>
 
 <span class="co"># metadata heatmap</span>
-<span class="no">topgenes_scran</span> <span class="kw">=</span> <span class="no">scran_markers</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">6</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">mini_visium</span>, <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">topgenes_scran</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>))</pre></body></html></div>
+<span class="va">topgenes_scran</span> <span class="op">=</span> <span class="va">scran_markers</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">6</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">mini_visium</span>, selected_genes <span class="op">=</span> <span class="va">topgenes_scran</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_clus'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="a--simple-cell-type-annotation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#a--simple-cell-type-annotation" class="anchor"></a>6. A. simple cell type annotation</h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">
-<span class="no">clusters_cell_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Gfap_cells'</span>, <span class="st">'Tbr1_cells'</span>, <span class="st">'Tcf7l2_cells'</span>, <span class="st">'Wfs1_cells'</span>, <span class="st">'Nptxr_cells'</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">clusters_cell_types</span>) <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">annotation_vector</span> <span class="kw">=</span> <span class="no">clusters_cell_types</span>,
-                             <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cell_types'</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit">
+
+<span class="va">clusters_cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Gfap_cells'</span>, <span class="st">'Tbr1_cells'</span>, <span class="st">'Tcf7l2_cells'</span>, <span class="st">'Wfs1_cells'</span>, <span class="st">'Nptxr_cells'</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">clusters_cell_types</span><span class="op">)</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateGiotto.html">annotateGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, annotation_vector <span class="op">=</span> <span class="va">clusters_cell_types</span>,
+                             cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>, name <span class="op">=</span> <span class="st">'cell_types'</span><span class="op">)</span>
 
 <span class="co"># check new cell metadata</span>
-<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">mini_visium</span>)
+<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span>
 
 <span class="co"># visualize annotations</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'cell_types'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, cell_color <span class="op">=</span> <span class="st">'cell_types'</span>, spat_point_size <span class="op">=</span> <span class="fl">3</span>, dim_point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
 </div>
 <div id="b--simple-cell-type-enrichment" class="section level2">
 <h2 class="hasAnchor">
@@ -311,51 +330,53 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <a href="#spatial-enrichment-cell-type-distribution" class="anchor"></a>7.2 spatial enrichment: cell type distribution</h3>
 <p>Here we will use known markers for different mouse brain cell types to identify which cell types are enriched in the individual spots or identified clusters.</p>
 <p>Paper: eisel, A. et al. Molecular Architecture of the Mouse Nervous System. Cell 174, 999-1014.e22 (2018).</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co">## cell type signatures ##</span>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co">## cell type signatures ##</span>
 <span class="co">## combination of all marker genes identified in Zeisel et al</span>
-<span class="no">sign_matrix_path</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"sig_matrix.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">brain_sc_markers</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span>(<span class="no">sign_matrix_path</span>) <span class="co"># file don't exist in data folder</span>
-<span class="no">sig_matrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">brain_sc_markers</span>[,-<span class="fl">1</span>]); <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">sig_matrix</span>) <span class="kw">=</span> <span class="no">brain_sc_markers</span>$<span class="no">Event</span>
+<span class="va">sign_matrix_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sig_matrix.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">brain_sc_markers</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="va">sign_matrix_path</span><span class="op">)</span> <span class="co"># file don't exist in data folder</span>
+<span class="va">sig_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">brain_sc_markers</span><span class="op">[</span>,<span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sig_matrix</span><span class="op">)</span> <span class="op">=</span> <span class="va">brain_sc_markers</span><span class="op">$</span><span class="va">Event</span>
 
 <span class="co">## enrichment tests</span>
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/runSpatialEnrich.html">runSpatialEnrich</a></span>(<span class="no">mini_visium</span>,
-                               <span class="kw">sign_matrix</span> <span class="kw">=</span> <span class="no">sig_matrix</span>,
-                               <span class="kw">enrich_method</span> <span class="kw">=</span> <span class="st">'PAGE'</span>) <span class="co">#default = 'PAGE'</span>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/runSpatialEnrich.html">runSpatialEnrich</a></span><span class="op">(</span><span class="va">mini_visium</span>, 
+                               sign_matrix <span class="op">=</span> <span class="va">sig_matrix</span>, 
+                               enrich_method <span class="op">=</span> <span class="st">'PAGE'</span><span class="op">)</span> <span class="co">#default = 'PAGE'</span>
 
 <span class="co">## heatmap of enrichment versus annotation (e.g. clustering result)</span>
-<span class="no">cell_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">sig_matrix</span>)
-<span class="fu"><a href="../reference/plotMetaDataCellsHeatmap.html">plotMetaDataCellsHeatmap</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                         <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-                         <span class="kw">value_cols</span> <span class="kw">=</span> <span class="no">cell_types</span>,
-                         <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'PAGE'</span>,
-                         <span class="kw">x_text_size</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">y_text_size</span> <span class="kw">=</span> <span class="fl">8</span>)
+<span class="va">cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sig_matrix</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotMetaDataCellsHeatmap.html">plotMetaDataCellsHeatmap</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                         metadata_cols <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+                         value_cols <span class="op">=</span> <span class="va">cell_types</span>,
+                         spat_enr_names <span class="op">=</span> <span class="st">'PAGE'</span>,
+                         x_text_size <span class="op">=</span> <span class="fl">8</span>, y_text_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 
 
-<span class="no">enrichment_results</span> <span class="kw">=</span> <span class="no">mini_visium</span>@<span class="kw">spatial_enrichment</span>$<span class="no">PAGE</span>
-<span class="no">enrich_cell_types</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">enrichment_results</span>)
-<span class="no">enrich_cell_types</span> <span class="kw">=</span> <span class="no">enrich_cell_types</span>[<span class="no">enrich_cell_types</span> <span class="kw">!=</span> <span class="st">'cell_ID'</span>]
+<span class="va">enrichment_results</span> <span class="op">=</span> <span class="va">mini_visium</span><span class="op">@</span><span class="va">spatial_enrichment</span><span class="op">$</span><span class="va">PAGE</span>
+<span class="va">enrich_cell_types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">enrichment_results</span><span class="op">)</span>
+<span class="va">enrich_cell_types</span> <span class="op">=</span> <span class="va">enrich_cell_types</span><span class="op">[</span><span class="va">enrich_cell_types</span> <span class="op">!=</span> <span class="st">'cell_ID'</span><span class="op">]</span>
 
 <span class="co">## spatplot</span>
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'PAGE'</span>,
-             <span class="kw">cell_annotation_values</span> <span class="kw">=</span> <span class="no">enrich_cell_types</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>,<span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, spat_enr_names <span class="op">=</span> <span class="st">'PAGE'</span>,
+             cell_annotation_values <span class="op">=</span> <span class="va">enrich_cell_types</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">3</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
 </div>
 </div>
 <div id="spatial-grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-grid" class="anchor"></a>7. spatial grid</h2>
 <p>Create a grid based on defined stepsizes in the x,y(,z) axes.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">mini_visium</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                                 <span class="kw">sdimx_stepsize</span> <span class="kw">=</span> <span class="fl">300</span>,
-                                 <span class="kw">sdimy_stepsize</span> <span class="kw">=</span> <span class="fl">300</span>,
-                                 <span class="kw">minimum_padding</span> <span class="kw">=</span> <span class="fl">50</span>)
-<span class="fu"><a href="../reference/showGrids.html">showGrids</a></span>(<span class="no">mini_visium</span>)
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">mini_visium</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                                 sdimx_stepsize <span class="op">=</span> <span class="fl">300</span>,
+                                 sdimy_stepsize <span class="op">=</span> <span class="fl">300</span>,
+                                 minimum_padding <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showGrids.html">showGrids</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, show_grid <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span>
 
 <span class="co"># extract grid and associated metadata spots</span>
-<span class="no">annotated_grid</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateSpatialGrid.html">annotateSpatialGrid</a></span>(<span class="no">mini_visium</span>)
-<span class="no">annotated_grid_metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/annotateSpatialGrid.html">annotateSpatialGrid</a></span>(<span class="no">mini_visium</span>,
-                                              <span class="kw">cluster_columns</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>, <span class="st">'cell_types'</span>, <span class="st">'nr_genes'</span>))</pre></body></html></div>
+<span class="va">annotated_grid</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateSpatialGrid.html">annotateSpatialGrid</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span>
+<span class="va">annotated_grid_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/annotateSpatialGrid.html">annotateSpatialGrid</a></span><span class="op">(</span><span class="va">mini_visium</span>,
+                                              cluster_columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_clus'</span>, <span class="st">'cell_types'</span>, <span class="st">'nr_genes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-network" class="section level2">
 <h2 class="hasAnchor">
@@ -367,20 +388,21 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </li>
 <li>create a spatial kNN network</li>
 </ul>
-<div class="sourceCode" id="cb13"><html><body><pre class="r">
-<span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">maximum_distance</span> <span class="kw">=</span> <span class="fl">300</span>)
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">maximum_distance_delaunay</span> <span class="kw">=</span> <span class="fl">400</span>)
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">10</span>)
-<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span>(<span class="no">mini_visium</span>)
+<div class="sourceCode" id="cb13"><pre class="downlit">
+
+<span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, maximum_distance <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, maximum_distance_delaunay <span class="op">=</span> <span class="fl">400</span><span class="op">)</span>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, method <span class="op">=</span> <span class="st">'kNN'</span>, k <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span>
 
 <span class="co"># visualize the two different spatial networks  </span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'kNN_network'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'kNN_network'</span>,
+         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-genes" class="section level2">
 <h2 class="hasAnchor">
@@ -390,25 +412,27 @@ Of note, the python path can only be set once in an R session. See the reticulat
 - binSpect with rank binarization<br>
 - silhouetteRank</p>
 <p>Visualize top 4 genes per method.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">km_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">mini_visium</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">mini_visium</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
-<span class="no">rank_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">mini_visium</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">rank_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">silh_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>) <span class="co"># TODO: suppress print output</span>
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">mini_visium</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">silh_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">4</span>]$<span class="no">genes</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-             <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">F</span>, <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-             <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="va">rank_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">mini_visium</span>, bin_method <span class="op">=</span> <span class="st">'rank'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">rank_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">silh_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span><span class="op">)</span> <span class="co"># TODO: suppress print output</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">mini_visium</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">silh_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>,
+             show_network <span class="op">=</span> <span class="cn">F</span>, network_color <span class="op">=</span> <span class="st">'lightgrey'</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+             cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-co-expression-patterns" class="section level2">
 <h2 class="hasAnchor">
@@ -416,81 +440,84 @@ Of note, the python path can only be set once in an R session. See the reticulat
 <p>Identify robust spatial co-expression patterns using the spatial network or grid and a subset of individual spatial genes.<br>
 1. calculate spatial correlation scores<br>
 2. cluster correlation scores</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r">
+<div class="sourceCode" id="cb16"><pre class="downlit">
+
 <span class="co"># 1. calculate spatial correlation scores </span>
-<span class="no">ext_spatial_genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">100</span>]$<span class="no">genes</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span>(<span class="no">mini_visium</span>,
-                                         <span class="kw">method</span> <span class="kw">=</span> <span class="st">'network'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                                         <span class="kw">subset_genes</span> <span class="kw">=</span> <span class="no">ext_spatial_genes</span>)
+<span class="va">ext_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span><span class="op">(</span><span class="va">mini_visium</span>,
+                                         method <span class="op">=</span> <span class="st">'network'</span>, spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                                         subset_genes <span class="op">=</span> <span class="va">ext_spatial_genes</span><span class="op">)</span>
 
 <span class="co"># 2. cluster correlation scores</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>)
-<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span>(<span class="no">mini_visium</span>, <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>)
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span><span class="op">(</span><span class="va">mini_visium</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span>
 
 
-<span class="no">netw_ranks</span> <span class="kw">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span>(<span class="no">mini_visium</span>, <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>)
-<span class="no">top_netw_spat_cluster</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                            <span class="kw">selected_clusters</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
+<span class="va">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span><span class="op">(</span><span class="va">mini_visium</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span>
+<span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                            selected_clusters <span class="op">=</span> <span class="fl">6</span>, show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
-<span class="no">cluster_genes_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="no">cluster_genes</span> <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">cluster_genes</span>) <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">gene_ID</span>
+<span class="va">cluster_genes_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">cluster_genes</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cluster_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">gene_ID</span>
 
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span>(<span class="no">mini_visium</span>, <span class="kw">gene_clusters</span> <span class="kw">=</span> <span class="no">cluster_genes</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>)
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(<span class="no">mini_visium</span>,
-             <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>,
-             <span class="kw">cell_annotation_values</span> <span class="kw">=</span> <span class="no">netw_ranks</span>$<span class="no">clusters</span>,
-             <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>)</pre></body></html></div>
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span><span class="op">(</span><span class="va">mini_visium</span>, gene_clusters <span class="op">=</span> <span class="va">cluster_genes</span>, name <span class="op">=</span> <span class="st">'cluster_metagene'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span><span class="va">mini_visium</span>,
+             spat_enr_names <span class="op">=</span> <span class="st">'cluster_metagene'</span>,
+             cell_annotation_values <span class="op">=</span> <span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span>,
+             point_size <span class="op">=</span> <span class="fl">1.5</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
 </div>
 <div id="spatial-hmrf-domains" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-hmrf-domains" class="anchor"></a>11. spatial HMRF domains</h2>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">hmrf_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">temp_dir</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="no">hmrf_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">hmrf_folder</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="no">T</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">hmrf_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">temp_dir</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">hmrf_folder</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, recursive <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># perform hmrf</span>
-<span class="no">my_spatial_genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">100</span>]$<span class="no">genes</span>
-<span class="no">HMRF_spatial_genes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                            <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                            <span class="kw">spatial_genes</span> <span class="kw">=</span> <span class="no">my_spatial_genes</span>,
-                            <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                            <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>,
-                            <span class="kw">betas</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28</span>,<span class="fl">2</span>,<span class="fl">2</span>),
-                            <span class="kw">output_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes_brain/SG_top100_k8_scaled'</span>))
+<span class="va">my_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
+<span class="va">HMRF_spatial_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                            expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                            spatial_genes <span class="op">=</span> <span class="va">my_spatial_genes</span>,
+                            spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                            k <span class="op">=</span> <span class="fl">8</span>,
+                            betas <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>,
+                            output_folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes_brain/SG_top100_k8_scaled'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># check and select hmrf</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">28</span>, <span class="fl">30</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">2</span>)) {
-  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                    <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                    <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">betas_to_view</span> <span class="kw">=</span> <span class="no">i</span>,
-                    <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>)
-}
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                    HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                    k <span class="op">=</span> <span class="fl">8</span>, betas_to_view <span class="op">=</span> <span class="va">i</span>,
+                    point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="op">}</span>
 
-<span class="no">mini_visium</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>,
-                      <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                      <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">betas_to_add</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">28</span>),
-                      <span class="kw">hmrf_name</span> <span class="kw">=</span> <span class="st">'HMRF'</span>)
+<span class="va">mini_visium</span> <span class="op">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>,
+                      HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                      k <span class="op">=</span> <span class="fl">8</span>, betas_to_add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>,
+                      hmrf_name <span class="op">=</span> <span class="st">'HMRF'</span><span class="op">)</span>
 
-<span class="no">giotto_colors</span> <span class="kw">=</span> <span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span>(<span class="fl">8</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">giotto_colors</span>) <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'HMRF_k8_b.28'</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">coord_fix_ratio</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="no">giotto_colors</span>)</pre></body></html></div>
+<span class="va">giotto_colors</span> <span class="op">=</span> <span class="fu"><a href="../reference/getDistinctColors.html">getDistinctColors</a></span><span class="op">(</span><span class="fl">8</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">giotto_colors</span><span class="op">)</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k8_b.28'</span>,
+         point_size <span class="op">=</span> <span class="fl">3</span>, coord_fix_ratio <span class="op">=</span> <span class="fl">1</span>, cell_color_code <span class="op">=</span> <span class="va">giotto_colors</span><span class="op">)</span></pre></div>
 </div>
 <div id="export-giotto-analyzer-to-viewer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-giotto-analyzer-to-viewer" class="anchor"></a>12. export Giotto Analyzer to Viewer</h2>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">viewer_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">temp_dir</span>, <span class="st">'/'</span>, <span class="st">'Mouse_cortex_viewer'</span>)
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">viewer_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">temp_dir</span>, <span class="st">'/'</span>, <span class="st">'Mouse_cortex_viewer'</span><span class="op">)</span>
 
 <span class="co"># select annotations, reductions and expression values to view in Giotto Viewer</span>
-<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">mini_visium</span>, <span class="kw">output_directory</span> <span class="kw">=</span> <span class="no">viewer_folder</span>,
-                   <span class="kw">factor_annotations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'cell_types'</span>,
+<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_visium</span>, output_directory <span class="op">=</span> <span class="va">viewer_folder</span>,
+                   factor_annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell_types'</span>,
                                           <span class="st">'leiden_clus'</span>,
-                                          <span class="st">'HMRF_k8_b.28'</span>),
-                   <span class="kw">numeric_annotations</span> <span class="kw">=</span> <span class="st">'total_expr'</span>,
-                   <span class="kw">dim_reductions</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'umap'</span>),
-                   <span class="kw">dim_reduction_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'umap'</span>),
-                   <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                   <span class="kw">expression_rounding</span> <span class="kw">=</span> <span class="fl">3</span>,
-                   <span class="kw">overwrite_dir</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
+                                          <span class="st">'HMRF_k8_b.28'</span><span class="op">)</span>,
+                   numeric_annotations <span class="op">=</span> <span class="st">'total_expr'</span>,
+                   dim_reductions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'umap'</span><span class="op">)</span>,
+                   dim_reduction_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'umap'</span><span class="op">)</span>,
+                   expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                   expression_rounding <span class="op">=</span> <span class="fl">3</span>,
+                   overwrite_dir <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></pre></div>
 </div>
   </div>
 
@@ -509,7 +536,7 @@ Of note, the python path can only be set once in an R session. See the reticulat
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

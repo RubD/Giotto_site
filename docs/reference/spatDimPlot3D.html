@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,57 +190,57 @@
     <p>Visualize cells according to spatial AND dimension reduction coordinates in plotly mode</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spatDimPlot3D</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>plot_alignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"horizontal"</span>, <span class='st'>"vertical"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>dim3_to_use</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='st'>"sdimx"</span>,
-  <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='st'>"sdimy"</span>,
-  <span class='kw'>sdimz</span> <span class='kw'>=</span> <span class='st'>"sdimz"</span>,
-  <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>nn_network_color</span> <span class='kw'>=</span> <span class='st'>"lightgray"</span>,
-  <span class='kw'>nn_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>show_center_label</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>label_size</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>other_point_size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color_as_factor</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dim_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>show_spatial_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>spatial_network_color</span> <span class='kw'>=</span> <span class='st'>"lightgray"</span>,
-  <span class='kw'>spatial_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spatial_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
-  <span class='kw'>spatial_grid_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spatial_grid_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>spatial_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>axis_scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cube"</span>, <span class='st'>"real"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>custom_ratio</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>z_ticks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend_text_size</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"spatDimPlot3D"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>spatDimPlot3D</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  plot_alignment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"horizontal"</span>, <span class='st'>"vertical"</span><span class='op'>)</span>,
+  dim_reduction_to_use <span class='op'>=</span> <span class='st'>"umap"</span>,
+  dim_reduction_name <span class='op'>=</span> <span class='st'>"umap"</span>,
+  dim1_to_use <span class='op'>=</span> <span class='fl'>1</span>,
+  dim2_to_use <span class='op'>=</span> <span class='fl'>2</span>,
+  dim3_to_use <span class='op'>=</span> <span class='fl'>3</span>,
+  sdimx <span class='op'>=</span> <span class='st'>"sdimx"</span>,
+  sdimy <span class='op'>=</span> <span class='st'>"sdimy"</span>,
+  sdimz <span class='op'>=</span> <span class='st'>"sdimz"</span>,
+  spat_enr_names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_NN_network <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  nn_network_to_use <span class='op'>=</span> <span class='st'>"sNN"</span>,
+  network_name <span class='op'>=</span> <span class='st'>"sNN.pca"</span>,
+  nn_network_color <span class='op'>=</span> <span class='st'>"lightgray"</span>,
+  nn_network_alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  show_cluster_center <span class='op'>=</span> <span class='cn'>F</span>,
+  show_center_label <span class='op'>=</span> <span class='cn'>T</span>,
+  center_point_size <span class='op'>=</span> <span class='fl'>4</span>,
+  label_size <span class='op'>=</span> <span class='fl'>16</span>,
+  select_cell_groups <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select_cells <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_other_cells <span class='op'>=</span> <span class='cn'>T</span>,
+  other_cell_color <span class='op'>=</span> <span class='st'>"lightgrey"</span>,
+  other_point_size <span class='op'>=</span> <span class='fl'>1.5</span>,
+  cell_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_as_factor <span class='op'>=</span> <span class='cn'>T</span>,
+  cell_color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dim_point_size <span class='op'>=</span> <span class='fl'>3</span>,
+  show_spatial_network <span class='op'>=</span> <span class='cn'>F</span>,
+  spatial_network_name <span class='op'>=</span> <span class='st'>"Delaunay_network"</span>,
+  spatial_network_color <span class='op'>=</span> <span class='st'>"lightgray"</span>,
+  spatial_network_alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  show_spatial_grid <span class='op'>=</span> <span class='cn'>F</span>,
+  spatial_grid_name <span class='op'>=</span> <span class='st'>"spatial_grid"</span>,
+  spatial_grid_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_grid_alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  spatial_point_size <span class='op'>=</span> <span class='fl'>3</span>,
+  axis_scale <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cube"</span>, <span class='st'>"real"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  custom_ratio <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_ticks <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_ticks <span class='op'>=</span> <span class='cn'>NULL</span>,
+  z_ticks <span class='op'>=</span> <span class='cn'>NULL</span>,
+  legend_text_size <span class='op'>=</span> <span class='fl'>12</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  default_save_name <span class='op'>=</span> <span class='st'>"spatDimPlot3D"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -470,7 +470,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@
     <p>Visualize cells according to dimension reduction coordinates</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dimCellPlot</span>(<span class='no'>gobject</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dimCellPlot</span><span class='op'>(</span><span class='va'>gobject</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,7 +201,7 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='dimCellPlot2D.html'>dimCellPlot2D</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='dimCellPlot2D.html'>dimCellPlot2D</a></code></p><dl>
     <dt><code>dim_reduction_to_use</code></dt><dd><p>dimension reduction to use</p></dd>
     <dt><code>dim_reduction_name</code></dt><dd><p>dimension reduction name</p></dd>
     <dt><code>dim1_to_use</code></dt><dd><p>dimension to use on x-axis</p></dd>
@@ -265,19 +265,62 @@
 <code><a href='dimCellPlot2D.html'>dimCellPlot2D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
 <span class='co'># combine all metadata</span>
-<span class='fu'><a href='combineMetadata.html'>combineMetadata</a></span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='st'>'cluster_metagene'</span>)
-
+<span class='fu'><a href='combineMetadata.html'>combineMetadata</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, spat_enr_names <span class='op'>=</span> <span class='st'>'cluster_metagene'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      cell_ID nr_genes perc_genes total_expr leiden_clus cell_types   sdimx
+#&gt;  1:   cell_2       13         65  111.98320           3     cell C 1589.47
+#&gt;  2:   cell_7       15         75  115.73030           3     cell C 1291.34
+#&gt;  3:  cell_12       11         55   95.49802           1     cell A 1183.07
+#&gt;  4:  cell_15       12         60   99.94782           3     cell C 1115.86
+#&gt;  5:  cell_17       13         65  111.32963           2     cell B 1074.92
+#&gt;  6:  cell_30       11         55   96.64302           3     cell C  882.00
+#&gt;  7:  cell_37        6         30   57.77777           2     cell B  618.20
+#&gt;  8:  cell_40        9         45   82.84693           2     cell B  565.40
+#&gt;  9:  cell_44        9         45   79.93838           2     cell B  417.40
+#&gt; 10:  cell_53        9         45   82.40747           1     cell A 1831.19
+#&gt; 11:  cell_64        8         40   73.06345           1     cell A 1839.07
+#&gt; 12:  cell_74       11         55   93.04295           3     cell C 1575.84
+#&gt; 13:  cell_85        8         40   73.72574           1     cell A 1440.75
+#&gt; 14:  cell_86       14         70  115.75186           1     cell A 1427.06
+#&gt; 15:  cell_90       11         55   93.02181           1     cell A 1351.50
+#&gt; 16:  cell_95        6         30   59.55714           1     cell A 1228.13
+#&gt; 17:  cell_96       10         50   88.31757           1     cell A 1210.65
+#&gt; 18: cell_107       16         80  130.62640           1     cell A  969.60
+#&gt; 19: cell_113       12         60   99.83100           2     cell B  874.30
+#&gt; 20: cell_118       14         70  117.63523           2     cell B  270.00
+#&gt;        sdimy        1        2        3
+#&gt;  1:  -669.51 3.144429 8.617638 5.853656
+#&gt;  2:  -957.71 4.088076 9.410168 4.427447
+#&gt;  3:  -950.97 2.899783 9.264667 2.785292
+#&gt;  4: -1021.40 4.058155 7.842009 3.405087
+#&gt;  5:  -391.16 6.413588 7.374390 2.629099
+#&gt;  6:  -668.36 2.989329 9.298030 2.823368
+#&gt;  7:  -894.70 7.222222 0.000000 0.000000
+#&gt;  8:  -421.27 5.933558 3.031319 2.865092
+#&gt;  9:  -669.71 8.067155 0.000000 2.566856
+#&gt; 10: -1090.20 2.183105 6.374428 4.449344
+#&gt; 11: -1458.00 0.985555 9.382938 1.480231
+#&gt; 12: -1829.60 1.715689 8.215992 5.003582
+#&gt; 13: -1298.30 0.000000 7.914246 4.373377
+#&gt; 14: -1401.00 3.790383 5.580052 8.658080
+#&gt; 15: -1923.80 1.839913 9.190628 3.859789
+#&gt; 16:  -739.38 2.523159 6.561978 0.000000
+#&gt; 17:  -374.81 3.737206 8.241875 1.494778
+#&gt; 18: -1198.50 4.579634 8.674903 6.989984
+#&gt; 19: -1127.00 5.564253 7.927811 1.291685
+#&gt; 20: -1383.30 9.142231 1.263504 6.152727</div><div class='input'>
 <span class='co'># visualize total expression information</span>
-<span class='fu'>dimCellPlot</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>cell_annotation_values</span> <span class='kw'>=</span> <span class='st'>'total_expr'</span>)
-
+<span class='fu'>dimCellPlot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, cell_annotation_values <span class='op'>=</span> <span class='st'>'total_expr'</span><span class='op'>)</span>
+</div><div class='img'><img src='dimCellPlot-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='dimCellPlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># visualize enrichment results</span>
-<span class='fu'>dimCellPlot</span>(<span class='no'>mini_giotto_single_cell</span>,
-               <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='st'>'cluster_metagene'</span>,
-               <span class='kw'>cell_annotation_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'1'</span>,<span class='st'>'2'</span>))</pre>
+<span class='fu'>dimCellPlot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>,
+               spat_enr_names <span class='op'>=</span> <span class='st'>'cluster_metagene'</span>,
+               cell_annotation_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'1'</span>,<span class='st'>'2'</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='dimCellPlot-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='dimCellPlot-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -293,7 +336,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

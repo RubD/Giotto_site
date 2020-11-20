@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="mouse_visium_kidney_200916_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Visium Kidney</h1>
@@ -148,19 +148,20 @@
     
 <!-- mouse_cortex_1_simple.md is generated from mouse_cortex_1_simple.Rmd Please edit that file -->
 <pre><code>#&gt; Warning: This tutorial was written with Giotto version 0.3.6.9046, your version
-#&gt; is 1.0.0.This is a more recent version and results should be reproducible</code></pre>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+#&gt; is 1.0.3.This is a more recent version and results should be reproducible</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
 
 <span class="co"># 1. set working directory</span>
-<span class="no">results_folder</span> <span class="kw">=</span> <span class="st">'/path/to/directory/'</span>
+<span class="va">results_folder</span> <span class="op">=</span> <span class="st">'/path/to/directory/'</span>
 
 <span class="co"># 2. set giotto python path</span>
 <span class="co"># set python path to your preferred python version path</span>
 <span class="co"># set python path to NULL if you want to automatically install (only the 1st time) and use the giotto miniconda environment</span>
-<span class="no">python_path</span> <span class="kw">=</span> <span class="kw">NULL</span>
-<span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="no">python_path</span>)) {
-  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span>()
-}</pre></body></html></div>
+<span class="va">python_path</span> <span class="op">=</span> <span class="cn">NULL</span> 
+<span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">python_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span></pre></div>
 <div id="dataset-explanation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dataset-explanation" class="anchor"></a>Dataset explanation</h2>
@@ -172,122 +173,136 @@
 <div id="part-1-giotto-global-instructions-and-preparations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-1-giotto-global-instructions-and-preparations" class="anchor"></a>Part 1: Giotto global instructions and preparations</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">## create instructions</span>
-<span class="no">instrs</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span>(<span class="kw">save_dir</span> <span class="kw">=</span> <span class="no">results_folder</span>,
-                                  <span class="kw">save_plot</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                                  <span class="kw">show_plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-                                  <span class="kw">python_path</span> <span class="kw">=</span> <span class="no">python_path</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co">## create instructions</span>
+<span class="va">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>save_dir <span class="op">=</span> <span class="va">results_folder</span>,
+                                  save_plot <span class="op">=</span> <span class="cn">TRUE</span>,
+                                  show_plot <span class="op">=</span> <span class="cn">FALSE</span>,
+                                  python_path <span class="op">=</span> <span class="va">python_path</span><span class="op">)</span>
 
 <span class="co">## provide path to visium folder</span>
-<span class="no">data_path</span> <span class="kw">=</span> <span class="st">'/path/to/Kidney_data/'</span></pre></body></html></div>
+<span class="va">data_path</span> <span class="op">=</span> <span class="st">'/path/to/Kidney_data/'</span></pre></div>
 </div>
 <div id="part-2-create-giotto-object-process-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-2-create-giotto-object-process-data" class="anchor"></a>part 2: Create Giotto object &amp; process data</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## directly from visium folder</span>
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span>(<span class="kw">visium_dir</span> <span class="kw">=</span> <span class="no">data_path</span>, <span class="kw">expr_data</span> <span class="kw">=</span> <span class="st">'raw'</span>,
-                                         <span class="kw">png_name</span> <span class="kw">=</span> <span class="st">'tissue_lowres_image.png'</span>,
-                                         <span class="kw">gene_column_index</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">instructions</span> <span class="kw">=</span> <span class="no">instrs</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co">## directly from visium folder</span>
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span><span class="op">(</span>visium_dir <span class="op">=</span> <span class="va">data_path</span>, expr_data <span class="op">=</span> <span class="st">'raw'</span>,
+                                         png_name <span class="op">=</span> <span class="st">'tissue_lowres_image.png'</span>,
+                                         gene_column_index <span class="op">=</span> <span class="fl">2</span>, instructions <span class="op">=</span> <span class="va">instrs</span><span class="op">)</span>
 
 <span class="co">## update and align background image</span>
 <span class="co"># problem: image is not perfectly aligned</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'in_tissue'</span>, <span class="kw">show_image</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_a_spatplot_image'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'in_tissue'</span>, show_image <span class="op">=</span> <span class="cn">T</span>, point_alpha <span class="op">=</span> <span class="fl">0.7</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_a_spatplot_image'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/2_a_spatplot_image.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># check name</span>
-<span class="fu"><a href="../reference/showGiottoImageNames.html">showGiottoImageNames</a></span>(<span class="no">visium_kidney</span>) <span class="co"># "image" is the default name</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># check name</span>
+<span class="fu"><a href="../reference/showGiottoImageNames.html">showGiottoImageNames</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span> <span class="co"># "image" is the default name</span>
 <span class="co"># adjust parameters to align image (iterative approach)</span>
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/updateGiottoImage.html">updateGiottoImage</a></span>(<span class="no">visium_kidney</span>, <span class="kw">image_name</span> <span class="kw">=</span> <span class="st">'image'</span>,
-                                  <span class="kw">xmax_adj</span> <span class="kw">=</span> <span class="fl">1300</span>, <span class="kw">xmin_adj</span> <span class="kw">=</span> <span class="fl">1200</span>,
-                                  <span class="kw">ymax_adj</span> <span class="kw">=</span> <span class="fl">1100</span>, <span class="kw">ymin_adj</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/updateGiottoImage.html">updateGiottoImage</a></span><span class="op">(</span><span class="va">visium_kidney</span>, image_name <span class="op">=</span> <span class="st">'image'</span>,
+                                  xmax_adj <span class="op">=</span> <span class="fl">1300</span>, xmin_adj <span class="op">=</span> <span class="fl">1200</span>,
+                                  ymax_adj <span class="op">=</span> <span class="fl">1100</span>, ymin_adj <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
 
 <span class="co"># now it's aligned</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'in_tissue'</span>, <span class="kw">show_image</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_b_spatplot_image_adjusted'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'in_tissue'</span>, show_image <span class="op">=</span> <span class="cn">T</span>, point_alpha <span class="op">=</span> <span class="fl">0.7</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_b_spatplot_image_adjusted'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/2_b_spatplot_image_adjusted.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">## check metadata</span>
-<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">visium_kidney</span>)
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co">## check metadata</span>
+<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span>
 
 <span class="co">## compare in tissue with provided jpg</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'in_tissue'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-         <span class="kw">cell_color_code</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'0'</span> <span class="kw">=</span> <span class="st">'lightgrey'</span>, <span class="st">'1'</span> <span class="kw">=</span> <span class="st">'blue'</span>),
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_c_in_tissue'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'in_tissue'</span>, point_size <span class="op">=</span> <span class="fl">2</span>,
+         cell_color_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'0'</span> <span class="op">=</span> <span class="st">'lightgrey'</span>, <span class="st">'1'</span> <span class="op">=</span> <span class="st">'blue'</span><span class="op">)</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_c_in_tissue'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/2_c_in_tissue.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co">## subset on spots that were covered by tissue</span>
-<span class="no">metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">visium_kidney</span>)
-<span class="no">in_tissue_barcodes</span> <span class="kw">=</span> <span class="no">metadata</span>[<span class="no">in_tissue</span> <span class="kw">==</span> <span class="fl">1</span>]$<span class="no">cell_ID</span>
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">visium_kidney</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">in_tissue_barcodes</span>)
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co">## subset on spots that were covered by tissue</span>
+<span class="va">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span>
+<span class="va">in_tissue_barcodes</span> <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="va">in_tissue</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span><span class="op">$</span><span class="va">cell_ID</span>
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">visium_kidney</span>, cell_ids <span class="op">=</span> <span class="va">in_tissue_barcodes</span><span class="op">)</span>
 
 <span class="co">## filter</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                              <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">1</span>,
-                              <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">50</span>,
-                              <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">1000</span>,
-                              <span class="kw">expression_values</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'raw'</span>),
-                              <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                              expression_threshold <span class="op">=</span> <span class="fl">1</span>,
+                              gene_det_in_min_cells <span class="op">=</span> <span class="fl">50</span>,
+                              min_det_genes_per_cell <span class="op">=</span> <span class="fl">1000</span>,
+                              expression_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'raw'</span><span class="op">)</span>,
+                              verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co">## normalize</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">scalefactor</span> <span class="kw">=</span> <span class="fl">6000</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, scalefactor <span class="op">=</span> <span class="fl">6000</span>, verbose <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co">## add gene &amp; cell statistics</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>)
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/addStatistics.html">addStatistics</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span><span class="op">)</span>
 
 <span class="co">## visualize</span>
-<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">show_image</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_d_spatial_locations'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, show_image <span class="op">=</span> <span class="cn">T</span>, point_alpha <span class="op">=</span> <span class="fl">0.7</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_d_spatial_locations'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/2_d_spatial_locations.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">show_image</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_alpha</span> <span class="kw">=</span> <span class="fl">0.7</span>,
-           <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'nr_genes'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'2_e_nr_genes'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, show_image <span class="op">=</span> <span class="cn">T</span>, point_alpha <span class="op">=</span> <span class="fl">0.7</span>,
+           cell_color <span class="op">=</span> <span class="st">'nr_genes'</span>, color_as_factor <span class="op">=</span> <span class="cn">F</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'2_e_nr_genes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/2_e_nr_genes.png" style="width:50.0%"></p>
 </div>
 <div id="part-3-dimension-reduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-3-dimension-reduction" class="anchor"></a>part 3: dimension reduction</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co">## highly variable genes (HVG)</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_a_HVGplot'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co">## highly variable genes (HVG)</span>
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                              save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_a_HVGplot'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/3_a_HVGplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co">## run PCA on expression values (default)</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">center</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">30</span>, <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_b_screeplot'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="co">## run PCA on expression values (default)</span>
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, center <span class="op">=</span> <span class="cn">TRUE</span>, scale_unit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, ncp <span class="op">=</span> <span class="fl">30</span>, save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_b_screeplot'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/3_b_screeplot.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-        <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_c_PCA_reduction'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+        save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_c_PCA_reduction'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/3_c_PCA_reduction.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co">## run UMAP and tSNE on PCA space (default)</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">visium_kidney</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_d_UMAP_reduction'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co">## run UMAP and tSNE on PCA space (default)</span>
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">visium_kidney</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_d_UMAP_reduction'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/3_d_UMAP_reduction.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">visium_kidney</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>)
-<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'3_e_tSNE_reduction'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span><span class="op">(</span><span class="va">visium_kidney</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'3_e_tSNE_reduction'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/3_e_tSNE_reduction.png" style="width:50.0%"></p>
 </div>
 <div id="part-4-cluster" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-4-cluster" class="anchor"></a>part 4: cluster</h2>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co">## sNN network (default)</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">10</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">15</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co">## sNN network (default)</span>
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createNearestNetwork.html">createNearestNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, k <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>
 <span class="co">## Leiden clustering</span>
-<span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">0.4</span>, <span class="kw">n_iterations</span> <span class="kw">=</span> <span class="fl">1000</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-         <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">show_NN_network</span> <span class="kw">=</span> <span class="no">T</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'4_a_UMAP_leiden'</span>))</pre></body></html></div>
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, resolution <span class="op">=</span> <span class="fl">0.4</span>, n_iterations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, show_NN_network <span class="op">=</span> <span class="cn">T</span>, point_size <span class="op">=</span> <span class="fl">2.5</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'4_a_UMAP_leiden'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/4_a_UMAP_leiden.png" style="width:50.0%"></p>
 </div>
 <div id="part-5-co-visualize" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-5-co-visualize" class="anchor"></a>part 5: co-visualize</h2>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># expression and spatial</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-            <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_a_covis_leiden'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co"># expression and spatial</span>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+            dim_point_size <span class="op">=</span> <span class="fl">2</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'5_a_covis_leiden'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/5_a_covis_leiden.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'nr_genes'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>,
-            <span class="kw">dim_point_size</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'5_b_nr_genes'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'nr_genes'</span>, color_as_factor <span class="op">=</span> <span class="cn">F</span>,
+            dim_point_size <span class="op">=</span> <span class="fl">2</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'5_b_nr_genes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/5_b_nr_genes.png" style="width:50.0%"></p>
 </div>
 <div id="part-6-cell-type-marker-gene-detection" class="section level2">
@@ -296,57 +311,63 @@
 <div id="gini" class="section level4">
 <h4 class="hasAnchor">
 <a href="#gini" class="anchor"></a>gini</h4>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">gini_markers_subclusters</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                                                  <span class="kw">method</span> <span class="kw">=</span> <span class="st">'gini'</span>,
-                                                  <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                                  <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-                                                  <span class="kw">min_genes</span> <span class="kw">=</span> <span class="fl">20</span>,
-                                                  <span class="kw">min_expr_gini_score</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-                                                  <span class="kw">min_det_gini_score</span> <span class="kw">=</span> <span class="fl">0.5</span>)
-<span class="no">topgenes_gini</span> <span class="kw">=</span> <span class="no">gini_markers_subclusters</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">gini_markers_subclusters</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                                                  method <span class="op">=</span> <span class="st">'gini'</span>,
+                                                  expression_values <span class="op">=</span> <span class="st">'normalized'</span>,
+                                                  cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+                                                  min_genes <span class="op">=</span> <span class="fl">20</span>,
+                                                  min_expr_gini_score <span class="op">=</span> <span class="fl">0.5</span>,
+                                                  min_det_gini_score <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<span class="va">topgenes_gini</span> <span class="op">=</span> <span class="va">gini_markers_subclusters</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
 
 <span class="co"># violinplot</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">topgenes_gini</span>), <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_a_violinplot_gini'</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">10</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">topgenes_gini</span><span class="op">)</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+           strip_text <span class="op">=</span> <span class="fl">8</span>, strip_position <span class="op">=</span> <span class="st">'right'</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_a_violinplot_gini'</span>, base_width <span class="op">=</span> <span class="fl">5</span>, base_height <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_a_violinplot_gini.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># cluster heatmap</span>
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">visium_kidney</span>, <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">topgenes_gini</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>),
-                    <span class="kw">x_text_size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">y_text_size</span> <span class="kw">=</span> <span class="fl">10</span>,
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_b_metaheatmap_gini'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="co"># cluster heatmap</span>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">visium_kidney</span>, selected_genes <span class="op">=</span> <span class="va">topgenes_gini</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_clus'</span><span class="op">)</span>, 
+                    x_text_size <span class="op">=</span> <span class="fl">10</span>, y_text_size <span class="op">=</span> <span class="fl">10</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_b_metaheatmap_gini'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_b_metaheatmap_gini.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># umap plots</span>
-<span class="fu"><a href="../reference/dimGenePlot2D.html">dimGenePlot2D</a></span>(<span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-              <span class="kw">genes</span> <span class="kw">=</span> <span class="no">gini_markers_subclusters</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>,
-              <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-              <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_c_gini_umap'</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">5</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="co"># umap plots</span>
+<span class="fu"><a href="../reference/dimGenePlot2D.html">dimGenePlot2D</a></span><span class="op">(</span><span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+              genes <span class="op">=</span> <span class="va">gini_markers_subclusters</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">1</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+              cow_n_col <span class="op">=</span> <span class="fl">3</span>, point_size <span class="op">=</span> <span class="fl">1</span>,
+              save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_c_gini_umap'</span>, base_width <span class="op">=</span> <span class="fl">8</span>, base_height <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_c_gini_umap.png" style="width:50.0%"></p>
 </div>
 <div id="scran" class="section level4">
 <h4 class="hasAnchor">
 <a href="#scran" class="anchor"></a>scran</h4>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">scran_markers_subclusters</span> <span class="kw">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                                                   <span class="kw">method</span> <span class="kw">=</span> <span class="st">'scran'</span>,
-                                                   <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'normalized'</span>,
-                                                   <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>)
-<span class="no">topgenes_scran</span> <span class="kw">=</span> <span class="no">scran_markers_subclusters</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">2</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="va">scran_markers_subclusters</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMarkers_one_vs_all.html">findMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                                                   method <span class="op">=</span> <span class="st">'scran'</span>,
+                                                   expression_values <span class="op">=</span> <span class="st">'normalized'</span>,
+                                                   cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
+<span class="va">topgenes_scran</span> <span class="op">=</span> <span class="va">scran_markers_subclusters</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">2</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
 
 <span class="co"># violinplot</span>
-<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">topgenes_scran</span>), <span class="kw">cluster_column</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-           <span class="kw">strip_text</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">strip_position</span> <span class="kw">=</span> <span class="st">'right'</span>,
-           <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_d_violinplot_scran'</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">5</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/violinPlot.html">violinPlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">topgenes_scran</span><span class="op">)</span>, cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+           strip_text <span class="op">=</span> <span class="fl">10</span>, strip_position <span class="op">=</span> <span class="st">'right'</span>,
+           save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_d_violinplot_scran'</span>, base_width <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_d_violinplot_scran.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># cluster heatmap</span>
-<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span>(<span class="no">visium_kidney</span>, <span class="kw">selected_genes</span> <span class="kw">=</span> <span class="no">topgenes_scran</span>,
-                    <span class="kw">metadata_cols</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'leiden_clus'</span>),
-                    <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_e_metaheatmap_scran'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="co"># cluster heatmap</span>
+<span class="fu"><a href="../reference/plotMetaDataHeatmap.html">plotMetaDataHeatmap</a></span><span class="op">(</span><span class="va">visium_kidney</span>, selected_genes <span class="op">=</span> <span class="va">topgenes_scran</span>,
+                    metadata_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'leiden_clus'</span><span class="op">)</span>,
+                    save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_e_metaheatmap_scran'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_e_metaheatmap_scran.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="co"># umap plots</span>
-<span class="fu"><a href="../reference/dimGenePlot.html">dimGenePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-            <span class="kw">genes</span> <span class="kw">=</span> <span class="no">scran_markers_subclusters</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="st">'cluster'</span>]$<span class="no">genes</span>,
-            <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_f_scran_umap'</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">5</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="co"># umap plots</span>
+<span class="fu"><a href="../reference/dimGenePlot.html">dimGenePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+            genes <span class="op">=</span> <span class="va">scran_markers_subclusters</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">1</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">'cluster'</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,
+            cow_n_col <span class="op">=</span> <span class="fl">3</span>, point_size <span class="op">=</span> <span class="fl">1</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_f_scran_umap'</span>, base_width <span class="op">=</span> <span class="fl">8</span>, base_height <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/6_f_scran_umap.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -362,27 +383,30 @@
 <div id="part-8-spatial-grid" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-8-spatial-grid" class="anchor"></a>part 8: spatial grid</h2>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">visium_kidney</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                                   <span class="kw">sdimx_stepsize</span> <span class="kw">=</span> <span class="fl">400</span>,
-                                   <span class="kw">sdimy_stepsize</span> <span class="kw">=</span> <span class="fl">400</span>,
-                                   <span class="kw">minimum_padding</span> <span class="kw">=</span> <span class="fl">0</span>)
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">show_grid</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">grid_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">spatial_grid_name</span> <span class="kw">=</span> <span class="st">'spatial_grid'</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'8_grid'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="va">visium_kidney</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                                   sdimx_stepsize <span class="op">=</span> <span class="fl">400</span>,
+                                   sdimy_stepsize <span class="op">=</span> <span class="fl">400</span>,
+                                   minimum_padding <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, show_grid <span class="op">=</span> <span class="cn">T</span>,
+         grid_color <span class="op">=</span> <span class="st">'red'</span>, spatial_grid_name <span class="op">=</span> <span class="st">'spatial_grid'</span>, 
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'8_grid'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/8_grid.png" style="width:50.0%"></p>
 </div>
 <div id="part-9-spatial-network" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-9-spatial-network" class="anchor"></a>part 9: spatial network</h2>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="co">## delaunay network: stats + creation</span>
-<span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">maximum_distance</span> <span class="kw">=</span> <span class="fl">400</span>,
-                        <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'9_a_delaunay_network'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="co">## delaunay network: stats + creation</span>
+<span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, maximum_distance <span class="op">=</span> <span class="fl">400</span>, 
+                        save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'9_a_delaunay_network'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/9_a_delaunay_network.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">0</span>)
-<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span>(<span class="no">visium_kidney</span>)
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'9_b_delaunay_network'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit">
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, minimum_k <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+<span class="fu"><a href="../reference/showNetworks.html">showNetworks</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'9_b_delaunay_network'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/9_b_delaunay_network.png" style="width:50.0%"></p>
 </div>
 <div id="part-10-spatial-genes" class="section level2">
@@ -391,110 +415,119 @@
 <div id="spatial-genes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spatial-genes" class="anchor"></a>Spatial genes</h3>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co">## kmeans binarization</span>
-<span class="no">kmtest</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">visium_kidney</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">kmtest</span>$<span class="no">genes</span>[<span class="fl">1</span>:<span class="fl">6</span>], <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-             <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_a_spatial_genes_km'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="co">## kmeans binarization</span>
+<span class="va">kmtest</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+             genes <span class="op">=</span> <span class="va">kmtest</span><span class="op">$</span><span class="va">genes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>,
+             save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_a_spatial_genes_km'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_a_spatial_genes_km.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co">## rank binarization</span>
-<span class="no">ranktest</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">visium_kidney</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">ranktest</span>$<span class="no">genes</span>[<span class="fl">1</span>:<span class="fl">6</span>], <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>,
-             <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_b_spatial_genes_rank'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="co">## rank binarization</span>
+<span class="va">ranktest</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">visium_kidney</span>, bin_method <span class="op">=</span> <span class="st">'rank'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+             genes <span class="op">=</span> <span class="va">ranktest</span><span class="op">$</span><span class="va">genes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>,
+             save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_b_spatial_genes_rank'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_b_spatial_genes_rank.png" style="width:50.0%"></p>
 </div>
 <div id="spatial-co-expression-patterns" class="section level3">
 <h3 class="hasAnchor">
 <a href="#spatial-co-expression-patterns" class="anchor"></a>Spatial co-expression patterns</h3>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="co">## spatially correlated genes ##</span>
-<span class="no">ext_spatial_genes</span> <span class="kw">=</span> <span class="no">kmtest</span>[<span class="fl">1</span>:<span class="fl">500</span>]$<span class="no">genes</span>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="co">## spatially correlated genes ##</span>
+<span class="va">ext_spatial_genes</span> <span class="op">=</span> <span class="va">kmtest</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
 
 <span class="co"># 1. calculate gene spatial correlation and single-cell correlation </span>
 <span class="co"># create spatial correlation object</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span>(<span class="no">visium_kidney</span>,
-                                         <span class="kw">method</span> <span class="kw">=</span> <span class="st">'network'</span>,
-                                         <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_network'</span>,
-                                         <span class="kw">subset_genes</span> <span class="kw">=</span> <span class="no">ext_spatial_genes</span>)
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span><span class="op">(</span><span class="va">visium_kidney</span>, 
+                                         method <span class="op">=</span> <span class="st">'network'</span>, 
+                                         spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
+                                         subset_genes <span class="op">=</span> <span class="va">ext_spatial_genes</span><span class="op">)</span>
 
 <span class="co"># 2. identify most similar spatially correlated genes for one gene</span>
-<span class="no">Napsa_top10_genes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="st">'Napsa'</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">10</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Napsa'</span>, <span class="st">'Kap'</span>, <span class="st">'Defb29'</span>, <span class="st">'Prdx1'</span>), <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_d_Napsa_correlated_genes'</span>))</pre></body></html></div>
+<span class="va">Napsa_top10_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, genes <span class="op">=</span> <span class="st">'Napsa'</span>, show_top_genes <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+             genes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Napsa'</span>, <span class="st">'Kap'</span>, <span class="st">'Defb29'</span>, <span class="st">'Prdx1'</span><span class="op">)</span>, point_size <span class="op">=</span> <span class="fl">3</span>,
+             save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_d_Napsa_correlated_genes'</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_d_Napsa_correlated_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="co"># 3. cluster correlated genes &amp; visualize</span>
-<span class="no">spat_cor_netw_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">8</span>)
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="co"># 3. cluster correlated genes &amp; visualize</span>
+<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span>(<span class="no">visium_kidney</span>, <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                     <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_e_heatmap_correlated_genes'</span>, <span class="kw">save_format</span> <span class="kw">=</span> <span class="st">'pdf'</span>,
-                                    <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">8</span>, <span class="kw">units</span> <span class="kw">=</span> <span class="st">'cm'</span>),
-                     <span class="kw">heatmap_legend_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="kw">NULL</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span><span class="op">(</span><span class="va">visium_kidney</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                     save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_e_heatmap_correlated_genes'</span>, save_format <span class="op">=</span> <span class="st">'pdf'</span>,
+                                    base_height <span class="op">=</span> <span class="fl">6</span>, base_width <span class="op">=</span> <span class="fl">8</span>, units <span class="op">=</span> <span class="st">'cm'</span><span class="op">)</span>, 
+                     heatmap_legend_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_e_heatmap_correlated_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># 4. rank spatial correlated clusters and show genes for selected clusters</span>
-<span class="no">netw_ranks</span> <span class="kw">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span>(<span class="no">visium_kidney</span>, <span class="kw">spatCorObject</span> <span class="kw">=</span> <span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                  <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_f_rank_correlated_groups'</span>,
-                                                 <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">5</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="co"># 4. rank spatial correlated clusters and show genes for selected clusters</span>
+<span class="va">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span><span class="op">(</span><span class="va">visium_kidney</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                  save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_f_rank_correlated_groups'</span>,
+                                                 base_height <span class="op">=</span> <span class="fl">3</span>, base_width <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_f_rank_correlated_groups.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">top_netw_spat_cluster</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                            <span class="kw">selected_clusters</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb31"><pre class="downlit">
+<span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                            selected_clusters <span class="op">=</span> <span class="fl">6</span>, show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># 5. create metagene enrichment score for clusters</span>
-<span class="no">cluster_genes_DT</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="no">cluster_genes</span> <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">cluster_genes</span>) <span class="kw">=</span> <span class="no">cluster_genes_DT</span>$<span class="no">gene_ID</span>
+<span class="va">cluster_genes_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">cluster_genes</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cluster_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">gene_ID</span>
 
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span>(<span class="no">visium_kidney</span>, <span class="kw">gene_clusters</span> <span class="kw">=</span> <span class="no">cluster_genes</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>)
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span><span class="op">(</span><span class="va">visium_kidney</span>, gene_clusters <span class="op">=</span> <span class="va">cluster_genes</span>, name <span class="op">=</span> <span class="st">'cluster_metagene'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span>(<span class="no">visium_kidney</span>,
-             <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'cluster_metagene'</span>,
-             <span class="kw">cell_annotation_values</span> <span class="kw">=</span> <span class="no">netw_ranks</span>$<span class="no">clusters</span>,
-             <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1.5</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">4</span>,
-             <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_g_spat_enrichment_score_plots'</span>,
-                            <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">13</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">6</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>,
+             spat_enr_names <span class="op">=</span> <span class="st">'cluster_metagene'</span>,
+             cell_annotation_values <span class="op">=</span> <span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span>,
+             point_size <span class="op">=</span> <span class="fl">1.5</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>, 
+             save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_g_spat_enrichment_score_plots'</span>,
+                            base_width <span class="op">=</span> <span class="fl">13</span>, base_height <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_g_spat_enrichment_score_plots.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="co"># example for gene per cluster</span>
-<span class="no">top_netw_spat_cluster</span> <span class="kw">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span>(<span class="no">spat_cor_netw_DT</span>, <span class="kw">use_clus_name</span> <span class="kw">=</span> <span class="st">'spat_netw_clus'</span>,
-                                            <span class="kw">selected_clusters</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">8</span>, <span class="kw">show_top_genes</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="no">first_genes</span> <span class="kw">=</span> <span class="no">top_netw_spat_cluster</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="no">clus</span>]$<span class="no">gene_ID</span>
-<span class="no">cluster_names</span> <span class="kw">=</span> <span class="no">top_netw_spat_cluster</span>[, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">.SD</span>, <span class="fl">1</span>), <span class="kw">by</span> <span class="kw">=</span> <span class="no">clus</span>]$<span class="no">clus</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">first_genes</span>) <span class="kw">=</span> <span class="no">cluster_names</span>
-<span class="no">first_genes</span> <span class="kw">=</span> <span class="no">first_genes</span>[<span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(<span class="no">netw_ranks</span>$<span class="no">clusters</span>)]
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="co"># example for gene per cluster</span>
+<span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
+                                            selected_clusters <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">first_genes</span> <span class="op">=</span> <span class="va">top_netw_spat_cluster</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">1</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">clus</span><span class="op">]</span><span class="op">$</span><span class="va">gene_ID</span>
+<span class="va">cluster_names</span> <span class="op">=</span> <span class="va">top_netw_spat_cluster</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">.SD</span>, <span class="fl">1</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">clus</span><span class="op">]</span><span class="op">$</span><span class="va">clus</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">first_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_names</span>
+<span class="va">first_genes</span> <span class="op">=</span> <span class="va">first_genes</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span><span class="op">)</span><span class="op">]</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">visium_kidney</span>, <span class="kw">genes</span> <span class="kw">=</span> <span class="no">first_genes</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">midpoint</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>,
-             <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'10_h_spat_enrichment_score_plots_genes'</span>,
-                            <span class="kw">base_width</span> <span class="kw">=</span> <span class="fl">11</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">6</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">visium_kidney</span>, genes <span class="op">=</span> <span class="va">first_genes</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>, midpoint <span class="op">=</span> <span class="fl">0</span>, point_size <span class="op">=</span> <span class="fl">2</span>,
+             save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'10_h_spat_enrichment_score_plots_genes'</span>,
+                            base_width <span class="op">=</span> <span class="fl">11</span>, base_height <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/images/mouse_Visium_kidney/vignette_200916/10_h_spat_enrichment_score_plots_genes.png" style="width:50.0%"></p>
 </div>
 </div>
 <div id="part-11-hmrf-domains" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-11-hmrf-domains" class="anchor"></a>part 11: HMRF domains</h2>
-<div class="sourceCode" id="cb33"><html><body><pre class="r">
+<div class="sourceCode" id="cb33"><pre class="downlit">
+
 <span class="co"># HMRF requires a fully connected network!</span>
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'Delaunay_full'</span>)
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, name <span class="op">=</span> <span class="st">'Delaunay_full'</span><span class="op">)</span>
 
 <span class="co"># spatial genes</span>
-<span class="no">my_spatial_genes</span> <span class="kw">&lt;-</span> <span class="no">kmtest</span>[<span class="fl">1</span>:<span class="fl">100</span>]$<span class="no">genes</span>
+<span class="va">my_spatial_genes</span> <span class="op">&lt;-</span> <span class="va">kmtest</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
 
 <span class="co"># do HMRF with different betas</span>
-<span class="no">hmrf_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="no">hmrf_folder</span>)) <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span>(<span class="no">hmrf_folder</span>, <span class="kw">recursive</span> <span class="kw">=</span> <span class="no">T</span>)
+<span class="va">hmrf_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>,<span class="st">'/'</span>,<span class="st">'11_HMRF/'</span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">hmrf_folder</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, recursive <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
-<span class="no">HMRF_spatial_genes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                            <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'Delaunay_full'</span>,
-                            <span class="kw">spatial_genes</span> <span class="kw">=</span> <span class="no">my_spatial_genes</span>,
-                            <span class="kw">k</span> <span class="kw">=</span> <span class="fl">5</span>,
-                            <span class="kw">betas</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">6</span>),
-                            <span class="kw">output_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes/SG_topgenes_k5_scaled'</span>))
+<span class="va">HMRF_spatial_genes</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHMRF.html">doHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+                            spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_full'</span>,
+                            spatial_genes <span class="op">=</span> <span class="va">my_spatial_genes</span>,
+                            k <span class="op">=</span> <span class="fl">5</span>,
+                            betas <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">6</span><span class="op">)</span>, 
+                            output_folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">hmrf_folder</span>, <span class="st">'/'</span>, <span class="st">'Spatial_genes/SG_topgenes_k5_scaled'</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## view results of HMRF</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">5</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="fl">1</span>)) {
-  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                    <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                    <span class="kw">k</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">betas_to_view</span> <span class="kw">=</span> <span class="no">i</span>,
-                    <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">2</span>)
-}</pre></body></html></div>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="co">## alternative way to view HMRF results</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="../reference/viewHMRFresults2D.html">viewHMRFresults2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                    HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                    k <span class="op">=</span> <span class="fl">5</span>, betas_to_view <span class="op">=</span> <span class="va">i</span>,
+                    point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="op">}</span></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="co">## alternative way to view HMRF results</span>
 <span class="co">#results = writeHMRFresults(gobject = ST_test,</span>
 <span class="co">#                           HMRFoutput = HMRF_spatial_genes,</span>
 <span class="co">#                           k = 5, betas_to_view = seq(0, 25, by = 5))</span>
@@ -502,38 +535,40 @@
 
 
 <span class="co">## add HMRF of interest to giotto object</span>
-<span class="no">visium_kidney</span> <span class="kw">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                        <span class="kw">HMRFoutput</span> <span class="kw">=</span> <span class="no">HMRF_spatial_genes</span>,
-                        <span class="kw">k</span> <span class="kw">=</span> <span class="fl">5</span>, <span class="kw">betas_to_add</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">2</span>),
-                        <span class="kw">hmrf_name</span> <span class="kw">=</span> <span class="st">'HMRF'</span>)
+<span class="va">visium_kidney</span> <span class="op">=</span> <span class="fu"><a href="../reference/addHMRF.html">addHMRF</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                        HMRFoutput <span class="op">=</span> <span class="va">HMRF_spatial_genes</span>,
+                        k <span class="op">=</span> <span class="fl">5</span>, betas_to_add <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>,
+                        hmrf_name <span class="op">=</span> <span class="st">'HMRF'</span><span class="op">)</span>
 
 <span class="co">## visualize</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'HMRF_k5_b.0'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'11_a_HMRF_k5_b.0'</span>))</pre></body></html></div>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'HMRF_k5_b.2'</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">5</span>,
-         <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'11_b_HMRF_k5_b.2'</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k5_b.0'</span>, point_size <span class="op">=</span> <span class="fl">5</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'11_a_HMRF_k5_b.0'</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k5_b.2'</span>, point_size <span class="op">=</span> <span class="fl">5</span>,
+         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'11_b_HMRF_k5_b.2'</span><span class="op">)</span><span class="op">)</span></pre></div>
 </div>
 <div id="export-and-create-giotto-viewer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#export-and-create-giotto-viewer" class="anchor"></a>Export and create Giotto Viewer</h2>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># check which annotations are available</span>
-<span class="fu"><a href="../reference/combineMetadata.html">combineMetadata</a></span>(<span class="no">visium_kidney</span>)
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="co"># check which annotations are available</span>
+<span class="fu"><a href="../reference/combineMetadata.html">combineMetadata</a></span><span class="op">(</span><span class="va">visium_kidney</span><span class="op">)</span>
 
 <span class="co"># select annotations, reductions and expression values to view in Giotto Viewer</span>
-<span class="no">viewer_folder</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">results_folder</span>, <span class="st">'/'</span>, <span class="st">'mouse_visium_kidney_viewer'</span>)
+<span class="va">viewer_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">'/'</span>, <span class="st">'mouse_visium_kidney_viewer'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">visium_kidney</span>,
-                   <span class="kw">output_directory</span> <span class="kw">=</span> <span class="no">viewer_folder</span>,
-                   <span class="kw">spat_enr_names</span> <span class="kw">=</span> <span class="st">'PAGE'</span>,
-                   <span class="kw">factor_annotations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'in_tissue'</span>,
-                                          <span class="st">'leiden_clus'</span>),
-                   <span class="kw">numeric_annotations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'nr_genes'</span>,
-                                           <span class="st">'clus_25'</span>),
-                   <span class="kw">dim_reductions</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'tsne'</span>, <span class="st">'umap'</span>),
-                   <span class="kw">dim_reduction_names</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'tsne'</span>, <span class="st">'umap'</span>),
-                   <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-                   <span class="kw">expression_rounding</span> <span class="kw">=</span> <span class="fl">2</span>,
-                   <span class="kw">overwrite_dir</span> <span class="kw">=</span> <span class="no">T</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/exportGiottoViewer.html">exportGiottoViewer</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">visium_kidney</span>,
+                   output_directory <span class="op">=</span> <span class="va">viewer_folder</span>,
+                   spat_enr_names <span class="op">=</span> <span class="st">'PAGE'</span>, 
+                   factor_annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'in_tissue'</span>,
+                                          <span class="st">'leiden_clus'</span><span class="op">)</span>,
+                   numeric_annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'nr_genes'</span>,
+                                           <span class="st">'clus_25'</span><span class="op">)</span>,
+                   dim_reductions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'tsne'</span>, <span class="st">'umap'</span><span class="op">)</span>,
+                   dim_reduction_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'tsne'</span>, <span class="st">'umap'</span><span class="op">)</span>,
+                   expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+                   expression_rounding <span class="op">=</span> <span class="fl">2</span>,
+                   overwrite_dir <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></pre></div>
 </div>
   </div>
 
@@ -552,7 +587,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

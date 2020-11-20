@@ -3,6 +3,15 @@
 output: github_document
 ---
 
+# Giotto 1.0.1 - 1.0.3
+
+- Fixed bugs
+- Added seed to HMRF 
+- Created functions to read 10X Visium .h5 files  
+    - see **createGiottoVisiumObject** to create a Giotto object directly  
+    - see **get10Xmatrix_h5** to extract the count matrix  
+
+
 # Giotto 1.0.0    
 
 This is the first major release of Giotto. If you still want to work with the previous version, 
@@ -19,7 +28,7 @@ examples that you can find under the **Datasets** tab on this website.
 This miniconda environment is one way to make sure that you can run functions that require Python modules. 
   - **installGiottoEnvironment**: (re-)installs a Giotto miniconda environment  
   - **removeGiottoEnvironment**: removes a Giotto miniconda environment  
-  - **checkGiottoEnvironmnet**: verifies if a Giotto environment can be found  
+  - **checkGiottoEnvironment**: verifies if a Giotto environment can be found  
   
 The other alternative is to [install](https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation) them in your own favorite Python environment and
 provide the path in the **createGiottoInstructions** command.

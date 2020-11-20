@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,20 +190,20 @@
     <p>Multi parameter aggregator version of <code><a href='silhouetteRank.html'>silhouetteRank</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>silhouetteRankTest</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>subset_genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>overwrite_input_bin</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rbp_ps</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.95</span>, <span class='fl'>0.99</span>),
-  <span class='kw'>examine_tops</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.005</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>0.3</span>),
-  <span class='kw'>matrix_type</span> <span class='kw'>=</span> <span class='st'>"dissim"</span>,
-  <span class='kw'>num_core</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>parallel_path</span> <span class='kw'>=</span> <span class='st'>"/usr/bin"</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>query_sizes</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>silhouetteRankTest</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  subset_genes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  overwrite_input_bin <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  rbp_ps <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.95</span>, <span class='fl'>0.99</span><span class='op'>)</span>,
+  examine_tops <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.005</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>0.3</span><span class='op'>)</span>,
+  matrix_type <span class='op'>=</span> <span class='st'>"dissim"</span>,
+  num_core <span class='op'>=</span> <span class='fl'>4</span>,
+  parallel_path <span class='op'>=</span> <span class='st'>"/usr/bin"</span>,
+  output <span class='op'>=</span> <span class='cn'>NULL</span>,
+  query_sizes <span class='op'>=</span> <span class='fl'>10L</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -277,7 +277,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="visualization_options_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -215,25 +215,25 @@
 </li>
 <li>Hypothetical example showing a number of options:</li>
 </ul>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"># 1. standard R way
-pl = spatPlot(mygobject, cell_color = 'cell_types')
-pdf(file = 'path/to/save/to/plot.pdf')
-print(pl)
-dev.off()
-
-# 2. indicate to save plot, this will save the plot according to Giotto instructions file
-# If the instruction file is not provided in the beginning, it uses the defaults (e.g. working directory)
-spatPlot(mygobject, cell_color = 'cell_types', save_plot = TRUE)
-
-# 3. indicate to save plot and specifiy specific saving parameters by providing a list to save_param
-# they will overrule the giotto instructions
-spatPlot(mygobject, cell_color = 'cell_types', save_plot = TRUE,
-         save_param = list(save_folder = 'my_subfolder', save_name = 'my_name', save_format = 'png', units = 'in'))
-
-# 4. don't save or return plot, but just view plot
-# defaults are: save_plot = F, return_plot = T and show_plot = T
-# this can be changed in the instructions file or at each specific plotting function
-spatPlot(mygobject, cell_color = 'cell_types', save_plot = F, return_plot = F show_plot = T)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 1. standard R way</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>pl =<span class="st"> </span><span class="kw">spatPlot</span>(mygobject, <span class="dt">cell_color =</span> <span class="st">'cell_types'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">pdf</span>(<span class="dt">file =</span> <span class="st">'path/to/save/to/plot.pdf'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">print</span>(pl)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">dev.off</span>()</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 2. indicate to save plot, this will save the plot according to Giotto instructions file</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># If the instruction file is not provided in the beginning, it uses the defaults (e.g. working directory)</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">spatPlot</span>(mygobject, <span class="dt">cell_color =</span> <span class="st">'cell_types'</span>, <span class="dt">save_plot =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 3. indicate to save plot and specifiy specific saving parameters by providing a list to save_param</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># they will overrule the giotto instructions</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw">spatPlot</span>(mygobject, <span class="dt">cell_color =</span> <span class="st">'cell_types'</span>, <span class="dt">save_plot =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>         <span class="dt">save_param =</span> <span class="kw">list</span>(<span class="dt">save_folder =</span> <span class="st">'my_subfolder'</span>, <span class="dt">save_name =</span> <span class="st">'my_name'</span>, <span class="dt">save_format =</span> <span class="st">'png'</span>, <span class="dt">units =</span> <span class="st">'in'</span>))</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 4. don't save or return plot, but just view plot</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># defaults are: save_plot = F, return_plot = T and show_plot = T</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># this can be changed in the instructions file or at each specific plotting function</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="kw">spatPlot</span>(mygobject, <span class="dt">cell_color =</span> <span class="st">'cell_types'</span>, <span class="dt">save_plot =</span> F, <span class="dt">return_plot =</span> F <span class="dt">show_plot =</span> T)</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -253,7 +253,7 @@ spatPlot(mygobject, cell_color = 'cell_types', save_plot = F, return_plot = F sh
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

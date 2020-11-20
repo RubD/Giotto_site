@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,25 +190,26 @@
     <p>Run HMRF</p>
     </div>
 
-    <pre class="usage"><span class='fu'>doHMRF</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>spatial_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>spatial_genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>spatial_dimensions</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sdimx"</span>, <span class='st'>"sdimy"</span>, <span class='st'>"sdimz"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-  <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>betas</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>50</span>),
-  <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>1e-10</span>,
-  <span class='kw'>zscore</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"rowcol"</span>, <span class='st'>"colrow"</span>),
-  <span class='kw'>numinit</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output_folder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>overwrite_output</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>doHMRF</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  spatial_network_name <span class='op'>=</span> <span class='st'>"Delaunay_network"</span>,
+  spatial_genes <span class='op'>=</span> <span class='cn'>NULL</span>,
+  spatial_dimensions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sdimx"</span>, <span class='st'>"sdimy"</span>, <span class='st'>"sdimz"</span><span class='op'>)</span>,
+  dim_reduction_to_use <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dim_reduction_name <span class='op'>=</span> <span class='st'>"pca"</span>,
+  dimensions_to_use <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+  seed <span class='op'>=</span> <span class='fl'>100</span>,
+  name <span class='op'>=</span> <span class='st'>"test"</span>,
+  k <span class='op'>=</span> <span class='fl'>10</span>,
+  betas <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>50</span><span class='op'>)</span>,
+  tolerance <span class='op'>=</span> <span class='fl'>1e-10</span>,
+  zscore <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"none"</span>, <span class='st'>"rowcol"</span>, <span class='st'>"colrow"</span><span class='op'>)</span>,
+  numinit <span class='op'>=</span> <span class='fl'>100</span>,
+  python_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output_folder <span class='op'>=</span> <span class='cn'>NULL</span>,
+  overwrite_output <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -246,6 +247,10 @@
       <td><p>number of dimensions to use as input</p></td>
     </tr>
     <tr>
+      <th>seed</th>
+      <td><p>seed to fix random number generator (for creating initialization of HMRF) (-1 if no fixing)</p></td>
+    </tr>
+    <tr>
       <th>name</th>
       <td><p>name of HMRF run</p></td>
     </tr>
@@ -255,7 +260,7 @@
     </tr>
     <tr>
       <th>betas</th>
-      <td><p>betas to test for</p></td>
+      <td><p>betas to test for. three numbers: start_beta, beta_increment, num_betas e.g. c(0, 2.0, 50)</p></td>
     </tr>
     <tr>
       <th>tolerance</th>
@@ -305,7 +310,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,18 +190,23 @@
     <p>creates Giotto object directly from a 10X visium folder</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createGiottoVisiumObject</span>(
-  <span class='kw'>visium_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>expr_data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"filter"</span>),
-  <span class='kw'>gene_column_index</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>png_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xmax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>xmin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>ymax_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>ymin_adj</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>instructions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>NA</span>
-)</pre>
+    <pre class="usage"><span class='fu'>createGiottoVisiumObject</span><span class='op'>(</span>
+  visium_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
+  expr_data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"raw"</span>, <span class='st'>"filter"</span><span class='op'>)</span>,
+  gene_column_index <span class='op'>=</span> <span class='fl'>1</span>,
+  h5_visium_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  h5_gene_ids <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"symbols"</span>, <span class='st'>"ensembl"</span><span class='op'>)</span>,
+  h5_tissue_positions_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  h5_image_png_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  png_name <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xmax_adj <span class='op'>=</span> <span class='fl'>0</span>,
+  xmin_adj <span class='op'>=</span> <span class='fl'>0</span>,
+  ymax_adj <span class='op'>=</span> <span class='fl'>0</span>,
+  ymin_adj <span class='op'>=</span> <span class='fl'>0</span>,
+  instructions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cores <span class='op'>=</span> <span class='cn'>NA</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -217,6 +222,22 @@
     <tr>
       <th>gene_column_index</th>
       <td><p>which column index to select (see details)</p></td>
+    </tr>
+    <tr>
+      <th>h5_visium_path</th>
+      <td><p>path to visium 10X .h5 file</p></td>
+    </tr>
+    <tr>
+      <th>h5_gene_ids</th>
+      <td><p>gene names as symbols (default) or ensemble gene ids</p></td>
+    </tr>
+    <tr>
+      <th>h5_tissue_positions_path</th>
+      <td><p>path to tissue locations (.csv file)</p></td>
+    </tr>
+    <tr>
+      <th>h5_image_png_path</th>
+      <td><p>path to tissue .png file (optional)</p></td>
     </tr>
     <tr>
       <th>png_name</th>
@@ -246,6 +267,10 @@
       <th>cores</th>
       <td><p>how many cores or threads to use to read data if paths are provided</p></td>
     </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>be verbose</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -253,11 +278,16 @@
     <p>giotto object</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    
-<ul>
+    <p>If starting from a Visium 10X directory:</p><ul>
 <li><p>expr_data: raw will take expression data from raw_feature_bc_matrix and filter from filtered_feature_bc_matrix</p></li>
 <li><p>gene_column_index: which gene identifiers (names) to use if there are multiple columns (e.g. ensemble and gene symbol)</p></li>
 <li><p>png_name: by default the first png will be selected, provide the png name to override this (e.g. myimage.png)</p></li>
+</ul>
+
+<p>If starting from a Visium 10X .h5 file</p><ul>
+<li><p>h5_visium_path: full path to .h5 file: /your/path/to/visium_file.h5</p></li>
+<li><p>h5_tissue_positions_path: full path to spatial locations file: /you/path/to/tissue_positions_list.csv</p></li>
+<li><p>h5_image_png_path: full path to png: /your/path/to/images/tissue_lowres_image.png</p></li>
 </ul>
 
 
@@ -276,7 +306,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

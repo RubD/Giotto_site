@@ -16,34 +16,26 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 
-```{r eval=TRUE, echo=FALSE}
-giotto_version = utils::packageVersion(pkg = 'Giotto')
-
-if(giotto_version == '0.3.6.9038') {
-  NULL
-} else if(giotto_version > '0.3.6.9038'){
-  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
-  ' This is a more recent version and results should be reproducible')
-} else {
-  warning('This tutorial was written with Giotto version 0.3.6.9038, your version is ', giotto_version, '.', 
-  ' This is an older version and results could be slightly different')
-}
-```
-
 ```{r setup, eval=FALSE}
 library(Giotto)
+```
 
-# (optional)
-temp_dir = '/path/to/directory/'
+### Install Python modules
+
+To run this vignette you need to install all the necessary Python modules.  
+
+1. This can be done manually, see https://rubd.github.io/Giotto_site/articles/installation_issues.html#python-manual-installation  
+
+2. This can be done within R using our installation tools (installGiottoEnvironment), see  https://rubd.github.io/Giotto_site/articles/tut0_giotto_environment.html for more information.  
+
+
+### (optional) set giotto instructions
+```{r eval=FALSE}
+# to automatically save figures in save_dir set save_plot to TRUE
+temp_dir = '~/Temp/'
 myinstructions = createGiottoInstructions(save_dir = temp_dir,
                                           save_plot = TRUE, 
                                           show_plot = FALSE)
-
-# set python_path if you want to or install giotto environment
-python_path = NULL 
-if(is.null(python_path)) {
-  installGiottoEnvironment()
-}
 ```
 
 
@@ -175,10 +167,8 @@ plotTSNE(gobject = starmap_mini,
 - cluster on nearest network with Leiden or Louvan (kmeans and hclust are alternatives) 
 
 ```{r eval=FALSE}
-starmap_mini <- createNearestNetwork(gobject = starmap_mini,
-                                     dimensions_to_use = 1:8, k = 25)
-starmap_mini <- doLeidenCluster(gobject = starmap_mini,
-                                resolution = 0.5, n_iterations = 1000)
+starmap_mini <- createNearestNetwork(gobject = starmap_mini, dimensions_to_use = 1:8, k = 25)
+starmap_mini <- doLeidenCluster(gobject = starmap_mini, resolution = 0.5, n_iterations = 1000)
 
 # 2D umap
 plotUMAP(gobject = starmap_mini,

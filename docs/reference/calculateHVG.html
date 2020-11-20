@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,24 +190,24 @@
     <p>compute highly variable genes</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calculateHVG</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cov_groups"</span>, <span class='st'>"cov_loess"</span>),
-  <span class='kw'>reverse_log_scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>logbase</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>expression_threshold</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>nr_expression_groups</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>zscore_threshold</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
-  <span class='kw'>HVGname</span> <span class='kw'>=</span> <span class='st'>"hvg"</span>,
-  <span class='kw'>difference_in_cov</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"HVGplot"</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>calculateHVG</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cov_groups"</span>, <span class='st'>"cov_loess"</span><span class='op'>)</span>,
+  reverse_log_scale <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  logbase <span class='op'>=</span> <span class='fl'>2</span>,
+  expression_threshold <span class='op'>=</span> <span class='fl'>0</span>,
+  nr_expression_groups <span class='op'>=</span> <span class='fl'>20</span>,
+  zscore_threshold <span class='op'>=</span> <span class='fl'>1.5</span>,
+  HVGname <span class='op'>=</span> <span class='st'>"hvg"</span>,
+  difference_in_cov <span class='op'>=</span> <span class='fl'>0.1</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  default_save_name <span class='op'>=</span> <span class='st'>"HVGplot"</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -293,23 +293,30 @@ A predicted COV is calculated for each gene using loess regression (COV~log(mean
 Genes that show a higher than predicted COV (<em>difference_in_cov</em>) are considered highly variable. <br /></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>) <span class='co'># loads existing Giotto object</span>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span> <span class='co'># loads existing Giotto object</span>
 
 <span class='co'># update a giotto object</span>
-<span class='no'>mini_giotto_single_cell</span> <span class='kw'>&lt;-</span> <span class='fu'>calculateHVG</span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>,
-                                        <span class='kw'>zscore_threshold</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-                                        <span class='kw'>nr_expression_groups</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-
+<span class='va'>mini_giotto_single_cell</span> <span class='op'>&lt;-</span> <span class='fu'>calculateHVG</span><span class='op'>(</span>gobject <span class='op'>=</span> <span class='va'>mini_giotto_single_cell</span>,
+                                        zscore_threshold <span class='op'>=</span> <span class='fl'>0.1</span>,
+                                        nr_expression_groups <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='calculateHVG-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; return_plot = TRUE and return_gobject = TRUE 
+#&gt; 
+#&gt;           plot will not be returned to object, but can still be saved with save_plot = TRUE or manually 
+#&gt; 
+#&gt;   hvg  has already been used, will be overwritten </div><div class='input'>
 <span class='co'># return a data.table with the high variable genes annotated</span>
-<span class='no'>hvg_dt</span> <span class='kw'>&lt;-</span> <span class='fu'>calculateHVG</span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>,
-                       <span class='kw'>zscore_threshold</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nr_expression_groups</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                       <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
+<span class='va'>hvg_dt</span> <span class='op'>&lt;-</span> <span class='fu'>calculateHVG</span><span class='op'>(</span>gobject <span class='op'>=</span> <span class='va'>mini_giotto_single_cell</span>,
+                       zscore_threshold <span class='op'>=</span> <span class='fl'>0.1</span>, nr_expression_groups <span class='op'>=</span> <span class='fl'>3</span>,
+                       return_plot <span class='op'>=</span> <span class='cn'>FALSE</span>, return_gobject <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='calculateHVG-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># return the ggplot object</span>
-<span class='no'>hvg_plot</span> <span class='kw'>&lt;-</span> <span class='fu'>calculateHVG</span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>,
-                       <span class='kw'>zscore_threshold</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>nr_expression_groups</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                       <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='va'>hvg_plot</span> <span class='op'>&lt;-</span> <span class='fu'>calculateHVG</span><span class='op'>(</span>gobject <span class='op'>=</span> <span class='va'>mini_giotto_single_cell</span>,
+                       zscore_threshold <span class='op'>=</span> <span class='fl'>0.1</span>, nr_expression_groups <span class='op'>=</span> <span class='fl'>3</span>,
+                       return_plot <span class='op'>=</span> <span class='cn'>TRUE</span>, return_gobject <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='img'><img src='calculateHVG-3.png' alt='' width='700' height='433' /></div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -325,7 +332,7 @@ Genes that show a higher than predicted COV (<em>difference_in_cov</em>) are con
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

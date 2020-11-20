@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,14 +190,14 @@
     <p>Visualize cells according to spatial AND dimension reduction coordinates in ggplot mode</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spatDimGenePlot</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>spatDimGenePlot</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='spatDimGenePlot2D.html'>spatDimGenePlot2D</a></code></p><dl'>
+      <td><p>Arguments passed on to <code><a href='spatDimGenePlot2D.html'>spatDimGenePlot2D</a></code></p><dl>
     <dt><code>gobject</code></dt><dd><p>giotto object</p></dd>
     <dt><code>show_image</code></dt><dd><p>show a tissue background image</p></dd>
     <dt><code>gimage</code></dt><dd><p>a giotto image</p></dd>
@@ -274,14 +274,16 @@
 <code><a href='spatDimGenePlot3D.html'>spatDimGenePlot3D</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
-<span class='no'>all_genes</span> <span class='kw'>=</span> <span class='fu'>slot</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='st'>'gene_ID'</span>)
-<span class='no'>selected_genes</span> <span class='kw'>=</span> <span class='no'>all_genes</span>[<span class='fl'>1</span>]
-<span class='fu'>spatDimGenePlot</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>genes</span> <span class='kw'>=</span> <span class='no'>selected_genes</span>,
-                 <span class='kw'>dim_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>spat_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                 <span class='kw'>cow_n_col</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>plot_alignment</span> <span class='kw'>=</span> <span class='st'>'horizontal'</span>)</pre>
+<span class='va'>all_genes</span> <span class='op'>=</span> <span class='fu'>slot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, <span class='st'>'gene_ID'</span><span class='op'>)</span>
+<span class='va'>selected_genes</span> <span class='op'>=</span> <span class='va'>all_genes</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+<span class='fu'>spatDimGenePlot</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, genes <span class='op'>=</span> <span class='va'>selected_genes</span>,
+                 dim_point_size <span class='op'>=</span> <span class='fl'>3</span>, spat_point_size <span class='op'>=</span> <span class='fl'>3</span>,
+                 cow_n_col <span class='op'>=</span> <span class='fl'>1</span>, plot_alignment <span class='op'>=</span> <span class='st'>'horizontal'</span><span class='op'>)</span>
+</div><div class='img'><img src='spatDimGenePlot-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='spatDimGenePlot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -297,7 +299,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -53,20 +53,155 @@ to be done once.
 
 ```{r, eval=FALSE}
 # output from Giotto
-spatPlot(gobject = visium_kidney, cell_color = 'in_tissue')
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', point_alpha = 0.5)
 ```
 
 ![](../inst/howtos/giotto_images/vignette_1/1_a_spatplot.png){ width=50% }
 
 ```{r, eval=FALSE}
 # problem: image is not perfectly aligned
-spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.7)
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
 ```
 
 ![](../inst/howtos/giotto_images/vignette_1/1_b_spatplot_image.png){ width=50% }
 
-
 adjust the x and y minima and maxima to align the image and the giotto output results: 
+
+### Alignment insights  
+
+
+#### x and y control  
+We can use **updateGiottoImage** and **spatPlot** in an iterative manner to see how changing the x and y minima and maxima affect the image. 
+
+xmax_adj and xmin_adj: adjust the x location (in data coordinates) giving horizontal location of raster (offset values)  
+ymax_adj and ymin_adj: adjust the y location (in data coordinates) giving vertical location of raster (offset values)  
+
+Without adjustment:  
+```{r, eval=FALSE}
+## no adjustment
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 0, xmin_adj = 0,
+                                  ymax_adj = 0, ymin_adj = 0)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_1.png){ width=50% }
+
+Adjustment to the right --> with xmax_adj:  
+```{r, eval=FALSE}
+## adjust the image to right side with xmax_adj
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 1000, xmin_adj = 0,
+                                  ymax_adj = 0, ymin_adj = 0)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_2.png){ width=50% }
+
+Adjustment to the left <-- with xmin_adj:  
+```{r, eval=FALSE}
+## adjust to left side with xmin_adj
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 0, xmin_adj = 1000,
+                                  ymax_adj = 0, ymin_adj = 0)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_3.png){ width=50% }
+
+Adjustment to the top with ymax_adj:  
+```{r, eval=FALSE}
+## adjust to top side with ymax_adj
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 0, xmin_adj = 0,
+                                  ymax_adj = 1000, ymin_adj = 0)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_4.png){ width=50% }
+
+Adjustment to the bottom with ymin_adj:  
+```{r, eval=FALSE}
+## adjust to bottom side with ymin_adj
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 0, xmin_adj = 0,
+                                  ymax_adj = 0, ymin_adj = 1000)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_5.png){ width=50% }
+
+#### Simulation of shifts 
+
+Create an OK adjustment:  
+```{r, eval=FALSE}
+## OK alignment
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 1000, xmin_adj = 1000,
+                                  ymax_adj = 1000, ymin_adj = 1000)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_6.png){ width=50% }
+
+Simulate a right shift and compare with the OK adjustment:  
+```{r, eval=FALSE}
+## simulate a right shift
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 2000, xmin_adj = 500,
+                                  ymax_adj = 1000, ymin_adj = 1000)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_7.png){ width=50% }
+
+
+Simulate a left shift and compare with the OK adjustment:  
+```{r, eval=FALSE}
+## simulate a left shift
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 500, xmin_adj = 2000,
+                                  ymax_adj = 1000, ymin_adj = 1000)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_8.png){ width=50% }
+
+Simulate a downward shift and compare with the OK adjustment:  
+```{r, eval=FALSE}
+## simulate a downward shift
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 1000, xmin_adj = 1000,
+                                  ymax_adj = 500, ymin_adj = 2000)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_9.png){ width=50% }
+
+Simulate a upward shift and compare with the OK adjustment:  
+```{r, eval=FALSE}
+## simulate a upward shift
+visium_kidney = updateGiottoImage(visium_kidney, image_name = 'image',
+                                  xmax_adj = 1000, xmin_adj = 1000,
+                                  ymax_adj = 2000, ymin_adj = 500)
+
+spatPlot(gobject = visium_kidney, cell_color = 'in_tissue', show_image = T, point_alpha = 0.5)
+```
+
+![](../inst/howtos/giotto_images/vignette_1/1_c_spatplot_image_adjusted_10.png){ width=50% }
+
+
+
+#### A good alignment
 ```{r, eval=FALSE}
 # check name
 showGiottoImageNames(visium_kidney)
@@ -120,11 +255,11 @@ mypl_image
 
 
 
-## 4. Add image form scratch
+## 4. Add image from scratch
 ```{r eval=FALSE}
 ## use magick library to load (and optionally modify) figure ##
 # original image
-png_path = '/Volumes/Ruben_Seagate/Dropbox/Projects/GC_lab/Ruben_Dries/190225_spatial_package/Data/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'
+png_path = '/your/data/path/Visium_data/Kidney_data/spatial/tissue_lowres_image.png'
 mg_img = magick::image_read(png_path)
 ```
 

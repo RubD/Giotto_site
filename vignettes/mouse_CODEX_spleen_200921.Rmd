@@ -56,6 +56,7 @@ Alternatively you can use the **getSpatialDataset** to automatically download th
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 # download data to working directory
 # use method = 'wget' if wget is available. This should be much faster.
+# if you run into authentication issues with wget, then add " extra = '--no-check-certificate' "
 getSpatialDataset(dataset = 'codex_spleen', directory = results_folder, method = 'wget')
 ```
 

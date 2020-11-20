@@ -61,6 +61,7 @@ The merFISH data to run this tutorial can be found [here](https://github.com/Rub
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 # download data to working directory 
 # if wget is installed, set method = 'wget'
+# if you run into authentication issues with wget, then add " extra = '--no-check-certificate' "
 getSpatialDataset(dataset = 'merfish_preoptic', directory = my_working_dir, method = 'wget')
 ```
 

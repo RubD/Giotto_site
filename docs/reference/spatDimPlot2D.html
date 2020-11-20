@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,84 +190,84 @@
     <p>Visualize cells according to spatial AND dimension reduction coordinates 2D</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spatDimPlot2D</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>show_image</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>gimage</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>image_name</span> <span class='kw'>=</span> <span class='st'>"image"</span>,
-  <span class='kw'>plot_alignment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"vertical"</span>, <span class='st'>"horizontal"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"umap"</span>,
-  <span class='kw'>dim1_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim2_to_use</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>sdimx</span> <span class='kw'>=</span> <span class='st'>"sdimx"</span>,
-  <span class='kw'>sdimy</span> <span class='kw'>=</span> <span class='st'>"sdimy"</span>,
-  <span class='kw'>spat_enr_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color_as_factor</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cell_color_gradient</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span>),
-  <span class='kw'>gradient_midpoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>gradient_limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cell_groups</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>select_cells</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dim_point_shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"border"</span>, <span class='st'>"no_border"</span>),
-  <span class='kw'>dim_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim_point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim_point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>dim_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>spat_point_shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"border"</span>, <span class='st'>"no_border"</span>, <span class='st'>"voronoi"</span>),
-  <span class='kw'>spat_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>spat_point_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>spat_point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>spat_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>dim_show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>dim_show_center_label</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>dim_center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>dim_center_point_border_col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>dim_center_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>dim_label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>dim_label_fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>spat_show_cluster_center</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spat_show_center_label</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spat_center_point_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>spat_center_point_border_col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>spat_center_point_border_stroke</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>spat_label_size</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>spat_label_fontface</span> <span class='kw'>=</span> <span class='st'>"bold"</span>,
-  <span class='kw'>show_NN_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>nn_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>show_spatial_network</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spat_network_name</span> <span class='kw'>=</span> <span class='st'>"Delaunay_network"</span>,
-  <span class='kw'>spat_network_color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>spat_network_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>show_spatial_grid</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spat_grid_name</span> <span class='kw'>=</span> <span class='st'>"spatial_grid"</span>,
-  <span class='kw'>spat_grid_color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>,
-  <span class='kw'>show_other_cells</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>other_cell_color</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>dim_other_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>spat_other_point_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>spat_other_cells_alpha</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>dim_show_legend</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>spat_show_legend</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>legend_text</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>legend_symbol_size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>dim_background_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>spat_background_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>vor_border_color</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>vor_max_radius</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-  <span class='kw'>vor_alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>axis_text</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>axis_title</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"spatDimPlot2D"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>spatDimPlot2D</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  show_image <span class='op'>=</span> <span class='cn'>F</span>,
+  gimage <span class='op'>=</span> <span class='cn'>NULL</span>,
+  image_name <span class='op'>=</span> <span class='st'>"image"</span>,
+  plot_alignment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"vertical"</span>, <span class='st'>"horizontal"</span><span class='op'>)</span>,
+  dim_reduction_to_use <span class='op'>=</span> <span class='st'>"umap"</span>,
+  dim_reduction_name <span class='op'>=</span> <span class='st'>"umap"</span>,
+  dim1_to_use <span class='op'>=</span> <span class='fl'>1</span>,
+  dim2_to_use <span class='op'>=</span> <span class='fl'>2</span>,
+  sdimx <span class='op'>=</span> <span class='st'>"sdimx"</span>,
+  sdimy <span class='op'>=</span> <span class='st'>"sdimy"</span>,
+  spat_enr_names <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cell_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color_as_factor <span class='op'>=</span> <span class='cn'>T</span>,
+  cell_color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cell_color_gradient <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>, <span class='st'>"white"</span>, <span class='st'>"red"</span><span class='op'>)</span>,
+  gradient_midpoint <span class='op'>=</span> <span class='cn'>NULL</span>,
+  gradient_limits <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select_cell_groups <span class='op'>=</span> <span class='cn'>NULL</span>,
+  select_cells <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dim_point_shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"border"</span>, <span class='st'>"no_border"</span><span class='op'>)</span>,
+  dim_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  dim_point_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  dim_point_border_col <span class='op'>=</span> <span class='st'>"black"</span>,
+  dim_point_border_stroke <span class='op'>=</span> <span class='fl'>0.1</span>,
+  spat_point_shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"border"</span>, <span class='st'>"no_border"</span>, <span class='st'>"voronoi"</span><span class='op'>)</span>,
+  spat_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  spat_point_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  spat_point_border_col <span class='op'>=</span> <span class='st'>"black"</span>,
+  spat_point_border_stroke <span class='op'>=</span> <span class='fl'>0.1</span>,
+  dim_show_cluster_center <span class='op'>=</span> <span class='cn'>F</span>,
+  dim_show_center_label <span class='op'>=</span> <span class='cn'>T</span>,
+  dim_center_point_size <span class='op'>=</span> <span class='fl'>4</span>,
+  dim_center_point_border_col <span class='op'>=</span> <span class='st'>"black"</span>,
+  dim_center_point_border_stroke <span class='op'>=</span> <span class='fl'>0.1</span>,
+  dim_label_size <span class='op'>=</span> <span class='fl'>4</span>,
+  dim_label_fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+  spat_show_cluster_center <span class='op'>=</span> <span class='cn'>F</span>,
+  spat_show_center_label <span class='op'>=</span> <span class='cn'>F</span>,
+  spat_center_point_size <span class='op'>=</span> <span class='fl'>4</span>,
+  spat_center_point_border_col <span class='op'>=</span> <span class='st'>"blue"</span>,
+  spat_center_point_border_stroke <span class='op'>=</span> <span class='fl'>0.1</span>,
+  spat_label_size <span class='op'>=</span> <span class='fl'>4</span>,
+  spat_label_fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+  show_NN_network <span class='op'>=</span> <span class='cn'>F</span>,
+  nn_network_to_use <span class='op'>=</span> <span class='st'>"sNN"</span>,
+  network_name <span class='op'>=</span> <span class='st'>"sNN.pca"</span>,
+  nn_network_alpha <span class='op'>=</span> <span class='fl'>0.05</span>,
+  show_spatial_network <span class='op'>=</span> <span class='cn'>F</span>,
+  spat_network_name <span class='op'>=</span> <span class='st'>"Delaunay_network"</span>,
+  spat_network_color <span class='op'>=</span> <span class='st'>"blue"</span>,
+  spat_network_alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  show_spatial_grid <span class='op'>=</span> <span class='cn'>F</span>,
+  spat_grid_name <span class='op'>=</span> <span class='st'>"spatial_grid"</span>,
+  spat_grid_color <span class='op'>=</span> <span class='st'>"blue"</span>,
+  show_other_cells <span class='op'>=</span> <span class='cn'>T</span>,
+  other_cell_color <span class='op'>=</span> <span class='st'>"lightgrey"</span>,
+  dim_other_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  spat_other_point_size <span class='op'>=</span> <span class='fl'>1</span>,
+  spat_other_cells_alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
+  dim_show_legend <span class='op'>=</span> <span class='cn'>F</span>,
+  spat_show_legend <span class='op'>=</span> <span class='cn'>F</span>,
+  legend_text <span class='op'>=</span> <span class='fl'>8</span>,
+  legend_symbol_size <span class='op'>=</span> <span class='fl'>1</span>,
+  dim_background_color <span class='op'>=</span> <span class='st'>"white"</span>,
+  spat_background_color <span class='op'>=</span> <span class='st'>"white"</span>,
+  vor_border_color <span class='op'>=</span> <span class='st'>"white"</span>,
+  vor_max_radius <span class='op'>=</span> <span class='fl'>200</span>,
+  vor_alpha <span class='op'>=</span> <span class='fl'>1</span>,
+  axis_text <span class='op'>=</span> <span class='fl'>8</span>,
+  axis_title <span class='op'>=</span> <span class='fl'>8</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  default_save_name <span class='op'>=</span> <span class='st'>"spatDimPlot2D"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -592,12 +592,14 @@
 <code><a href='spatDimPlot.html'>spatDimPlot</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
-<span class='fu'>spatDimPlot2D</span>(<span class='no'>mini_giotto_single_cell</span>)
-<span class='fu'>spatDimPlot2D</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>cell_color</span> <span class='kw'>=</span> <span class='st'>'cell_types'</span>,
-             <span class='kw'>spat_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>dim_point_size</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+<span class='fu'>spatDimPlot2D</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+</div><div class='img'><img src='spatDimPlot2D-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='spatDimPlot2D-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>spatDimPlot2D</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, cell_color <span class='op'>=</span> <span class='st'>'cell_types'</span>,
+             spat_point_size <span class='op'>=</span> <span class='fl'>3</span>, dim_point_size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='spatDimPlot2D-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='spatDimPlot2D-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -613,7 +615,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

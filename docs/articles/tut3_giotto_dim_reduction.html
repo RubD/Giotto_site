@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="tut3_giotto_dim_reduction_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -149,50 +149,55 @@
 <div id="dimension-reduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dimension-reduction" class="anchor"></a>Dimension reduction</h1>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 <div id="create-process-giotto-object" class="section level4">
 <h4 class="hasAnchor">
 <a href="#create-process-giotto-object" class="anchor"></a>1. create &amp; process Giotto object</h4>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">path_to_matrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">path_to_locations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
 
-<span class="no">my_giotto_object</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">path_to_matrix</span>,
-                                      <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">path_to_locations</span>)
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)</pre></body></html></div>
+<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
+                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="highly-variable-genes" class="section level4">
 <h4 class="hasAnchor">
 <a href="#highly-variable-genes" class="anchor"></a>2. Highly variable genes</h4>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="pca" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pca" class="anchor"></a>3. PCA</h4>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># run PCA</span>
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># run PCA</span>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
 
 <span class="co"># identify most informative principal components</span>
-<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">20</span>)
-<span class="fu"><a href="../reference/jackstrawPlot.html">jackstrawPlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">ncp</span> <span class="kw">=</span> <span class="fl">20</span>)
+<span class="fu"><a href="../reference/screePlot.html">screePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, ncp <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
+<span class="fu"><a href="../reference/jackstrawPlot.html">jackstrawPlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, ncp <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
 
 <span class="co"># plot PCA results</span>
-<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="no">my_giotto_object</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="umap-tsne" class="section level4">
 <h4 class="hasAnchor">
 <a href="#umap-tsne" class="anchor"></a>4. UMAP &amp; TSNE</h4>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># umap</span>
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># umap</span>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
 
 <span class="co"># tsne</span>
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">5</span>)
-<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)</pre></body></html></div>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runtSNE.html">runtSNE</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotTSNE.html">plotTSNE</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></pre></div>
 </div>
 </div>
   </div>
@@ -212,7 +217,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,22 +190,22 @@
     <p>show gene or cell distribution after filtering on expression threshold</p>
     </div>
 
-    <pre class="usage"><span class='fu'>filterDistributions</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>expression_threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>detection</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"genes"</span>, <span class='st'>"cells"</span>),
-  <span class='kw'>plot_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"histogram"</span>, <span class='st'>"violin"</span>),
-  <span class='kw'>nr_bins</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>fill_color</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>,
-  <span class='kw'>scale_axis</span> <span class='kw'>=</span> <span class='st'>"identity"</span>,
-  <span class='kw'>axis_offset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"filterDistributions"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>filterDistributions</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"raw"</span>, <span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  expression_threshold <span class='op'>=</span> <span class='fl'>1</span>,
+  detection <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"genes"</span>, <span class='st'>"cells"</span><span class='op'>)</span>,
+  plot_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"histogram"</span>, <span class='st'>"violin"</span><span class='op'>)</span>,
+  nr_bins <span class='op'>=</span> <span class='fl'>30</span>,
+  fill_color <span class='op'>=</span> <span class='st'>"lightblue"</span>,
+  scale_axis <span class='op'>=</span> <span class='st'>"identity"</span>,
+  axis_offset <span class='op'>=</span> <span class='fl'>0</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  default_save_name <span class='op'>=</span> <span class='st'>"filterDistributions"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -273,14 +273,16 @@
     <p>ggplot object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
 <span class='co'># distribution plot of genes</span>
-<span class='fu'>filterDistributions</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>detection</span> <span class='kw'>=</span> <span class='st'>'genes'</span>)
-
+<span class='fu'>filterDistributions</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, detection <span class='op'>=</span> <span class='st'>'genes'</span><span class='op'>)</span>
+</div><div class='img'><img src='filterDistributions-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='filterDistributions-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># distribution plot of cells</span>
-<span class='fu'>filterDistributions</span>(<span class='no'>mini_giotto_single_cell</span>, <span class='kw'>detection</span> <span class='kw'>=</span> <span class='st'>'cells'</span>)</pre>
+<span class='fu'>filterDistributions</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>, detection <span class='op'>=</span> <span class='st'>'cells'</span><span class='op'>)</span>
+</div><div class='img'><img src='filterDistributions-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='filterDistributions-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -296,7 +298,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

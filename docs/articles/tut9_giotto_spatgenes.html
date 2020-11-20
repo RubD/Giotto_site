@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="tut9_giotto_spatgenes_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -152,73 +152,75 @@
 <div id="processing-steps" class="section level4">
 <h4 class="hasAnchor">
 <a href="#processing-steps" class="anchor"></a>1. processing steps</h4>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">Giotto</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
 
-<span class="no">path_to_matrix</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
-<span class="no">path_to_locations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">'Giotto'</span>)
+<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
+<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
 
-<span class="no">my_giotto_object</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span>(<span class="kw">raw_exprs</span> <span class="kw">=</span> <span class="no">path_to_matrix</span>,
-                                      <span class="kw">spatial_locs</span> <span class="kw">=</span> <span class="no">path_to_locations</span>)
+<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
+                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
 
 <span class="co"># processing</span>
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">seqfish_mini</span>,
-                             <span class="kw">expression_threshold</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-                             <span class="kw">gene_det_in_min_cells</span> <span class="kw">=</span> <span class="fl">20</span>,
-                             <span class="kw">min_det_genes_per_cell</span> <span class="kw">=</span> <span class="fl">0</span>)
-<span class="no">my_giotto_object</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>)
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
+                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, 
+                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, 
+                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
 
 <span class="co"># create network (required for binSpect methods)</span>
-<span class="no">my_giotto_object</span> <span class="kw">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">my_giotto_object</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, minimum_k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="run-spatial-gene-detection-methods" class="section level4">
 <h4 class="hasAnchor">
 <a href="#run-spatial-gene-detection-methods" class="anchor"></a>2. Run spatial gene detection methods</h4>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># binSpect kmeans method</span>
-<span class="no">km_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'kmeans'</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># binSpect kmeans method</span>
+<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">km_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">2</span>]$<span class="no">genes</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>, point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># binSpect rank method</span>
-<span class="no">rnk_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>)
+<span class="va">rnk_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'rank'</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">rnk_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">2</span>]$<span class="no">genes</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">rnk_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>, point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># silhouetteRank method</span>
-<span class="no">silh_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span>(<span class="no">my_giotto_object</span>)
+<span class="va">silh_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/silhouetteRank.html">silhouetteRank</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">silh_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">2</span>]$<span class="no">genes</span>,  <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">silh_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,  point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># spatialDE method</span>
-<span class="no">spatDE_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/spatialDE.html">spatialDE</a></span>(<span class="no">my_giotto_object</span>)
-<span class="no">results</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span>(<span class="no">spatDE_spatialgenes</span>$<span class="no">results</span>)
-<span class="fu">setorder</span>(<span class="no">results</span>, -<span class="no">LLR</span>)
+<span class="va">spatDE_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatialDE.html">spatialDE</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span>
+<span class="va">results</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">spatDE_spatialgenes</span><span class="op">$</span><span class="va">results</span><span class="op">)</span>
+<span class="fu">setorder</span><span class="op">(</span><span class="va">results</span>, <span class="op">-</span><span class="va">LLR</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">results</span>$<span class="no">g</span>[<span class="fl">1</span>:<span class="fl">2</span>],  <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">g</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,  point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># spark method</span>
-<span class="no">spark_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/spark.html">spark</a></span>(<span class="no">my_giotto_object</span>)
-<span class="fu">setorder</span>(<span class="no">spark_spatialgenes</span>, <span class="no">adjusted_pvalue</span>, <span class="no">combined_pvalue</span>)
+<span class="va">spark_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/spark.html">spark</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span>
+<span class="fu">setorder</span><span class="op">(</span><span class="va">spark_spatialgenes</span>, <span class="va">adjusted_pvalue</span>, <span class="va">combined_pvalue</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">spark_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">2</span>]$<span class="no">genes</span>,  <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">spark_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>,  point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># trendsceek method</span>
-<span class="no">trendsc_spatialgenes</span> <span class="kw">=</span> <span class="fu"><a href="../reference/trendSceek.html">trendSceek</a></span>(<span class="no">my_giotto_object</span>)
-<span class="no">trendsc_spatialgenes</span> <span class="kw">=</span> <span class="kw pkg">data.table</span><span class="kw ns">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span>(<span class="no">trendsc_spatialgenes</span>)
+<span class="va">trendsc_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/trendSceek.html">trendSceek</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span>
+<span class="va">trendsc_spatialgenes</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html">as.data.table</a></span><span class="op">(</span><span class="va">trendsc_spatialgenes</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">my_giotto_object</span>, <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">trendsc_spatialgenes</span>[<span class="fl">1</span>:<span class="fl">2</span>]$<span class="no">gene</span>,  <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">3</span>,
-             <span class="kw">point_shape</span> <span class="kw">=</span> <span class="st">'border'</span>, <span class="kw">point_border_stroke</span> <span class="kw">=</span> <span class="fl">0.1</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, 
+             genes <span class="op">=</span> <span class="va">trendsc_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">$</span><span class="va">gene</span>,  point_size <span class="op">=</span> <span class="fl">3</span>,
+             point_shape <span class="op">=</span> <span class="st">'border'</span>, point_border_stroke <span class="op">=</span> <span class="fl">0.1</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 </div>
 </div>
   </div>
@@ -238,7 +240,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

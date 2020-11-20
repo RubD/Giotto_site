@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,28 +190,28 @@
     <p>Create visualization for cell proximity gene scores</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotCPG</span>(
-  <span class='no'>gobject</span>,
-  <span class='no'>cpgObject</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"volcano"</span>, <span class='st'>"cell_barplot"</span>, <span class='st'>"cell-cell"</span>, <span class='st'>"cell_sankey"</span>, <span class='st'>"heatmap"</span>,
-    <span class='st'>"dotplot"</span>),
-  <span class='kw'>min_cells</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>min_cells_expr</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>min_int_cells</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>min_int_cells_expr</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>min_fdr</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>min_spat_diff</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>min_log2_fc</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>min_zscore</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>zscores_column</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cell_type"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
-  <span class='kw'>cell_color_code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>show_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>return_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_plot</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>save_param</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>default_save_name</span> <span class='kw'>=</span> <span class='st'>"plotCPG"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plotCPG</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  <span class='va'>cpgObject</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"volcano"</span>, <span class='st'>"cell_barplot"</span>, <span class='st'>"cell-cell"</span>, <span class='st'>"cell_sankey"</span>, <span class='st'>"heatmap"</span>,
+    <span class='st'>"dotplot"</span><span class='op'>)</span>,
+  min_cells <span class='op'>=</span> <span class='fl'>5</span>,
+  min_cells_expr <span class='op'>=</span> <span class='fl'>1</span>,
+  min_int_cells <span class='op'>=</span> <span class='fl'>3</span>,
+  min_int_cells_expr <span class='op'>=</span> <span class='fl'>1</span>,
+  min_fdr <span class='op'>=</span> <span class='fl'>0.05</span>,
+  min_spat_diff <span class='op'>=</span> <span class='fl'>0.2</span>,
+  min_log2_fc <span class='op'>=</span> <span class='fl'>0.2</span>,
+  min_zscore <span class='op'>=</span> <span class='fl'>2</span>,
+  zscores_column <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cell_type"</span>, <span class='st'>"genes"</span><span class='op'>)</span>,
+  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span><span class='op'>)</span>,
+  cell_color_code <span class='op'>=</span> <span class='cn'>NULL</span>,
+  show_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  return_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_plot <span class='op'>=</span> <span class='cn'>NA</span>,
+  save_param <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  default_save_name <span class='op'>=</span> <span class='st'>"plotCPG"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -313,7 +313,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

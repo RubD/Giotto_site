@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="subset_giotto_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -163,84 +163,95 @@
 <div id="the-visium-10x-whole-brain" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-visium-10x-whole-brain" class="anchor"></a>1. the Visium 10X whole brain</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/1_whole_brain.png" style="width:50.0%"></p>
 </div>
 <div id="show-only-a-subset-of-the-clusters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#show-only-a-subset-of-the-clusters" class="anchor"></a>2. show only a subset of the clusters</h2>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain</span>,
-            <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,  <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'4'</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>,
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/2_whole_brain_clus4.png" style="width:50.0%"></p>
 </div>
 <div id="show-only-a-subset-of-the-clusters-excluding-not-selected-cells" class="section level2">
 <h2 class="hasAnchor">
 <a href="#show-only-a-subset-of-the-clusters-excluding-not-selected-cells" class="anchor"></a>3. show only a subset of the clusters, excluding not selected cells</h2>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain</span>,
-            <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,  <span class="kw">select_cell_groups</span> <span class="kw">=</span> <span class="st">'4'</span>, <span class="kw">show_other_cells</span> <span class="kw">=</span> <span class="no">F</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/3_whole_brain_clus4_noOther.png" style="width:50.0%"></p>
 </div>
 <div id="create-spatial-plots-grouped-by-the-leiden-clustering-result" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-spatial-plots-grouped-by-the-leiden-clustering-result" class="anchor"></a>4. create spatial plots grouped by the leiden clustering result</h2>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="no">visium_brain</span>,
-         <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">8</span>),
-         <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">4</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">axis_text</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">axis_title</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">6</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,
+         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,
+         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/4_whole_brain_by_group_leiden_1.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="no">visium_brain</span>,
-         <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">9</span>:<span class="fl">16</span>),
-         <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">4</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">axis_text</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">axis_title</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">6</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">16</span><span class="op">)</span>,
+         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,
+         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/4_whole_brain_by_group_leiden_2.png" style="width:50.0%"></p>
 </div>
 <div id="create-dimension-plots-grouped-by-the-hmrf-result" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-dimension-plots-grouped-by-the-hmrf-result" class="anchor"></a>5. create dimension plots grouped by the HMRF result</h2>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain</span>, <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'HMRF_k12_b.1'</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>,
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_HMRF.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span>(<span class="no">visium_brain</span>,
-         <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'HMRF_k12_b.1'</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>:<span class="fl">6</span>),
-         <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>,
-         <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">axis_text</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">axis_title</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">6</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+         group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,
+         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,
+         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_by_group_HMRF_1.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span>(<span class="no">visium_brain</span>,
-        <span class="kw">group_by</span> <span class="kw">=</span> <span class="st">'HMRF_k12_b.1'</span>, <span class="kw">group_by_subset</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">7</span>:<span class="fl">14</span>),
-        <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>, <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">3</span>,
-        <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">axis_text</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">axis_title</span> <span class="kw">=</span> <span class="fl">6</span>, <span class="kw">legend_text</span> <span class="kw">=</span> <span class="fl">6</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+        group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">14</span><span class="op">)</span>,
+        cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,
+        point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_by_group_HMRF_2.png" style="width:50.0%"></p>
 </div>
 <div id="create-a-new-giotto-object-by-subsetting-selected-clusters" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-giotto-object-by-subsetting-selected-clusters" class="anchor"></a>6. Create a new Giotto object by subsetting selected clusters</h2>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">visium_brain</span>)
-<span class="no">subset_cell_IDs</span> <span class="kw">=</span> <span class="no">metadata</span>[<span class="no">leiden_clus</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">13</span>)]$<span class="no">cell_ID</span>
-<span class="no">visium_brain_small</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">visium_brain</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">subset_cell_IDs</span>)
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">visium_brain</span><span class="op">)</span>
+<span class="va">subset_cell_IDs</span> <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="va">leiden_clus</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">$</span><span class="va">cell_ID</span>
+<span class="va">visium_brain_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_ids <span class="op">=</span> <span class="va">subset_cell_IDs</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain_small</span>,
-            <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,
+            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/6_subset_brain.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">visium_brain_small</span>,
-            <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'nr_genes'</span>, <span class="kw">color_as_factor</span> <span class="kw">=</span> <span class="no">F</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">2.5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,
+            cell_color <span class="op">=</span> <span class="st">'nr_genes'</span>, color_as_factor <span class="op">=</span> <span class="cn">F</span>,
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/6_subset_brain_nr_genes.png" style="width:50.0%"></p>
 </div>
 <div id="create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations" class="anchor"></a>7. Create a new Giotto object by subsetting based on spatial coordinates/locations</h2>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">DG_subset</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiottoLocs.html">subsetGiottoLocs</a></span>(<span class="no">visium_brain</span>,
-                             <span class="kw">x_max</span> <span class="kw">=</span> <span class="fl">6500</span>, <span class="kw">x_min</span> <span class="kw">=</span> <span class="fl">3000</span>,
-                             <span class="kw">y_max</span> <span class="kw">=</span> -<span class="fl">2500</span>, <span class="kw">y_min</span> <span class="kw">=</span> -<span class="fl">5500</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">DG_subset</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiottoLocs.html">subsetGiottoLocs</a></span><span class="op">(</span><span class="va">visium_brain</span>,
+                             x_max <span class="op">=</span> <span class="fl">6500</span>, x_min <span class="op">=</span> <span class="fl">3000</span>,
+                             y_max <span class="op">=</span> <span class="op">-</span><span class="fl">2500</span>, y_min <span class="op">=</span> <span class="op">-</span><span class="fl">5500</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span>(<span class="no">DG_subset</span>,
-            <span class="kw">cell_color</span> <span class="kw">=</span> <span class="st">'leiden_clus'</span>,
-            <span class="kw">plot_alignment</span> <span class="kw">=</span> <span class="st">'horizontal'</span>, <span class="kw">spat_point_size</span> <span class="kw">=</span> <span class="fl">4</span>,
-            <span class="kw">save_param</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">save_name</span> <span class="kw">=</span> <span class="st">'6_DG_loc_subset'</span>, <span class="kw">base_height</span> <span class="kw">=</span> <span class="fl">4</span>))</pre></body></html></div>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">DG_subset</span>,
+            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
+            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">4</span>,
+            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_DG_loc_subset'</span>, base_height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/7_DG_loc_subset.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -261,7 +272,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

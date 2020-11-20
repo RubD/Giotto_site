@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@
     <p>show gene metadata</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fDataDT</span>(<span class='no'>gobject</span>)</pre>
+    <pre class="usage"><span class='fu'>fDataDT</span><span class='op'>(</span><span class='va'>gobject</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,9 +206,31 @@
     <p>data.table with gene metadata</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>) <span class='co'># loads existing Giotto object</span>
-<span class='fu'>fDataDT</span>(<span class='no'>mini_giotto_single_cell</span>)</pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span> <span class='co'># loads existing Giotto object</span>
+<span class='fu'>fDataDT</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     gene_ID nr_cells perc_cells total_expr mean_expr mean_expr_det hvg
+#&gt;  1:   Cldn5        6         30   48.92244  2.446122      8.153740 yes
+#&gt;  2:   Rtn4r       13         65  110.74429  5.537215      8.518792 yes
+#&gt;  3:     Vgf       15         75  132.75484  6.637742      8.850322  no
+#&gt;  4:  Lingo1       15         75  147.21239  7.360619      9.814159  no
+#&gt;  5: Slc17a7       17         85  170.21651  8.510826     10.012736  no
+#&gt;  6:   Lynx1       10         50   78.57677  3.928838      7.857677  no
+#&gt;  7:  Atp1a1       17         85  165.49466  8.274733      9.734980  no
+#&gt;  8:    Scg3       10         50   83.22481  4.161240      8.322481 yes
+#&gt;  9:    Myh9        9         45   74.30740  3.715370      8.256378  no
+#&gt; 10:  Pcp4l1       11         55   89.43319  4.471660      8.130290  no
+#&gt; 11:    Pygb       11         55   93.51979  4.675990      8.501799  no
+#&gt; 12:  Col4a2       10         50   82.04459  4.102229      8.204459 yes
+#&gt; 13:    Sdc4       10         50   83.86661  4.193330      8.386661 yes
+#&gt; 14:   Csf1r        9         45   68.17674  3.408837      7.575193  no
+#&gt; 15:  Mtss1l       12         60   97.81416  4.890708      8.151180 yes
+#&gt; 16: Slc32a1        5         25   45.07783  2.253892      9.015567 yes
+#&gt; 17:  Adarb2        6         30   44.55620  2.227810      7.426034 yes
+#&gt; 18:   Abtb2        7         35   51.22157  2.561079      7.317368  no
+#&gt; 19:   Htra1       10         50   83.31959  4.165979      8.331959 yes
+#&gt; 20:   Cplx1       15         75  128.19130  6.409565      8.546087  no</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -224,7 +246,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

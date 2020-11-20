@@ -98,6 +98,13 @@ for windows:
 
 ## 2. errors on MacOS
 
+Some of the errors outlined below might arise because of issues with building Giotto from source.  
+The Giotto branch **cless** is a version of Giotto without C++ code, which should fix many of the installation errors.  
+
+```{r eval=FALSE}
+remotes::install_github("RubD/Giotto@cless") 
+```
+
 ### 2.1 issue 1: clang error
 If you see this error on your MacOS:  
 ``` bash
@@ -134,9 +141,9 @@ CPPFLAGS=-I/usr/local/opt/gettext/include -I/usr/local/opt/llvm/include
 ```
 
 
-### 2.2 issue 2
+### 2.2 issue 2: clang error
 
-If you see this error on your MacOS, most likely with the macOS Mojave: 
+If you see this error on your MacOS: 
 ```{bash, eval = FALSE}
 Error message: 
 ld: warning: directory not found for option '-L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0'

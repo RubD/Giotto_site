@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,12 +190,12 @@
     <p>calculates the average gene expression for one or more (combined) annotation columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>calculateMetaTable</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>metadata_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>selected_genes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>calculateMetaTable</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  metadata_cols <span class='op'>=</span> <span class='cn'>NULL</span>,
+  selected_genes <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -223,15 +223,98 @@
     <p>data.table with average expression values for each gene per (combined) annotation</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
 <span class='co'># show cell metadata</span>
-<span class='fu'><a href='pDataDT.html'>pDataDT</a></span>(<span class='no'>mini_giotto_single_cell</span>)
-
+<span class='fu'><a href='pDataDT.html'>pDataDT</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      cell_ID nr_genes perc_genes total_expr leiden_clus cell_types
+#&gt;  1:   cell_2       13         65  111.98320           3     cell C
+#&gt;  2:   cell_7       15         75  115.73030           3     cell C
+#&gt;  3:  cell_12       11         55   95.49802           1     cell A
+#&gt;  4:  cell_15       12         60   99.94782           3     cell C
+#&gt;  5:  cell_17       13         65  111.32963           2     cell B
+#&gt;  6:  cell_30       11         55   96.64302           3     cell C
+#&gt;  7:  cell_37        6         30   57.77777           2     cell B
+#&gt;  8:  cell_40        9         45   82.84693           2     cell B
+#&gt;  9:  cell_44        9         45   79.93838           2     cell B
+#&gt; 10:  cell_53        9         45   82.40747           1     cell A
+#&gt; 11:  cell_64        8         40   73.06345           1     cell A
+#&gt; 12:  cell_74       11         55   93.04295           3     cell C
+#&gt; 13:  cell_85        8         40   73.72574           1     cell A
+#&gt; 14:  cell_86       14         70  115.75186           1     cell A
+#&gt; 15:  cell_90       11         55   93.02181           1     cell A
+#&gt; 16:  cell_95        6         30   59.55714           1     cell A
+#&gt; 17:  cell_96       10         50   88.31757           1     cell A
+#&gt; 18: cell_107       16         80  130.62640           1     cell A
+#&gt; 19: cell_113       12         60   99.83100           2     cell B
+#&gt; 20: cell_118       14         70  117.63523           2     cell B</div><div class='input'>
 <span class='co'># show average gene expression per annotated cell type</span>
-<span class='fu'>calculateMetaTable</span>(<span class='no'>mini_giotto_single_cell</span>,
-                   <span class='kw'>metadata_cols</span> <span class='kw'>=</span> <span class='st'>'cell_types'</span>)</pre>
+<span class='fu'>calculateMetaTable</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>,
+                   metadata_cols <span class='op'>=</span> <span class='st'>'cell_types'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     cell_types uniq_ID variable     value
+#&gt;  1:     cell C  cell C    Cldn5  4.262769
+#&gt;  2:     cell A  cell A    Cldn5  0.000000
+#&gt;  3:     cell B  cell B    Cldn5  4.601433
+#&gt;  4:     cell C  cell C    Rtn4r  8.651224
+#&gt;  5:     cell A  cell A    Rtn4r  5.670079
+#&gt;  6:     cell B  cell B    Rtn4r  2.742910
+#&gt;  7:     cell C  cell C      Vgf  8.625694
+#&gt;  8:     cell A  cell A      Vgf  9.097362
+#&gt;  9:     cell B  cell B      Vgf  1.291685
+#&gt; 10:     cell C  cell C   Lingo1 10.013670
+#&gt; 11:     cell A  cell A   Lingo1  8.728317
+#&gt; 12:     cell B  cell B   Lingo1  3.098198
+#&gt; 13:     cell C  cell C  Slc17a7 10.102439
+#&gt; 14:     cell A  cell A  Slc17a7  9.879413
+#&gt; 15:     cell B  cell B  Slc17a7  5.131600
+#&gt; 16:     cell C  cell C    Lynx1  4.814888
+#&gt; 17:     cell A  cell A    Lynx1  4.281796
+#&gt; 18:     cell B  cell B    Lynx1  2.661027
+#&gt; 19:     cell C  cell C   Atp1a1  9.852690
+#&gt; 20:     cell A  cell A   Atp1a1  9.800178
+#&gt; 21:     cell B  cell B   Atp1a1  4.671602
+#&gt; 22:     cell C  cell C     Scg3  0.000000
+#&gt; 23:     cell A  cell A     Scg3  3.376464
+#&gt; 24:     cell B  cell B     Scg3  8.806105
+#&gt; 25:     cell C  cell C     Myh9  3.039197
+#&gt; 26:     cell A  cell A     Myh9  2.769607
+#&gt; 27:     cell B  cell B     Myh9  5.697493
+#&gt; 28:     cell C  cell C   Pcp4l1  5.888908
+#&gt; 29:     cell A  cell A   Pcp4l1  4.801477
+#&gt; 30:     cell B  cell B   Pcp4l1  2.795894
+#&gt; 31:     cell C  cell C     Pygb  1.426957
+#&gt; 32:     cell A  cell A     Pygb  3.735340
+#&gt; 33:     cell B  cell B     Pygb  8.794492
+#&gt; 34:     cell C  cell C   Col4a2  1.229003
+#&gt; 35:     cell A  cell A   Col4a2  3.545717
+#&gt; 36:     cell B  cell B   Col4a2  7.331353
+#&gt; 37:     cell C  cell C     Sdc4  3.271337
+#&gt; 38:     cell A  cell A     Sdc4  2.541195
+#&gt; 39:     cell B  cell B     Sdc4  7.439861
+#&gt; 40:     cell C  cell C    Csf1r  3.089642
+#&gt; 41:     cell A  cell A    Csf1r  3.295176
+#&gt; 42:     cell B  cell B    Csf1r  3.845324
+#&gt; 43:     cell C  cell C   Mtss1l  6.170010
+#&gt; 44:     cell A  cell A   Mtss1l  2.532647
+#&gt; 45:     cell B  cell B   Mtss1l  7.361713
+#&gt; 46:     cell C  cell C  Slc32a1  1.793733
+#&gt; 47:     cell A  cell A  Slc32a1  4.012130
+#&gt; 48:     cell B  cell B  Slc32a1  0.000000
+#&gt; 49:     cell C  cell C   Adarb2  4.278583
+#&gt; 50:     cell A  cell A   Adarb2  1.731363
+#&gt; 51:     cell B  cell B   Adarb2  1.263504
+#&gt; 52:     cell C  cell C    Abtb2  4.278583
+#&gt; 53:     cell A  cell A    Abtb2  1.682614
+#&gt; 54:     cell B  cell B    Abtb2  2.447522
+#&gt; 55:     cell C  cell C    Htra1  6.193813
+#&gt; 56:     cell A  cell A    Htra1  1.533463
+#&gt; 57:     cell B  cell B    Htra1  6.424891
+#&gt; 58:     cell C  cell C    Cplx1  6.486320
+#&gt; 59:     cell A  cell A    Cplx1  7.204490
+#&gt; 60:     cell B  cell B    Cplx1  5.153216
+#&gt;     cell_types uniq_ID variable     value</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -247,7 +330,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

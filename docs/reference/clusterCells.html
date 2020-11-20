@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,51 +190,51 @@
     <p>cluster cells using a variety of different methods</p>
     </div>
 
-    <pre class="usage"><span class='fu'>clusterCells</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>cluster_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"leiden"</span>, <span class='st'>"louvain_community"</span>, <span class='st'>"louvain_multinet"</span>, <span class='st'>"randomwalk"</span>,
-    <span class='st'>"sNNclust"</span>, <span class='st'>"kmeans"</span>, <span class='st'>"hierarchical"</span>),
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"cluster_name"</span>,
-  <span class='kw'>nn_network_to_use</span> <span class='kw'>=</span> <span class='st'>"sNN"</span>,
-  <span class='kw'>network_name</span> <span class='kw'>=</span> <span class='st'>"sNN.pca"</span>,
-  <span class='kw'>pyth_leid_resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>pyth_leid_weight_col</span> <span class='kw'>=</span> <span class='st'>"weight"</span>,
-  <span class='kw'>pyth_leid_part_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"RBConfigurationVertexPartition"</span>,
-    <span class='st'>"ModularityVertexPartition"</span>),
-  <span class='kw'>pyth_leid_init_memb</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pyth_leid_iterations</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>pyth_louv_resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>pyth_louv_weight_col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>python_louv_random</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>python_path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>louvain_gamma</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>louvain_omega</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>walk_steps</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>walk_clusters</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>walk_weights</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>sNNclust_k</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>sNNclust_eps</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>sNNclust_minPts</span> <span class='kw'>=</span> <span class='fl'>16</span>,
-  <span class='kw'>borderPoints</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span>),
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
-  <span class='kw'>distance_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"original"</span>, <span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>, <span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>,
-    <span class='st'>"manhattan"</span>, <span class='st'>"canberra"</span>, <span class='st'>"binary"</span>, <span class='st'>"minkowski"</span>),
-  <span class='kw'>km_centers</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>km_iter_max</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>km_nstart</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>km_algorithm</span> <span class='kw'>=</span> <span class='st'>"Hartigan-Wong"</span>,
-  <span class='kw'>hc_agglomeration_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ward.D2"</span>, <span class='st'>"ward.D"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>,
-    <span class='st'>"mcquitty"</span>, <span class='st'>"median"</span>, <span class='st'>"centroid"</span>),
-  <span class='kw'>hc_k</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>hc_h</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>seed_number</span> <span class='kw'>=</span> <span class='fl'>1234</span>
-)</pre>
+    <pre class="usage"><span class='fu'>clusterCells</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  cluster_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"leiden"</span>, <span class='st'>"louvain_community"</span>, <span class='st'>"louvain_multinet"</span>, <span class='st'>"randomwalk"</span>,
+    <span class='st'>"sNNclust"</span>, <span class='st'>"kmeans"</span>, <span class='st'>"hierarchical"</span><span class='op'>)</span>,
+  name <span class='op'>=</span> <span class='st'>"cluster_name"</span>,
+  nn_network_to_use <span class='op'>=</span> <span class='st'>"sNN"</span>,
+  network_name <span class='op'>=</span> <span class='st'>"sNN.pca"</span>,
+  pyth_leid_resolution <span class='op'>=</span> <span class='fl'>1</span>,
+  pyth_leid_weight_col <span class='op'>=</span> <span class='st'>"weight"</span>,
+  pyth_leid_part_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"RBConfigurationVertexPartition"</span>,
+    <span class='st'>"ModularityVertexPartition"</span><span class='op'>)</span>,
+  pyth_leid_init_memb <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pyth_leid_iterations <span class='op'>=</span> <span class='fl'>1000</span>,
+  pyth_louv_resolution <span class='op'>=</span> <span class='fl'>1</span>,
+  pyth_louv_weight_col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  python_louv_random <span class='op'>=</span> <span class='cn'>F</span>,
+  python_path <span class='op'>=</span> <span class='cn'>NULL</span>,
+  louvain_gamma <span class='op'>=</span> <span class='fl'>1</span>,
+  louvain_omega <span class='op'>=</span> <span class='fl'>1</span>,
+  walk_steps <span class='op'>=</span> <span class='fl'>4</span>,
+  walk_clusters <span class='op'>=</span> <span class='fl'>10</span>,
+  walk_weights <span class='op'>=</span> <span class='cn'>NA</span>,
+  sNNclust_k <span class='op'>=</span> <span class='fl'>20</span>,
+  sNNclust_eps <span class='op'>=</span> <span class='fl'>4</span>,
+  sNNclust_minPts <span class='op'>=</span> <span class='fl'>16</span>,
+  borderPoints <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  genes_to_use <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dim_reduction_to_use <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cells"</span>, <span class='st'>"pca"</span>, <span class='st'>"umap"</span>, <span class='st'>"tsne"</span><span class='op'>)</span>,
+  dim_reduction_name <span class='op'>=</span> <span class='st'>"pca"</span>,
+  dimensions_to_use <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+  distance_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"original"</span>, <span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>, <span class='st'>"euclidean"</span>, <span class='st'>"maximum"</span>,
+    <span class='st'>"manhattan"</span>, <span class='st'>"canberra"</span>, <span class='st'>"binary"</span>, <span class='st'>"minkowski"</span><span class='op'>)</span>,
+  km_centers <span class='op'>=</span> <span class='fl'>10</span>,
+  km_iter_max <span class='op'>=</span> <span class='fl'>100</span>,
+  km_nstart <span class='op'>=</span> <span class='fl'>1000</span>,
+  km_algorithm <span class='op'>=</span> <span class='st'>"Hartigan-Wong"</span>,
+  hc_agglomeration_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ward.D2"</span>, <span class='st'>"ward.D"</span>, <span class='st'>"single"</span>, <span class='st'>"complete"</span>, <span class='st'>"average"</span>,
+    <span class='st'>"mcquitty"</span>, <span class='st'>"median"</span>, <span class='st'>"centroid"</span><span class='op'>)</span>,
+  hc_k <span class='op'>=</span> <span class='fl'>10</span>,
+  hc_h <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  set_seed <span class='op'>=</span> <span class='cn'>T</span>,
+  seed_number <span class='op'>=</span> <span class='fl'>1234</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -424,7 +424,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

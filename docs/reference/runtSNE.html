@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,25 +190,25 @@
     <p>run tSNE</p>
     </div>
 
-    <pre class="usage"><span class='fu'>runtSNE</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>expression_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span>),
-  <span class='kw'>reduction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cells"</span>, <span class='st'>"genes"</span>),
-  <span class='kw'>dim_reduction_to_use</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dim_reduction_name</span> <span class='kw'>=</span> <span class='st'>"pca"</span>,
-  <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>10</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"tsne"</span>,
-  <span class='kw'>genes_to_use</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dims</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>perplexity</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-  <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>do_PCA_first</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>seed_number</span> <span class='kw'>=</span> <span class='fl'>1234</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>runtSNE</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  expression_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"normalized"</span>, <span class='st'>"scaled"</span>, <span class='st'>"custom"</span><span class='op'>)</span>,
+  reduction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cells"</span>, <span class='st'>"genes"</span><span class='op'>)</span>,
+  dim_reduction_to_use <span class='op'>=</span> <span class='st'>"pca"</span>,
+  dim_reduction_name <span class='op'>=</span> <span class='st'>"pca"</span>,
+  dimensions_to_use <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+  name <span class='op'>=</span> <span class='st'>"tsne"</span>,
+  genes_to_use <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dims <span class='op'>=</span> <span class='fl'>2</span>,
+  perplexity <span class='op'>=</span> <span class='fl'>30</span>,
+  theta <span class='op'>=</span> <span class='fl'>0.5</span>,
+  do_PCA_first <span class='op'>=</span> <span class='cn'>F</span>,
+  set_seed <span class='op'>=</span> <span class='cn'>T</span>,
+  seed_number <span class='op'>=</span> <span class='fl'>1234</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -298,16 +298,19 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
-<span class='no'>mini_giotto_single_cell</span> <span class='kw'>&lt;-</span> <span class='fu'>runtSNE</span>(<span class='no'>mini_giotto_single_cell</span>,
-                                   <span class='kw'>dimensions_to_use</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-                                   <span class='kw'>n_threads</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-                                   <span class='kw'>n_neighbors</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                                   <span class='kw'>perplexity</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-
-<span class='fu'><a href='plotTSNE.html'>plotTSNE</a></span>(<span class='kw'>gobject</span> <span class='kw'>=</span> <span class='no'>mini_giotto_single_cell</span>)</pre>
+<span class='va'>mini_giotto_single_cell</span> <span class='op'>&lt;-</span> <span class='fu'>runtSNE</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>,
+                                   dimensions_to_use <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+                                   n_threads <span class='op'>=</span> <span class='fl'>1</span>,
+                                   n_neighbors <span class='op'>=</span> <span class='fl'>3</span>,
+                                   perplexity <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt;   tsne  has already been used, will be overwritten </div><div class='input'>
+<span class='fu'><a href='plotTSNE.html'>plotTSNE</a></span><span class='op'>(</span>gobject <span class='op'>=</span> <span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+</div><div class='img'><img src='runtSNE-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='runtSNE-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -323,7 +326,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

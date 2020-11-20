@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,17 +190,17 @@
     <p>subsets Giotto object based on spatial locations</p>
     </div>
 
-    <pre class="usage"><span class='fu'>subsetGiottoLocs</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>x_max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>x_min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>y_min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>z_max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>z_min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return_gobject</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>subsetGiottoLocs</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  x_max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  x_min <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  y_min <span class='op'>=</span> <span class='cn'>NULL</span>,
+  z_max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  z_min <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_gobject <span class='op'>=</span> <span class='cn'>T</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,22 +251,23 @@
     <p>if return_gobject = FALSE, then a filtered combined metadata data.table will be returned</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
 <span class='co'># spatial plot</span>
-<span class='fu'><a href='spatPlot.html'>spatPlot</a></span>(<span class='no'>mini_giotto_single_cell</span>)
-
+<span class='fu'><a href='spatPlot.html'>spatPlot</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
+</div><div class='img'><img src='subsetGiottoLocs-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='subsetGiottoLocs-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># subset giotto object based on spatial locations</span>
-<span class='no'>subset_obj</span> <span class='kw'>=</span> <span class='fu'>subsetGiottoLocs</span>(<span class='no'>mini_giotto_single_cell</span>,
-<span class='kw'>x_max</span> <span class='kw'>=</span> <span class='fl'>1500</span>, <span class='kw'>x_min</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-<span class='kw'>y_max</span> <span class='kw'>=</span> -<span class='fl'>500</span>, <span class='kw'>y_min</span> <span class='kw'>=</span> -<span class='fl'>1000</span>)
+<span class='va'>subset_obj</span> <span class='op'>=</span> <span class='fu'>subsetGiottoLocs</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>,
+x_max <span class='op'>=</span> <span class='fl'>1500</span>, x_min <span class='op'>=</span> <span class='fl'>1000</span>,
+y_max <span class='op'>=</span> <span class='op'>-</span><span class='fl'>500</span>, y_min <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1000</span><span class='op'>)</span>
 
 <span class='co'># spatial plot of subset giotto object</span>
-<span class='fu'><a href='spatPlot.html'>spatPlot</a></span>(<span class='no'>subset_obj</span>)
-
-<span class='co'># }</span></pre>
+<span class='fu'><a href='spatPlot.html'>spatPlot</a></span><span class='op'>(</span><span class='va'>subset_obj</span><span class='op'>)</span>
+</div><div class='img'><img src='subsetGiottoLocs-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='subsetGiottoLocs-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -282,7 +283,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

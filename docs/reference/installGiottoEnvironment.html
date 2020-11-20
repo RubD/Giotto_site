@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,13 +190,13 @@
     <p>Installs a giotto environment</p>
     </div>
 
-    <pre class="usage"><span class='fu'>installGiottoEnvironment</span>(
-  <span class='kw'>packages_to_install</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"pandas"</span>, <span class='st'>"networkx"</span>, <span class='st'>"python-igraph"</span>, <span class='st'>"leidenalg"</span>,
-    <span class='st'>"python-louvain"</span>, <span class='st'>"python.app"</span>, <span class='st'>"scikit-learn"</span>),
-  <span class='kw'>force_miniconda</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>force_environment</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>installGiottoEnvironment</span><span class='op'>(</span>
+  packages_to_install <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"pandas"</span>, <span class='st'>"networkx"</span>, <span class='st'>"python-igraph"</span>, <span class='st'>"leidenalg"</span>,
+    <span class='st'>"python-louvain"</span>, <span class='st'>"python.app"</span>, <span class='st'>"scikit-learn"</span><span class='op'>)</span>,
+  force_miniconda <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  force_environment <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -231,12 +231,14 @@ your own python path then you can set the python_path in the <code><a href='crea
 and provide the instructions to the <code><a href='createGiottoObject.html'>createGiottoObject</a></code> function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
   <span class='co'># this command will install r-miniconda</span>
   <span class='co'># and a giotto environment with all necessary python modules</span>
-  <span class='fu'>installGiottoEnvironment</span>()
-}</pre>
+  <span class='fu'>installGiottoEnvironment</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,7 +254,7 @@ and provide the instructions to the <code><a href='createGiottoObject.html'>crea
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

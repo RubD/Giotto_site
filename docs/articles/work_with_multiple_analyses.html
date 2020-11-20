@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -133,7 +133,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="work_with_multiple_analyses_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -158,19 +158,22 @@
 <div id="calculate-highly-variable-genes-in-two-different-manners" class="section level2">
 <h2 class="hasAnchor">
 <a href="#calculate-highly-variable-genes-in-two-different-manners" class="anchor"></a>1. calculate highly variable genes in two different manners</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># using the loess method</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>,
-                        <span class="kw">method</span> <span class="kw">=</span> <span class="st">'cov_loess'</span>, <span class="kw">difference_in_cov</span> <span class="kw">=</span> <span class="fl">0.1</span>,
-                        <span class="kw">HVGname</span> <span class="kw">=</span> <span class="st">'loess_hvg'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># using the loess method</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>,
+                        method <span class="op">=</span> <span class="st">'cov_loess'</span>, difference_in_cov <span class="op">=</span> <span class="fl">0.1</span>,
+                        HVGname <span class="op">=</span> <span class="st">'loess_hvg'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/1_loess_hvg.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># using the expression groups method</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>
-                        , <span class="kw">method</span> <span class="kw">=</span> <span class="st">'cov_group'</span>, <span class="kw">zscore_threshold</span> <span class="kw">=</span> <span class="fl">1</span>,
-                        <span class="kw">HVGname</span> <span class="kw">=</span> <span class="st">'group_hvg'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># using the expression groups method</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>
+                        , method <span class="op">=</span> <span class="st">'cov_group'</span>, zscore_threshold <span class="op">=</span> <span class="fl">1</span>,
+                        HVGname <span class="op">=</span> <span class="st">'group_hvg'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/1_group_hvg.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># compare the highly variable genes between two methods</span>
-<span class="no">gene_metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span>(<span class="no">VC_test</span>)
-<span class="no">mytable</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="kw">loess</span> <span class="kw">=</span> <span class="no">gene_metadata</span>$<span class="no">loess_hvg</span>, <span class="kw">group</span> <span class="kw">=</span> <span class="no">gene_metadata</span>$<span class="no">group_hvg</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># compare the highly variable genes between two methods</span>
+<span class="va">gene_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/fDataDT.html">fDataDT</a></span><span class="op">(</span><span class="va">VC_test</span><span class="op">)</span>
+<span class="va">mytable</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>loess <span class="op">=</span> <span class="va">gene_metadata</span><span class="op">$</span><span class="va">loess_hvg</span>, group <span class="op">=</span> <span class="va">gene_metadata</span><span class="op">$</span><span class="va">group_hvg</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/1_hvg_table.png" style="width:50.0%"></p>
 </div>
 <div id="perform-multiple-pcas" class="section level2">
@@ -181,16 +184,18 @@
 <li>store PCA results using custom names (‘pca_loess’ and ‘pca_group’)</li>
 <li>plot PCA results</li>
 </ul>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co">## 2. PCA ##</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co">## 2. PCA ##</span>
 <span class="co"># pca with genes from loess</span>
-<span class="no">loess_genes</span> <span class="kw">=</span> <span class="no">gene_metadata</span>[<span class="no">loess_hvg</span> <span class="kw">==</span> <span class="st">'yes'</span>]$<span class="no">gene_ID</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">genes_to_use</span> <span class="kw">=</span> <span class="no">loess_genes</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'pca_loess'</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'pca_loess'</span>)</pre></body></html></div>
+<span class="va">loess_genes</span> <span class="op">=</span> <span class="va">gene_metadata</span><span class="op">[</span><span class="va">loess_hvg</span> <span class="op">==</span> <span class="st">'yes'</span><span class="op">]</span><span class="op">$</span><span class="va">gene_ID</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, genes_to_use <span class="op">=</span> <span class="va">loess_genes</span>, name <span class="op">=</span> <span class="st">'pca_loess'</span>, scale_unit <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, dim_reduction_name <span class="op">=</span> <span class="st">'pca_loess'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/2_loess_pca.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># pca with genes from group</span>
-<span class="no">group_genes</span> <span class="kw">=</span> <span class="no">gene_metadata</span>[<span class="no">group_hvg</span> <span class="kw">==</span> <span class="st">'yes'</span>]$<span class="no">gene_ID</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">genes_to_use</span> <span class="kw">=</span> <span class="no">group_genes</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'pca_group'</span>, <span class="kw">scale_unit</span> <span class="kw">=</span> <span class="no">F</span>)
-<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'pca_group'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="co"># pca with genes from group</span>
+<span class="va">group_genes</span> <span class="op">=</span> <span class="va">gene_metadata</span><span class="op">[</span><span class="va">group_hvg</span> <span class="op">==</span> <span class="st">'yes'</span><span class="op">]</span><span class="op">$</span><span class="va">gene_ID</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, genes_to_use <span class="op">=</span> <span class="va">group_genes</span>, name <span class="op">=</span> <span class="st">'pca_group'</span>, scale_unit <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotPCA.html">plotPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, dim_reduction_name <span class="op">=</span> <span class="st">'pca_group'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/2_group_pca.png" style="width:50.0%"></p>
 </div>
 <div id="create-multiple-umaps" class="section level2">
@@ -203,14 +208,16 @@
 </li>
 <li>plot UMAP results</li>
 </ul>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co">## 3. UMAP ##</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">VC_test</span>, <span class="kw">dim_reduction_to_use</span> <span class="kw">=</span> <span class="st">'pca'</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'pca_loess'</span>,
-                   <span class="kw">name</span> <span class="kw">=</span> <span class="st">'umap_loess'</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">30</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'umap_loess'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co">## 3. UMAP ##</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">VC_test</span>, dim_reduction_to_use <span class="op">=</span> <span class="st">'pca'</span>, dim_reduction_name <span class="op">=</span> <span class="st">'pca_loess'</span>,
+                   name <span class="op">=</span> <span class="st">'umap_loess'</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, dim_reduction_name <span class="op">=</span> <span class="st">'umap_loess'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/3_loess_umap.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span>(<span class="no">VC_test</span>, <span class="kw">dim_reduction_to_use</span> <span class="kw">=</span> <span class="st">'pca'</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'pca_group'</span>,
-                   <span class="kw">name</span> <span class="kw">=</span> <span class="st">'umap_group'</span>, <span class="kw">dimensions_to_use</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">30</span>)
-<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">dim_reduction_name</span> <span class="kw">=</span> <span class="st">'umap_group'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">VC_test</span>, dim_reduction_to_use <span class="op">=</span> <span class="st">'pca'</span>, dim_reduction_name <span class="op">=</span> <span class="st">'pca_group'</span>,
+                   name <span class="op">=</span> <span class="st">'umap_group'</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span>
+<span class="fu"><a href="../reference/plotUMAP.html">plotUMAP</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, dim_reduction_name <span class="op">=</span> <span class="st">'umap_group'</span><span class="op">)</span></pre></div>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/3_group_umap.png" style="width:50.0%"></p>
 </div>
 <div id="create-multiple-spatial-networks" class="section level2">
@@ -222,26 +229,29 @@
 </li>
 <li>visualize network on field 1 (‘spatial_network’, ‘large_network’, ‘distance_work’)</li>
 </ul>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co">## 4. spatial network</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">5</span>) <span class="co"># standard name: 'spatial_network'</span>
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'large_network'</span>)
-<span class="no">VC_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">VC_test</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">'kNN'</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">maximum_distance_knn</span> <span class="kw">=</span> <span class="fl">200</span>, <span class="kw">minimum_k</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">'distance_network'</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co">## 4. spatial network</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, method <span class="op">=</span> <span class="st">'kNN'</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># standard name: 'spatial_network'</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, method <span class="op">=</span> <span class="st">'kNN'</span>, k <span class="op">=</span> <span class="fl">10</span>, name <span class="op">=</span> <span class="st">'large_network'</span><span class="op">)</span>
+<span class="va">VC_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_test</span>, method <span class="op">=</span> <span class="st">'kNN'</span>, k <span class="op">=</span> <span class="fl">100</span>, maximum_distance_knn <span class="op">=</span> <span class="fl">200</span>, minimum_k <span class="op">=</span> <span class="fl">2</span>, name <span class="op">=</span> <span class="st">'distance_network'</span><span class="op">)</span>
 
 <span class="co">## visualize different spatial networks on first field (~ layer 1)</span>
-<span class="no">cell_metadata</span> <span class="kw">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span>(<span class="no">VC_test</span>)
-<span class="no">field1_ids</span> <span class="kw">=</span> <span class="no">cell_metadata</span>[<span class="no">Field_of_View</span> <span class="kw">==</span> <span class="fl">0</span>]$<span class="no">cell_ID</span>
-<span class="no">subVC_test</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span>(<span class="no">VC_test</span>, <span class="kw">cell_ids</span> <span class="kw">=</span> <span class="no">field1_ids</span>)
+<span class="va">cell_metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">VC_test</span><span class="op">)</span>
+<span class="va">field1_ids</span> <span class="op">=</span> <span class="va">cell_metadata</span><span class="op">[</span><span class="va">Field_of_View</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span><span class="op">$</span><span class="va">cell_ID</span>
+<span class="va">subVC_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">VC_test</span>, cell_ids <span class="op">=</span> <span class="va">field1_ids</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">subVC_test</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'spatial_network'</span>)</pre></body></html></div>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">subVC_test</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'spatial_network'</span><span class="op">)</span></pre></div>
 <p>spatial network:</p>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/4_spatial_network.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">subVC_test</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'large_network'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">subVC_test</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'large_network'</span><span class="op">)</span></pre></div>
 <p>large network:</p>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/4_large_network.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span>(<span class="kw">gobject</span> <span class="kw">=</span> <span class="no">subVC_test</span>, <span class="kw">show_network</span> <span class="kw">=</span> <span class="no">T</span>,
-         <span class="kw">network_color</span> <span class="kw">=</span> <span class="st">'blue'</span>, <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'distance_network'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">subVC_test</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
+         network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'distance_network'</span><span class="op">)</span></pre></div>
 <p>distance network:</p>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/4_distance_network.png" style="width:50.0%"></p>
 </div>
@@ -252,31 +262,33 @@
 <li>use the different spatial networks as input to identify spatial genes with the rank method</li>
 <li>visualize top spatial genes for 2 methods</li>
 </ul>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co">## 5. spatial genes</span>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co">## 5. spatial genes</span>
 <span class="co"># the provided spatial_network_name can be given to downstream analyses</span>
 
 <span class="co"># spatial genes based on large network</span>
-<span class="no">ranktest_large</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">VC_test</span>,
-                          <span class="kw">subset_genes</span> <span class="kw">=</span> <span class="no">loess_genes</span>,
-                          <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>,
-                          <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'large_network'</span>)
-
-
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">VC_test</span>,
-             <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">ranktest_large</span>$<span class="no">genes</span>[<span class="fl">1</span>:<span class="fl">6</span>], <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-             <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>, <span class="kw">midpoint</span> <span class="kw">=</span> <span class="fl">0</span>)</pre></body></html></div>
+<span class="va">ranktest_large</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">VC_test</span>,
+                          subset_genes <span class="op">=</span> <span class="va">loess_genes</span>,
+                          bin_method <span class="op">=</span> <span class="st">'rank'</span>,
+                          spatial_network_name <span class="op">=</span> <span class="st">'large_network'</span><span class="op">)</span>
+                          
+                                  
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">VC_test</span>,
+             expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+             genes <span class="op">=</span> <span class="va">ranktest_large</span><span class="op">$</span><span class="va">genes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, point_size <span class="op">=</span> <span class="fl">1</span>,
+             genes_high_color <span class="op">=</span> <span class="st">'red'</span>, genes_mid_color <span class="op">=</span> <span class="st">'white'</span>, genes_low_color <span class="op">=</span> <span class="st">'darkblue'</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></pre></div>
 <p>large network spatial genes:</p>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/5_large_network_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># spatial genes based on distance network</span>
-<span class="no">ranktest_dist</span> <span class="kw">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span>(<span class="no">VC_test</span>,
-                         <span class="kw">subset_genes</span> <span class="kw">=</span> <span class="no">loess_genes</span>,
-                         <span class="kw">bin_method</span> <span class="kw">=</span> <span class="st">'rank'</span>,
-                         <span class="kw">spatial_network_name</span> <span class="kw">=</span> <span class="st">'distance_network'</span>)
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span>(<span class="no">VC_test</span>,
-             <span class="kw">expression_values</span> <span class="kw">=</span> <span class="st">'scaled'</span>,
-             <span class="kw">genes</span> <span class="kw">=</span> <span class="no">ranktest_dist</span>$<span class="no">genes</span>[<span class="fl">1</span>:<span class="fl">6</span>], <span class="kw">cow_n_col</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">point_size</span> <span class="kw">=</span> <span class="fl">1</span>,
-             <span class="kw">genes_high_color</span> <span class="kw">=</span> <span class="st">'red'</span>, <span class="kw">genes_mid_color</span> <span class="kw">=</span> <span class="st">'white'</span>, <span class="kw">genes_low_color</span> <span class="kw">=</span> <span class="st">'darkblue'</span>, <span class="kw">midpoint</span> <span class="kw">=</span> <span class="fl">0</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co"># spatial genes based on distance network</span>
+<span class="va">ranktest_dist</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">VC_test</span>,
+                         subset_genes <span class="op">=</span> <span class="va">loess_genes</span>,
+                         bin_method <span class="op">=</span> <span class="st">'rank'</span>,
+                         spatial_network_name <span class="op">=</span> <span class="st">'distance_network'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span><span class="va">VC_test</span>,
+             expression_values <span class="op">=</span> <span class="st">'scaled'</span>,
+             genes <span class="op">=</span> <span class="va">ranktest_dist</span><span class="op">$</span><span class="va">genes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, cow_n_col <span class="op">=</span> <span class="fl">2</span>, point_size <span class="op">=</span> <span class="fl">1</span>,
+             genes_high_color <span class="op">=</span> <span class="st">'red'</span>, genes_mid_color <span class="op">=</span> <span class="st">'white'</span>, genes_low_color <span class="op">=</span> <span class="st">'darkblue'</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></pre></div>
 <p>distance network spatial genes:</p>
 <p><img src="../inst/howtos/work_with_multiple_analyses/vignette_1/5_large_distance_network_genes.png" style="width:50.0%"></p>
 </div>
@@ -298,7 +310,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

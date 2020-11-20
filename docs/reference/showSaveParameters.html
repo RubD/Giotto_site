@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
       </span>
     </div>
 
@@ -190,7 +190,7 @@
     <p>Description of Giotto saving options, links to <code><a href='all_plots_save_function.html'>all_plots_save_function</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>showSaveParameters</span>()</pre>
+    <pre class="usage"><span class='fu'>showSaveParameters</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -198,7 +198,38 @@
     <p>Instruction on how to use the automatic plot saving options within Giotto</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">    <span class='fu'>showSaveParameters</span>()</pre>
+    <pre class="examples"><div class='input'>    <span class='fu'>showSaveParameters</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; This is a simple guide to help you with automatically saving plots. 
+#&gt; Importantly, defaults for all these parameters can be set at the beginning with createGiottoInstructions() 
+#&gt; See https://rubd.github.io/Giotto/articles/instructions_and_plotting.html for more information and examples 
+#&gt;  
+#&gt; Each plotting function in Giotto has 4 important parameters for showing and/or saving a plot: 
+#&gt; 
+#&gt;       - show_plot: TRUE or FALSE, show the plot to the console
+#&gt;       - return_plot: TRUE or FALSE, return the plot to the console (e.g. to further modify or save the plot
+#&gt;       - save_plot: TRUE or FALSE, automatically save the plot
+#&gt;       - save_param: a list of parameters that can be set 
+#&gt; 
+#&gt; The following list of parameters can be provided to save_param: 
+#&gt; 
+#&gt;       - save_dir: directory to save the plot to
+#&gt;       - save_folder: if not NULL, a subfolder within save_dir that will be created to save the plot to
+#&gt;       - save_name: name of the plot (no extension needed, see save_format)
+#&gt;       - save_format: picture format to use, default is .png
+#&gt;       - ncol: number of columns for multiplots
+#&gt;       - nrow: number of rows for multiplot
+#&gt;       - scale: scale of plots
+#&gt;       - base_width: width of plot
+#&gt;       - base_height: height of plot
+#&gt;       - base_aspect_ratio: ratio of plot
+#&gt;       - units: plotting units (e.g. in)
+#&gt;       - dpi: dpi for each plot if plot is in raster format
+#&gt; 
+#&gt; Example: 
+#&gt; 
+#&gt;       plotfunction(...,
+#&gt;                    save_plot = TRUE,
+#&gt;                    save_param = list(save_name = 'favorite_name', units = 'png'))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -214,7 +245,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -66,6 +66,7 @@ The seqFISH+ data to run this tutorial can be downloaded directly using the **ge
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 # download data to working directory ####
 # if wget is installed, set method = 'wget'
+# if you run into authentication issues with wget, then add " extra = '--no-check-certificate' "
 getSpatialDataset(dataset = 'seqfish_SS_cortex', directory = my_working_dir, method = 'wget')
 ```
 
@@ -355,8 +356,11 @@ SS_seqfish = annotateGiotto(gobject = SS_seqfish, annotation_vector = clusters_c
 cell_type_order = c('L6 eNeuron', 'L5 eNeuron', 'L4 eNeuron', 'L2/3 eNeuron',
                     'astrocytes', 'Olig', 'OPC','Adarb2 iNeuron', 'Lhx6 iNeuron',
                     'endothelial', 'mural', 'microglia')
-cell_type_colors = Giotto:::getDistinctColors(length(cell_type_order)) 
-names(cell_type_colors) = cell_type_order
+
+cell_type_colors = subleiden_colors
+names(cell_type_colors) = clusters_cell_types_cortex[names(subleiden_colors)]
+cell_type_colors = cell_type_colors[cell_type_order]
+
 
 ## violinplot
 violinPlot(gobject = SS_seqfish, genes = unique(topgenes_gini$genes),
@@ -597,6 +601,7 @@ spatPlot(gobject = SS_seqfish, cell_color = 'HMRF_2_k9_b.28', point_size = 3, co
 
 ```
 
+![](../inst/images/mouse_seqFISH_SS_cortex/vignette_200914/11_HMRF_2_k9_b.28.png){ width=100% } 
 
 ## part 12: cell neighborhood: cell-type/cell-type interactions
 
