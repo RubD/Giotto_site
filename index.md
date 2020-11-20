@@ -49,7 +49,7 @@ library(devtools)  # if not installed: install.packages('devtools')
 library(remotes)  # if not installed: install.packages('remotes')
 remotes::install_github("RubD/Giotto") 
 
-# compilation problems (gfortrain)?
+# compilation problems (gfortran)?
 # this version does not require C compilation
 remotes::install_github("RubD/Giotto@cless") 
 ```
