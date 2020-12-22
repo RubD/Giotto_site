@@ -40,12 +40,7 @@ xcode-select --install
 
 ### Install with pip in python 3  
 
-For OSX:  
-``` bash
-pip3 install pandas python-igraph networkx python-louvain leidenalg python.app scikit-learn smfishHmrf
-```
-
-For Windows or Linux (exclude the python.app):  
+For OSX, Windows or Linux:  
 ``` bash
 pip3 install pandas python-igraph networkx python-louvain leidenalg scikit-learn smfishHmrf
 ```
