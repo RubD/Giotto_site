@@ -52,7 +52,7 @@ if(is.null(python_path)) {
 ## Dataset explanation
 [10X genomics](https://www.10xgenomics.com/spatial-transcriptomics/) recently launched a new platform to obtain spatial expression data using a Visium Spatial Gene Expression slide.
 
-The Visium brain data to run this tutorial can be found [here](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.0.0/V1_Mouse_brain)
+The Visium brain data to run this tutorial can be found [here]( https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Adult_Mouse_Brain)
 
 Visium technology:  
 ![](../inst/images/general_figs/visium_technology.png){ width=50% }
