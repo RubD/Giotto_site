@@ -8,6 +8,133 @@ output: html_document
 Not yet available. Check out the visium brain datasets for examples.
 
 
+#### 1. processing steps
+```{r eval=FALSE}
+library(Giotto)
+
+path_to_matrix = system.file("extdata", "visium_DG_expr.txt.gz", package = 'Giotto')
+path_to_locations = system.file("extdata", "visium_DG_locs.txt", package = 'Giotto')
+
+my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
+                                      spatial_locs = path_to_locations)
+
+# processing
+my_giotto_object <- normalizeGiotto(gobject = my_giotto_object)
+```
+
+
+
+
+
+$~$
+
+#### 2. Run spatial cell type enrichments methods
+
+##### 2.1 PAGE enrichment
+```{r eval=FALSE}
+astro_epen_markers = c("Krt15" , "Apoc1" , "Igsf1" , "Gjb6" , "Slc26a3" ,
+                       "1500015O10Rik" , "S1pr1" , "Riiad1" , "Cldn10" , "Itih3" ,
+                       "Ccdc153" , "Cbs" , "C4b" , "Gm11627" , "Folr1" ,
+                       "Calml4" , "Aqp4" , "Ppp1r3g" , "1700012B09Rik" , "Hes5")
+
+gran_markers = c("Nr3c2", "Gabra5", "Tubgcp2", "Ahcyl2",
+                 "Islr2", "Rasl10a", "Tmem114", "Bhlhe22", 
+                 "Ntf3", "C1ql2")
+
+cortex_hippo_markers = c("6330403A02Rik" , "Tekt5" , "Wipf3" , "1110032F04Rik" , "Lmo3" ,
+                         "Nrep" , "Slc30a3" , "Plcxd2" , "D630023F18Rik" , "Nptx1" ,
+                         "C1ql3" , "Ddit4l" , "Fezf2" , "Col24a1" , "Kcnf1" ,
+                         "Tnnc1" , "Gm12371" , "3110035E14Rik" , "Nr4a2" , "Nr4a3")
+
+oligo_markers = c("Efhd1" , "H2-Ab1" , "Enpp6" , "Ninj2" , "Bmp4" ,
+                  "Tnr" , "Hapln2" , "Neu4" , "Wfdc18" , "Ccp110" ,
+                  "Gm26834" , "Il23a" , "Arap2" , "Nkx2-9" , "Mal" ,
+                  "Tmem2" , "Birc2" , "Cdkn1c" , "Pak4" , "Tmem88b")        
+
+
+signature_matrix = makeSignMatrixPAGE(sign_names = c('Astro_ependymal',
+                                                     'Granule',
+                                                     'Cortex_hippocampus',
+                                                     'Oligo_dendrocytes'),
+                                      sign_list = list(astro_epen_markers,
+                                                       gran_markers,
+                                                       cortex_hippo_markers,
+                                                       oligo_markers))
+
+# runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options
+my_giotto_object = runPAGEEnrich(gobject = my_giotto_object,
+                                 sign_matrix = signature_matrix,
+                                 min_overlap_genes = 2)
+```
+
+```{r eval=FALSE}
+cell_types_subset = colnames(signature_matrix)
+spatCellPlot(gobject = my_giotto_object, 
+             spat_enr_names = 'PAGE',
+             cell_annotation_values = cell_types_subset,
+             cow_n_col = 2,coord_fix_ratio = NULL, point_size = 2.75)
+```
+
+
+##### 2.2 RANK enrichment
+
+```{r eval=FALSE}
+
+# single-cell RNA-seq data from Zeisel et al
+# mini data is available at https://github.com/RubD/spatial-datasets/tree/master/data/2019_visium_brain
+
+# single cell matrix
+single_cell_DT = fread('/path/to/raw_exp_small.txt')
+single_cell_matrix = Giotto:::dt_to_matrix(single_cell_DT)
+single_cell_matrix[1:4, 1:4]
+
+# single cell annotation vector
+cell_annotations = read.table(file = '/path/to/major_cluster_small.txt')
+cell_annotations = as.vector(cell_annotations$V1)
+cell_annotations[1:10]
+
+# 1.2 create rank matrix
+rank_matrix = makeSignMatrixRank(sc_matrix = single_cell_matrix, sc_cluster_ids = cell_annotations)
+
+
+# 1.3 enrichment test with RANK
+# runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options
+my_giotto_object = runRankEnrich(gobject = my_giotto_object, sign_matrix = rank_matrix)
+```
+
+```{r eval=FALSE}
+cell_types_subset = c("Astro_ependymal", "Oligo_dendrocyte" , "Cortex_hippocampus" , "Granule_neurons" )
+spatCellPlot(gobject = my_giotto_object, 
+             spat_enr_names = 'rank',
+             cell_annotation_values = cell_types_subset,
+             cow_n_col = 3,coord_fix_ratio = NULL, point_size = 1.75)
+```
+
+
+##### 2.3 Hypergeometric enrichment
+
+```{r eval=FALSE}
+my_giotto_object = runHyperGeometricEnrich(gobject = my_giotto_object,
+                                           sign_matrix = signature_matrix)
+```
+
+
+```{r eval=FALSE}
+cell_types_subset = colnames(signature_matrix)
+spatCellPlot(gobject = my_giotto_object, 
+             spat_enr_names = 'hypergeometric',
+             cell_annotation_values = cell_types_subset,
+             cow_n_col = 2,coord_fix_ratio = NULL, point_size = 2.75)
+```
+
+
+
+##### 2.4 Deconvolution
+
+```{r eval=FALSE}
+my_giotto_object = runDWLSDeconv(gobject = my_giotto_object, sign_matrix = signature_matrix)
+```
+
 
 
 

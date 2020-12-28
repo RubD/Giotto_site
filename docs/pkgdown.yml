@@ -21,6 +21,7 @@ articles:
   mouse_seqFISH_cortex_200914: mouse_seqFISH_cortex_200914.html
   mouse_starmap_cortex_200917: mouse_starmap_cortex_200917.html
   mouse_visium_brain_200918: mouse_visium_brain_200918.html
+  mouse_visium_brain_201226: mouse_visium_brain_201226.html
   mouse_visium_kidney_200916: mouse_visium_kidney_200916.html
   subset_giotto: subset_giotto.html
   tut0_giotto_environment: tut0_giotto_environment.html
@@ -35,11 +36,10 @@ articles:
   tut4_giotto_clustering: tut4_giotto_clustering.html
   tut5_giotto_markers: tut5_giotto_markers.html
   tut6_giotto_annotation: tut6_giotto_annotation.html
-  tut6_giotto_enrichment: tut6_giotto_enrichment.html
   tut7_giotto_enrichment: tut7_giotto_enrichment.html
   tut8_giotto_grid_network: tut8_giotto_grid_network.html
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-12-22T02:14Z
+last_built: 2020-12-28T19:20Z
 
