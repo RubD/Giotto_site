@@ -47,7 +47,7 @@ minimum requirements:
 
 ```{r eval=FALSE}
 # giotto object 
-expr_path = system.file("extdata", "visium_DG_expr.txt", package = 'Giotto')
+expr_path = system.file("extdata", "visium_DG_expr.txt.gz", package = 'Giotto')
 loc_path = system.file("extdata", "visium_DG_locs.txt", package = 'Giotto')
 mini_visium <- createGiottoObject(raw_exprs = expr_path,
                                    spatial_locs = loc_path,
