@@ -190,14 +190,14 @@
     <p>Wrapper for the different Giotto object processing functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>processGiotto</span>(
-  <span class='no'>gobject</span>,
-  <span class='kw'>filter_params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>norm_params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>stat_params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>adjust_params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>processGiotto</span><span class='op'>(</span>
+  <span class='va'>gobject</span>,
+  filter_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  norm_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  stat_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  adjust_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -239,12 +239,21 @@ information about the different parameters in each step. If you do not provide
 them it will use the default values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mini_giotto_single_cell</span>)
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span><span class='op'>)</span>
 
-<span class='no'>processed_object</span> <span class='kw'>=</span> <span class='fu'>processGiotto</span>(<span class='no'>mini_giotto_single_cell</span>,
-                                 <span class='kw'>filter_params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>gene_det_in_min_cells</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                                 <span class='kw'>min_det_genes_per_cell</span> <span class='kw'>=</span> <span class='fl'>10</span>))</pre>
+<span class='va'>processed_object</span> <span class='op'>=</span> <span class='fu'>processGiotto</span><span class='op'>(</span><span class='va'>mini_giotto_single_cell</span>,
+                                 filter_params <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>gene_det_in_min_cells <span class='op'>=</span> <span class='fl'>10</span>,
+                                 min_det_genes_per_cell <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1. start filter step 
+#&gt; 2. start normalization step 
+#&gt; 3. start cell and gene statistics step 
+#&gt; 
+#&gt;  gene statistics has already been applied once, will be overwritten 
+#&gt; 
+#&gt;  cells statistics has already been applied once, will be overwritten 
+#&gt; 3. start adjusted matrix step </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -260,7 +269,7 @@ them it will use the default values.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

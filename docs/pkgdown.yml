@@ -1,5 +1,5 @@
-pandoc: 2.7.2
-pkgdown: 1.5.1
+pandoc: 2.7.3
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   contribute: contribute.html
@@ -41,5 +41,5 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2020-12-28T19:20Z
+last_built: 2021-01-22T20:51Z
 
