@@ -115,11 +115,14 @@
 <li>
   <a href="../news/index.html">News</a>
 </li>
+<li>
+  <a href="../articles/env_tutorials.html">Environment</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RubD/Giotto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@
 
       
 
-      </header><script src="howto_voronoi_plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="howto_voronoi_plots_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -157,8 +160,8 @@
 <li>this dataset is part of the Giotto package</li>
 <li>it’s very small and easy to run</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
 
 <span class="co"># input data</span>
 <span class="va">VC_exprs_small</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span><span class="op">)</span>
@@ -181,61 +184,61 @@
 
 <span class="co"># spatial grid and network</span>
 <span class="va">VC_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, minimum_k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">VC_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, sdimx_stepsize <span class="op">=</span> <span class="fl">500</span>, sdimy_stepsize <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></pre></div>
+<span class="va">VC_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, sdimx_stepsize <span class="op">=</span> <span class="fl">500</span>, sdimy_stepsize <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="voronoi-plot-examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#voronoi-plot-examples" class="anchor"></a>2. Voronoi plot examples</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># spatial voronoi plot with selected clusters</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># spatial voronoi plot with selected clusters</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/1_voronoi.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># spatial voronoi plot without showing not selected clusters</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># spatial voronoi plot without showing not selected clusters</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/2_voronoi_no_others.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># spatial voronoi plot without showing not selected cells, but showing the voronoi borders</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>, vor_border_color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># spatial voronoi plot without showing not selected cells, but showing the voronoi borders</span>
+<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'leiden_clus'</span>, select_cell_groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>, vor_border_color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/3_voronoi_no_others_black_border.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># visualization of both dimension reduction and spatial results</span>
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, spat_point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, dim_point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># visualization of both dimension reduction and spatial results</span>
+<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, spat_point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, dim_point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/4_voronoi_spat_dim.png" style="width:50.0%"></p>
 </div>
 <div id="create-neighbors-and-show-neighbors" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-neighbors-and-show-neighbors" class="anchor"></a>3. Create neighbors and show neighbors</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">nb_annot</span> <span class="op">=</span> <span class="fu"><a href="../reference/findNetworkNeighbors.html">findNetworkNeighbors</a></span><span class="op">(</span><span class="va">VC_small</span>, 
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">nb_annot</span> <span class="op">=</span> <span class="fu"><a href="../reference/findNetworkNeighbors.html">findNetworkNeighbors</a></span><span class="op">(</span><span class="va">VC_small</span>, 
                             spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>, 
                             source_cell_ids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'cell_1'</span>, <span class="st">'cell_6'</span>, <span class="st">'cell_10'</span>, <span class="st">'cell_91'</span>, <span class="st">'cell_92'</span>, <span class="st">'cell_93'</span><span class="op">)</span><span class="op">)</span>
 <span class="va">VC_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span><span class="op">(</span><span class="va">VC_small</span>, new_metadata <span class="op">=</span> <span class="va">nb_annot</span>, by_column <span class="op">=</span> <span class="cn">T</span>, column_cell_ID <span class="op">=</span> <span class="st">'cell_ID'</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">VC_small</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>, cell_color <span class="op">=</span><span class="st">'nb_cells'</span>,
-         cell_color_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">'blue'</span>, target <span class="op">=</span> <span class="st">'red'</span>, both <span class="op">=</span> <span class="st">'yellow'</span>, others <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span><span class="op">)</span></pre></div>
+         cell_color_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">'blue'</span>, target <span class="op">=</span> <span class="st">'red'</span>, both <span class="op">=</span> <span class="st">'yellow'</span>, others <span class="op">=</span> <span class="st">'lightgrey'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/5_voronoi_neighbors.png" style="width:50.0%"></p>
 </div>
 <div id="gene-expression-and-voronoi-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#gene-expression-and-voronoi-plots" class="anchor"></a>4. Gene expression and voronoi plots</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co">## overlay gene expression information ##</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## overlay gene expression information ##</span>
 <span class="va">selected_genes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Cldn5'</span>, <span class="st">'Soga3'</span><span class="op">)</span>
 
 <span class="co"># selected genes original</span>
-<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, genes <span class="op">=</span> <span class="va">selected_genes</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, expression_values <span class="op">=</span> <span class="st">'scaled'</span>, genes <span class="op">=</span> <span class="va">selected_genes</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/6_original_points.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># selected genes voronoi</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># selected genes voronoi</span>
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, genes <span class="op">=</span> <span class="va">selected_genes</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>,
-             expression_values <span class="op">=</span> <span class="st">'scaled'</span>, vor_border_color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span></pre></div>
+             expression_values <span class="op">=</span> <span class="st">'scaled'</span>, vor_border_color <span class="op">=</span> <span class="st">'black'</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/7_voronoi_genes.png" style="width:50.0%"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co"># one gene + black background and white borders</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># one gene + black background and white borders</span>
 <span class="fu"><a href="../reference/spatGenePlot.html">spatGenePlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">VC_small</span>, genes <span class="op">=</span> <span class="st">'Cldn5'</span>, point_size <span class="op">=</span> <span class="fl">3</span>, point_shape <span class="op">=</span> <span class="st">'voronoi'</span>,
              expression_values <span class="op">=</span> <span class="st">'scaled'</span>, vor_border_color <span class="op">=</span> <span class="st">'white'</span>, show_network <span class="op">=</span> <span class="cn">T</span>, network_color <span class="op">=</span> <span class="st">'green'</span>,
-             background_color <span class="op">=</span> <span class="st">'black'</span>, cell_color_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'black'</span>, <span class="st">'red'</span><span class="op">)</span>, gradient_midpoint <span class="op">=</span> <span class="fl">1</span>, cow_n_col <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></pre></div>
+             background_color <span class="op">=</span> <span class="st">'black'</span>, cell_color_gradient <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'blue'</span>, <span class="st">'black'</span>, <span class="st">'red'</span><span class="op">)</span>, gradient_midpoint <span class="op">=</span> <span class="fl">1</span>, cow_n_col <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <p><img src="../inst/howtos/voronoi_plots/vignette_1/8_voronoi_gene_black_bg.png" style="width:50.0%"></p>
 </div>
 </div>

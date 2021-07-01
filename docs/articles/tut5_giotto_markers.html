@@ -115,11 +115,14 @@
 <li>
   <a href="../news/index.html">News</a>
 </li>
+<li>
+  <a href="../articles/env_tutorials.html">Environment</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RubD/Giotto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@
 
       
 
-      </header><script src="tut5_giotto_markers_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="tut5_giotto_markers_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -149,9 +152,9 @@
 <div id="marker-gene-detection" class="section level1">
 <h1 class="hasAnchor">
 <a href="#marker-gene-detection" class="anchor"></a>Marker gene detection</h1>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mini_giotto_single_cell"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mini_giotto_single_cell"</span><span class="op">)</span></code></pre></div>
 <p>This tutorial starts from a pre-computed mini Giotto object, which has already undergone pre-processing, dimensions reduction and clustering steps. Currently provides 3 different methods to identify marker genes:<br>
 - using a new Gini-index method<br>
 - using Scran<br>
@@ -161,38 +164,38 @@
 <div id="gini" class="section level4">
 <h4 class="hasAnchor">
 <a href="#gini" class="anchor"></a>1. Gini</h4>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># between 2 groups</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># between 2 groups</span>
 <span class="va">gini_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findGiniMarkers.html">findGiniMarkers</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
                                cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
                                group_1 <span class="op">=</span> <span class="fl">1</span>,
                                group_2 <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co"># for each cluster</span>
 <span class="va">gini_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findGiniMarkers_one_vs_all.html">findGiniMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
-                                          cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
+                                          cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="scran" class="section level4">
 <h4 class="hasAnchor">
 <a href="#scran" class="anchor"></a>2. Scran</h4>
 <p>Requires Scran to be installed.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># between 2 groups</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># between 2 groups</span>
 <span class="va">scran_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findScranMarkers.html">findScranMarkers</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
                                  cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
                                  group_1 <span class="op">=</span> <span class="fl">1</span>,
                                  group_2 <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co"># for each cluster</span>
 <span class="va">scran_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findScranMarkers_one_vs_all.html">findScranMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
-                                            cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
+                                            cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="mast" class="section level4">
 <h4 class="hasAnchor">
 <a href="#mast" class="anchor"></a>3. Mast</h4>
 <p>Requires Mast to be installed.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># between 2 groups</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># between 2 groups</span>
 <span class="va">mast_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMastMarkers.html">findMastMarkers</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
                                 cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>,
                                 group_1 <span class="op">=</span> <span class="fl">1</span>,
@@ -200,7 +203,7 @@
 
 <span class="co"># for each cluster</span>
 <span class="va">mast_markers</span> <span class="op">=</span> <span class="fu"><a href="../reference/findMastMarkers_one_vs_all.html">findMastMarkers_one_vs_all</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
-                                          cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></pre></div>
+                                          cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="wrapper" class="section level4">

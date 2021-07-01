@@ -115,11 +115,14 @@
 <li>
   <a href="../news/index.html">News</a>
 </li>
+<li>
+  <a href="../articles/env_tutorials.html">Environment</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RubD/Giotto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@
 
       
 
-      </header><script src="howto_giotto_class_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="howto_giotto_class_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to create Giotto object with precomputed results?</h1>
@@ -150,10 +153,10 @@
 <h2 class="hasAnchor">
 <a href="#the-giotto-class" class="anchor"></a>1. The Giotto class</h2>
 <p>A Giotto object or gobject can be created with <strong>createGiottoObject</strong> or <strong>createGiottoVisiumObject</strong> for Visium datasets.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">gobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">gvisiumobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<span class="va">gvisiumobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>createGiottoVisiumObject expects a typical Visium 10X data folder structure or a path to the h5 file, but createGiottoObject is more flexible and can also accept precomputed results (e.g. PCA, UMAP, network, …)</p>
 </div>
 <div id="giotto-slots" class="section level2">
@@ -227,8 +230,8 @@
 <li>dimension_reduction: accepts list of dimension reduction objects</li>
 </ul>
 <p>Example to add your own pre-computed PCA results</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># step1: create matrix from PCA coordinates and name the columns (PCs): Dim.1, Dim.2, Dim.3, ...</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># step1: create matrix from PCA coordinates and name the columns (PCs): Dim.1, Dim.2, Dim.3, ...</span>
 <span class="co"># e.g. PCA_matrix</span>
 
 
@@ -252,7 +255,7 @@
 
 <span class="co"># step4: for UMAP or tSNE:</span>
 <span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span>
-<span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span></pre></div>
+<span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span></code></pre></div>
 </div>
 <div id="nearest-neighbor-network-slots" class="section level3">
 <h3 class="hasAnchor">

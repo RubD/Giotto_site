@@ -115,11 +115,14 @@
 <li>
   <a href="../news/index.html">News</a>
 </li>
+<li>
+  <a href="../articles/env_tutorials.html">Environment</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RubD/Giotto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@
 
       
 
-      </header><script src="tut12_giotto_cell_interaction_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="tut12_giotto_cell_interaction_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -152,8 +155,8 @@
 <div id="processing-steps" class="section level4">
 <h4 class="hasAnchor">
 <a href="#processing-steps" class="anchor"></a>1. processing steps</h4>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
 
 <span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
 <span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
@@ -192,26 +195,26 @@
 <span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, minimum_k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 
 <span class="co"># identify genes with a spatial coherent expression profile</span>
-<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></pre></div>
+<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="run-cell-cell-interaction" class="section level4">
 <h4 class="hasAnchor">
 <a href="#run-cell-cell-interaction" class="anchor"></a>2. Run Cell-cell interaction</h4>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2841</span><span class="op">)</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">2841</span><span class="op">)</span>
 <span class="va">cell_proximities</span> <span class="op">=</span> <span class="fu"><a href="../reference/cellProximityEnrichment.html">cellProximityEnrichment</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,
                                            cluster_column <span class="op">=</span> <span class="st">'cell_types'</span>,
                                            spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
                                            adjust_method <span class="op">=</span> <span class="st">'fdr'</span>,
-                                           number_of_simulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></pre></div>
+                                           number_of_simulations <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="visualize-cell-cell-interaction" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visualize-cell-cell-interaction" class="anchor"></a>3. Visualize Cell-cell interaction</h4>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># barplot</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># barplot</span>
 <span class="fu"><a href="../reference/cellProximityBarplot.html">cellProximityBarplot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, 
                      CPscore <span class="op">=</span> <span class="va">cell_proximities</span>, 
                      min_orig_ints <span class="op">=</span> <span class="fl">3</span>, min_sim_ints <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
@@ -237,13 +240,13 @@
                      rescale_edge_weights <span class="op">=</span> <span class="cn">T</span>,
                      node_size <span class="op">=</span> <span class="fl">8</span>,
                      edge_weight_range_depletion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,
-                     edge_weight_range_enrichment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
+                     edge_weight_range_enrichment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="visualize-interactions-at-the-spatial-level" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visualize-interactions-at-the-spatial-level" class="anchor"></a>4. visualize interactions at the spatial level</h4>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># Option 1</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Option 1</span>
 <span class="va">spec_interaction</span> <span class="op">=</span> <span class="st">"cell D--cell F"</span>
 <span class="fu"><a href="../reference/cellProximitySpatPlot2D.html">cellProximitySpatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,
                         interaction_name <span class="op">=</span> <span class="va">spec_interaction</span>,
@@ -261,7 +264,7 @@
                              cell_interaction <span class="op">=</span> <span class="va">spec_interaction</span>,
                              name <span class="op">=</span> <span class="st">'D_F_interactions'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'D_F_interactions'</span>, legend_symbol_size <span class="op">=</span> <span class="fl">3</span>,
-         select_cell_groups <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'other_cell D'</span>, <span class="st">'other_cell F'</span>, <span class="st">'select_cell D'</span>, <span class="st">'select_cell F'</span><span class="op">)</span><span class="op">)</span></pre></div>
+         select_cell_groups <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'other_cell D'</span>, <span class="st">'other_cell F'</span>, <span class="st">'select_cell D'</span>, <span class="st">'select_cell F'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>
