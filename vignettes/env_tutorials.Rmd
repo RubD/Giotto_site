@@ -30,3 +30,29 @@ We have set up a [Docker image](https://hub.docker.com/r/delron01/giotto) linked
     ```
 
 Now you can run any analysis with Giotto!
+
+
+# Binder
+
+If you'd like to test out/learn more about how to use Giotto, you can use the tutorial Binder we've created. For more information on how this works and what you can do with Giotto, please go to this [link](https://github.com/ndelrossi7/giotto-tutorial-binder).
+
+Simply click this button: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ndelrossi7/r-conda-binder/HEAD) and a Docker image will be generated. 
+
+#### A few things to note
+
+- The first time you build this Binder, it may take while. For some more information on why your session might be taking longer, please refer to this [link](https://mybinder.readthedocs.io/en/latest/about/about.html#what-factors-influence-how-long-it-takes-a-binder-session-to-start).
+  - Below are some commmon messages you might see. They are normal! Just give the Binder some more time to load. 
+
+
+    ```Your session is taking longer than usual to start! Check the log messages below to see what is happening.```
+    
+    
+    ```Launch attempt 1 failed, retrying... Launch attempt 2 failed, retrying...```
+- You will have access to 1-2 GB RAM. If you go over 2 GB of RAM the kernel may be restarted.
+  - Because we have set up this repo so that you can import pre-processing scripts, you’ll be able to start with any notebook. If your kernel restarts just launch the Binder again!
+- If you are inactive for 10 minutes, the session will shut down. Otherwise, you’ll have up to 6 hours of usage or 1 cpu-hour for more intensive runs. 
+- Any changes that you make will not be saved (please do ***not*** attempt to push your work back to this repository). If you would like to save your progress, please refer to #6 in the [instructions section](https://github.com/ndelrossi7/giotto-tutorial-binder#instructions).
+- Alternatively, if you would like to work on all of this solely locally, you can fork and clone the repository.
+
+
+Once the image has been created, you will be redirected to a Jupyter notebook landing page. From there, you can navigate into any of the pre-made notebook tutorials and test it out.
