@@ -51,10 +51,12 @@ navbar:
       href: articles/faqs.html
     - text: News
       href: news/index.html
-    - text: Environment
-      href: articles/env_tutorials.html
-
-  right:
+    - text: "Try Giotto"
+      menu:
+        - text: "Docker"
+          href: articles/docker.html
+        - text: "Binder"
+          href: articles/binder.html
     - icon: fa-github
       href: https://github.com/RubD/Giotto
 
