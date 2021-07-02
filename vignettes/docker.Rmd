@@ -1,0 +1,33 @@
+---
+output: github_document
+---
+
+# Docker Image
+
+We have set up a [Docker image](https://hub.docker.com/r/delron01/giotto) linked to RStudio with Giotto pre-installed. Follow these instructions to create your own Docker container and run Giotto:
+
+1. ```docker pull delron01/giotto:latest```
+
+
+2. ```docker run --rm -p 8787:8787 -e PASSWORD=mypassword delron01/giotto:latest```
+    - You may use any port as long as it is not in use.
+    - You can set the password to whatever you like.
+
+3. Open the browser of your choice and enter ```localhost:yourport```.
+    - Where ```yourport``` is either ```8787``` or the port you assigned it in step 2.
+
+4. You will be directed to an RStudio login. 
+
+    Username: rstudio
+  
+    Password: mypassword
+    
+    - The password you enter will be whatever you declared in step 2.
+    
+5. Run the following:
+    ```{R} 
+    library(Giotto)
+    ```
+
+Now you can run any analysis with Giotto!
+
