@@ -51,6 +51,8 @@ navbar:
       href: articles/faqs.html
     - text: News
       href: news/index.html
+    - text: Environment
+      href: articles/env_tutorials.html
 
   right:
     - icon: fa-github

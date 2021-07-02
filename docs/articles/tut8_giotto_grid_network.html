@@ -115,11 +115,14 @@
 <li>
   <a href="../news/index.html">News</a>
 </li>
+<li>
+  <a href="../articles/env_tutorials.html">Environment</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/RubD/Giotto">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@
 
       
 
-      </header><script src="tut8_giotto_grid_network_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="tut8_giotto_grid_network_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
@@ -149,15 +152,15 @@
 <div id="spatial-grid-or-network" class="section level1">
 <h1 class="hasAnchor">
 <a href="#spatial-grid-or-network" class="anchor"></a>Spatial grid or network</h1>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mini_giotto_single_cell"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mini_giotto_single_cell"</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 <div id="create-a-spatial-grid" class="section level4">
 <h4 class="hasAnchor">
 <a href="#create-a-spatial-grid" class="anchor"></a>1. Create a spatial grid</h4>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">mini_giotto_single_cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mini_giotto_single_cell</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createSpatialGrid.html">createSpatialGrid</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>,
                                             sdimx_stepsize <span class="op">=</span> <span class="fl">250</span>,
                                             sdimy_stepsize <span class="op">=</span> <span class="fl">250</span>,
                                             minimum_padding <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
@@ -176,14 +179,14 @@
 
 <span class="co"># visualize other grid</span>
 <span class="fu"><a href="../reference/spatPlot2D.html">spatPlot2D</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>, 
-           show_grid <span class="op">=</span> <span class="cn">T</span>, spatial_grid_name <span class="op">=</span> <span class="st">'large_grid'</span><span class="op">)</span></pre></div>
+           show_grid <span class="op">=</span> <span class="cn">T</span>, spatial_grid_name <span class="op">=</span> <span class="st">'large_grid'</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="create-a-spatial-network" class="section level4">
 <h4 class="hasAnchor">
 <a href="#create-a-spatial-network" class="anchor"></a>2. Create a spatial network</h4>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># get information about the Delaunay network</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get information about the Delaunay network</span>
 <span class="fu"><a href="../reference/plotStatDelaunayNetwork.html">plotStatDelaunayNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>, maximum_distance <span class="op">=</span> <span class="fl">400</span><span class="op">)</span>
 
 <span class="co"># create a spatial network, the Delaunay network is the default network</span>
@@ -206,7 +209,7 @@
 
 <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">mini_giotto_single_cell</span>, show_network <span class="op">=</span> <span class="cn">T</span>,
          network_color <span class="op">=</span> <span class="st">'blue'</span>, spatial_network_name <span class="op">=</span> <span class="st">'kNN_network'</span>,
-         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'cell_types'</span><span class="op">)</span></pre></div>
+         point_size <span class="op">=</span> <span class="fl">2.5</span>, cell_color <span class="op">=</span> <span class="st">'cell_types'</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </div>

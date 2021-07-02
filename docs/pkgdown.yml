@@ -1,8 +1,9 @@
-pandoc: 2.7.3
+pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   contribute: contribute.html
+  env_tutorials: env_tutorials.html
   faqs: faqs.html
   getting_started: getting_started.html
   howto_giotto_class: howto_giotto_class.html
@@ -41,5 +42,5 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2021-01-22T20:51Z
+last_built: 2021-07-01T19:47Z
 
