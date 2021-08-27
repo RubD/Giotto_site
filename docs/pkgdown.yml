@@ -5,9 +5,9 @@ articles:
   binder: binder.html
   contribute: contribute.html
   docker: docker.html
-  env_tutorials: env_tutorials.html
   faqs: faqs.html
   getting_started: getting_started.html
+  github_issues: github_issues.html
   howto_giotto_class: howto_giotto_class.html
   howto_images: howto_images.html
   howto_voronoi_plots: howto_voronoi_plots.html
@@ -44,5 +44,5 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2021-07-02T15:35Z
+last_built: 2021-08-27T15:16Z
 
