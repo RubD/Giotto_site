@@ -48,7 +48,11 @@ navbar:
     - text: Contribute
       href: articles/contribute.html
     - text: FAQ
-      href: articles/faqs.html
+      menu:
+        - text: Frequently Asked Questions
+          href: articles/faqs.html
+        - text: GitHub Issues Guidelines
+          href: articles/github_issues.html
     - text: News
       href: news/index.html
     - text: "Try Giotto"
