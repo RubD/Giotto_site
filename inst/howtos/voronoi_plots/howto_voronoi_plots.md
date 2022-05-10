@@ -19,7 +19,7 @@ alternative to simple ‘points’.
 library(Giotto)
 
 # input data
-VC_exprs_small = read.table(system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto'))
+VC_exprs_small = read.table(system.file("extdata", "seqfish_field_expr.txt.gz", package = 'Giotto'))
 VC_locs_small = read.table(system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto'))
 
 # giotto object

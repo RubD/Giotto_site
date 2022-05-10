@@ -14,7 +14,7 @@ $~$
 #### 1. create Giotto object
 
 ```{r eval=FALSE}
-path_to_matrix = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+path_to_matrix = system.file("extdata", "seqfish_field_expr.txt.gz", package = 'Giotto')
 path_to_locations = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
 
 my_giotto_object = createGiottoObject(raw_exprs = path_to_matrix,
