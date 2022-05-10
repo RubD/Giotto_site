@@ -12,7 +12,7 @@ temp_dir = getwd()
 temp_dir = '~/Temp/'
 
 ## 1. giotto object ####
-expr_path = system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto')
+expr_path = system.file("extdata", "seqfish_field_expr.txt.gz", package = 'Giotto')
 loc_path = system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto')
 
 # default

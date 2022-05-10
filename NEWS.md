@@ -129,7 +129,7 @@ example to acces the seqFISH+ mini dataset:
 
 ``` r
 # raw counts
-small_seqfish_expr_matrix = read.table(system.file("extdata", "seqfish_field_expr.txt", package = 'Giotto'))
+small_seqfish_expr_matrix = read.table(system.file("extdata", "seqfish_field_expr.txt.gz.gz", package = 'Giotto'))
 # cell locations
 small_seqfish_locations = read.table(system.file("extdata", "seqfish_field_locs.txt", package = 'Giotto'))
 ```
