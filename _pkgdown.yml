@@ -68,6 +68,7 @@ reference:
   - title: Giotto object
     desc: Create and operate on Giotto object
     contents:
+    - giotto-class
     - createGiottoObject
     - createGiottoVisiumObject
     - filterGiotto
@@ -90,6 +91,7 @@ reference:
     - get10Xmatrix_h5
     - stitchFieldCoordinates
     - stitchTileCoordinates
+    - convertEnsemblToGeneSymbol
 
   - title: add images
     desc: functions to work with images for a Giotto object
@@ -261,13 +263,26 @@ reference:
     - viewHMRFresults2D
     - viewHMRFresults3D
 
+  - title: HMRF V2
+    desc: Functions to identify spatial domains with HMRF V2 (test)
+    contents:
+    - chooseAvailableSpatialGenes
+    - checkAndFixSpatialGenes
+    - initHMRF_V2
+    - doHMRF_V2
+    - addHMRF_V2
+    - viewHMRFresults_V2
+
   - title: 2D visualization in expression space
     desc: Visualization of expression space (e.g. UMAP) in 2D
     contents:
     - dimPlot
     - plotUMAP
+    - plotUMAP_2D
     - plotTSNE
+    - plotTSNE_2D
     - plotPCA
+    - plotPCA_2D
     - dimGenePlot
     - dimCellPlot
 
@@ -275,15 +290,19 @@ reference:
     desc: Visualization in 2D spatial space
     contents:
     - spatPlot
+    - spatPlot2D
     - spatGenePlot
+    - spatGenePlot2D
     - spatCellPlot
 
   - title: 2D visualization in spatial and expression space
     desc: Visualization in both 2D spatial and expression space
     contents:
     - spatDimPlot
+    - spatDimPlot2D
     - spatDimGenePlot
     - spatDimCellPlot
+    - spatDimCellPlot2D
 
   - title: 3D dimension reduction visualization
     desc: Visualization of expression space (e.g. UMAP) in 3D
@@ -325,6 +344,7 @@ reference:
     - cellProximityHeatmap
     - cellProximityNetwork
     - cellProximitySpatPlot
+    - cellProximitySpatPlot2D
     - cellProximitySpatPlot3D
 
   - title: cell neighborhood; spatial interaction changed genes
@@ -370,6 +390,11 @@ reference:
     desc: Convert other type of objects into a Giotto object
     contents:
     - anndataToGiotto
+
+  - title: Auxiliary functions
+    desc: Functions to facilitate spatial data analysis and visualization
+    contents:
+    - getDistinctColors
 
 destination: docs
 

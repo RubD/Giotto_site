@@ -1,5 +1,5 @@
-pandoc: '2.13'
-pkgdown: 1.6.1
+pandoc: 2.17.1.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   binder: binder.html
@@ -44,5 +44,5 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2021-08-27T15:16Z
+last_built: 2022-08-08T14:19Z
 
