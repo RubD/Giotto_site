@@ -442,6 +442,7 @@ spatPlot(seqfish_mini, cell_color = 'D_F_interactions', legend_symbol_size = 3,
 
 ![](../inst/images/mini_datasets/mini_seqfish/vignette_200921/spatPlot2D.png){ width=50% }
 
+
 ### 13. cell neighborhood: interaction changed genes
 ```{r eval=FALSE}
 

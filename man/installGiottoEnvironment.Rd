@@ -5,8 +5,8 @@
 \title{installGiottoEnvironment}
 \usage{
 installGiottoEnvironment(
-  packages_to_install = c("pandas", "networkx", "python-igraph", "leidenalg",
-    "python-louvain", "python.app", "scikit-learn"),
+  packages_to_install = c("pandas==1.1.5", "networkx==2.6.3", "python-igraph==0.9.6",
+    "leidenalg==0.8.7", "python-louvain==0.15", "python.app==2", "scikit-learn==0.24.2"),
   force_miniconda = FALSE,
   force_environment = FALSE,
   verbose = TRUE
@@ -40,6 +40,16 @@ and provide the instructions to the \code{\link{createGiottoObject}} function.
   # this command will install r-miniconda
   # and a giotto environment with all necessary python modules
   installGiottoEnvironment()
+
+  The following python modules will be installed:
+  - pandas==1.1.5
+  - networkx==2.6.3
+  - python-igraph==0.9.6
+  - leidenalg==0.8.7
+  - python-louvain==0.15
+  - python.app==2 [mac OSX only]
+  - scikit-learn==0.24.2
+
 }
 
 }

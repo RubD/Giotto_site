@@ -41,7 +41,111 @@ makeSignMatrixPAGE = function(sign_names,
   return(final_sig_matrix)
 
 }
+## create spatialDWLS matrix ####
 
+## create spatialDWLS matrix ####
+
+#' @title makeSignMatrixDWLSfromMatrix
+#' @name makeSignMatrixDWLSfromMatrix
+#' @description Function to convert a single-cell RNAseq matrix into a format
+#'  that can be used with \code{\link{runDWLSDeconv}}.
+#' @param matrix scRNA-seq matrix
+#' @param sign_gene genes to use (e.g. marker genes)
+#' @param cell_type_vector vector with cell types (length = ncol(matrix))
+#' @return matrix
+#' @seealso \code{\link{runDWLSDeconv}}
+#' @export
+makeSignMatrixDWLSfromMatrix = function(matrix,
+                                        sign_gene,
+                                        cell_type_vector) {
+
+
+  # 1. check if cell_type_vector and matrix are compatible
+  if(ncol(matrix) != length(cell_type_vector)) {
+    stop('ncol(matrix) needs to be the same as length(cell_type_vector)')
+  }
+
+  # check input for sign_gene
+  if(!is.character(sign_gene)) {
+    stop('\n sign_gene needs to be a character vector of cell type specific genes \n')
+  }
+
+
+  # 2. get the common genes from the matrix and vector of signature genes
+  intersect_sign_gene = intersect(rownames(matrix), sign_gene)
+  matrix_subset       = matrix[intersect_sign_gene, ]
+
+
+  # 3. for each cell type
+  # calculate average expression for all signature genes
+  signMatrix = matrix(data = NA,
+                      nrow = nrow(matrix_subset),
+                      ncol = length(unique(cell_type_vector)))
+
+  for(cell_type_i in 1:length(unique(cell_type_vector))) {
+
+    cell_type = unique(cell_type_vector)[cell_type_i]
+    selected_cells = colnames(matrix_subset)[cell_type_vector == cell_type]
+    mean_expr_in_selected_cells = rowMeans_flex(matrix_subset[, selected_cells])
+
+    signMatrix[, cell_type_i] = mean_expr_in_selected_cells
+  }
+
+  rownames(signMatrix) = rownames(matrix_subset)
+  colnames(signMatrix) = unique(cell_type_vector)
+
+  return(signMatrix)
+
+}
+
+
+
+#' @title makeSignMatrixDWLS
+#' @description Function to convert a matrix within a Giotto object into a format
+#'  that can be used with \code{\link{runDWLSDeconv}}. A vector of cell types
+#'  for cell_type_vector can be created from the cell metadata (pDataDT).
+#' @param gobject Giotto object of single cell
+#' @param expression_values expression values to use
+#' @param reverse_log reverse a log-normalized expression matrix
+#' @param log_base the logarithm base (deafult  = 2)
+#' @param sign_gene all of DE genes (signature)
+#' @param cell_type_vector vector with cell types (length = ncol(matrix))
+#' @param cell_type deprecated, use cell_type_vector
+#' @return matrix
+#' @seealso \code{\link{spatialDWLS}}
+#' @export
+makeSignMatrixDWLS = function(gobject,
+                              expression_values = c('normalized', 'scaled', 'custom'),
+                              reverse_log = TRUE,
+                              log_base = 2,
+                              sign_gene,
+                              cell_type_vector,
+                              cell_type = NULL) {
+
+
+  ## deprecated arguments
+  if(!is.null(cell_type)) {
+    warning('\n cell_type is deprecated, use cell_type_vector in the future \n')
+    cell_type_vector = cell_type
+  }
+
+
+  ## 1. expression matrix
+  values      = match.arg(expression_values, unique(c('normalized', 'scaled', 'custom', expression_values)))
+  expr_values = select_expression_values(gobject = gobject, values = values)
+
+  ## 2. reverse log-normalization
+  if(reverse_log == TRUE) {
+    expr_values = log_base^(expr_values)-1
+  }
+
+  ## 3. run signature matrix function
+  res = makeSignMatrixDWLSfromMatrix(matrix = expr_values,
+                                     sign_gene = sign_gene,
+                                     cell_type_vector = cell_type_vector)
+
+  return(res)
+}
 
 
 #' @title makeSignMatrixRank
@@ -1182,13 +1286,22 @@ enrich_deconvolution<-function(expr,
                                ct_exp,
                                cutoff){
   #####generate enrich 0/1 matrix based on expression matrix
+  ct_exp <- ct_exp[rowSums(ct_exp)>0,]
   enrich_matrix<-matrix(0,nrow=dim(ct_exp)[1],ncol=dim(ct_exp)[2])
   rowmax_col<-Rfast::rowMaxs(ct_exp)
   for (i in 1:length(rowmax_col)){
     enrich_matrix[i,rowmax_col[i]]=1
   }
+  colsum_ct_binary <- colSums(enrich_matrix)
+  for (i in 1:length(colsum_ct_binary)){
+    if (colsum_ct_binary[i] <= 2){
+      rank <- rank(-ct_exp[,i])
+      enrich_matrix[rank <=2, i] =1
+    }
+  }
   rownames(enrich_matrix)<-rownames(ct_exp)
   colnames(enrich_matrix)<-colnames(ct_exp)
+  # print(enrich_matrix)
   #####page enrich
   enrich_result<-enrich_analysis(log_expr,enrich_matrix)
   #####initialize dwls matrix
@@ -1214,6 +1327,7 @@ enrich_deconvolution<-function(expr,
     select_sig_exp<-ct_exp[uniq_ct_gene,ct]
     cluster_i_cell<-which(cluster_info==cluster_sort[i])
     cluster_cell_exp<-expr[uniq_ct_gene,cluster_i_cell]
+    # print(cluster_cell_exp)
     cluster_i_dwls<-optimize_deconvolute_dwls(cluster_cell_exp,select_sig_exp)
     dwls_results[ct,cluster_i_cell]<-cluster_i_dwls
   }
@@ -1268,25 +1382,35 @@ spot_deconvolution<-function(expr,
       ######overlap signature with spatial genes
       all_exp<-rowMeans(cluster_cell_exp)
       solution_all_exp<-solve_OLS_internal(select_sig_exp,all_exp)
-      constant_J<-find_dampening_constant(select_sig_exp,all_exp,solution_all_exp)
-      ######deconvolution for each spot
-      for(k in 1:(dim(cluster_cell_exp)[2])){
-        B<-Matrix::as.matrix(cluster_cell_exp[,k])
-        ct_spot_k<-rownames(cluster_i_matrix)[which(cluster_i_matrix[,k]==1)]
-        if (length(ct_spot_k)==1){
-          dwls_results[ct_spot_k[1],colnames(cluster_cell_exp)[k]]<-1
-        } else {
-          ct_k_gene<-c()
-          for (m in 1:length(ct_spot_k)){
-            sig_gene_k<-rownames(enrich_matrix)[which(enrich_matrix[,ct_spot_k[m]]==1)]
-            ct_k_gene<-c(ct_k_gene,sig_gene_k)
+      ### Xuan modify 1: if (length(all_exp) >= 4){, 1 line ###
+      ### Xuan modify 2: else if(length(ct_spot_k)==0); NULL, 2 lines ### 
+      ### Xuan modify 3: if (length(which(B != 0)) > 0){; NULL, 1 line ### 
+      if (length(all_exp) >= 4){
+        constant_J<-find_dampening_constant(select_sig_exp,all_exp,solution_all_exp)
+        ######deconvolution for each spot
+        for(k in 1:(dim(cluster_cell_exp)[2])){
+          B<-Matrix::as.matrix(cluster_cell_exp[,k])
+          ct_spot_k<-rownames(cluster_i_matrix)[which(cluster_i_matrix[,k]==1)]
+          if (length(ct_spot_k)==1){
+            dwls_results[ct_spot_k[1],colnames(cluster_cell_exp)[k]]<-1
+          } else if(length(ct_spot_k)==0){
+            NULL
+          } else {
+            ct_k_gene<-c()
+            for (m in 1:length(ct_spot_k)){
+              sig_gene_k<-rownames(enrich_matrix)[which(enrich_matrix[,ct_spot_k[m]]==1)]
+              ct_k_gene<-c(ct_k_gene,sig_gene_k)
+            }
+            uniq_ct_k_gene<-intersect(rownames(ct_exp),unique(ct_k_gene))
+            S_k<-Matrix::as.matrix(ct_exp[uniq_ct_k_gene,ct_spot_k])
+            if (length(which(B != 0)) > 0){
+              solDWLS<-optimize_solveDampenedWLS(S_k,B[uniq_ct_k_gene,],constant_J)
+              dwls_results[names(solDWLS),colnames(cluster_cell_exp)[k]]<-solDWLS
+            }
           }
-          uniq_ct_k_gene<-intersect(rownames(ct_exp),unique(ct_k_gene))
-          S_k<-Matrix::as.matrix(ct_exp[uniq_ct_k_gene,ct_spot_k])
-          solDWLS<-optimize_solveDampenedWLS(S_k,B[uniq_ct_k_gene,],constant_J)
-          dwls_results[names(solDWLS),colnames(cluster_cell_exp)[k]]<-solDWLS
-        }
+        } 
       }
+      ### Xuan modify end: ####
     }
   }
   #####remove negative values
@@ -1306,6 +1430,9 @@ cluster_enrich_analysis <- function(exp_matrix,
                                     cluster_info,
                                     enrich_sig_matrix) {
   uniq_cluster<-sort(unique(cluster_info))
+  if(length(uniq_cluster) == 1) {
+    stop("Only one cluster identified, need at least two.")
+  }
   cluster_exp<-NULL
   for (i in uniq_cluster){
     cluster_exp<-cbind(cluster_exp,(apply(exp_matrix,1,function(y) mean(y[which(cluster_info==i)]))))
@@ -1372,12 +1499,22 @@ optimize_deconvolute_dwls <- function(exp,
   subBulk = Bulk[Genes,]
   allCounts_DWLS<-NULL
   all_exp<-rowMeans(exp)
+
   solution_all_exp<-solve_OLS_internal(S,all_exp[Genes])
+
   constant_J<-find_dampening_constant(S,all_exp[Genes],solution_all_exp)
-  #print(constant_J)
   for(j in 1:(dim(subBulk)[2])){
     B<-subBulk[,j]
-    solDWLS<-optimize_solveDampenedWLS(S,B,constant_J)
+    if (sum(B)>0){
+      solDWLS<-optimize_solveDampenedWLS(S,B,constant_J)
+    } else{
+      ### Xuan modify 4: ##
+      #solDWLS <- rep(0, length(B))
+      #names(solDWLS) <- names(B)
+      solDWLS <- rep(0, dim(Signature)[2])
+      names(solDWLS) <- colnames(Signature)
+      ### Xuan modify end: ##
+    }
     allCounts_DWLS<-cbind(allCounts_DWLS,solDWLS)
   }
   colnames(allCounts_DWLS)<-colnames(exp)
@@ -1443,9 +1580,17 @@ find_dampening_constant<-function(S,
       subset = sample(length(ws),size=length(ws)*0.5) #randomly select half of gene set
       #solve dampened weighted least squares for subset
       fit = stats::lm (B[subset] ~ -1+S[subset,],weights=wsDampened[subset])
-      sol = fit$coef*sum(goldStandard)/sum(fit$coef)
+      ### Xuan modify 5: ##
+      #sol = fit$coef*sum(goldStandard)/sum(fit$coef)
+      fit_coef = fit$coef
+      fit_coef[is.na(fit_coef)] = 0
+      sol = fit_coef*sum(goldStandard)/sum(fit_coef)
+      ### Xuan modify end: ##
       solutions = cbind(solutions,sol)
     }
+    ### Xuan modify 6: ###
+    solutions[is.na(solutions)] = 0
+    ### Xuan modify end: ###
     solutionsSd = cbind(solutionsSd,apply(solutions, 1, stats::sd))
   }
   #choose dampening constant that results in least cross-validation variance
@@ -1463,7 +1608,12 @@ solve_OLS_internal<-function(S,
   d<-t(S)%*%B
   A<-cbind(diag(dim(S)[2]))
   bzero<-c(rep(0,dim(S)[2]))
-  solution<-quadprog::solve.QP(D,d,A,bzero)$solution
+  ### Xuan modify 7: ###
+  #solution<-quadprog::solve.QP(D,d,A,bzero)$solution
+  D_mat = Matrix::nearPD(D)
+  D_mat = as.matrix(D_mat$mat)
+  solution<-quadprog::solve.QP(D_mat,d,A,bzero)$solution
+  ### Xuan modify end: ###
   names(solution)<-colnames(S)
   return(solution)
 }
@@ -1488,7 +1638,12 @@ solve_dampened_WLSj<-function(S,
   A<-cbind(diag(dim(S)[2]))
   bzero<-c(rep(0,dim(S)[2]))
   sc <- norm(D,"2")
-  solution<-quadprog::solve.QP(D/sc,d/sc,A,bzero)$solution
+  ### Xuan modify 8: ###
+  #solution<-quadprog::solve.QP(D/sc,d/sc,A,bzero)$solution
+  D_mat = Matrix::nearPD(D/sc)
+  D_mat = as.matrix(D_mat$mat)
+  solution<-quadprog::solve.QP(D_mat,d/sc,A,bzero)$solution
+  ### Xuan modify end: ###
   names(solution)<-colnames(S)
   return(solution)
 }
@@ -1543,10 +1698,19 @@ runDWLSDeconv <- function(gobject,
 
 
   #####getting overlapped gene lists
+  sign_matrix <- as.matrix(sign_matrix)
   intersect_gene = intersect(rownames(sign_matrix), rownames(nolog_expr))
   filter_Sig = sign_matrix[intersect_gene,]
   filter_expr = nolog_expr[intersect_gene,]
   filter_log_expr = expr_values[intersect_gene,]
+  
+  ### xuan modify 9: ###
+  if (length(intersect_gene) < 10){
+    stop(paste0("The overlapped genes between signature matrix and spatial expression profile is too small. (", 
+               length(intersect_gene), ' overlapped genes)'))} else {
+    print(paste0('The ',length(intersect_gene),' overlapped genes between signature matrix and\nspatial expression profile'))
+  }
+  ### xuan modify end ###
 
   #####first round spatial deconvolution ##spot or cluster
   enrich_spot_proportion <- enrich_deconvolution(expr = filter_expr,
@@ -1648,4 +1812,3 @@ runSpatialDeconv <- function(gobject,
   return(results)
 
 }
-

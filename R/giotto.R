@@ -22,8 +22,6 @@
 #' @slot instructions slot for global function instructions
 #' @slot offset_file offset file used to stitch together image fields
 #' @slot OS_platform Operating System to run Giotto analysis on
-#' @useDynLib Giotto
-#' @importFrom Rcpp sourceCpp
 #' @export
 giotto <- setClass(
   "giotto",
@@ -133,9 +131,13 @@ setMethod(
 #' @name set_giotto_python_path
 #' @description sets the python path and/or installs miniconda and the python modules
 set_giotto_python_path = function(python_path = NULL,
-                                  packages_to_install = c('pandas', 'networkx', 'python-igraph',
-                                                          'leidenalg', 'python-louvain', 'python.app',
-                                                          'scikit-learn')) {
+                                  packages_to_install = c('pandas==1.1.5',
+                                                          'networkx==2.6.3',
+                                                          'python-igraph==0.9.6',
+                                                          'leidenalg==0.8.7',
+                                                          'python-louvain==0.15',
+                                                          'python.app==2',
+                                                          'scikit-learn==0.24.2')) {
 
   ## if a python path is provided, use that path
   if(!is.null(python_path)) {
@@ -150,7 +152,7 @@ set_giotto_python_path = function(python_path = NULL,
 
     # exclude python.app for windows and linux
     if(os_specific_system != 'osx') {
-      packages_to_install = packages_to_install[packages_to_install != 'python.app']
+      packages_to_install = packages_to_install[packages_to_install != 'python.app==2']
     }
 
 
@@ -291,6 +293,53 @@ set_giotto_python_path = function(python_path = NULL,
 #' @return named vector with giotto instructions
 #' @seealso More online information can be found here \url{https://rubd.github.io/Giotto_site/articles/instructions_and_plotting.html}
 #' @export
+#' @details
+#'
+#' ## This is a simple guide to help explain the different Giotto instructions:
+#'
+#' \itemize{
+#'  \item Instructions can be set at the beginning of each workflow with \code{\link{createGiottoInstructions}}
+#'
+#'  \item The provided instructions for a giotto object can be viewed with \code{\link{showGiottoInstructions}}
+#
+#'  \item One or more parameters can be changed with \code{\link{changeGiottoInstructions}}
+#'
+#'  \item All instructions can be replaced with the \code{\link{replaceGiottoInstructions}} function
+#'
+#' }
+#'
+#'
+#' ## The following list of parameters can be provided to save_param:
+#'
+#' \itemize{
+#'       \item  python_path: here you can provide the path to your custom python binary (only at beginning of script)
+#'
+#'       \item  show_plot: TRUE or FALSE, show the plot to the console
+#'       \item  return_plot: TRUE or FALSE, return the ggplot object (e.g. to further modify or save the plot)
+#'       \item  save_plot: TRUE or FALSE, automatically save the plot to your designated save_dir
+#'
+#'       \item  save_dir: directory to save the plot to
+#'       \item  plot_format: default picture format to use, default is .png
+#'       \item  dpi: default dpi for each plot if plot is in raster format
+#'       \item  units: default plotting units (e.g. in)
+#'       \item  height: default height of plot
+#'       \item  width: default width of plot
+#'
+#' }
+#'
+#'#' Specific saving instructions can also be directly provided for each plotting function.
+#' See \code{\link{showSaveParameters}} for more details
+#'
+#' @examples
+#' instructions <- createGiottoInstruction(python_path = '/path/to/python',
+#'                                         save_plot = TRUE,
+#'                                         save_dir = '/path/to/working/dir')
+#'
+#'
+#' giotto_object <- createGiottoObject(raw_exprs = '/path/to/expression/matrix',
+#'                                     spatial_locs = '/path/to/spatial/locations',
+#'                                     instructions = instructions)
+#'
 createGiottoInstructions <- function(python_path =  NULL,
                                      show_plot = NULL,
                                      return_plot = NULL,
@@ -487,6 +536,62 @@ replaceGiottoInstructions = function(gobject,
 }
 
 
+#' @title explainGiottoInstructions
+#' @description Simple function to explain how to use \code{\link{createGiottoInstructions}}
+#' @return Instructions in txt format
+#' @export
+explainGiottoInstructions = function() {
+
+  cat("This is a simple guide to help explain the different Giotto instructions. \n")
+
+  cat("Instructions can be set at the beginning of each workflow with createGiottoInstructions() \n")
+
+  cat("The provided instructions for a giotto object can be viewed with showGiottoInstructions() \n")
+
+  cat("One or more parameters can be changed with changeGiottoInstructions() \n")
+
+  cat("All instructions can be replaced with the replaceGiottoInstructions() function \n")
+
+  cat('\n')
+
+  cat("The following list of parameters can be provided to save_param: \n
+      - python_path: here you can provide the path to your custom python binary (only at beginning of script)
+
+      - show_plot: TRUE or FALSE, show the plot to the console
+      - return_plot: TRUE or FALSE, return the ggplot object (e.g. to further modify or save the plot
+      - save_plot: TRUE or FALSE, automatically save the plot to your designated save_dir
+
+      - save_dir: directory to save the plot to
+      - plot_format: default picture format to use, default is .png
+      - dpi: default dpi for each plot if plot is in raster format
+      - units: default plotting units (e.g. in)
+      - height: default height of plot
+      - width: default width of plot \n")
+
+
+  cat('\n')
+
+  cat("Example: \n
+      instructions <- createGiottoInstruction(python_path = '/path/to/python',
+                                              save_plot = TRUE,
+                                              save_dir = '/path/to/working/dir'")
+
+  cat(" \n
+
+      giotto_object <- createGiottoObject(raw_exprs = '/path/to/expression/matrix',
+                                          spatial_locs = '/path/to/spatial/locations',
+                                          instructions = instructions")
+
+  cat('\n \n')
+
+  cat('Specific saving instructions can also be directly provided for each plotting function.
+
+      See showSaveParameters() for more details \n \n')
+
+}
+
+
+
 
 #' @title readExprMatrix
 #' @description Function to read an expression matrix into a sparse matrix.
@@ -664,6 +769,9 @@ evaluate_spatial_locations = function(spatial_locs,
 #' @param cores how many cores or threads to use to read data if paths are provided
 #' @return giotto object
 #' @details
+#'
+#' See \url{https://rubd.github.io/Giotto_site/articles/howto_giotto_class.html} for more details
+#'
 #' [\strong{Requirements}] To create a giotto object you need to provide at least a matrix with genes as
 #' row names and cells as column names. This matrix can be provided as a base matrix, sparse Matrix, data.frame,
 #' data.table or as a path to any of those.
@@ -690,7 +798,7 @@ evaluate_spatial_locations = function(spatial_locs,
 #'   \item{spatial networks}
 #'   \item{spatial girds}
 #'   \item{spatial enrichments}
-#'   \item{dimensions reductions}
+#'   \item{dimensions reduction}
 #'   \item{nearest neighbours networks}
 #'   \item{images}
 #' }
@@ -1070,10 +1178,12 @@ createGiottoObject <- function(raw_exprs,
 #' @param h5_tissue_positions_path path to tissue locations (.csv file)
 #' @param h5_image_png_path path to tissue .png file (optional)
 #' @param png_name select name of png to use (see details)
+#' @param do_manual_adj flag to use manual adj values instead of automatic alignment based on visium values
 #' @param xmax_adj adjustment of the maximum x-value to align the image
 #' @param xmin_adj adjustment of the minimum x-value to align the image
 #' @param ymax_adj adjustment of the maximum y-value to align the image
 #' @param ymin_adj adjustment of the minimum y-value to align the image
+#' @param scale_factor scaling of image dimensions relative to spatial coordinates (defaults to visium specified)
 #' @param instructions list of instructions or output result from \code{\link{createGiottoInstructions}}
 #' @param cores how many cores or threads to use to read data if paths are provided
 #' @param verbose be verbose
@@ -1102,10 +1212,12 @@ createGiottoVisiumObject = function(visium_dir = NULL,
                                     h5_tissue_positions_path = NULL,
                                     h5_image_png_path = NULL,
                                     png_name = NULL,
+                                    do_manual_adj = TRUE,
                                     xmax_adj = 0,
                                     xmin_adj = 0,
                                     ymax_adj = 0,
                                     ymin_adj = 0,
+                                    scale_factor = NULL,
                                     instructions = NULL,
                                     cores = NA,
                                     verbose = TRUE) {
@@ -1186,16 +1298,25 @@ createGiottoVisiumObject = function(visium_dir = NULL,
 
     ## spatial locations and image
     spatial_path = paste0(visium_dir, '/', 'spatial/')
-    spatial_results = data.table::fread(paste0(spatial_path, '/','tissue_positions_list.csv'))
+    # spatial_results = data.table::fread(paste0(spatial_path, '/','tissue_positions_list.csv'))
+    spatial_results = data.table::fread(Sys.glob(paths = file.path(spatial_path, 'tissue_positions*')))
     spatial_results = spatial_results[match(colnames(raw_matrix), V1)]
     colnames(spatial_results) = c('barcode', 'in_tissue', 'array_row', 'array_col', 'col_pxl', 'row_pxl')
     spatial_locs = spatial_results[,.(row_pxl,-col_pxl)]
     colnames(spatial_locs) = c('sdimx', 'sdimy')
 
     ## spatial image
-    if(is.null(png_name)) {
-      png_list = list.files(spatial_path, pattern = "*.png")
-      png_name = png_list[1]
+    if(is.null(png_name)) { # Automatically select and find scale_factor for hires
+      png_name = list.files(spatial_path, pattern = "*hires_image.png")
+
+      json_path = list.files(spatial_path, pattern = "*json.json", full.names = TRUE)
+      json = base::readChar(json_path, nchars = 1000)
+      scale_factor = base::regmatches(json,
+                                      base::gregexpr('(?<="tissue_hires_scalef": ).*?(?=,|})',
+                                                     json,
+                                                     perl = TRUE)
+                                      )
+      scale_factor = as.numeric(scale_factor)
     }
     png_path = paste0(spatial_path,'/',png_name)
     if(!file.exists(png_path)) stop(png_path, ' does not exist! \n')
@@ -1203,10 +1324,16 @@ createGiottoVisiumObject = function(visium_dir = NULL,
     mg_img = magick::image_read(png_path)
 
 
-    visium_png = createGiottoImage(gobject = NULL, spatial_locs =  spatial_locs,
-                                   mg_object = mg_img, name = 'image',
-                                   xmax_adj = xmax_adj, xmin_adj = xmin_adj,
-                                   ymax_adj = ymax_adj, ymin_adj = ymin_adj)
+    visium_png = createGiottoImage(gobject = NULL,
+                                   spatial_locs =  spatial_locs,
+                                   mg_object = mg_img,
+                                   name = 'image',
+                                   do_manual_adj = do_manual_adj,
+                                   xmax_adj = xmax_adj,
+                                   xmin_adj = xmin_adj,
+                                   ymax_adj = ymax_adj,
+                                   ymin_adj = ymin_adj,
+                                   scale_factor = scale_factor)
 
     visium_png_list = list(visium_png)
     names(visium_png_list) = c('image')
