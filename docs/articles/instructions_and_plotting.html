@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,65 +168,86 @@
 
       
 
-      </header><script src="instructions_and_plotting_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/instructions_and_plotting.Rmd"><code>vignettes/instructions_and_plotting.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/instructions_and_plotting.Rmd" class="external-link"><code>vignettes/instructions_and_plotting.Rmd</code></a></small>
       <div class="hidden name"><code>instructions_and_plotting.Rmd</code></div>
 
     </div>
 
     
     
-<div id="how-to-visualize-and-save-plots-in-giotto" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-visualize-and-save-plots-in-giotto" class="anchor"></a>How to visualize and save plots in Giotto?</h1>
-<p>Each Giotto function that creates a plot as 3 important parameters:<br>
-- <strong>show_plot</strong>: to print the plot to the console, default is TRUE<br>
-- <strong>return_plot</strong>: to return the plot as an object, default is TRUE<br>
-- <strong>save_plot</strong>: to automatically save the plot, default is FALSE</p>
-<p>These parameters are automatically provided by <strong>createGiottoObject</strong>, but can also be explicitely provided using <strong>createGiottoInstructions</strong> or a named list, which can then be given to <strong>createGiottoObject</strong> as a parameter.</p>
-<p>Besides those 3 parameters <strong>createGiottoInstructions</strong> also allows to provide other general Giotto parameters, such as your python path and other information for automatically saving a plot, like size, plotting format, etc.</p>
-<p>In total there are 4 functions to work with setting instructions:<br>
-- <strong>createGiottoInstructions</strong>: creates instructions that can be provided to createGiottoObject<br>
-- <strong>showGiottoInstructions</strong>: to view the instructions of a Giotto object<br>
-- <strong>changeGiottoInstructions</strong>: to replace 1 or more of the instruction parameters (e.g. plotting format)<br>
-- <strong>replaceGiottoInstructions</strong>: to replace all instructions with new instructions (e.g after subsetting)<br>
-In addition, for each plot the parameters can always be <em>manually overwritten</em> within the plotting function itself.</p>
+<div class="section level2">
+<h2 id="how-to-visualize-and-save-plots-in-giotto">How to visualize and save plots in Giotto?<a class="anchor" aria-label="anchor" href="#how-to-visualize-and-save-plots-in-giotto"></a>
+</h2>
+<p>Each Giotto function that creates a plot as 3 important
+parameters:<br>
+- <strong>show_plot</strong>: to print the plot to the console, default
+is TRUE<br>
+- <strong>return_plot</strong>: to return the plot as an object, default
+is TRUE<br>
+- <strong>save_plot</strong>: to automatically save the plot, default is
+FALSE</p>
+<p>These parameters are automatically provided by
+<strong>createGiottoObject</strong>, but can also be explicitely
+provided using <strong>createGiottoInstructions</strong> or a named
+list, which can then be given to <strong>createGiottoObject</strong> as
+a parameter.</p>
+<p>Besides those 3 parameters <strong>createGiottoInstructions</strong>
+also allows to provide other general Giotto parameters, such as your
+python path and other information for automatically saving a plot, like
+size, plotting format, etc.</p>
+<p>In total there are 4 functions to work with setting
+instructions:<br>
+- <strong>createGiottoInstructions</strong>: creates instructions that
+can be provided to createGiottoObject<br>
+- <strong>showGiottoInstructions</strong>: to view the instructions of a
+Giotto object<br>
+- <strong>changeGiottoInstructions</strong>: to replace 1 or more of the
+instruction parameters (e.g. plotting format)<br>
+- <strong>replaceGiottoInstructions</strong>: to replace all
+instructions with new instructions (e.g after subsetting)<br>
+In addition, for each plot the parameters can always be <em>manually
+overwritten</em> within the plotting function itself.</p>
 <p>Here we use the osmFISH as an example:</p>
-<div id="create-giotto-instructions-and-giotto-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-giotto-instructions-and-giotto-object" class="anchor"></a>1. create Giotto instructions and Giotto object</h2>
+<div class="section level3">
+<h3 id="create-giotto-instructions-and-giotto-object">1. create Giotto instructions and Giotto object<a class="anchor" aria-label="anchor" href="#create-giotto-instructions-and-giotto-object"></a>
+</h3>
 <ul>
-<li>we will override automatically showing plots by setting show_plot = FALSE</li>
-<li>we keep return_plot = TRUE, to store plots and modify them if necessary<br>
+<li>we will override automatically showing plots by setting show_plot =
+FALSE</li>
+<li>we keep return_plot = TRUE, to store plots and modify them if
+necessary<br>
 </li>
 <li>we set save_plot = TRUE to automatically saving each plot</li>
 </ul>
-<p>We also specify some other plotting parameters for the automatic saving functionality, such as the save_dir whose default is the current working directory.</p>
+<p>We also specify some other plotting parameters for the automatic
+saving functionality, such as the save_dir whose default is the current
+working directory.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="co"># create instructions for your python path, how to view your plots and</span>
-<span class="co"># parameters to save your plot if wanted</span>
-<span class="va">my_python_path</span> <span class="op">=</span> <span class="st">"/your/python/path/"</span> <span class="co"># set to NULL to use previously installed giotto environment</span>
-<span class="va">results_folder</span> <span class="op">=</span> <span class="st">'/path/to/your/results/'</span>
-<span class="va">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="va">my_python_path</span>,
-                                  show_plot <span class="op">=</span> <span class="cn">FALSE</span>,  
-                                  return_plot <span class="op">=</span> <span class="cn">TRUE</span>,
-                                  save_plot <span class="op">=</span> <span class="cn">TRUE</span>,
-                                  save_dir <span class="op">=</span> <span class="va">results_folder</span>,
-                                  plot_format <span class="op">=</span> <span class="st">'png'</span>,
-                                  dpi <span class="op">=</span> <span class="fl">200</span>,
-                                  height <span class="op">=</span> <span class="fl">9</span>,
-                                  width <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create instructions for your python path, how to view your plots and</span></span>
+<span><span class="co"># parameters to save your plot if wanted</span></span>
+<span><span class="va">my_python_path</span> <span class="op">=</span> <span class="st">"/your/python/path/"</span> <span class="co"># set to NULL to use previously installed giotto environment</span></span>
+<span><span class="va">results_folder</span> <span class="op">=</span> <span class="st">'/path/to/your/results/'</span></span>
+<span><span class="va">instrs</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="va">my_python_path</span>,</span>
+<span>                                  show_plot <span class="op">=</span> <span class="cn">FALSE</span>,  </span>
+<span>                                  return_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                  save_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                                  save_dir <span class="op">=</span> <span class="va">results_folder</span>,</span>
+<span>                                  plot_format <span class="op">=</span> <span class="st">'png'</span>,</span>
+<span>                                  dpi <span class="op">=</span> <span class="fl">200</span>,</span>
+<span>                                  height <span class="op">=</span> <span class="fl">9</span>,</span>
+<span>                                  width <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="create-giotto-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-giotto-object" class="anchor"></a>2. create Giotto object</h2>
+<div class="section level3">
+<h3 id="create-giotto-object">2. create Giotto object<a class="anchor" aria-label="anchor" href="#create-giotto-object"></a>
+</h3>
 <ul>
 <li>provide an expression matrix<br>
 </li>
@@ -232,78 +255,81 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 <li>provide the previously generated instructions file (named list)</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## PREPARE osmFISH DATA ####</span>
-
-<span class="co"># download dataset </span>
-<span class="fu"><a href="../reference/getSpatialDataset.html">getSpatialDataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">'osmfish_SS_cortex'</span>, directory <span class="op">=</span> <span class="va">results_folder</span>, method <span class="op">=</span> <span class="st">'wget'</span><span class="op">)</span>
-
-<span class="co"># path to files</span>
-<span class="va">osm_exprs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_expression.txt"</span><span class="op">)</span>
-<span class="va">osm_locs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_cell_coordinates.txt"</span><span class="op">)</span>
-<span class="va">meta_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_cell_metadata.txt"</span><span class="op">)</span>
-
-<span class="co">## CREATE GIOTTO OBJECT with expression data, location data and instructions</span>
-<span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">osm_exprs</span>,
-                               spatial_locs <span class="op">=</span> <span class="va">osm_locs</span>,
-                               instructions <span class="op">=</span> <span class="va">instrs</span><span class="op">)</span>
-
-<span class="co">## add field annotation</span>
-<span class="va">metadata</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">meta_path</span><span class="op">)</span>
-<span class="va">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span><span class="op">(</span><span class="va">osm_test</span>, new_metadata <span class="op">=</span> <span class="va">metadata</span>,
-                           by_column <span class="op">=</span> <span class="cn">T</span>, column_cell_ID <span class="op">=</span> <span class="st">'CellID'</span><span class="op">)</span>
-
-<span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span><span class="op">)</span>
-<span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## PREPARE osmFISH DATA ####</span></span>
+<span></span>
+<span><span class="co"># download dataset </span></span>
+<span><span class="fu"><a href="../reference/getSpatialDataset.html">getSpatialDataset</a></span><span class="op">(</span>dataset <span class="op">=</span> <span class="st">'osmfish_SS_cortex'</span>, directory <span class="op">=</span> <span class="va">results_folder</span>, method <span class="op">=</span> <span class="st">'wget'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># path to files</span></span>
+<span><span class="va">osm_exprs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_expression.txt"</span><span class="op">)</span></span>
+<span><span class="va">osm_locs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_cell_coordinates.txt"</span><span class="op">)</span></span>
+<span><span class="va">meta_path</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>, <span class="st">"osmFISH_prep_cell_metadata.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## CREATE GIOTTO OBJECT with expression data, location data and instructions</span></span>
+<span><span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">osm_exprs</span>,</span>
+<span>                               spatial_locs <span class="op">=</span> <span class="va">osm_locs</span>,</span>
+<span>                               instructions <span class="op">=</span> <span class="va">instrs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## add field annotation</span></span>
+<span><span class="va">metadata</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">meta_path</span><span class="op">)</span></span>
+<span><span class="va">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/addCellMetadata.html">addCellMetadata</a></span><span class="op">(</span><span class="va">osm_test</span>, new_metadata <span class="op">=</span> <span class="va">metadata</span>,</span>
+<span>                           by_column <span class="op">=</span> <span class="cn">T</span>, column_cell_ID <span class="op">=</span> <span class="st">'CellID'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span><span class="op">)</span></span>
+<span><span class="va">osm_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="work-with-giotto-instructions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#work-with-giotto-instructions" class="anchor"></a>3. work with Giotto instructions</h2>
+<div class="section level3">
+<h3 id="work-with-giotto-instructions">3. work with Giotto instructions<a class="anchor" aria-label="anchor" href="#work-with-giotto-instructions"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># show the provided Giotto instructions</span>
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">osm_test</span><span class="op">)</span>
-<span class="co"># change a previously set parameter, e.g. change dpi = 200 to dpi = 300</span>
-<span class="va">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/changeGiottoInstructions.html">changeGiottoInstructions</a></span><span class="op">(</span><span class="va">osm_test</span>, param <span class="op">=</span> <span class="st">'dpi'</span>, new_value <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># show the provided Giotto instructions</span></span>
+<span><span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">osm_test</span><span class="op">)</span></span>
+<span><span class="co"># change a previously set parameter, e.g. change dpi = 200 to dpi = 300</span></span>
+<span><span class="va">osm_test</span> <span class="op">=</span> <span class="fu"><a href="../reference/changeGiottoInstructions.html">changeGiottoInstructions</a></span><span class="op">(</span><span class="va">osm_test</span>, param <span class="op">=</span> <span class="st">'dpi'</span>, new_value <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="different-ways-of-saving-a-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#different-ways-of-saving-a-plot" class="anchor"></a>4. Different ways of saving a plot</h2>
+<div class="section level3">
+<h3 id="different-ways-of-saving-a-plot">4. Different ways of saving a plot<a class="anchor" aria-label="anchor" href="#different-ways-of-saving-a-plot"></a>
+</h3>
 <p>Here we will show a couple of ways to save plots.</p>
 <ul>
-<li>default way according to Giotto instructions, if save_plot = TRUE (1)</li>
-<li>changing default parameters by by providing a named list to save_param parameter (2 &amp; 3)</li>
-<li>block automatic saving, but modify the created ggplot object and save that one (4)</li>
+<li>default way according to Giotto instructions, if save_plot = TRUE
+(1)</li>
+<li>changing default parameters by by providing a named list to
+save_param parameter (2 &amp; 3)</li>
+<li>block automatic saving, but modify the created ggplot object and
+save that one (4)</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 1. default instructions from Giotto object</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span><span class="op">)</span>
-
-<span class="co"># 2. overwrite save_name instruction by providing a named list for save_param</span>
-<span class="co"># save_param takes all parameters of all_plots_save_function</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'myplot'</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># 3. overwrite save_name instruction and add specific subfolder</span>
-<span class="co"># save_folder creates a specific subfolder in the provided directory</span>
-<span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>,
-         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_folder <span class="op">=</span> <span class="st">'2_Gobject'</span>, save_name <span class="op">=</span> <span class="st">'original_clusters'</span>, units <span class="op">=</span> <span class="st">'in'</span>, base_height <span class="op">=</span> <span class="fl">6</span>, base_width <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># 4. do not save, but return as object, modify and save</span>
-<span class="co"># for example to create a black background:</span>
-<span class="co"># we can change the parameter 'background_color' to black in the spatPlot function </span>
-<span class="co"># OR return the ggplot object and change the panel.background to black within theme</span>
-
-<span class="va">mypl</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, save_plot <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
-<span class="va">mypl</span> <span class="op">=</span> <span class="va">mypl</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span><span class="st">'black'</span><span class="op">)</span>,
-                    panel.grid <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mypl</span> <span class="op">=</span> <span class="va">mypl</span> <span class="op">+</span> <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mypl</span>
-
-<span class="co"># save in specified folder</span>
-<span class="va">gobject_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>,<span class="st">'/'</span>,<span class="st">'2_Gobject/'</span><span class="op">)</span>
-<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">gobject_folder</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">gobject_folder</span>, recursive <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
-<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/save_plot.html">save_plot</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="va">mypl</span>,
-                   filename <span class="op">=</span> <span class="st">'original_clusters_black.png'</span>, path <span class="op">=</span> <span class="va">gobject_folder</span>,
-                   device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span><span class="op">)</span>,
-                   dpi <span class="op">=</span> <span class="fl">300</span>, base_height <span class="op">=</span> <span class="fl">10</span>, base_width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># 1. default instructions from Giotto object</span></span>
+<span><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. overwrite save_name instruction by providing a named list for save_param</span></span>
+<span><span class="co"># save_param takes all parameters of all_plots_save_function</span></span>
+<span><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'myplot'</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. overwrite save_name instruction and add specific subfolder</span></span>
+<span><span class="co"># save_folder creates a specific subfolder in the provided directory</span></span>
+<span><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, point_size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>         save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>save_folder <span class="op">=</span> <span class="st">'2_Gobject'</span>, save_name <span class="op">=</span> <span class="st">'original_clusters'</span>, units <span class="op">=</span> <span class="st">'in'</span>, base_height <span class="op">=</span> <span class="fl">6</span>, base_width <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 4. do not save, but return as object, modify and save</span></span>
+<span><span class="co"># for example to create a black background:</span></span>
+<span><span class="co"># we can change the parameter 'background_color' to black in the spatPlot function </span></span>
+<span><span class="co"># OR return the ggplot object and change the panel.background to black within theme</span></span>
+<span></span>
+<span><span class="va">mypl</span> <span class="op">=</span> <span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">osm_test</span>, cell_color <span class="op">=</span> <span class="st">'ClusterName'</span>, save_plot <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">mypl</span> <span class="op">=</span> <span class="va">mypl</span> <span class="op">+</span> <span class="fu">theme</span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu">element_rect</span><span class="op">(</span>fill <span class="op">=</span><span class="st">'black'</span><span class="op">)</span>,</span>
+<span>                    panel.grid <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mypl</span> <span class="op">=</span> <span class="va">mypl</span> <span class="op">+</span> <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>override.aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mypl</span></span>
+<span></span>
+<span><span class="co"># save in specified folder</span></span>
+<span><span class="va">gobject_folder</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">results_folder</span>,<span class="st">'/'</span>,<span class="st">'2_Gobject/'</span><span class="op">)</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">gobject_folder</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">gobject_folder</span>, recursive <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/save_plot.html" class="external-link">save_plot</a></span><span class="op">(</span>plot <span class="op">=</span> <span class="va">mypl</span>,</span>
+<span>                   filename <span class="op">=</span> <span class="st">'original_clusters_black.png'</span>, path <span class="op">=</span> <span class="va">gobject_folder</span>,</span>
+<span>                   device <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   dpi <span class="op">=</span> <span class="fl">300</span>, base_height <span class="op">=</span> <span class="fl">10</span>, base_width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/instructions_and_plotting/vignette_1/original_clusters_black.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -320,11 +346,13 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -332,6 +360,8 @@ In addition, for each plot the parameters can always be <em>manually overwritten
 
   
 
+
+  
 
   </body>
 </html>

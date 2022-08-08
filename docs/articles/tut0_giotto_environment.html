@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,62 +168,70 @@
 
       
 
-      </header><script src="tut0_giotto_environment_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/tut0_giotto_environment.Rmd"><code>vignettes/tut0_giotto_environment.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/tut0_giotto_environment.Rmd" class="external-link"><code>vignettes/tut0_giotto_environment.Rmd</code></a></small>
       <div class="hidden name"><code>tut0_giotto_environment.Rmd</code></div>
 
     </div>
 
     
     
-<div id="how-to-install-and-work-with-a-giotto-environment" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-install-and-work-with-a-giotto-environment" class="anchor"></a>How to install and work with a Giotto environment?</h1>
-<p>To perform all potential steps and analysis in the Giotto spatial toolbox the user needs to have a number of python modules installed. To make this process as flexible and easy as possible two different strategies can be used:</p>
+<div class="section level2">
+<h2 id="how-to-install-and-work-with-a-giotto-environment">How to install and work with a Giotto environment?<a class="anchor" aria-label="anchor" href="#how-to-install-and-work-with-a-giotto-environment"></a>
+</h2>
+<p>To perform all potential steps and analysis in the Giotto spatial
+toolbox the user needs to have a number of python modules installed. To
+make this process as flexible and easy as possible two different
+strategies can be used:</p>
 <p><span class="math inline">\(~\)</span></p>
-<div id="the-user-can-install-all-the-necessary-modules-themself-and-then-the-path-to-their-python-or-environment-e-g--conda-can-be-provided-as-an-instruction-" class="section level4">
-<h4 class="hasAnchor">
-<a href="#the-user-can-install-all-the-necessary-modules-themself-and-then-the-path-to-their-python-or-environment-e-g--conda-can-be-provided-as-an-instruction-" class="anchor"></a>1. The user can install all the necessary modules themself and then the path to their python or environment (e.g. Conda) can be provided as an instruction.</h4>
+<div class="section level5">
+<h5 id="the-user-can-install-all-the-necessary-modules-themself-and-then-the-path-to-their-python-or-environment-e-g--conda-can-be-provided-as-an-instruction-">1. The user can install all the necessary modules themself and then
+the path to their python or environment (e.g. Conda) can be provided as
+an instruction.<a class="anchor" aria-label="anchor" href="#the-user-can-install-all-the-necessary-modules-themself-and-then-the-path-to-their-python-or-environment-e-g--conda-can-be-provided-as-an-instruction-"></a>
+</h5>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_instructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="st">'your/python/path'</span><span class="op">)</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="st">'...'</span>,
-                                      spatial_locs <span class="op">=</span> <span class="st">'...'</span>, 
-                                      instructions <span class="op">=</span> <span class="va">my_instructions</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_instructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="st">'your/python/path'</span><span class="op">)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="st">'...'</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="st">'...'</span>, </span>
+<span>                                      instructions <span class="op">=</span> <span class="va">my_instructions</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="alternatively-the-user-can-just-install-a-giotto-python-environment-using-r-miniconda" class="section level4">
-<h4 class="hasAnchor">
-<a href="#alternatively-the-user-can-just-install-a-giotto-python-environment-using-r-miniconda" class="anchor"></a>2. Alternatively, the user can just install a giotto python environment using r-miniconda</h4>
-<p>as implemented in the reticulate package. In this case the environment will be automatically detected and no specific python path need to be provided. This is explained in more detail below:</p>
+<div class="section level5">
+<h5 id="alternatively-the-user-can-just-install-a-giotto-python-environment-using-r-miniconda">2. Alternatively, the user can just install a giotto python
+environment using r-miniconda<a class="anchor" aria-label="anchor" href="#alternatively-the-user-can-just-install-a-giotto-python-environment-using-r-miniconda"></a>
+</h5>
+<p>as implemented in the reticulate package. In this case the
+environment will be automatically detected and no specific python path
+need to be provided. This is explained in more detail below:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>installation:</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>re-install the giotto enviroment:</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span>force_environment <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span>force_environment <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>re-install mini-conda and enviroment:</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span>force_miniconda <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/installGiottoEnvironment.html">installGiottoEnvironment</a></span><span class="op">(</span>force_miniconda <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>remove Giotto environment:</li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/removeGiottoEnvironment.html">removeGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/removeGiottoEnvironment.html">removeGiottoEnvironment</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -237,11 +247,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -249,6 +261,8 @@
 
   
 
+
+  
 
   </body>
 </html>

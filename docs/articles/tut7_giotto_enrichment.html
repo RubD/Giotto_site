@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,135 +168,136 @@
 
       
 
-      </header><script src="tut7_giotto_enrichment_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/tut7_giotto_enrichment.Rmd"><code>vignettes/tut7_giotto_enrichment.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/tut7_giotto_enrichment.Rmd" class="external-link"><code>vignettes/tut7_giotto_enrichment.Rmd</code></a></small>
       <div class="hidden name"><code>tut7_giotto_enrichment.Rmd</code></div>
 
     </div>
 
     
     
-<div id="giotto-spot-enrichment-tools" class="section level1">
-<h1 class="hasAnchor">
-<a href="#giotto-spot-enrichment-tools" class="anchor"></a>Giotto spot enrichment tools</h1>
-<p>Not yet available. Check out the visium brain datasets for examples.</p>
-<div id="processing-steps" class="section level4">
-<h4 class="hasAnchor">
-<a href="#processing-steps" class="anchor"></a>1. processing steps</h4>
+<div class="section level2">
+<h2 id="giotto-spot-enrichment-tools">Giotto spot enrichment tools<a class="anchor" aria-label="anchor" href="#giotto-spot-enrichment-tools"></a>
+</h2>
+<p>Not yet available. Check out the visium brain datasets for
+examples.</p>
+<div class="section level5">
+<h5 id="processing-steps">1. processing steps<a class="anchor" aria-label="anchor" href="#processing-steps"></a>
+</h5>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_expr.txt.gz"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
-
-<span class="co"># processing</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_expr.txt.gz"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span><span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"visium_DG_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># processing</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="run-spatial-cell-type-enrichments-methods" class="section level4">
-<h4 class="hasAnchor">
-<a href="#run-spatial-cell-type-enrichments-methods" class="anchor"></a>2. Run spatial cell type enrichments methods</h4>
-<div id="page-enrichment" class="section level5">
-<h5 class="hasAnchor">
-<a href="#page-enrichment" class="anchor"></a>2.1 PAGE enrichment</h5>
+<div class="section level5">
+<h5 id="run-spatial-cell-type-enrichments-methods">2. Run spatial cell type enrichments methods<a class="anchor" aria-label="anchor" href="#run-spatial-cell-type-enrichments-methods"></a>
+</h5>
+<div class="section level6">
+<h6 id="page-enrichment">2.1 PAGE enrichment<a class="anchor" aria-label="anchor" href="#page-enrichment"></a>
+</h6>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">astro_epen_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Krt15"</span> , <span class="st">"Apoc1"</span> , <span class="st">"Igsf1"</span> , <span class="st">"Gjb6"</span> , <span class="st">"Slc26a3"</span> ,
-                       <span class="st">"1500015O10Rik"</span> , <span class="st">"S1pr1"</span> , <span class="st">"Riiad1"</span> , <span class="st">"Cldn10"</span> , <span class="st">"Itih3"</span> ,
-                       <span class="st">"Ccdc153"</span> , <span class="st">"Cbs"</span> , <span class="st">"C4b"</span> , <span class="st">"Gm11627"</span> , <span class="st">"Folr1"</span> ,
-                       <span class="st">"Calml4"</span> , <span class="st">"Aqp4"</span> , <span class="st">"Ppp1r3g"</span> , <span class="st">"1700012B09Rik"</span> , <span class="st">"Hes5"</span><span class="op">)</span>
-
-<span class="va">gran_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Nr3c2"</span>, <span class="st">"Gabra5"</span>, <span class="st">"Tubgcp2"</span>, <span class="st">"Ahcyl2"</span>,
-                 <span class="st">"Islr2"</span>, <span class="st">"Rasl10a"</span>, <span class="st">"Tmem114"</span>, <span class="st">"Bhlhe22"</span>, 
-                 <span class="st">"Ntf3"</span>, <span class="st">"C1ql2"</span><span class="op">)</span>
-
-<span class="va">cortex_hippo_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"6330403A02Rik"</span> , <span class="st">"Tekt5"</span> , <span class="st">"Wipf3"</span> , <span class="st">"1110032F04Rik"</span> , <span class="st">"Lmo3"</span> ,
-                         <span class="st">"Nrep"</span> , <span class="st">"Slc30a3"</span> , <span class="st">"Plcxd2"</span> , <span class="st">"D630023F18Rik"</span> , <span class="st">"Nptx1"</span> ,
-                         <span class="st">"C1ql3"</span> , <span class="st">"Ddit4l"</span> , <span class="st">"Fezf2"</span> , <span class="st">"Col24a1"</span> , <span class="st">"Kcnf1"</span> ,
-                         <span class="st">"Tnnc1"</span> , <span class="st">"Gm12371"</span> , <span class="st">"3110035E14Rik"</span> , <span class="st">"Nr4a2"</span> , <span class="st">"Nr4a3"</span><span class="op">)</span>
-
-<span class="va">oligo_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Efhd1"</span> , <span class="st">"H2-Ab1"</span> , <span class="st">"Enpp6"</span> , <span class="st">"Ninj2"</span> , <span class="st">"Bmp4"</span> ,
-                  <span class="st">"Tnr"</span> , <span class="st">"Hapln2"</span> , <span class="st">"Neu4"</span> , <span class="st">"Wfdc18"</span> , <span class="st">"Ccp110"</span> ,
-                  <span class="st">"Gm26834"</span> , <span class="st">"Il23a"</span> , <span class="st">"Arap2"</span> , <span class="st">"Nkx2-9"</span> , <span class="st">"Mal"</span> ,
-                  <span class="st">"Tmem2"</span> , <span class="st">"Birc2"</span> , <span class="st">"Cdkn1c"</span> , <span class="st">"Pak4"</span> , <span class="st">"Tmem88b"</span><span class="op">)</span>        
-
-
-<span class="va">signature_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/makeSignMatrixPAGE.html">makeSignMatrixPAGE</a></span><span class="op">(</span>sign_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Astro_ependymal'</span>,
-                                                     <span class="st">'Granule'</span>,
-                                                     <span class="st">'Cortex_hippocampus'</span>,
-                                                     <span class="st">'Oligo_dendrocytes'</span><span class="op">)</span>,
-                                      sign_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">astro_epen_markers</span>,
-                                                       <span class="va">gran_markers</span>,
-                                                       <span class="va">cortex_hippo_markers</span>,
-                                                       <span class="va">oligo_markers</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runPAGEEnrich.html">runPAGEEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,
-                                 sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span>,
-                                 min_overlap_genes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">astro_epen_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Krt15"</span> , <span class="st">"Apoc1"</span> , <span class="st">"Igsf1"</span> , <span class="st">"Gjb6"</span> , <span class="st">"Slc26a3"</span> ,</span>
+<span>                       <span class="st">"1500015O10Rik"</span> , <span class="st">"S1pr1"</span> , <span class="st">"Riiad1"</span> , <span class="st">"Cldn10"</span> , <span class="st">"Itih3"</span> ,</span>
+<span>                       <span class="st">"Ccdc153"</span> , <span class="st">"Cbs"</span> , <span class="st">"C4b"</span> , <span class="st">"Gm11627"</span> , <span class="st">"Folr1"</span> ,</span>
+<span>                       <span class="st">"Calml4"</span> , <span class="st">"Aqp4"</span> , <span class="st">"Ppp1r3g"</span> , <span class="st">"1700012B09Rik"</span> , <span class="st">"Hes5"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gran_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Nr3c2"</span>, <span class="st">"Gabra5"</span>, <span class="st">"Tubgcp2"</span>, <span class="st">"Ahcyl2"</span>,</span>
+<span>                 <span class="st">"Islr2"</span>, <span class="st">"Rasl10a"</span>, <span class="st">"Tmem114"</span>, <span class="st">"Bhlhe22"</span>, </span>
+<span>                 <span class="st">"Ntf3"</span>, <span class="st">"C1ql2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cortex_hippo_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"6330403A02Rik"</span> , <span class="st">"Tekt5"</span> , <span class="st">"Wipf3"</span> , <span class="st">"1110032F04Rik"</span> , <span class="st">"Lmo3"</span> ,</span>
+<span>                         <span class="st">"Nrep"</span> , <span class="st">"Slc30a3"</span> , <span class="st">"Plcxd2"</span> , <span class="st">"D630023F18Rik"</span> , <span class="st">"Nptx1"</span> ,</span>
+<span>                         <span class="st">"C1ql3"</span> , <span class="st">"Ddit4l"</span> , <span class="st">"Fezf2"</span> , <span class="st">"Col24a1"</span> , <span class="st">"Kcnf1"</span> ,</span>
+<span>                         <span class="st">"Tnnc1"</span> , <span class="st">"Gm12371"</span> , <span class="st">"3110035E14Rik"</span> , <span class="st">"Nr4a2"</span> , <span class="st">"Nr4a3"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">oligo_markers</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Efhd1"</span> , <span class="st">"H2-Ab1"</span> , <span class="st">"Enpp6"</span> , <span class="st">"Ninj2"</span> , <span class="st">"Bmp4"</span> ,</span>
+<span>                  <span class="st">"Tnr"</span> , <span class="st">"Hapln2"</span> , <span class="st">"Neu4"</span> , <span class="st">"Wfdc18"</span> , <span class="st">"Ccp110"</span> ,</span>
+<span>                  <span class="st">"Gm26834"</span> , <span class="st">"Il23a"</span> , <span class="st">"Arap2"</span> , <span class="st">"Nkx2-9"</span> , <span class="st">"Mal"</span> ,</span>
+<span>                  <span class="st">"Tmem2"</span> , <span class="st">"Birc2"</span> , <span class="st">"Cdkn1c"</span> , <span class="st">"Pak4"</span> , <span class="st">"Tmem88b"</span><span class="op">)</span>        </span>
+<span></span>
+<span></span>
+<span><span class="va">signature_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/makeSignMatrixPAGE.html">makeSignMatrixPAGE</a></span><span class="op">(</span>sign_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Astro_ependymal'</span>,</span>
+<span>                                                     <span class="st">'Granule'</span>,</span>
+<span>                                                     <span class="st">'Cortex_hippocampus'</span>,</span>
+<span>                                                     <span class="st">'Oligo_dendrocytes'</span><span class="op">)</span>,</span>
+<span>                                      sign_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">astro_epen_markers</span>,</span>
+<span>                                                       <span class="va">gran_markers</span>,</span>
+<span>                                                       <span class="va">cortex_hippo_markers</span>,</span>
+<span>                                                       <span class="va">oligo_markers</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runPAGEEnrich.html">runPAGEEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,</span>
+<span>                                 sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span>,</span>
+<span>                                 min_overlap_genes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">signature_matrix</span><span class="op">)</span>
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, 
-             spat_enr_names <span class="op">=</span> <span class="st">'PAGE'</span>,
-             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,
-             cow_n_col <span class="op">=</span> <span class="fl">2</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">signature_matrix</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, </span>
+<span>             spat_enr_names <span class="op">=</span> <span class="st">'PAGE'</span>,</span>
+<span>             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,</span>
+<span>             cow_n_col <span class="op">=</span> <span class="fl">2</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="rank-enrichment" class="section level5">
-<h5 class="hasAnchor">
-<a href="#rank-enrichment" class="anchor"></a>2.2 RANK enrichment</h5>
+<div class="section level6">
+<h6 id="rank-enrichment">2.2 RANK enrichment<a class="anchor" aria-label="anchor" href="#rank-enrichment"></a>
+</h6>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># single-cell RNA-seq data from Zeisel et al</span>
-<span class="co"># mini data is available at https://github.com/RubD/spatial-datasets/tree/master/data/2019_visium_brain</span>
-
-<span class="co"># single cell matrix</span>
-<span class="va">single_cell_DT</span> <span class="op">=</span> <span class="fu">fread</span><span class="op">(</span><span class="st">'/path/to/raw_exp_small.txt'</span><span class="op">)</span>
-<span class="va">single_cell_matrix</span> <span class="op">=</span> <span class="fu">Giotto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dt_to_matrix.html">dt_to_matrix</a></span><span class="op">(</span><span class="va">single_cell_DT</span><span class="op">)</span>
-<span class="va">single_cell_matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
-
-<span class="co"># single cell annotation vector</span>
-<span class="va">cell_annotations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">'/path/to/major_cluster_small.txt'</span><span class="op">)</span>
-<span class="va">cell_annotations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">cell_annotations</span><span class="op">$</span><span class="va">V1</span><span class="op">)</span>
-<span class="va">cell_annotations</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>
-
-<span class="co"># 1.2 create rank matrix</span>
-<span class="va">rank_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/makeSignMatrixRank.html">makeSignMatrixRank</a></span><span class="op">(</span>sc_matrix <span class="op">=</span> <span class="va">single_cell_matrix</span>, sc_cluster_ids <span class="op">=</span> <span class="va">cell_annotations</span><span class="op">)</span>
-
-
-<span class="co"># 1.3 enrichment test with RANK</span>
-<span class="co"># runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runRankEnrich.html">runRankEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, sign_matrix <span class="op">=</span> <span class="va">rank_matrix</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># single-cell RNA-seq data from Zeisel et al</span></span>
+<span><span class="co"># mini data is available at https://github.com/RubD/spatial-datasets/tree/master/data/2019_visium_brain</span></span>
+<span></span>
+<span><span class="co"># single cell matrix</span></span>
+<span><span class="va">single_cell_DT</span> <span class="op">=</span> <span class="fu">fread</span><span class="op">(</span><span class="st">'/path/to/raw_exp_small.txt'</span><span class="op">)</span></span>
+<span><span class="va">single_cell_matrix</span> <span class="op">=</span> <span class="fu">Giotto</span><span class="fu">:::</span><span class="fu"><a href="../reference/dt_to_matrix.html">dt_to_matrix</a></span><span class="op">(</span><span class="va">single_cell_DT</span><span class="op">)</span></span>
+<span><span class="va">single_cell_matrix</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># single cell annotation vector</span></span>
+<span><span class="va">cell_annotations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">'/path/to/major_cluster_small.txt'</span><span class="op">)</span></span>
+<span><span class="va">cell_annotations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">cell_annotations</span><span class="op">$</span><span class="va">V1</span><span class="op">)</span></span>
+<span><span class="va">cell_annotations</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># 1.2 create rank matrix</span></span>
+<span><span class="va">rank_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/makeSignMatrixRank.html">makeSignMatrixRank</a></span><span class="op">(</span>sc_matrix <span class="op">=</span> <span class="va">single_cell_matrix</span>, sc_cluster_ids <span class="op">=</span> <span class="va">cell_annotations</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># 1.3 enrichment test with RANK</span></span>
+<span><span class="co"># runSpatialEnrich() can also be used as a wrapper for all currently provided enrichment options</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runRankEnrich.html">runRankEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, sign_matrix <span class="op">=</span> <span class="va">rank_matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Astro_ependymal"</span>, <span class="st">"Oligo_dendrocyte"</span> , <span class="st">"Cortex_hippocampus"</span> , <span class="st">"Granule_neurons"</span> <span class="op">)</span>
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, 
-             spat_enr_names <span class="op">=</span> <span class="st">'rank'</span>,
-             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,
-             cow_n_col <span class="op">=</span> <span class="fl">3</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">1.75</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Astro_ependymal"</span>, <span class="st">"Oligo_dendrocyte"</span> , <span class="st">"Cortex_hippocampus"</span> , <span class="st">"Granule_neurons"</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, </span>
+<span>             spat_enr_names <span class="op">=</span> <span class="st">'rank'</span>,</span>
+<span>             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,</span>
+<span>             cow_n_col <span class="op">=</span> <span class="fl">3</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">1.75</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="hypergeometric-enrichment" class="section level5">
-<h5 class="hasAnchor">
-<a href="#hypergeometric-enrichment" class="anchor"></a>2.3 Hypergeometric enrichment</h5>
+<div class="section level6">
+<h6 id="hypergeometric-enrichment">2.3 Hypergeometric enrichment<a class="anchor" aria-label="anchor" href="#hypergeometric-enrichment"></a>
+</h6>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runHyperGeometricEnrich.html">runHyperGeometricEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,
-                                           sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runHyperGeometricEnrich.html">runHyperGeometricEnrich</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>,</span>
+<span>                                           sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">signature_matrix</span><span class="op">)</span>
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, 
-             spat_enr_names <span class="op">=</span> <span class="st">'hypergeometric'</span>,
-             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,
-             cow_n_col <span class="op">=</span> <span class="fl">2</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cell_types_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">signature_matrix</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, </span>
+<span>             spat_enr_names <span class="op">=</span> <span class="st">'hypergeometric'</span>,</span>
+<span>             cell_annotation_values <span class="op">=</span> <span class="va">cell_types_subset</span>,</span>
+<span>             cow_n_col <span class="op">=</span> <span class="fl">2</span>,coord_fix_ratio <span class="op">=</span> <span class="cn">NULL</span>, point_size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="deconvolution" class="section level5">
-<h5 class="hasAnchor">
-<a href="#deconvolution" class="anchor"></a>2.4 Deconvolution</h5>
+<div class="section level6">
+<h6 id="deconvolution">2.4 Deconvolution<a class="anchor" aria-label="anchor" href="#deconvolution"></a>
+</h6>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runDWLSDeconv.html">runDWLSDeconv</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/runDWLSDeconv.html">runDWLSDeconv</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, sign_matrix <span class="op">=</span> <span class="va">signature_matrix</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -311,11 +314,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -323,6 +328,8 @@
 
   
 
+
+  
 
   </body>
 </html>

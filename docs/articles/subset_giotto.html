@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,125 +168,132 @@
 
       
 
-      </header><script src="subset_giotto_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/subset_giotto.Rmd"><code>vignettes/subset_giotto.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/subset_giotto.Rmd" class="external-link"><code>vignettes/subset_giotto.Rmd</code></a></small>
       <div class="hidden name"><code>subset_giotto.Rmd</code></div>
 
     </div>
 
     
     
-<div id="how-to-subset-a-giotto-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-subset-a-giotto-object" class="anchor"></a>How to subset a Giotto object?</h1>
-<p>There are several ways to subset a Giotto object or visualize a subset of the data. Here we will use the already analyzed <a href="./mouse_visium_brain_200325.html">Visium 10X brain dataset object</a> to:</p>
+<div class="section level2">
+<h2 id="how-to-subset-a-giotto-object">How to subset a Giotto object?<a class="anchor" aria-label="anchor" href="#how-to-subset-a-giotto-object"></a>
+</h2>
+<p>There are several ways to subset a Giotto object or visualize a
+subset of the data. Here we will use the already analyzed <a href="./mouse_visium_brain_200325.html">Visium 10X brain dataset
+object</a> to:</p>
 <ul>
 <li>show how to visualize a subset of cells<br>
 </li>
-<li>show how to visualize data by group (example clustering, layers in 3D images, …)<br>
+<li>show how to visualize data by group (example clustering, layers in
+3D images, …)<br>
 </li>
-<li>subset the dataset based on cell IDs (cluster name(s) or individual cell IDs)<br>
+<li>subset the dataset based on cell IDs (cluster name(s) or individual
+cell IDs)<br>
 </li>
 <li>subset the dataset based on spatial locations/coordinates</li>
 </ul>
-<p>Figures may not be identical, because examples might have been updated, but the subsetting principles remain the same.</p>
-<div id="the-visium-10x-whole-brain" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-visium-10x-whole-brain" class="anchor"></a>1. the Visium 10X whole brain</h2>
+<p>Figures may not be identical, because examples might have been
+updated, but the subsetting principles remain the same.</p>
+<div class="section level3">
+<h3 id="the-visium-10x-whole-brain">1. the Visium 10X whole brain<a class="anchor" aria-label="anchor" href="#the-visium-10x-whole-brain"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,</span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/1_whole_brain.png" style="width:50.0%"></p>
 </div>
-<div id="show-only-a-subset-of-the-clusters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#show-only-a-subset-of-the-clusters" class="anchor"></a>2. show only a subset of the clusters</h2>
+<div class="section level3">
+<h3 id="show-only-a-subset-of-the-clusters">2. show only a subset of the clusters<a class="anchor" aria-label="anchor" href="#show-only-a-subset-of-the-clusters"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>,
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>,</span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/2_whole_brain_clus4.png" style="width:50.0%"></p>
 </div>
-<div id="show-only-a-subset-of-the-clusters-excluding-not-selected-cells" class="section level2">
-<h2 class="hasAnchor">
-<a href="#show-only-a-subset-of-the-clusters-excluding-not-selected-cells" class="anchor"></a>3. show only a subset of the clusters, excluding not selected cells</h2>
+<div class="section level3">
+<h3 id="show-only-a-subset-of-the-clusters-excluding-not-selected-cells">3. show only a subset of the clusters, excluding not selected
+cells<a class="anchor" aria-label="anchor" href="#show-only-a-subset-of-the-clusters-excluding-not-selected-cells"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>,  select_cell_groups <span class="op">=</span> <span class="st">'4'</span>, show_other_cells <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/3_whole_brain_clus4_noOther.png" style="width:50.0%"></p>
 </div>
-<div id="create-spatial-plots-grouped-by-the-leiden-clustering-result" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-spatial-plots-grouped-by-the-leiden-clustering-result" class="anchor"></a>4. create spatial plots grouped by the leiden clustering result</h2>
+<div class="section level3">
+<h3 id="create-spatial-plots-grouped-by-the-leiden-clustering-result">4. create spatial plots grouped by the leiden clustering result<a class="anchor" aria-label="anchor" href="#create-spatial-plots-grouped-by-the-leiden-clustering-result"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,
-         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,
-         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span>,</span>
+<span>         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/4_whole_brain_by_group_leiden_1.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">16</span><span class="op">)</span>,
-         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,
-         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatPlot.html">spatPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>         group_by <span class="op">=</span> <span class="st">'leiden_clus'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">16</span><span class="op">)</span>,</span>
+<span>         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/4_whole_brain_by_group_leiden_2.png" style="width:50.0%"></p>
 </div>
-<div id="create-dimension-plots-grouped-by-the-hmrf-result" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-dimension-plots-grouped-by-the-hmrf-result" class="anchor"></a>5. create dimension plots grouped by the HMRF result</h2>
+<div class="section level3">
+<h3 id="create-dimension-plots-grouped-by-the-hmrf-result">5. create dimension plots grouped by the HMRF result<a class="anchor" aria-label="anchor" href="#create-dimension-plots-grouped-by-the-hmrf-result"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>,
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_color <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>,</span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_HMRF.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-         group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,
-         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,
-         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>         group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>,</span>
+<span>         cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>         point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_by_group_HMRF_1.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-        group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">14</span><span class="op">)</span>,
-        cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,
-        point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/dimPlot.html">dimPlot</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>        group_by <span class="op">=</span> <span class="st">'HMRF_k12_b.1'</span>, group_by_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">14</span><span class="op">)</span>,</span>
+<span>        cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>        point_size <span class="op">=</span> <span class="fl">1</span>, axis_text <span class="op">=</span> <span class="fl">6</span>, axis_title <span class="op">=</span> <span class="fl">6</span>, legend_text <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/5_whole_brain_by_group_HMRF_2.png" style="width:50.0%"></p>
 </div>
-<div id="create-a-new-giotto-object-by-subsetting-selected-clusters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-a-new-giotto-object-by-subsetting-selected-clusters" class="anchor"></a>6. Create a new Giotto object by subsetting selected clusters</h2>
+<div class="section level3">
+<h3 id="create-a-new-giotto-object-by-subsetting-selected-clusters">6. Create a new Giotto object by subsetting selected clusters<a class="anchor" aria-label="anchor" href="#create-a-new-giotto-object-by-subsetting-selected-clusters"></a>
+</h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">visium_brain</span><span class="op">)</span>
-<span class="va">subset_cell_IDs</span> <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="va">leiden_clus</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">$</span><span class="va">cell_ID</span>
-<span class="va">visium_brain_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_ids <span class="op">=</span> <span class="va">subset_cell_IDs</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,
-            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">metadata</span> <span class="op">=</span> <span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">visium_brain</span><span class="op">)</span></span>
+<span><span class="va">subset_cell_IDs</span> <span class="op">=</span> <span class="va">metadata</span><span class="op">[</span><span class="va">leiden_clus</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">$</span><span class="va">cell_ID</span></span>
+<span><span class="va">visium_brain_small</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiotto.html">subsetGiotto</a></span><span class="op">(</span><span class="va">visium_brain</span>, cell_ids <span class="op">=</span> <span class="va">subset_cell_IDs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,</span>
+<span>            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, </span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/6_subset_brain.png" style="width:50.0%"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,
-            cell_color <span class="op">=</span> <span class="st">'nr_genes'</span>, color_as_factor <span class="op">=</span> <span class="cn">F</span>,
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">visium_brain_small</span>,</span>
+<span>            cell_color <span class="op">=</span> <span class="st">'nr_genes'</span>, color_as_factor <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/6_subset_brain_nr_genes.png" style="width:50.0%"></p>
 </div>
-<div id="create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations" class="anchor"></a>7. Create a new Giotto object by subsetting based on spatial coordinates/locations</h2>
+<div class="section level3">
+<h3 id="create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations">7. Create a new Giotto object by subsetting based on spatial
+coordinates/locations<a class="anchor" aria-label="anchor" href="#create-a-new-giotto-object-by-subsetting-based-on-spatial-coordinateslocations"></a>
+</h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">DG_subset</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiottoLocs.html">subsetGiottoLocs</a></span><span class="op">(</span><span class="va">visium_brain</span>,
-                             x_max <span class="op">=</span> <span class="fl">6500</span>, x_min <span class="op">=</span> <span class="fl">3000</span>,
-                             y_max <span class="op">=</span> <span class="op">-</span><span class="fl">2500</span>, y_min <span class="op">=</span> <span class="op">-</span><span class="fl">5500</span><span class="op">)</span>
-
-<span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">DG_subset</span>,
-            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
-            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">4</span>,
-            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_DG_loc_subset'</span>, base_height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">DG_subset</span> <span class="op">=</span> <span class="fu"><a href="../reference/subsetGiottoLocs.html">subsetGiottoLocs</a></span><span class="op">(</span><span class="va">visium_brain</span>,</span>
+<span>                             x_max <span class="op">=</span> <span class="fl">6500</span>, x_min <span class="op">=</span> <span class="fl">3000</span>,</span>
+<span>                             y_max <span class="op">=</span> <span class="op">-</span><span class="fl">2500</span>, y_min <span class="op">=</span> <span class="op">-</span><span class="fl">5500</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/spatDimPlot.html">spatDimPlot</a></span><span class="op">(</span><span class="va">DG_subset</span>,</span>
+<span>            cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, </span>
+<span>            plot_alignment <span class="op">=</span> <span class="st">'horizontal'</span>, spat_point_size <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>            save_param <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>save_name <span class="op">=</span> <span class="st">'6_DG_loc_subset'</span>, base_height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="../inst/howtos/subset_giotto/vignette_1/7_DG_loc_subset.png" style="width:50.0%"></p>
 </div>
 </div>
@@ -301,11 +310,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -313,6 +324,8 @@
 
   
 
+
+  
 
   </body>
 </html>

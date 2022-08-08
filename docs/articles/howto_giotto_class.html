@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,74 +168,85 @@
 
       
 
-      </header><script src="howto_giotto_class_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>How to create Giotto object with precomputed results?</h1>
+      <h1 data-toc-skip>How to create Giotto object with precomputed
+results?</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/howto_giotto_class.Rmd"><code>vignettes/howto_giotto_class.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/howto_giotto_class.Rmd" class="external-link"><code>vignettes/howto_giotto_class.Rmd</code></a></small>
       <div class="hidden name"><code>howto_giotto_class.Rmd</code></div>
 
     </div>
 
     
     
-<div id="the-giotto-class" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-giotto-class" class="anchor"></a>1. The Giotto class</h2>
-<p>A Giotto object or gobject can be created with <strong>createGiottoObject</strong> or <strong>createGiottoVisiumObject</strong> for Visium datasets.</p>
+<div class="section level2">
+<h2 id="the-giotto-class">1. The Giotto class<a class="anchor" aria-label="anchor" href="#the-giotto-class"></a>
+</h2>
+<p>A Giotto object or gobject can be created with
+<strong>createGiottoObject</strong> or
+<strong>createGiottoVisiumObject</strong> for Visium datasets.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">gvisiumobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>createGiottoVisiumObject expects a typical Visium 10X data folder structure or a path to the h5 file, but createGiottoObject is more flexible and can also accept precomputed results (e.g. PCA, UMAP, network, …)</p>
+<code class="sourceCode R"><span><span class="va">gobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gvisiumobject</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoVisiumObject.html">createGiottoVisiumObject</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>createGiottoVisiumObject expects a typical Visium 10X data folder
+structure or a path to the h5 file, but createGiottoObject is more
+flexible and can also accept precomputed results (e.g. PCA, UMAP,
+network, …)</p>
 </div>
-<div id="giotto-slots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#giotto-slots" class="anchor"></a>2. Giotto slots</h2>
-<div id="required-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#required-slots" class="anchor"></a>2.1 Required slots</h3>
+<div class="section level2">
+<h2 id="giotto-slots">2. Giotto slots<a class="anchor" aria-label="anchor" href="#giotto-slots"></a>
+</h2>
+<div class="section level3">
+<h3 id="required-slots">2.1 Required slots<a class="anchor" aria-label="anchor" href="#required-slots"></a>
+</h3>
 <p>The minimum requirements to make a Giotto class object are:<br>
 - raw_exprs: matrix with raw expression values<br>
-- spatial_locs: spatial coordinates for the cell (or spot) centroids. If this is not provided it will actually create dummy coordinates.</p>
+- spatial_locs: spatial coordinates for the cell (or spot) centroids. If
+this is not provided it will actually create dummy coordinates.</p>
 </div>
-<div id="additional-matrix-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#additional-matrix-slots" class="anchor"></a>2.2 Additional matrix slots</h3>
+<div class="section level3">
+<h3 id="additional-matrix-slots">2.2 Additional matrix slots<a class="anchor" aria-label="anchor" href="#additional-matrix-slots"></a>
+</h3>
 <ul>
 <li>norm_expr: slot to keep matrix with normalized expression values
 <ul>
-<li>use expression_values = ‘normalized’ to access this slot in downstream functions<br>
+<li>use expression_values = ‘normalized’ to access this slot in
+downstream functions<br>
 </li>
 </ul>
 </li>
-<li>norm_scaled_expr: slot to keep matrix with normalized and scaled expression values
+<li>norm_scaled_expr: slot to keep matrix with normalized and scaled
+expression values
 <ul>
-<li>use expression_values = ‘scaled’ to access this slot in downstream functions<br>
+<li>use expression_values = ‘scaled’ to access this slot in downstream
+functions<br>
 </li>
 </ul>
 </li>
 <li>custom_expr: slot to keep matrix with custom values
 <ul>
-<li>use expression_values = ‘custom’ to access this slot in downstream functions</li>
+<li>use expression_values = ‘custom’ to access this slot in downstream
+functions</li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="metadata-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#metadata-slots" class="anchor"></a>2.3 Metadata slots</h3>
+<div class="section level3">
+<h3 id="metadata-slots">2.3 Metadata slots<a class="anchor" aria-label="anchor" href="#metadata-slots"></a>
+</h3>
 <ul>
 <li>cell_metadata:<br>
 </li>
 <li>gene_metadata:</li>
 </ul>
 </div>
-<div id="spatial-information-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#spatial-information-slots" class="anchor"></a>2.4 spatial information slots</h3>
+<div class="section level3">
+<h3 id="spatial-information-slots">2.4 spatial information slots<a class="anchor" aria-label="anchor" href="#spatial-information-slots"></a>
+</h3>
 <ul>
 <li>spatial_network:<br>
 </li>
@@ -244,73 +257,74 @@
 <li>spatial_grid_name:</li>
 </ul>
 </div>
-<div id="spatial-enrichment-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#spatial-enrichment-slots" class="anchor"></a>2.5 spatial enrichment slots</h3>
+<div class="section level3">
+<h3 id="spatial-enrichment-slots">2.5 spatial enrichment slots<a class="anchor" aria-label="anchor" href="#spatial-enrichment-slots"></a>
+</h3>
 <ul>
 <li>spatial_enrichment:<br>
 </li>
 <li>spatial_enrichment_name:</li>
 </ul>
 </div>
-<div id="dimension-reduction-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#dimension-reduction-slots" class="anchor"></a>2.6 dimension reduction slots</h3>
+<div class="section level3">
+<h3 id="dimension-reduction-slots">2.6 dimension reduction slots<a class="anchor" aria-label="anchor" href="#dimension-reduction-slots"></a>
+</h3>
 <ul>
-<li>dimension_reduction: accepts list of dimension reduction objects</li>
+<li>dimension_reduction: accepts list of dimension reduction
+objects</li>
 </ul>
 <p>Example to add your own pre-computed PCA results</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># step1: create matrix from PCA coordinates and name the columns (PCs): Dim.1, Dim.2, Dim.3, ...</span>
-<span class="co"># e.g. PCA_matrix</span>
-
-
-<span class="co"># step2: create a pca dimension reduction object</span>
-<span class="va">PCA_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-     <span class="st">'type'</span> <span class="op">=</span> <span class="st">"cells"</span>, <span class="co"># only PCA on cells is currently supported</span>
-     <span class="st">'name'</span> <span class="op">=</span> <span class="st">"pca"</span>,   <span class="co"># name of your pca, 'pca' is the default name</span>
-     <span class="st">'reduction_method'</span> <span class="op">=</span> <span class="st">"pca"</span>, <span class="co"># needs to be pca</span>
-     <span class="st">'coordinates'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">PCA_matrix</span><span class="op">)</span>, <span class="co"># make sure to provide a matrix</span>
-     <span class="st">'misc'</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="co"># slot for miscellaneous data, e.g. list(eigenvalues = ..., loadings = ...)</span>
-
-
-<span class="co"># step3a: add PCA_list to createGiottoObject</span>
-<span class="va">gobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="va">...</span>,
-                           dimension_reduction<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">PCA_list</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># step3b: add multiple PCA_lists to createGiottoObject</span>
-<span class="co"># the name parameter should be different for each PCA list</span>
-<span class="va">gobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="va">...</span>,
-                           dimension_reduction<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">PCA_list1</span>, <span class="va">PCA_list2</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># step4: for UMAP or tSNE:</span>
-<span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span>
-<span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># step1: create matrix from PCA coordinates and name the columns (PCs): Dim.1, Dim.2, Dim.3, ...</span></span>
+<span><span class="co"># e.g. PCA_matrix</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># step2: create a pca dimension reduction object</span></span>
+<span><span class="va">PCA_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>     <span class="st">'type'</span> <span class="op">=</span> <span class="st">"cells"</span>, <span class="co"># only PCA on cells is currently supported</span></span>
+<span>     <span class="st">'name'</span> <span class="op">=</span> <span class="st">"pca"</span>,   <span class="co"># name of your pca, 'pca' is the default name</span></span>
+<span>     <span class="st">'reduction_method'</span> <span class="op">=</span> <span class="st">"pca"</span>, <span class="co"># needs to be pca</span></span>
+<span>     <span class="st">'coordinates'</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">PCA_matrix</span><span class="op">)</span>, <span class="co"># make sure to provide a matrix</span></span>
+<span>     <span class="st">'misc'</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="co"># slot for miscellaneous data, e.g. list(eigenvalues = ..., loadings = ...)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># step3a: add PCA_list to createGiottoObject</span></span>
+<span><span class="va">gobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="va">...</span>,</span>
+<span>                           dimension_reduction<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">PCA_list</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># step3b: add multiple PCA_lists to createGiottoObject</span></span>
+<span><span class="co"># the name parameter should be different for each PCA list</span></span>
+<span><span class="va">gobj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span><span class="va">...</span>,</span>
+<span>                           dimension_reduction<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">PCA_list1</span>, <span class="va">PCA_list2</span>, <span class="va">...</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># step4: for UMAP or tSNE:</span></span>
+<span><span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span></span>
+<span><span class="co"># same as for PCA, except for UMAP: reduction_method = 'umap' and default name = 'umap'}</span></span></code></pre></div>
 </div>
-<div id="nearest-neighbor-network-slots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#nearest-neighbor-network-slots" class="anchor"></a>2.7 nearest neighbor network slots</h3>
+<div class="section level3">
+<h3 id="nearest-neighbor-network-slots">2.7 nearest neighbor network slots<a class="anchor" aria-label="anchor" href="#nearest-neighbor-network-slots"></a>
+</h3>
 <ul>
 <li>nn_network:</li>
 </ul>
 </div>
-<div id="slot-for-images" class="section level3">
-<h3 class="hasAnchor">
-<a href="#slot-for-images" class="anchor"></a>2.8 slot for images</h3>
+<div class="section level3">
+<h3 id="slot-for-images">2.8 slot for images<a class="anchor" aria-label="anchor" href="#slot-for-images"></a>
+</h3>
 <ul>
 <li>images:</li>
 </ul>
 </div>
-<div id="slot-for-offset-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#slot-for-offset-file" class="anchor"></a>2.9 slot for offset file</h3>
+<div class="section level3">
+<h3 id="slot-for-offset-file">2.9 slot for offset file<a class="anchor" aria-label="anchor" href="#slot-for-offset-file"></a>
+</h3>
 <ul>
 <li>offset_file:</li>
 </ul>
 </div>
-<div id="slot-for-instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#slot-for-instructions" class="anchor"></a>2.10 slot for instructions</h3>
+<div class="section level3">
+<h3 id="slot-for-instructions">2.10 slot for instructions<a class="anchor" aria-label="anchor" href="#slot-for-instructions"></a>
+</h3>
 <ul>
 <li>instructions:</li>
 </ul>
@@ -329,11 +343,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -341,6 +357,8 @@
 
   
 
+
+  
 
   </body>
 </html>

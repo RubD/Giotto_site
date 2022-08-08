@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,85 +168,107 @@
 
       
 
-      </header><script src="visualization_options_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/visualization_options.Rmd"><code>vignettes/visualization_options.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/visualization_options.Rmd" class="external-link"><code>vignettes/visualization_options.Rmd</code></a></small>
       <div class="hidden name"><code>visualization_options.Rmd</code></div>
 
     </div>
 
     
     
-<div id="different-ways-to-visualize-your-spatial-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#different-ways-to-visualize-your-spatial-data" class="anchor"></a>Different ways to visualize your spatial data?</h1>
+<div class="section level2">
+<h2 id="different-ways-to-visualize-your-spatial-data">Different ways to visualize your spatial data?<a class="anchor" aria-label="anchor" href="#different-ways-to-visualize-your-spatial-data"></a>
+</h2>
 <p>Giotto provides different ways to visualize your spatial data:</p>
-<div id="functions-specific-to-a-task-or-analysis" class="section level3">
-<h3 class="hasAnchor">
-<a href="#functions-specific-to-a-task-or-analysis" class="anchor"></a>1. Functions specific to a task or analysis:</h3>
+<div class="section level4">
+<h4 id="functions-specific-to-a-task-or-analysis">1. Functions specific to a task or analysis:<a class="anchor" aria-label="anchor" href="#functions-specific-to-a-task-or-analysis"></a>
+</h4>
 <ul>
 <li><strong>plotHeatmap</strong></li>
 <li><strong>plotMetadataHeatmap</strong></li>
 <li><strong>violinPlot</strong></li>
-<li>… check out the different dataset examples to see the wide range of visualization options</li>
+<li>… check out the different dataset examples to see the wide range of
+visualization options</li>
 </ul>
 </div>
-<div id="functions-that-use-the-spatial-coordinates-of-each-cell-or-spot-they-usually-start-with-spatxxx" class="section level3">
-<h3 class="hasAnchor">
-<a href="#functions-that-use-the-spatial-coordinates-of-each-cell-or-spot-they-usually-start-with-spatxxx" class="anchor"></a>2. Functions that use the spatial coordinates of each cell or spot, they usually start with <strong>spat</strong>XXX</h3>
+<div class="section level4">
+<h4 id="functions-that-use-the-spatial-coordinates-of-each-cell-or-spot-they-usually-start-with-spatxxx">2. Functions that use the spatial coordinates of each cell or spot,
+they usually start with <strong>spat</strong>XXX<a class="anchor" aria-label="anchor" href="#functions-that-use-the-spatial-coordinates-of-each-cell-or-spot-they-usually-start-with-spatxxx"></a>
+</h4>
 <ul>
 <li>
-<strong>spatPlot</strong>, to plot cell annotation information (e.g. cluster or cell type)</li>
+<strong>spatPlot</strong>, to plot cell annotation information
+(e.g. cluster or cell type)</li>
 <li>
-<strong>spatGenePlot</strong>, to overlay (multiple) gene expression values</li>
+<strong>spatGenePlot</strong>, to overlay (multiple) gene expression
+values</li>
 <li>
-<strong>spatCellPlot</strong>, to overlay (multiple) numerical cell values (e.g. spatial enrichment)</li>
+<strong>spatCellPlot</strong>, to overlay (multiple) numerical cell
+values (e.g. spatial enrichment)</li>
 </ul>
 </div>
-<div id="functions-that-use-the-dimension-reduction-coordinates-of-each-cell-or-spot-they-usually-start-with-dimxxx" class="section level3">
-<h3 class="hasAnchor">
-<a href="#functions-that-use-the-dimension-reduction-coordinates-of-each-cell-or-spot-they-usually-start-with-dimxxx" class="anchor"></a>3. Functions that use the dimension reduction coordinates of each cell or spot, they usually start with <strong>dim</strong>XXX</h3>
+<div class="section level4">
+<h4 id="functions-that-use-the-dimension-reduction-coordinates-of-each-cell-or-spot-they-usually-start-with-dimxxx">3. Functions that use the dimension reduction coordinates of each
+cell or spot, they usually start with <strong>dim</strong>XXX<a class="anchor" aria-label="anchor" href="#functions-that-use-the-dimension-reduction-coordinates-of-each-cell-or-spot-they-usually-start-with-dimxxx"></a>
+</h4>
 <ul>
 <li>
-<strong>dimPlot</strong>, to plot cell annotation information (e.g. cluster or cell type)</li>
+<strong>dimPlot</strong>, to plot cell annotation information
+(e.g. cluster or cell type)</li>
 <li>
-<strong>dimGenePlot</strong>, to overlay (multiple) gene expression values</li>
+<strong>dimGenePlot</strong>, to overlay (multiple) gene expression
+values</li>
 <li>
-<strong>dimCellPlot</strong>, to overlay (multiple) numerical cell values (e.g. spatial enrichment)<br>
+<strong>dimCellPlot</strong>, to overlay (multiple) numerical cell
+values (e.g. spatial enrichment)<br>
 </li>
 <li>
-<strong>plotPCA</strong>, <strong>plotUMAP</strong> and <strong>plotTSNE</strong> are shortcuts for <strong>dimPlot</strong>
+<strong>plotPCA</strong>, <strong>plotUMAP</strong> and
+<strong>plotTSNE</strong> are shortcuts for
+<strong>dimPlot</strong>
 </li>
 </ul>
 </div>
-<div id="functions-for-co-visualization-that-combine-spat-2-and-dim-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#functions-for-co-visualization-that-combine-spat-2-and-dim-3" class="anchor"></a>4. Functions for co-visualization that combine <strong>spat</strong> (2) and <strong>dim</strong> (3)</h3>
+<div class="section level4">
+<h4 id="functions-for-co-visualization-that-combine-spat-2-and-dim-3">4. Functions for co-visualization that combine <strong>spat</strong>
+(2) and <strong>dim</strong> (3)<a class="anchor" aria-label="anchor" href="#functions-for-co-visualization-that-combine-spat-2-and-dim-3"></a>
+</h4>
 <ul>
 <li>
-<strong>spatDimPlot</strong>, to plot cell annotation information (e.g. cluster or cell type)</li>
+<strong>spatDimPlot</strong>, to plot cell annotation information
+(e.g. cluster or cell type)</li>
 <li>
-<strong>spatDimGenePlot</strong>, to overlay (multiple) gene expression values</li>
+<strong>spatDimGenePlot</strong>, to overlay (multiple) gene
+expression values</li>
 <li>
-<strong>spatDimCellPlot</strong>, to overlay (multiple) numerical cell values (e.g. spatial enrichment)</li>
+<strong>spatDimCellPlot</strong>, to overlay (multiple) numerical
+cell values (e.g. spatial enrichment)</li>
 </ul>
 </div>
-<div id="both-in-2d-and-3d" class="section level3">
-<h3 class="hasAnchor">
-<a href="#both-in-2d-and-3d" class="anchor"></a>5. Both in 2D and 3D</h3>
-<p>Most functions both have a 2D and 3D version, like <strong>spatDimPlot2D</strong> and <strong>spatDimPlot3D</strong>. In those cases the <strong>spatDimPlot2D</strong> is the same as <strong>spatDimPlot</strong>. So only in case you want to plot your spatial or dimension reduction data in 3D, you need to specifically say so.</p>
+<div class="section level4">
+<h4 id="both-in-2d-and-3d">5. Both in 2D and 3D<a class="anchor" aria-label="anchor" href="#both-in-2d-and-3d"></a>
+</h4>
+<p>Most functions both have a 2D and 3D version, like
+<strong>spatDimPlot2D</strong> and <strong>spatDimPlot3D</strong>. In
+those cases the <strong>spatDimPlot2D</strong> is the same as
+<strong>spatDimPlot</strong>. So only in case you want to plot your
+spatial or dimension reduction data in 3D, you need to specifically say
+so.</p>
 </div>
-<div id="ways-to-save-plot" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ways-to-save-plot" class="anchor"></a>6. ways to save plot</h3>
+<div class="section level4">
+<h4 id="ways-to-save-plot">6. ways to save plot<a class="anchor" aria-label="anchor" href="#ways-to-save-plot"></a>
+</h4>
 <ul>
-<li>see also FAQ <a href="./instructions_and_plotting.html">How to create global instructions and show or save your created plots?</a>
+<li>see also FAQ <a href="./instructions_and_plotting.html">How to
+create global instructions and show or save your created plots?</a>
 </li>
-<li>All parameters available to save_param are found on the help page of <strong>?Giotto::all_plots_save_function</strong>
+<li>All parameters available to save_param are found on the help page of
+<strong>?Giotto::all_plots_save_function</strong>
 </li>
 <li>Hypothetical example showing a number of options:</li>
 </ul>
@@ -282,11 +306,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -294,6 +320,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -69,6 +69,7 @@ reference:
     desc: Create and operate on Giotto object
     contents:
     - giotto-class
+    - show,giotto-method
     - createGiottoObject
     - createGiottoVisiumObject
     - filterGiotto
@@ -109,11 +110,13 @@ reference:
   - title: Giotto instructions
     desc: Create or change Giotto instructions (e.g. defaults, plotting, saving, ...)
     contents:
+    - explainGiottoInstructions
     - createGiottoInstructions
     - readGiottoInstructions
     - showGiottoInstructions
     - changeGiottoInstructions
     - replaceGiottoInstructions
+    
 
   - title: Giotto helper functions
     desc: Common functions to help working with Giotto objects
@@ -167,6 +170,8 @@ reference:
     - doLouvainCluster
     - doKmeans
     - doHclust
+    - doSNNCluster
+    - doRandomWalkCluster
     - subClusterCells
     - doLeidenSubCluster
     - doLouvainSubCluster
@@ -201,6 +206,8 @@ reference:
     contents:
     - makeSignMatrixPAGE
     - makeSignMatrixRank
+    - makeSignMatrixDWLS
+    - makeSignMatrixDWLSfromMatrix
     - runSpatialEnrich
     - createSpatialEnrich
     - runPAGEEnrich
@@ -211,6 +218,7 @@ reference:
     - hyperGeometricEnrich
     - runSpatialDeconv 
     - runDWLSDeconv  
+    - spatDeconvPlot
 
   - title: Spatial network or grid
     desc: Function to (help) create a spatial network or grid
@@ -224,6 +232,7 @@ reference:
     - createSpatialNetwork
     - annotateSpatialNetwork
     - annotateSpatialGrid
+    - createSpatialDefaultGrid
     - createSpatialGrid
     - showNetworks
     - showGrids
@@ -268,6 +277,7 @@ reference:
     contents:
     - chooseAvailableSpatialGenes
     - checkAndFixSpatialGenes
+    - filterSpatialGenes
     - initHMRF_V2
     - doHMRF_V2
     - addHMRF_V2
@@ -277,6 +287,7 @@ reference:
     desc: Visualization of expression space (e.g. UMAP) in 2D
     contents:
     - dimPlot
+    - dimPlot2D
     - plotUMAP
     - plotUMAP_2D
     - plotTSNE
@@ -284,7 +295,9 @@ reference:
     - plotPCA
     - plotPCA_2D
     - dimGenePlot
+    - dimGenePlot2D
     - dimCellPlot
+    - dimCellPlot2D
 
   - title: 2D visualization in spatial space
     desc: Visualization in 2D spatial space
@@ -294,6 +307,7 @@ reference:
     - spatGenePlot
     - spatGenePlot2D
     - spatCellPlot
+    - spatCellPlot2D
 
   - title: 2D visualization in spatial and expression space
     desc: Visualization in both 2D spatial and expression space
@@ -301,6 +315,7 @@ reference:
     - spatDimPlot
     - spatDimPlot2D
     - spatDimGenePlot
+    - spatDimGenePlot2D
     - spatDimCellPlot
     - spatDimCellPlot2D
 
@@ -377,9 +392,27 @@ reference:
     contents:
     - exprCellCellcom
     - spatCellCellcom
+    - combCCcom
     - plotCCcomDotplot
+    - plotCCcomHeatmap
+    - plotCombineCellCellCommunication
+    - plotCombineCCcom
     - plotRankSpatvsExpr
     - plotRecovery
+    - specificCellCellcommunicationScores
+
+  - title: cell neighborhood; within a multi-cell spot
+    desc: NA
+    contents:
+    - cellProximityEnrichmentSpots
+    - geneExpDWLS
+    - cellProximityEnrichmentEachSpot
+    - findICGSpot
+    - filterICGSpot
+    - plotICGSpot
+    - plotCellProximityGenesSpot
+    - spatCellCellcomSpots
+
 
   - title: export from Giotto Analyzer to Viewer
     desc: Export selected annotations to a folder that can be used as input for Giotto Viewer
@@ -395,6 +428,19 @@ reference:
     desc: Functions to facilitate spatial data analysis and visualization
     contents:
     - getDistinctColors
+    - showSaveParameters
+    - processGiotto
+    - createRegZStackGobject
+    - create_crossSection_object
+    - plotRecovery_sub
+
+  - title: Mini datasets
+    desc: Ready to use mini datasets
+    contents:
+    - mini_giotto_multi_cell
+    - mini_giotto_single_cell
+    - mini_giotto_3D
+
 
 destination: docs
 

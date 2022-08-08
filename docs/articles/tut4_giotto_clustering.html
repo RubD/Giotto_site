@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,101 +168,106 @@
 
       
 
-      </header><script src="tut4_giotto_clustering_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/tut4_giotto_clustering.Rmd"><code>vignettes/tut4_giotto_clustering.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/tut4_giotto_clustering.Rmd" class="external-link"><code>vignettes/tut4_giotto_clustering.Rmd</code></a></small>
       <div class="hidden name"><code>tut4_giotto_clustering.Rmd</code></div>
 
     </div>
 
     
     
-<div id="clustering" class="section level1">
-<h1 class="hasAnchor">
-<a href="#clustering" class="anchor"></a>Clustering</h1>
-<div id="processing-steps" class="section level4">
-<h4 class="hasAnchor">
-<a href="#processing-steps" class="anchor"></a>1. processing steps</h4>
+<div class="section level2">
+<h2 id="clustering">Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a>
+</h2>
+<div class="section level5">
+<h5 id="processing-steps">1. processing steps<a class="anchor" aria-label="anchor" href="#processing-steps"></a>
+</h5>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
-
-<span class="co"># processing</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
-                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, 
-                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, 
-                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
-
-<span class="co"># dimension reduction</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span><span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># processing</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, </span>
+<span>                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, </span>
+<span>                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># dimension reduction</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculateHVG.html">calculateHVG</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runPCA.html">runPCA</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/runUMAP.html">runUMAP</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, dimensions_to_use <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="clustering-algorithms" class="section level4">
-<h4 class="hasAnchor">
-<a href="#clustering-algorithms" class="anchor"></a>2. clustering algorithms</h4>
-<p>Giotto provides a number of different clustering algorithms, here we show some of the most popular.</p>
+<div class="section level5">
+<h5 id="clustering-algorithms">2. clustering algorithms<a class="anchor" aria-label="anchor" href="#clustering-algorithms"></a>
+</h5>
+<p>Giotto provides a number of different clustering algorithms, here we
+show some of the most popular.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># leiden</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, name <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="co"># louvain</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doLouvainCluster.html">doLouvainCluster</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, name <span class="op">=</span> <span class="st">'louvain_clus'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'louvain_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="co"># kmeans</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doKmeans.html">doKmeans</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, centers <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">'kmeans_clus'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'kmeans_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-
-<span class="co"># hierarchical</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHclust.html">doHclust</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, k <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">'hier_clus'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'hier_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># leiden</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doLeidenCluster.html">doLeidenCluster</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, name <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'leiden_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># louvain</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doLouvainCluster.html">doLouvainCluster</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, name <span class="op">=</span> <span class="st">'louvain_clus'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'louvain_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># kmeans</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doKmeans.html">doKmeans</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, centers <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">'kmeans_clus'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'kmeans_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># hierarchical</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/doHclust.html">doHclust</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, k <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">'hier_clus'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'hier_clus'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="cluster-similarity-and-merging" class="section level4">
-<h4 class="hasAnchor">
-<a href="#cluster-similarity-and-merging" class="anchor"></a>2. cluster similarity and merging</h4>
-<p>To finetune clustering results Giotto provides methods to calculate similarities between clusters and merge clusters based on correlation and size parameters.</p>
+<div class="section level5">
+<h5 id="cluster-similarity-and-merging">2. cluster similarity and merging<a class="anchor" aria-label="anchor" href="#cluster-similarity-and-merging"></a>
+</h5>
+<p>To finetune clustering results Giotto provides methods to calculate
+similarities between clusters and merge clusters based on correlation
+and size parameters.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># calculate cluster similarities to see how individual clusters are correlated</span>
-<span class="va">cluster_similarities</span> <span class="op">=</span> <span class="fu"><a href="../reference/getClusterSimilarity.html">getClusterSimilarity</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,
-                                            cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span>
-
-<span class="co"># merge similar clusters based on correlation and size parameters</span>
-<span class="va">mini_giotto_single_cell</span> <span class="op">=</span> <span class="fu"><a href="../reference/mergeClusters.html">mergeClusters</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, 
-                                        cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>, 
-                                        min_cor_score <span class="op">=</span> <span class="fl">0.7</span>, 
-                                        force_min_group_size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-
-<span class="co"># visualize</span>
-<span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span>
-<span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'merged_cluster'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># calculate cluster similarities to see how individual clusters are correlated</span></span>
+<span><span class="va">cluster_similarities</span> <span class="op">=</span> <span class="fu"><a href="../reference/getClusterSimilarity.html">getClusterSimilarity</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,</span>
+<span>                                            cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># merge similar clusters based on correlation and size parameters</span></span>
+<span><span class="va">mini_giotto_single_cell</span> <span class="op">=</span> <span class="fu"><a href="../reference/mergeClusters.html">mergeClusters</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, </span>
+<span>                                        cluster_column <span class="op">=</span> <span class="st">'leiden_clus'</span>, </span>
+<span>                                        min_cor_score <span class="op">=</span> <span class="fl">0.7</span>, </span>
+<span>                                        force_min_group_size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># visualize</span></span>
+<span><span class="fu"><a href="../reference/pDataDT.html">pDataDT</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/plotUMAP_2D.html">plotUMAP_2D</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cell_color <span class="op">=</span> <span class="st">'merged_cluster'</span>, point_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="dendrogram-splits" class="section level4">
-<h4 class="hasAnchor">
-<a href="#dendrogram-splits" class="anchor"></a>3. dendrogram splits</h4>
-<p>A dendrogram can be created from the clustering results. This may for example help in identifying genes that are most differentially expressed between branches.</p>
+<div class="section level5">
+<h5 id="dendrogram-splits">3. dendrogram splits<a class="anchor" aria-label="anchor" href="#dendrogram-splits"></a>
+</h5>
+<p>A dendrogram can be created from the clustering results. This may for
+example help in identifying genes that are most differentially expressed
+between branches.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">splits</span> <span class="op">=</span> <span class="fu"><a href="../reference/getDendrogramSplits.html">getDendrogramSplits</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cluster_column <span class="op">=</span> <span class="st">'merged_cluster'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">splits</span> <span class="op">=</span> <span class="fu"><a href="../reference/getDendrogramSplits.html">getDendrogramSplits</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, cluster_column <span class="op">=</span> <span class="st">'merged_cluster'</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="subclustering" class="section level4">
-<h4 class="hasAnchor">
-<a href="#subclustering" class="anchor"></a>4. Subclustering</h4>
-<p>See seqfish+ clustering <a href="https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200914.html#part-4-cluster-1">example</a>.</p>
+<div class="section level5">
+<h5 id="subclustering">4. Subclustering<a class="anchor" aria-label="anchor" href="#subclustering"></a>
+</h5>
+<p>See seqfish+ clustering <a href="https://rubd.github.io/Giotto_site/articles/mouse_seqFISH_cortex_200914.html#part-4-cluster-1" class="external-link">example</a>.</p>
 </div>
 </div>
   </div>
@@ -276,11 +283,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -288,6 +297,8 @@
 
   
 
+
+  
 
   </body>
 </html>

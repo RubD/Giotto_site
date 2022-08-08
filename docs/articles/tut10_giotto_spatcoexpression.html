@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,88 +168,88 @@
 
       
 
-      </header><script src="tut10_giotto_spatcoexpression_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/tut10_giotto_spatcoexpression.Rmd"><code>vignettes/tut10_giotto_spatcoexpression.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/tut10_giotto_spatcoexpression.Rmd" class="external-link"><code>vignettes/tut10_giotto_spatcoexpression.Rmd</code></a></small>
       <div class="hidden name"><code>tut10_giotto_spatcoexpression.Rmd</code></div>
 
     </div>
 
     
     
-<div id="spatial-gene-coexpression" class="section level1">
-<h1 class="hasAnchor">
-<a href="#spatial-gene-coexpression" class="anchor"></a>Spatial gene coexpression</h1>
-<div id="processing-steps" class="section level4">
-<h4 class="hasAnchor">
-<a href="#processing-steps" class="anchor"></a>1. processing steps</h4>
+<div class="section level2">
+<h2 id="spatial-gene-coexpression">Spatial gene coexpression<a class="anchor" aria-label="anchor" href="#spatial-gene-coexpression"></a>
+</h2>
+<div class="section level5">
+<h5 id="processing-steps">1. processing steps<a class="anchor" aria-label="anchor" href="#processing-steps"></a>
+</h5>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
-
-<span class="co"># processing</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, 
-                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, 
-                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, 
-                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-<span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span>
-
-<span class="co"># create network (required for binSpect methods)</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, minimum_k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-
-<span class="co"># identify genes with a spatial coherent expression profile</span>
-<span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span><span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># processing</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterGiotto.html">filterGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">seqfish_mini</span>, </span>
+<span>                             expression_threshold <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>                             gene_det_in_min_cells <span class="op">=</span> <span class="fl">20</span>, </span>
+<span>                             min_det_genes_per_cell <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalizeGiotto.html">normalizeGiotto</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create network (required for binSpect methods)</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createSpatialNetwork.html">createSpatialNetwork</a></span><span class="op">(</span>gobject <span class="op">=</span> <span class="va">my_giotto_object</span>, minimum_k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># identify genes with a spatial coherent expression profile</span></span>
+<span><span class="va">km_spatialgenes</span> <span class="op">=</span> <span class="fu"><a href="../reference/binSpect.html">binSpect</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, bin_method <span class="op">=</span> <span class="st">'kmeans'</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="run-spatial-gene-co-expression-method" class="section level4">
-<h4 class="hasAnchor">
-<a href="#run-spatial-gene-co-expression-method" class="anchor"></a>2. Run spatial gene co-expression method</h4>
+<div class="section level5">
+<h5 id="run-spatial-gene-co-expression-method">2. Run spatial gene co-expression method<a class="anchor" aria-label="anchor" href="#run-spatial-gene-co-expression-method"></a>
+</h5>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># 1. calculate spatial correlation scores </span>
-<span class="va">ext_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span>
-<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,
-                                         method <span class="op">=</span> <span class="st">'network'</span>, 
-                                         spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,
-                                         subset_genes <span class="op">=</span> <span class="va">ext_spatial_genes</span><span class="op">)</span>
-
-<span class="co"># 2. cluster correlation scores</span>
-<span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
-                                          name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
-<span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, 
-                     use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># 1. calculate spatial correlation scores </span></span>
+<span><span class="va">ext_spatial_genes</span> <span class="op">=</span> <span class="va">km_spatialgenes</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">]</span><span class="op">$</span><span class="va">genes</span></span>
+<span><span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/detectSpatialCorGenes.html">detectSpatialCorGenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,</span>
+<span>                                         method <span class="op">=</span> <span class="st">'network'</span>, </span>
+<span>                                         spatial_network_name <span class="op">=</span> <span class="st">'Delaunay_network'</span>,</span>
+<span>                                         subset_genes <span class="op">=</span> <span class="va">ext_spatial_genes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. cluster correlation scores</span></span>
+<span><span class="va">spat_cor_netw_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/clusterSpatialCorGenes.html">clusterSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, </span>
+<span>                                          name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>, k <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/heatmSpatialCorGenes.html">heatmSpatialCorGenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, </span>
+<span>                     use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># rank spatial correlation clusters based on how similar they are</span>
-<span class="va">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, 
-                                  spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, 
-                                  use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span>
-
-<span class="co"># extract information about clusters</span>
-<span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
-                                            use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
-                                            selected_clusters <span class="op">=</span> <span class="fl">6</span>, 
-                                            show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="va">cluster_genes_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, 
-                                       use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,
-                                       show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="va">cluster_genes</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cluster_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">gene_ID</span>
-
-<span class="co"># create spatial metagenes and visualize</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, gene_clusters <span class="op">=</span> <span class="va">cluster_genes</span>, name <span class="op">=</span> <span class="st">'cluster_metagene'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,
-             spat_enr_names <span class="op">=</span> <span class="st">'cluster_metagene'</span>,
-             cell_annotation_values <span class="op">=</span> <span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span>,
-             point_size <span class="op">=</span> <span class="fl">1.5</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># rank spatial correlation clusters based on how similar they are</span></span>
+<span><span class="va">netw_ranks</span> <span class="op">=</span> <span class="fu"><a href="../reference/rankSpatialCorGroups.html">rankSpatialCorGroups</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, </span>
+<span>                                  spatCorObject <span class="op">=</span> <span class="va">spat_cor_netw_DT</span>, </span>
+<span>                                  use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># extract information about clusters</span></span>
+<span><span class="va">top_netw_spat_cluster</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, </span>
+<span>                                            use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,</span>
+<span>                                            selected_clusters <span class="op">=</span> <span class="fl">6</span>, </span>
+<span>                                            show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cluster_genes_DT</span> <span class="op">=</span> <span class="fu"><a href="../reference/showSpatialCorGenes.html">showSpatialCorGenes</a></span><span class="op">(</span><span class="va">spat_cor_netw_DT</span>, </span>
+<span>                                       use_clus_name <span class="op">=</span> <span class="st">'spat_netw_clus'</span>,</span>
+<span>                                       show_top_genes <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cluster_genes</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">clus</span>; <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">cluster_genes</span><span class="op">)</span> <span class="op">=</span> <span class="va">cluster_genes_DT</span><span class="op">$</span><span class="va">gene_ID</span></span>
+<span></span>
+<span><span class="co"># create spatial metagenes and visualize</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createMetagenes.html">createMetagenes</a></span><span class="op">(</span><span class="va">my_giotto_object</span>, gene_clusters <span class="op">=</span> <span class="va">cluster_genes</span>, name <span class="op">=</span> <span class="st">'cluster_metagene'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/spatCellPlot.html">spatCellPlot</a></span><span class="op">(</span><span class="va">my_giotto_object</span>,</span>
+<span>             spat_enr_names <span class="op">=</span> <span class="st">'cluster_metagene'</span>,</span>
+<span>             cell_annotation_values <span class="op">=</span> <span class="va">netw_ranks</span><span class="op">$</span><span class="va">clusters</span>,</span>
+<span>             point_size <span class="op">=</span> <span class="fl">1.5</span>, cow_n_col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -263,11 +265,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -275,6 +279,8 @@
 
   
 
+
+  
 
   </body>
 </html>

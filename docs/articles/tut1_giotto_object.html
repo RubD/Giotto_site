@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,85 +168,87 @@
 
       
 
-      </header><script src="tut1_giotto_object_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/tut1_giotto_object.Rmd"><code>vignettes/tut1_giotto_object.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/tut1_giotto_object.Rmd" class="external-link"><code>vignettes/tut1_giotto_object.Rmd</code></a></small>
       <div class="hidden name"><code>tut1_giotto_object.Rmd</code></div>
 
     </div>
 
     
     
-<div id="how-to-create-a-giotto-object" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-create-a-giotto-object" class="anchor"></a>How to create a Giotto object?</h1>
-<div id="minimum-requirements" class="section level4">
-<h4 class="hasAnchor">
-<a href="#minimum-requirements" class="anchor"></a>1. Minimum requirements</h4>
+<div class="section level2">
+<h2 id="how-to-create-a-giotto-object">How to create a Giotto object?<a class="anchor" aria-label="anchor" href="#how-to-create-a-giotto-object"></a>
+</h2>
+<div class="section level5">
+<h5 id="minimum-requirements">1. Minimum requirements<a class="anchor" aria-label="anchor" href="#minimum-requirements"></a>
+</h5>
 <ul>
 <li>expression matrix<br>
 </li>
 <li>spatial locations</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="co"># 1. directly from the file paths</span>
-<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span>
-
-
-<span class="co"># 2. use an existing matrix and data.table</span>
-<span class="va">expression_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/readExprMatrix.html">readExprMatrix</a></span><span class="op">(</span><span class="va">path_to_matrix</span><span class="op">)</span> <span class="co"># fast method to read expression matrix</span>
-<span class="va">cell_locations</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="va">path_to_locations</span><span class="op">)</span>
-
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">expression_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">cell_locations</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. directly from the file paths</span></span>
+<span><span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span><span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># 2. use an existing matrix and data.table</span></span>
+<span><span class="va">expression_matrix</span> <span class="op">=</span> <span class="fu"><a href="../reference/readExprMatrix.html">readExprMatrix</a></span><span class="op">(</span><span class="va">path_to_matrix</span><span class="op">)</span> <span class="co"># fast method to read expression matrix</span></span>
+<span><span class="va">cell_locations</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/fread.html" class="external-link">fread</a></span><span class="op">(</span><span class="va">path_to_locations</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">expression_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">cell_locations</span><span class="op">)</span></span></code></pre></div>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="additional-features" class="section level4">
-<h4 class="hasAnchor">
-<a href="#additional-features" class="anchor"></a>2. Additional features</h4>
-<p>Previous obtained information can be provided using any of the functions parameters to:<br>
+<div class="section level5">
+<h5 id="additional-features">2. Additional features<a class="anchor" aria-label="anchor" href="#additional-features"></a>
+</h5>
+<p>Previous obtained information can be provided using any of the
+functions parameters to:<br>
 - Add cell or gene metadata<br>
 - add spatial networks or grids<br>
 - add dimensions reduction<br>
 - add giotto images<br>
 - add offset file<br>
 - add instructions</p>
-<p>Usually specificying your own instructions can be most usefull to:<br>
+<p>Usually specificying your own instructions can be most usefull
+to:<br>
 - specify a python path<br>
 - determine output of plots<br>
 - automatically save plots to selected directory</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/">Giotto</a></span><span class="op">)</span>
-
-<span class="co"># 1. directly use a path</span>
-<span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-<span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span>
-
-<span class="co"># 2. create your own instructions</span>
-<span class="va">path_to_python</span> <span class="op">=</span> <span class="st">'/usr/bin/python3'</span> <span class="co"># can be something else </span>
-<span class="va">working_directory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># this will use your current working directory</span>
-<span class="va">my_instructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="va">path_to_python</span>,
-                                           save_dir <span class="op">=</span> <span class="va">working_directory</span><span class="op">)</span>
-
-<span class="co"># 3. create your giotto object</span>
-<span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,
-                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span>,
-                                      cell_metadata <span class="op">=</span> <span class="va">my_cell_metadata</span>,
-                                      gene_metadata <span class="op">=</span> <span class="va">my_gene_metadata</span>,
-                                      instructions <span class="op">=</span> <span class="va">my_instructions</span><span class="op">)</span>
-
-<span class="co"># 4. check which giotto instructions are associated with your giotto object</span>
-<span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubd.github.io/Giotto/" class="external-link">Giotto</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. directly use a path</span></span>
+<span><span class="va">path_to_matrix</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_expr.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span><span class="va">path_to_locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"seqfish_field_locs.txt"</span>, package <span class="op">=</span> <span class="st">'Giotto'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. create your own instructions</span></span>
+<span><span class="va">path_to_python</span> <span class="op">=</span> <span class="st">'/usr/bin/python3'</span> <span class="co"># can be something else </span></span>
+<span><span class="va">working_directory</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># this will use your current working directory</span></span>
+<span><span class="va">my_instructions</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoInstructions.html">createGiottoInstructions</a></span><span class="op">(</span>python_path <span class="op">=</span> <span class="va">path_to_python</span>,</span>
+<span>                                           save_dir <span class="op">=</span> <span class="va">working_directory</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. create your giotto object</span></span>
+<span><span class="va">my_giotto_object</span> <span class="op">=</span> <span class="fu"><a href="../reference/createGiottoObject.html">createGiottoObject</a></span><span class="op">(</span>raw_exprs <span class="op">=</span> <span class="va">path_to_matrix</span>,</span>
+<span>                                      spatial_locs <span class="op">=</span> <span class="va">path_to_locations</span>,</span>
+<span>                                      cell_metadata <span class="op">=</span> <span class="va">my_cell_metadata</span>,</span>
+<span>                                      gene_metadata <span class="op">=</span> <span class="va">my_gene_metadata</span>,</span>
+<span>                                      instructions <span class="op">=</span> <span class="va">my_instructions</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 4. check which giotto instructions are associated with your giotto object</span></span>
+<span><span class="fu"><a href="../reference/showGiottoInstructions.html">showGiottoInstructions</a></span><span class="op">(</span><span class="va">my_giotto_object</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -260,11 +264,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -272,6 +278,8 @@
 
   
 
+
+  
 
   </body>
 </html>

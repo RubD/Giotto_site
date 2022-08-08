@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,24 +168,25 @@
 
       
 
-      </header><script src="getting_started_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/getting_started.Rmd"><code>vignettes/getting_started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/getting_started.Rmd" class="external-link"><code>vignettes/getting_started.Rmd</code></a></small>
       <div class="hidden name"><code>getting_started.Rmd</code></div>
 
     </div>
 
     
     
-<div id="description" class="section level2">
-<h2 class="hasAnchor">
-<a href="#description" class="anchor"></a>Description</h2>
+<div class="section level2">
+<h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+</h2>
 <ul>
-<li>Giotto provides a flexible framework for common single-cell processing steps such as:
+<li>Giotto provides a flexible framework for common single-cell
+processing steps such as:
 <ul>
 <li>quality control</li>
 <li>normalization</li>
@@ -191,76 +194,117 @@
 <li>clustering and cell type annotation</li>
 </ul>
 </li>
-<li>To facilitate the analysis of recently emerging high-throughput, but lower-resolution spatial transcriptomic technologies, such as 10X Genomics Visium and Slide-seq, Giotto has 3 implemented algorithms for estimating the spatial enrichment of different cell types by integration of known gene signatures or single-cell RNAseq expression and annotation data.</li>
-<li>Spatial information is retained through the formation of a <em>spatial grid</em> and/or a <em>spatial proximity network</em>, which is used to:
+<li>To facilitate the analysis of recently emerging high-throughput, but
+lower-resolution spatial transcriptomic technologies, such as 10X
+Genomics Visium and Slide-seq, Giotto has 3 implemented algorithms for
+estimating the spatial enrichment of different cell types by integration
+of known gene signatures or single-cell RNAseq expression and annotation
+data.</li>
+<li>Spatial information is retained through the formation of a
+<em>spatial grid</em> and/or a <em>spatial proximity network</em>, which
+is used to:
 <ul>
 <li>identify spatial genes</li>
 <li>extract continuous spatial-expression patterns</li>
 <li>identify discrete spatial domains using HMRF</li>
-<li>explore cell-type/cell-type spatial interaction enrichment or depletion</li>
-<li>calculate spatially increased ligand-receptor expression in cells of interacting cell type pairs</li>
-<li>find interaction changed genes (ICG): genes that change expression in one cell type due to interaction with a neighboring cell type</li>
+<li>explore cell-type/cell-type spatial interaction enrichment or
+depletion</li>
+<li>calculate spatially increased ligand-receptor expression in cells of
+interacting cell type pairs</li>
+<li>find interaction changed genes (ICG): genes that change expression
+in one cell type due to interaction with a neighboring cell type</li>
 </ul>
 </li>
-<li>Giotto provides a number of options to visualize both 2D and 3D data and the outcome of Giotto can be interactively explored using <a href="http://spatial.rc.fas.harvard.edu/giotto-viewer/"><strong>Giotto Viewer</strong></a>, which allows you to overlay the obtained results with raw or additional images of the profiled tissue section(s).</li>
+<li>Giotto provides a number of options to visualize both 2D and 3D data
+and the outcome of Giotto can be interactively explored using <a href="http://spatial.rc.fas.harvard.edu/giotto-viewer/" class="external-link"><strong>Giotto
+Viewer</strong></a>, which allows you to overlay the obtained results
+with raw or additional images of the profiled tissue section(s).</li>
 </ul>
-<p>Make sure to check out the <strong>Datasets</strong> section to see examples of the Giotto workflow.</p>
+<p>Make sure to check out the <strong>Datasets</strong> section to see
+examples of the Giotto workflow.</p>
 <p> </p>
 </div>
-<div id="workflow-diagram" class="section level2">
-<h2 class="hasAnchor">
-<a href="#workflow-diagram" class="anchor"></a>Workflow diagram</h2>
+<div class="section level2">
+<h2 id="workflow-diagram">Workflow diagram<a class="anchor" aria-label="anchor" href="#workflow-diagram"></a>
+</h2>
 <p><img src="../inst/images/general_figs/diagram_giotto_workflow.png"></p>
 <p> </p>
 </div>
-<div id="howtos" class="section level2">
-<h2 class="hasAnchor">
-<a href="#howtos" class="anchor"></a>HOWTOs</h2>
-<p>Giotto provides a lot of analyses, visualizations and other options to facilitate your spatial dataset analysis. We are working on providing easy-to-understand examples or tutorials, but if anything is not clear or if there is something you would like to see in particular, then do not hesitate to contact <a href="https://github.com/RubD/Giotto/issues">us</a>.</p>
-<div id="giotto-tips-tricks" class="section level5">
-<h5 class="hasAnchor">
-<a href="#giotto-tips-tricks" class="anchor"></a>Giotto tips &amp; tricks</h5>
+<div class="section level2">
+<h2 id="howtos">HOWTOs<a class="anchor" aria-label="anchor" href="#howtos"></a>
+</h2>
+<p>Giotto provides a lot of analyses, visualizations and other options
+to facilitate your spatial dataset analysis. We are working on providing
+easy-to-understand examples or tutorials, but if anything is not clear
+or if there is something you would like to see in particular, then do
+not hesitate to contact <a href="https://github.com/RubD/Giotto/issues" class="external-link">us</a>.</p>
+<div class="section level5">
+<h5 id="giotto-tips-tricks">Giotto tips &amp; tricks<a class="anchor" aria-label="anchor" href="#giotto-tips-tricks"></a>
+</h5>
 <ul>
-<li><a href="./subset_giotto.html">Different ways of subsetting Giotto results?</a></li>
-<li><a href="./instructions_and_plotting.html">How to create global instructions and show or save your created plots?</a></li>
-<li><a href="./visualization_options.html">Different ways to visualize your spatial data?</a></li>
-<li><a href="./work_with_multiple_analyses.html">How to test and store multiple parameters or analyses?</a></li>
-<li><a href="./howto_voronoi_plots.html">Visualize spatial data with voronoi plots</a></li>
+<li><a href="./subset_giotto.html">Different ways of subsetting Giotto
+results?</a></li>
+<li><a href="./instructions_and_plotting.html">How to create global
+instructions and show or save your created plots?</a></li>
+<li><a href="./visualization_options.html">Different ways to visualize
+your spatial data?</a></li>
+<li><a href="./work_with_multiple_analyses.html">How to test and store
+multiple parameters or analyses?</a></li>
+<li><a href="./howto_voronoi_plots.html">Visualize spatial data with
+voronoi plots</a></li>
 <li>
-<a href="./howto_images.html">Adding and working with images in Giotto</a><br>
+<a href="./howto_images.html">Adding and working with images in
+Giotto</a><br>
 </li>
-<li><a href="./howto_giotto_class.html">Working with the Giotto class</a></li>
+<li><a href="./howto_giotto_class.html">Working with the Giotto
+class</a></li>
 </ul>
 </div>
-<div id="giotto-analyses-work-in-progress" class="section level5">
-<h5 class="hasAnchor">
-<a href="#giotto-analyses-work-in-progress" class="anchor"></a>Giotto analyses [work in progress]</h5>
+<div class="section level5">
+<h5 id="giotto-analyses-work-in-progress">Giotto analyses [work in progress]<a class="anchor" aria-label="anchor" href="#giotto-analyses-work-in-progress"></a>
+</h5>
 <ul>
-<li><a href="./tut0_giotto_environment.html">0. Install a Giotto environment (optional)</a></li>
-<li><a href="./tut1_giotto_object.html">1. Create a Giotto object</a></li>
-<li><a href="./tut2_giotto_object_process.html">2. Process and filter a Giotto object</a></li>
-<li><a href="./tut3_giotto_dim_reduction.html">3. Dimension reduction</a></li>
-<li><a href="./tut4_giotto_clustering.html">4. Cluster cells or spots</a></li>
-<li><a href="./tut5_giotto_markers.html">5. Identify differentially expressed genes</a></li>
-<li><a href="./tut6_giotto_annotation.html">6. Annotate clusters</a></li>
-<li><a href="./tut7_giotto_enrichment.html">7. Cell-type enrichment or deconvolution per spot</a></li>
+<li><a href="./tut0_giotto_environment.html">0. Install a Giotto
+environment (optional)</a></li>
+<li><a href="./tut1_giotto_object.html">1. Create a Giotto
+object</a></li>
+<li><a href="./tut2_giotto_object_process.html">2. Process and filter a
+Giotto object</a></li>
+<li><a href="./tut3_giotto_dim_reduction.html">3. Dimension
+reduction</a></li>
+<li><a href="./tut4_giotto_clustering.html">4. Cluster cells or
+spots</a></li>
+<li><a href="./tut5_giotto_markers.html">5. Identify differentially
+expressed genes</a></li>
+<li><a href="./tut6_giotto_annotation.html">6. Annotate
+clusters</a></li>
+<li><a href="./tut7_giotto_enrichment.html">7. Cell-type enrichment or
+deconvolution per spot</a></li>
 <li>
-<a href="./tut8_giotto_grid_network.html">8. Create a Spatial grid or Network</a><br>
+<a href="./tut8_giotto_grid_network.html">8. Create a Spatial grid
+or Network</a><br>
 </li>
-<li><a href="./tut9_giotto_spatgenes.html">9. Find genes with a spatially coherent gene expression pattern</a></li>
-<li><a href="./tut10_giotto_spatcoexpression.html">10. Identify genes that are spatially co-expressed</a></li>
-<li><a href="./tut11_giotto_hmrf.html">11. Explore spatial domains with HMRF</a></li>
-<li><a href="./tut12_giotto_cell_interaction.html">12. Calculate spatial cell-cell interaction enrichment</a></li>
-<li><a href="./tut13_giotto_ICG.html">13. Find cell-cell interaction changed genes (ICG)</a></li>
-<li><a href="./tut14_giotto_signaling.html">14. Identify enriched or depleted ligand-receptor interactions in hetero and homo-typic cell interactions</a></li>
+<li><a href="./tut9_giotto_spatgenes.html">9. Find genes with a
+spatially coherent gene expression pattern</a></li>
+<li><a href="./tut10_giotto_spatcoexpression.html">10. Identify genes
+that are spatially co-expressed</a></li>
+<li><a href="./tut11_giotto_hmrf.html">11. Explore spatial domains with
+HMRF</a></li>
+<li><a href="./tut12_giotto_cell_interaction.html">12. Calculate spatial
+cell-cell interaction enrichment</a></li>
+<li><a href="./tut13_giotto_ICG.html">13. Find cell-cell interaction
+changed genes (ICG)</a></li>
+<li><a href="./tut14_giotto_signaling.html">14. Identify enriched or
+depleted ligand-receptor interactions in hetero and homo-typic cell
+interactions</a></li>
 <li><ol start="15" style="list-style-type: decimal">
 <li>Export Giotto results to use in Giotto viewer</li>
 </ol></li>
 </ul>
 </div>
-<div id="giotto-analyzer-and-viewer-interaction-work-in-progress" class="section level5">
-<h5 class="hasAnchor">
-<a href="#giotto-analyzer-and-viewer-interaction-work-in-progress" class="anchor"></a>Giotto Analyzer and Viewer interaction [work in progress]</h5>
+<div class="section level5">
+<h5 id="giotto-analyzer-and-viewer-interaction-work-in-progress">Giotto Analyzer and Viewer interaction [work in progress]<a class="anchor" aria-label="anchor" href="#giotto-analyzer-and-viewer-interaction-work-in-progress"></a>
+</h5>
 <ul>
 <li>How to switch between Giotto Analyzer and Viewer?</li>
 </ul>
@@ -280,11 +324,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -292,6 +338,8 @@
 
   
 
+
+  
 
   </body>
 </html>

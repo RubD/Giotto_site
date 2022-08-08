@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Giotto</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.2</span>
       </span>
     </div>
 
@@ -143,7 +145,7 @@
   </ul>
 </li>
 <li>
-  <a href="https://github.com/RubD/Giotto">
+  <a href="https://github.com/RubD/Giotto" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -151,7 +153,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/RubD/Giotto/">
+  <a href="https://github.com/RubD/Giotto/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -166,47 +168,65 @@
 
       
 
-      </header><script src="binder_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip></h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/master/vignettes/binder.Rmd"><code>vignettes/binder.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RubD/Giotto/blob/HEAD/vignettes/binder.Rmd" class="external-link"><code>vignettes/binder.Rmd</code></a></small>
       <div class="hidden name"><code>binder.Rmd</code></div>
 
     </div>
 
     
     
-<div id="binder" class="section level1">
-<h1 class="hasAnchor">
-<a href="#binder" class="anchor"></a>Binder</h1>
-<p>If you’d like to test out/learn more about how to use Giotto, you can use the tutorial Binder we’ve created. For more information on how this works and what you can do with Giotto, please go to this <a href="https://github.com/ndelrossi7/giotto-tutorial-binder">link</a>.</p>
-<p>Simply click this button: <a href="https://mybinder.org/v2/gh/ndelrossi7/r-conda-binder/HEAD"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a> and a Docker image will be generated.</p>
-<div id="a-few-things-to-note" class="section level4">
-<h4 class="hasAnchor">
-<a href="#a-few-things-to-note" class="anchor"></a>A few things to note</h4>
+<div class="section level2">
+<h2 id="binder">Binder<a class="anchor" aria-label="anchor" href="#binder"></a>
+</h2>
+<p>If you’d like to test out/learn more about how to use Giotto, you can
+use the tutorial Binder we’ve created. For more information on how this
+works and what you can do with Giotto, please go to this <a href="https://github.com/ndelrossi7/giotto-tutorial-binder" class="external-link">link</a>.</p>
+<p>Simply click this button: <a href="https://mybinder.org/v2/gh/ndelrossi7/r-conda-binder/HEAD" class="external-link"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a> and a
+Docker image will be generated.</p>
+<div class="section level5">
+<h5 id="a-few-things-to-note">A few things to note<a class="anchor" aria-label="anchor" href="#a-few-things-to-note"></a>
+</h5>
 <ul>
-<li>The first time you build this Binder, it may take while. For some more information on why your session might be taking longer, please refer to this <a href="https://mybinder.readthedocs.io/en/latest/about/about.html#what-factors-influence-how-long-it-takes-a-binder-session-to-start">link</a>.
+<li>The first time you build this Binder, it may take while. For some
+more information on why your session might be taking longer, please
+refer to this <a href="https://mybinder.readthedocs.io/en/latest/about/about.html#what-factors-influence-how-long-it-takes-a-binder-session-to-start" class="external-link">link</a>.
 <ul>
 <li>
-<p>Below are some commmon messages you might see. They are normal! Just give the Binder some more time to load.</p>
+<p>Below are some commmon messages you might see. They are normal!
+Just give the Binder some more time to load.</p>
 <p><code>Your session is taking longer than usual to start! Check the log messages below to see what is happening.</code></p>
 <p><code>Launch attempt 1 failed, retrying... Launch attempt 2 failed, retrying...</code></p>
 </li>
 </ul>
 </li>
-<li>You will have access to 1-2 GB RAM. If you go over 2 GB of RAM the kernel may be restarted.
+<li>You will have access to 1-2 GB RAM. If you go over 2 GB of RAM the
+kernel may be restarted.
 <ul>
-<li>Because we have set up this repo so that you can import pre-processing scripts, you’ll be able to start with any notebook. If your kernel restarts just launch the Binder again!</li>
+<li>Because we have set up this repo so that you can import
+pre-processing scripts, you’ll be able to start with any notebook. If
+your kernel restarts just launch the Binder again!</li>
 </ul>
 </li>
-<li>If you are inactive for 10 minutes, the session will shut down. Otherwise, you’ll have up to 6 hours of usage or 1 cpu-hour for more intensive runs.</li>
-<li>Any changes that you make will not be saved (please do <strong><em>not</em></strong> attempt to push your work back to this repository). If you would like to save your progress, please refer to #6 in the <a href="https://github.com/ndelrossi7/giotto-tutorial-binder#instructions">instructions section</a>.</li>
-<li>Alternatively, if you would like to work on all of this solely locally, you can fork and clone the repository.</li>
+<li>If you are inactive for 10 minutes, the session will shut down.
+Otherwise, you’ll have up to 6 hours of usage or 1 cpu-hour for more
+intensive runs.</li>
+<li>Any changes that you make will not be saved (please do
+<strong><em>not</em></strong> attempt to push your work back to this
+repository). If you would like to save your progress, please refer to #6
+in the <a href="https://github.com/ndelrossi7/giotto-tutorial-binder#instructions" class="external-link">instructions
+section</a>.</li>
+<li>Alternatively, if you would like to work on all of this solely
+locally, you can fork and clone the repository.</li>
 </ul>
-<p>Once the image has been created, you will be redirected to a Jupyter notebook landing page. From there, you can navigate into any of the pre-made notebook tutorials and test it out.</p>
+<p>Once the image has been created, you will be redirected to a Jupyter
+notebook landing page. From there, you can navigate into any of the
+pre-made notebook tutorials and test it out.</p>
 </div>
 </div>
   </div>
@@ -222,11 +242,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.drieslab.com/">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
+  <p></p>
+<p>Developed by <a href="https://www.drieslab.com/" class="external-link">Ruben Dries</a>, Qian Zhu, Huipeng Li, Rui Dong, Guo-Cheng Yuan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -234,6 +256,8 @@
 
   
 
+
+  
 
   </body>
 </html>
