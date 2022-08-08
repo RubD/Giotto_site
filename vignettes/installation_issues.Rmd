@@ -176,6 +176,77 @@ CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 
 We hope that these issues will be resolved soon.
 
+### 2.4 build issues and openMP support on Apple Silicon Macs
+
+*Assuming [Homebrew](https://brew.sh/) installed and R installed via Homebrew: `brew install --cask r`*
+
+Details on Fortran: https://mac.r-project.org/tools/
+
+More details on openMP: https://pat-s.me/transitioning-from-x86-to-arm64-on-macos-experiences-of-an-r-user/#virtual-machines--parallels
+
+New release of Apple Silicon Macs requires a few extra steps otherwise
+installing packages with building will throw errors. 
+
+This is specific to Apple silicon Macs, an experimental build of 
+GNU Fortran compiler is required otherwise errors like these
+would pop up during installation:
+
+```error
+ld: warning: directory not found for option '-L/opt/R/arm64/gfortran/lib/gcc/aarch64-apple-darwin20.6.0/12.0.1'
+```
+
+This is due to [no Fortran compiler](https://support.bioconductor.org/p/9138121/)
+and it can be solved with a experimental build of Fortran complier.
+
+```bash
+# for R>=4.2.0
+curl -O https://mac.r-project.org/tools/gfortran-12.0.1-20220312-is-darwin20-arm64.tar.xz
+
+# unpack
+sudo tar fxz gfortran-12.0.1-20220312-is-darwin20-arm64.tar.xz -C /
+
+# /opt/R/arm64/gfortran/SDK has to point to your macOS SDK
+sudo gfortran-update-sdk
+```
+
+openMP, gcc can be installed. homebrew would be the
+easiest way to install it.
+
+```shell
+brew install libomp
+```
+
+Create `~/.R/Makevars` if not present, and add the chunk below. 
+
+```shell
+# homebrew
+FLIBS   =-L/opt/homebrew/opt/gfortran/lib
+F77     = /opt/homebrew/bin/gfortran
+FC      = /opt/homebrew/bin/gfortran
+
+CFLAGS   = -I/opt/homebrew/include
+CPPFLAGS = -I/opt/homebrew/include
+CXXFLAGS = -I/opt/homebrew/include
+
+# opemmp support
+LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
+CPPFLAGS += -Xclang -fopenmp
+```
+
+Changing the sym-linked to BLAS lib would improve significantly in 
+matrix calculation, [up to ~30x Fold in some cases](https://www.mail-archive.com/r-sig-mac@r-project.org/msg06199.html).
+
+To use the optimized BLAS
+```shell
+# create a symbolic link pointing libRblas.dylib to the optimized BLAS implementation
+cd /Library/Frameworks/R.framework/Resources/lib/
+ln -s -i -v libRblas.vecLib.dylib libRblas.dylib
+
+# If you ever want to revert this, do
+cd /Library/Frameworks/R.framework/Resources/lib/
+ln -s -i -v libRblas.0.dylib libRblas.dylib
+```
+
 
 ## 3. 'Make' not found error on windows
 
