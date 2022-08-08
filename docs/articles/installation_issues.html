@@ -320,16 +320,69 @@ then you need to install Clang 7.0.0 and GNU Fortran 6.1 as per <a href="https:/
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># clang: end</span></span></code></pre></div>
 <p>We hope that these issues will be resolved soon.</p>
 </div>
+<div class="section level3">
+<h3 id="build-issues-and-openmp-support-on-apple-silicon-macs">2.4 build issues and openMP support on Apple Silicon Macs<a class="anchor" aria-label="anchor" href="#build-issues-and-openmp-support-on-apple-silicon-macs"></a>
+</h3>
+<p><em>Assuming <a href="https://brew.sh/" class="external-link">Homebrew</a> installed and R
+installed via Homebrew: <code>brew install --cask r</code></em></p>
+<p>Details on Fortran: <a href="https://mac.r-project.org/tools/" class="external-link uri">https://mac.r-project.org/tools/</a></p>
+<p>More details on openMP: <a href="https://pat-s.me/transitioning-from-x86-to-arm64-on-macos-experiences-of-an-r-user/#virtual-machines--parallels" class="external-link uri">https://pat-s.me/transitioning-from-x86-to-arm64-on-macos-experiences-of-an-r-user/#virtual-machines--parallels</a></p>
+<p>New release of Apple Silicon Macs requires a few extra steps
+otherwise installing packages with building will throw errors.</p>
+<p>This is specific to Apple silicon Macs, an experimental build of GNU
+Fortran compiler is required otherwise errors like these would pop up
+during installation:</p>
+<pre class="error"><code>ld: warning: directory not found for option '-L/opt/R/arm64/gfortran/lib/gcc/aarch64-apple-darwin20.6.0/12.0.1'</code></pre>
+<p>This is due to <a href="https://support.bioconductor.org/p/9138121/" class="external-link">no Fortran
+compiler</a> and it can be solved with a experimental build of Fortran
+complier.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for R&gt;=4.2.0</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://mac.r-project.org/tools/gfortran-12.0.1-20220312-is-darwin20-arm64.tar.xz</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># unpack</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tar fxz gfortran-12.0.1-20220312-is-darwin20-arm64.tar.xz <span class="at">-C</span> /</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># /opt/R/arm64/gfortran/SDK has to point to your macOS SDK</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gfortran-update-sdk</span></code></pre></div>
+<p>openMP, gcc can be installed. homebrew would be the easiest way to
+install it.</p>
+<pre class="shell"><code>brew install libomp</code></pre>
+<p>Create <code>~/.R/Makevars</code> if not present, and add the chunk
+below.</p>
+<pre class="shell"><code># homebrew
+FLIBS   =-L/opt/homebrew/opt/gfortran/lib
+F77     = /opt/homebrew/bin/gfortran
+FC      = /opt/homebrew/bin/gfortran
+
+CFLAGS   = -I/opt/homebrew/include
+CPPFLAGS = -I/opt/homebrew/include
+CXXFLAGS = -I/opt/homebrew/include
+
+# opemmp support
+LDFLAGS += -L/opt/homebrew/opt/libomp/lib -lomp
+CPPFLAGS += -Xclang -fopenmp</code></pre>
+<p>Changing the sym-linked to BLAS lib would improve significantly in
+matrix calculation, <a href="https://www.mail-archive.com/r-sig-mac@r-project.org/msg06199.html" class="external-link">up
+to ~30x Fold in some cases</a>.</p>
+<p>To use the optimized BLAS</p>
+<pre class="shell"><code># create a symbolic link pointing libRblas.dylib to the optimized BLAS implementation
+cd /Library/Frameworks/R.framework/Resources/lib/
+ln -s -i -v libRblas.vecLib.dylib libRblas.dylib
+
+# If you ever want to revert this, do
+cd /Library/Frameworks/R.framework/Resources/lib/
+ln -s -i -v libRblas.0.dylib libRblas.dylib</code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="make-not-found-error-on-windows">3. ‘Make’ not found error on windows<a class="anchor" aria-label="anchor" href="#make-not-found-error-on-windows"></a>
 </h2>
 <p>If you encounter this error:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">system</span>(cmd) <span class="sc">:</span> (converted from warning) ‘make’ not found</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">system</span>(cmd) <span class="sc">:</span> (converted from warning) ‘make’ not found</span></code></pre></div>
 <p>Solution:<br>
 Install the necessary <a href="https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites" class="external-link">package
 development tools</a>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## make sure Rtools is visible (from within R)</span></span>
 <span><span class="co">## you can set the paths manually</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>PATH <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"C:/Rtools/bin"</span>,<span class="st">"C:/Rtools/mingw_64/bin"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"PATH"</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">";"</span><span class="op">)</span><span class="op">)</span></span>
@@ -339,12 +392,12 @@ development tools</a>.</p>
 <h2 id="error-converted-from-warning">4. Error converted from warning<a class="anchor" aria-label="anchor" href="#error-converted-from-warning"></a>
 </h2>
 <p>If you encounter this or similar error:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Failed to install <span class="st">'Giotto'</span> from GitHub<span class="sc">:</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  (converted from warning) ...</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Failed to install <span class="st">'Giotto'</span> from GitHub<span class="sc">:</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  (converted from warning) ...</span></code></pre></div>
 <ul>
 <li>make sure Rtools is installed, see point 3</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## avoid converting warnings to errors by setting this environment variable to true (from within R)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span><span class="st">"R_REMOTES_NO_ERRORS_FROM_WARNINGS"</span><span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
