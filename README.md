@@ -2,7 +2,10 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- This line is from RStudio -->
 
-# Giotto
+# OLD Giotto webiste
+
+This is the repository for the old Giotto website. Please use the new
+website www.spatialgiotto.com
 
 <!-- badges: start -->
 

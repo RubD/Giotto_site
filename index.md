@@ -1,12 +1,12 @@
 
 <!-- index.md is generated from index.Rmd. Please edit that file -->
-
 <!-- This line is from RStudio -->
 
-# Giotto
+# OLD Giotto website
+
+## Please use the new website **www.spatialgiotto.com**.
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 The Giotto package consists of two modules, Giotto Analyzer and Viewer
@@ -28,9 +28,9 @@ Giotto Analyzer can be found at <https://rubd.github.io/Giotto_site/>.
 
 ## Requirements
 
-  - R (\>= 3.5.1)
-  - Python (\>= 3.0)
-  - Windows, MacOS or Linux specific installation tools. See
+-   R (\>= 3.5.1)
+-   Python (\>= 3.0)
+-   Windows, MacOS or Linux specific installation tools. See
     [link](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
 
  
@@ -60,14 +60,14 @@ These are necessary to run all available analyses, but can be installed
 automatically.
 
 Required python modules:  
-\- pandas  
-\- python-igraph (igraph)  
-\- networkx  
-\- leidenalg  
-\- python-louvain (community)  
-\- smfishHmrf  
-\- python.app (\!\!OSX only\!\!)  
-\- scikit-learn
+- pandas  
+- python-igraph (igraph)  
+- networkx  
+- leidenalg  
+- python-louvain (community)  
+- smfishHmrf  
+- python.app (!!OSX only!!)  
+- scikit-learn
 
 ##### Automatic installation
 
@@ -91,37 +91,45 @@ See
 
 ## Examples
 
-  - see <https://github.com/RubD/spatial-datasets> to find raw and
+-   see <https://github.com/RubD/spatial-datasets> to find raw and
     pre-processed input data and Giotto scripts (in progress).
-  - typical run time range for the different datasets on a personal
+-   typical run time range for the different datasets on a personal
     computer is around 10\~45 mins.  
-  - click on the image and try them out yourself.  
-  - all examples are gradually updated to the latest Giotto version
+-   click on the image and try them out yourself.  
+-   all examples are gradually updated to the latest Giotto version
     \[work in progress\]
 
-[![seqFISH](./inst/images/general_figs/cortex_image_summary.png)](./articles/mouse_seqFISH_cortex_200914.html)
-[![merFISH](./inst/images/general_figs/merFISH_hypoth_image_summary.png)](./articles/mouse_merFISH_preoptic_region_200909.html)
-[![STARmap](./inst/images/general_figs/starmap_cortex_image_summary.png)](./articles/mouse_starmap_cortex_200917.html)
-[![Visium\_brain](./inst/images/general_figs/visium_brain_image_summary.png)](./articles/mouse_visium_brain_200918.html)
-[![Visium\_kidney](./inst/images/general_figs/visium_kidney_image_summary.png)](./articles/mouse_visium_kidney_200916.html)
-[![CyCIF](./inst/images/general_figs/cyCIF_PDAC_image_summary.png)](./articles/human_cycif_PDAC_200916.html)
-[![osmFISH](./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png)](./articles/mouse_osmFISH_SScortex_200915.html)
-[![CODEX](./inst/images/general_figs/CODEX_spleen_image_summary.png)](./articles/mouse_CODEX_spleen_200921.html)
+[<img src="./inst/images/general_figs/cortex_image_summary.png"
+style="width:10cm" alt="seqFISH" />](./articles/mouse_seqFISH_cortex_200914.html)
+[<img src="./inst/images/general_figs/merFISH_hypoth_image_summary.png"
+style="width:10cm" alt="merFISH" />](./articles/mouse_merFISH_preoptic_region_200909.html)
+[<img src="./inst/images/general_figs/starmap_cortex_image_summary.png"
+style="width:10cm" alt="STARmap" />](./articles/mouse_starmap_cortex_200917.html)
+[<img src="./inst/images/general_figs/visium_brain_image_summary.png"
+style="width:10cm" alt="Visium_brain" />](./articles/mouse_visium_brain_200918.html)
+[<img src="./inst/images/general_figs/visium_kidney_image_summary.png"
+style="width:10cm" alt="Visium_kidney" />](./articles/mouse_visium_kidney_200916.html)
+[<img src="./inst/images/general_figs/cyCIF_PDAC_image_summary.png"
+style="width:10cm" alt="CyCIF" />](./articles/human_cycif_PDAC_200916.html)
+[<img
+src="./inst/images/general_figs/osmFISH_SS_cortex_image_summary.png"
+style="width:10cm" alt="osmFISH" />](./articles/mouse_osmFISH_SScortex_200915.html)
+[<img src="./inst/images/general_figs/CODEX_spleen_image_summary.png"
+style="width:10cm" alt="CODEX" />](./articles/mouse_CODEX_spleen_200921.html)
 
 ## References
 
-  - [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative
-    analysis and visualization of spatial expression data.
-    bioRxiv 701680
-    (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
+-   [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative
+    analysis and visualization of spatial expression data. bioRxiv
+    701680 (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
     <doi:10.1101/701680>
 
-  - [Eng, C.-H. L. et al. Transcriptome-scale super-resolved imaging in
+-   [Eng, C.-H. L. et al. Transcriptome-scale super-resolved imaging in
     tissues by RNA seqFISH+. Nature 1
     (2019).](https://www.nature.com/articles/s41586-019-1049-y)
     <doi:10.1038/s41586-019-1049-y>
 
-  - [Zhu, Q., Shah, S., Dries, R., Cai, L. & Yuan, G.-C. Identification
+-   [Zhu, Q., Shah, S., Dries, R., Cai, L. & Yuan, G.-C. Identification
     of spatially associated subpopulations by combining scRNAseq and
     sequential fluorescence in situ hybridization data. Nature
     Biotechnology (2018).](https://www.nature.com/articles/nbt.4260)

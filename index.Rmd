@@ -6,7 +6,9 @@ output: github_document
 <!-- This line is from RStudio -->
 
 
-# Giotto
+# OLD Giotto website
+
+## Please use the new website **www.spatialgiotto.com**. 
 
 <!-- badges: start -->
 <!-- badges: end -->
