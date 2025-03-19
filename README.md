@@ -4,8 +4,8 @@
 
 # OLD Giotto webiste
 
-This is the repository for the old Giotto website. Please use the new
-website www.giottosuite.com
+This is the repository for the original Giotto website that was released together with the Genome Biology paper (Dries et al, 2021). Please use the new
+website www.giottosuite.com when working with recent versions of Giotto.
 
 <!-- badges: start -->
 
