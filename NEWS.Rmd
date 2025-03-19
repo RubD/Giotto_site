@@ -3,6 +3,9 @@
 output: github_document
 ---
 
+# Please use the new website [www.giottosuite.com](https://drieslab.github.io/Giotto_website/). This website is outdated and archived for consistency with the original Giotto publication (Dries et al, Genome Biology, 2021).
+
+
 # Giotto 1.0.1 - 1.0.3
 
 - Fixed bugs
