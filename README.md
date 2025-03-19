@@ -4,8 +4,7 @@
 
 # OLD Giotto webiste
 
-This is the repository for the original Giotto website that was released together with the Genome Biology paper (Dries et al, 2021). Please use the new
-website www.giottosuite.com when working with recent versions of Giotto.
+## Please use the new website **www.giottosuite.com**. This website is outdated and archived for consistency with the original Giotto publication (Dries et al, Genome Biology, 2021).
 
 <!-- badges: start -->
 
@@ -37,13 +36,12 @@ change !!**).
 
 ## Reference
 
--   [Dries, R., Zhu, Q. et al. Giotto: a toolbox for integrative
-    analysis and visualization of spatial expression data. Genome
-    Biology
-    (2021).](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2)
--   [Dries, R., Chen, J. et al. Advances in spatial transcriptomic data
-    analysis. Genome Research
-    (2021).](https://genome.cshlp.org/content/31/10/1706.long)
--   [Del Rossi, N., Chen, J. et al. Analyzing Spatial Transcriptomics
-    Data Using Giotto. Current Protocols
-    (2022).](https://currentprotocols.onlinelibrary.wiley.com/doi/abs/10.1002/cpz1.405)
+- [Dries, R., Zhu, Q. et al. Giotto: a toolbox for integrative analysis
+  and visualization of spatial expression data. Genome Biology
+  (2021).](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02286-2)
+- [Dries, R., Chen, J. et al. Advances in spatial transcriptomic data
+  analysis. Genome Research
+  (2021).](https://genome.cshlp.org/content/31/10/1706.long)
+- [Del Rossi, N., Chen, J. et al. Analyzing Spatial Transcriptomics Data
+  Using Giotto. Current Protocols
+  (2022).](https://currentprotocols.onlinelibrary.wiley.com/doi/abs/10.1002/cpz1.405)

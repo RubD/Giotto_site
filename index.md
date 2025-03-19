@@ -4,7 +4,7 @@
 
 # OLD Giotto website
 
-## Please use the new website **www.spatialgiotto.com**.
+## Please use the new website **www.giottosuite.com**. This website is outdated and archived for consistency with the original Giotto publication (Dries et al, Genome Biology, 2021).
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -28,10 +28,10 @@ Giotto Analyzer can be found at <https://rubd.github.io/Giotto_site/>.
 
 ## Requirements
 
--   R (\>= 3.5.1)
--   Python (\>= 3.0)
--   Windows, MacOS or Linux specific installation tools. See
-    [link](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
+- R (\>= 3.5.1)
+- Python (\>= 3.0)
+- Windows, MacOS or Linux specific installation tools. See
+  [link](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
 
  
 
@@ -42,7 +42,7 @@ additional information.
 
 #### R installation
 
-You can install Giotto with (\~1-5 mins):
+You can install Giotto with (~1-5 mins):
 
 ``` r
 library(devtools)  # if not installed: install.packages('devtools')
@@ -91,13 +91,13 @@ See
 
 ## Examples
 
--   see <https://github.com/RubD/spatial-datasets> to find raw and
-    pre-processed input data and Giotto scripts (in progress).
--   typical run time range for the different datasets on a personal
-    computer is around 10\~45 mins.  
--   click on the image and try them out yourself.  
--   all examples are gradually updated to the latest Giotto version
-    \[work in progress\]
+- see <https://github.com/RubD/spatial-datasets> to find raw and
+  pre-processed input data and Giotto scripts (in progress).
+- typical run time range for the different datasets on a personal
+  computer is around 10~45 mins.  
+- click on the image and try them out yourself.  
+- all examples are gradually updated to the latest Giotto version \[work
+  in progress\]
 
 [<img src="./inst/images/general_figs/cortex_image_summary.png"
 style="width:10cm" alt="seqFISH" />](./articles/mouse_seqFISH_cortex_200914.html)
@@ -119,18 +119,18 @@ style="width:10cm" alt="CODEX" />](./articles/mouse_CODEX_spleen_200921.html)
 
 ## References
 
--   [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative
-    analysis and visualization of spatial expression data. bioRxiv
-    701680 (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
-    <doi:10.1101/701680>
+- [Dries, R., Zhu, Q. et al. Giotto, a toolbox for integrative analysis
+  and visualization of spatial expression data. bioRxiv 701680
+  (2019).](https://www.biorxiv.org/content/10.1101/701680v2)
+  <doi:10.1101/701680>
 
--   [Eng, C.-H. L. et al. Transcriptome-scale super-resolved imaging in
-    tissues by RNA seqFISH+. Nature 1
-    (2019).](https://www.nature.com/articles/s41586-019-1049-y)
-    <doi:10.1038/s41586-019-1049-y>
+- [Eng, C.-H. L. et al. Transcriptome-scale super-resolved imaging in
+  tissues by RNA seqFISH+. Nature 1
+  (2019).](https://www.nature.com/articles/s41586-019-1049-y)
+  <doi:10.1038/s41586-019-1049-y>
 
--   [Zhu, Q., Shah, S., Dries, R., Cai, L. & Yuan, G.-C. Identification
-    of spatially associated subpopulations by combining scRNAseq and
-    sequential fluorescence in situ hybridization data. Nature
-    Biotechnology (2018).](https://www.nature.com/articles/nbt.4260)
-    <doi:10.1038/nbt.4260>
+- [Zhu, Q., Shah, S., Dries, R., Cai, L. & Yuan, G.-C. Identification of
+  spatially associated subpopulations by combining scRNAseq and
+  sequential fluorescence in situ hybridization data. Nature
+  Biotechnology (2018).](https://www.nature.com/articles/nbt.4260)
+  <doi:10.1038/nbt.4260>
