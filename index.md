@@ -4,7 +4,7 @@
 
 # OLD Giotto website
 
-## Please use the new website **www.giottosuite.com**. This website is outdated and archived for consistency with the original Giotto publication (Dries et al, Genome Biology, 2021).
+## Please use the new website [www.giottosuite.com](https://drieslab.github.io/Giotto_website/). This website is outdated and archived for consistency with the original Giotto publication (Dries et al, Genome Biology, 2021).
 
 <!-- badges: start -->
 <!-- badges: end -->
