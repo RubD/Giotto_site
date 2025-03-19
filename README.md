@@ -5,7 +5,7 @@
 # OLD Giotto webiste
 
 This is the repository for the old Giotto website. Please use the new
-website www.spatialgiotto.com
+website www.giottosuite.com
 
 <!-- badges: start -->
 
