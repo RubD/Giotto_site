@@ -1,5 +1,5 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.6
+pandoc: '3.2'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   binder: binder.html
@@ -28,12 +28,12 @@ articles:
   mouse_visium_kidney_200916: mouse_visium_kidney_200916.html
   subset_giotto: subset_giotto.html
   tut0_giotto_environment: tut0_giotto_environment.html
+  tut1_giotto_object: tut1_giotto_object.html
   tut10_giotto_spatcoexpression: tut10_giotto_spatcoexpression.html
   tut11_giotto_hmrf: tut11_giotto_hmrf.html
   tut12_giotto_cell_interaction: tut12_giotto_cell_interaction.html
   tut13_giotto_ICG: tut13_giotto_ICG.html
   tut14_giotto_signaling: tut14_giotto_signaling.html
-  tut1_giotto_object: tut1_giotto_object.html
   tut2_giotto_object_process: tut2_giotto_object_process.html
   tut3_giotto_dim_reduction: tut3_giotto_dim_reduction.html
   tut4_giotto_clustering: tut4_giotto_clustering.html
@@ -44,5 +44,4 @@ articles:
   tut9_giotto_spatgenes: tut9_giotto_spatgenes.html
   visualization_options: visualization_options.html
   work_with_multiple_analyses: work_with_multiple_analyses.html
-last_built: 2022-11-15T14:31Z
-
+last_built: 2025-03-19T09:49Z
